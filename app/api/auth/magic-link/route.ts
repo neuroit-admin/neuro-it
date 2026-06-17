@@ -117,13 +117,10 @@ export async function POST(req: Request) {
       console.warn('[DEVELOPMENT WARNING] Resend email dispatch failed, continuing locally:', emailErr)
     }
 
+    // Log the link in console for easy setup testing on Vercel Logs
+    console.log(`[ADMIN SETUP DEBUG] Magic link generated for ${cleanEmail}: ${magicLink}`)
+
     const isDev = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test' || !process.env.NODE_ENV
-    if (isDev) {
-      console.log(`\n======================================================`)
-      console.log(`[DEVELOPMENT] MAGIC LINK FOR ${cleanEmail}:`)
-      console.log(magicLink)
-      console.log(`======================================================\n`)
-    }
 
     return NextResponse.json({ 
       success: true,
