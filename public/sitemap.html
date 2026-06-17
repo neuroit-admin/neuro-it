@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>درخت‌واره و فلوچارت‌های سیستم | Neuro IT Sitemap & Flowcharts</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts (Outfit, JetBrains Mono, & Vazirmatn for Persian) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@300;400;600;800&family=Vazirmatn:wght@300;400;700;900&display=swap" rel="stylesheet">
+  
+  <!-- Mermaid.js for visual flowchart rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'dark',
+      securityLevel: 'loose',
+      flowchart: {
+        useMaxWidth: true,
+        htmlLabels: true,
+        curve: 'cardinal'
+      }
+    });
+  </script>
+
+  <style>
+    :root {
+      --font-fa: 'Vazirmatn', sans-serif;
+      --font-en: 'Outfit', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+    
+    body {
+      font-family: var(--font-fa);
+      background-color: #060913;
+      color: #cbd5e1;
+    }
+    
+    .font-outfit {
+      font-family: var(--font-en);
+    }
+    
+    .font-mono {
+      font-family: var(--font-mono);
+    }
+    
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0b0f19;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00D2FF;
+    }
+    
+    /* Glassmorphism panel */
+    .glass-panel {
+      background: rgba(11, 15, 28, 0.65);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    
+    /* Glassmorphism card */
+    .glass-card {
+      background: rgba(18, 24, 43, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .glass-card:hover {
+      background: rgba(18, 24, 43, 0.55);
+      border-color: rgba(0, 210, 255, 0.3);
+      box-shadow: 0 10px 30px -10px rgba(0, 210, 255, 0.2);
+      transform: translateY(-2px);
+    }
+    
+    /* Tab active transitions */
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+      animation: fadeIn 0.4s ease-out forwards;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    /* Text search highlights */
+    .highlight-match {
+      background-color: rgba(0, 210, 255, 0.25);
+      color: #00D2FF;
+      font-weight: 700;
+      border-bottom: 2px solid #00D2FF;
+      padding: 0 2px;
+      border-radius: 2px;
+    }
+    
+    .tree-pre {
+      direction: ltr;
+      text-align: left;
+      font-family: var(--font-mono);
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body class="min-h-screen selection:bg-cyan-500/30 selection:text-cyan-200">
+
+  <!-- Header Banner -->
+  <header class="border-b border-slate-800/80 bg-[#070b16]/95 backdrop-blur-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="h-10 w-10 rounded-lg bg-gradient-to-tr from-cyan-400 to-blue-600 flex items-center justify-center font-bold text-lg text-slate-950 font-outfit shadow-lg shadow-cyan-500/25">
+          N
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-xl font-extrabold tracking-wider text-white font-outfit">NEURO<span class="text-cyan-400">IT</span></h1>
+            <span class="text-[10px] bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 px-2 py-0.5 rounded-full font-mono uppercase">v3.0 Production</span>
+          </div>
+          <p class="text-xs text-slate-400" id="header-desc">سند معماری اطلاعات، درخت‌واره کامل و فلوچارت‌های تعاملی سیستم (Information Architecture)</p>
+        </div>
+      </div>
+      
+      <!-- Tab selectors -->
+      <div class="flex flex-wrap items-center gap-2">
+        <button onclick="switchTab('tab-tree')" id="btn-tab-tree" class="tab-btn px-4 py-2 rounded-lg bg-cyan-500 text-slate-950 text-xs font-bold tracking-wider transition shadow-md shadow-cyan-500/20">درخت‌واره (Sitemap Tree)</button>
+        <button onclick="switchTab('tab-flows')" id="btn-tab-flows" class="tab-btn px-4 py-2 rounded-lg bg-slate-900 text-slate-400 hover:bg-slate-800 text-xs font-semibold tracking-wider transition">فلوچارت‌ها (Flowcharts)</button>
+        <button onclick="switchTab('tab-routes')" id="btn-tab-routes" class="tab-btn px-4 py-2 rounded-lg bg-slate-900 text-slate-400 hover:bg-slate-800 text-xs font-semibold tracking-wider transition">مسیرهای سیستم (Routes)</button>
+        <button onclick="switchTab('tab-doc')" id="btn-tab-doc" class="tab-btn px-4 py-2 rounded-lg bg-slate-900 text-slate-400 hover:bg-slate-800 text-xs font-semibold tracking-wider transition">تحلیل معماری و سئو (UX & IA)</button>
+        <div class="h-6 w-px bg-slate-800 mx-2 hidden md:block"></div>
+        <button onclick="toggleLang()" id="btn-lang" class="px-3 py-2 rounded-lg bg-slate-900 text-slate-400 border border-slate-800 hover:text-white text-xs font-mono transition">EN / FA</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-6 py-8 space-y-8">
+    
+    <!-- Info ribbon -->
+    <div class="glass-panel p-4 rounded-xl border-cyan-500/20 bg-cyan-950/10 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <span class="flex h-3 w-3 relative">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-3 w-3 bg-cyan-400"></span>
+        </span>
+        <p class="text-xs text-slate-300 leading-relaxed" id="info-ribbon-text">
+          <strong class="text-cyan-400">سند معماری پلتفرم:</strong> فرآیند خرید مهمان بدون نیاز به احراز هویت اولیه <span class="font-outfit font-mono text-[11px] text-cyan-400 bg-cyan-900/20 px-1 rounded">Book First, Auth Later</span>، وبلاگ مجهز به هوش مصنوعی و پیگیری با توکن مهمان.
+        </p>
+      </div>
+      <div class="text-[11px] font-mono text-slate-400 hidden lg:block">
+        Support: hello@neuro-it.co.uk
+      </div>
+    </div>
+
+    <!-- Quick Stats Cards -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="glass-panel p-5 rounded-xl">
+        <p class="text-[10px] tracking-wider text-slate-400 font-bold mb-1" id="stat-title-1">تعداد کل صفحات و مسیرها</p>
+        <p class="text-3xl font-black text-cyan-400 font-outfit">۸۴ <span class="text-sm font-normal text-slate-500" id="stat-unit-1">صفحه فعال</span></p>
+        <p class="text-[10px] text-slate-500 mt-2" id="stat-desc-1">شامل ۳۳ صفحه فرود سئو برای مناطق لندن</p>
+      </div>
+      <div class="glass-panel p-5 rounded-xl">
+        <p class="text-[10px] tracking-wider text-slate-400 font-bold mb-1" id="stat-title-2">سطوح دسترسی امنیتی</p>
+        <p class="text-3xl font-black text-purple-400 font-outfit">۴ <span class="text-sm font-normal text-slate-500" id="stat-unit-2">سطح امنیت</span></p>
+        <p class="text-[10px] text-slate-500 mt-2" id="stat-desc-2">مهمان، کاربر عضو، پورتال و پنل مدیریت ارشد</p>
+      </div>
+      <div class="glass-panel p-5 rounded-xl">
+        <p class="text-[10px] tracking-wider text-slate-400 font-bold mb-1" id="stat-title-3">موتور تبدیل مشتری (CRO)</p>
+        <p class="text-3xl font-black text-emerald-400 font-outfit">/book</p>
+        <p class="text-[10px] text-slate-500 mt-2" id="stat-desc-3">فرم ۳ مرحله‌ای پویا با پیش‌فاکتور زنده</p>
+      </div>
+      <div class="glass-panel p-5 rounded-xl">
+        <p class="text-[10px] tracking-wider text-slate-400 font-bold mb-1" id="stat-title-4">سیستم تولید محتوای وبلاگ</p>
+        <p class="text-3xl font-black text-amber-400 font-outfit">Gemini AI</p>
+        <p class="text-[10px] text-slate-500 mt-2" id="stat-desc-4">خزشگر اخبار زنده به همراه ربات نویسنده محتوا</p>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 1: SITEMAP TREE ==================== -->
+    <section id="tab-tree" class="tab-content active space-y-6">
+      <div class="glass-panel rounded-2xl p-6 md:p-8 space-y-6">
+        
+        <!-- Search and Filter Header -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-800/60">
+          <div>
+            <h2 class="text-xl font-bold text-white flex items-center gap-2">
+              <span id="tree-title">درخت‌واره سلسله‌مراتبی ساختار سایت (Hierarchical Sitemap)</span>
+            </h2>
+            <p class="text-xs text-slate-400 mt-1" id="tree-subtitle">ساختار شاخه‌ای کامل وب‌سایت Neuro IT به همراه تمام زیرمجموعه‌ها، روت‌های پویای سئو، پورتال و مدیریت.</p>
+          </div>
+          
+          <!-- Search Box -->
+          <div class="relative w-full md:w-80">
+            <input type="text" id="tree-search" oninput="searchTree()" placeholder="جستجو در درخت‌واره (مثال: book, admin...)" class="w-full bg-[#0b101f] border border-slate-700/80 rounded-lg px-4 py-2 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 transition">
+            <span class="absolute left-3 top-2.5 text-slate-500 text-xs font-mono" id="search-count"></span>
+          </div>
+        </div>
+
+        <!-- Color Legend Info -->
+        <div class="flex flex-wrap gap-2 text-xs" id="legend-container">
+          <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-cyan-950/40 border border-cyan-800/40 text-cyan-400 font-medium">
+            <span class="h-2 w-2 rounded-full bg-cyan-400"></span> صفحات عمومی و بازاریابی
+          </span>
+          <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-950/40 border border-emerald-800/40 text-emerald-400 font-medium">
+            <span class="h-2 w-2 rounded-full bg-emerald-400"></span> پورتال مشتریان (نیاز به لاگین)
+          </span>
+          <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-purple-950/40 border border-purple-800/40 text-purple-400 font-medium">
+            <span class="h-2 w-2 rounded-full bg-purple-400"></span> پنل مدیریت ارشد
+          </span>
+          <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-950/40 border border-amber-800/40 text-amber-400 font-medium">
+            <span class="h-2 w-2 rounded-full bg-amber-400"></span> صفحات تبدیل و قیف فروش (Conversion)
+          </span>
+        </div>
+
+        <!-- The Tree Pre Block -->
+        <div class="bg-[#03060d] p-6 rounded-xl border border-slate-800/60 overflow-x-auto relative shadow-inner">
+          <div class="absolute top-4 left-4 text-[10px] text-slate-600 font-mono select-none">ASCII MAP TREE</div>
+          <pre id="sitemap-tree-data" class="tree-pre text-xs leading-relaxed text-slate-300 font-medium select-all" dir="ltr">
+Home (صفحه اصلی - /) 🎯 [CONVERSION ROOT]
+│
+├── Main Navigation (منوی اصلی و هدر بالا)
+│   ├── Book a Repair (ثبت تعمیر - /book) 🎯 [PRIMARY CTA]
+│   ├── Services & Pricing (خدمات و تعرفه‌ها - /services)
+│   ├── Areas (مناطق تحت پوشش - /areas)
+│   ├── Blog (وبلاگ - /blog)
+│   ├── How It Works (مراحل کار - /how-it-works)
+│   ├── FAQ (سوالات متداول - /faq)
+│   └── Customer Portal (پورتال مشتری - /portal)
+│
+├── Public Marketing Pages (صفحات عمومی و بازاریابی)
+│   ├── About Us (درباره ما - /about)
+│   ├── Contact Us (تماس با ما - /contact)
+│   ├── Pricing & Fees (تعرفه‌ها - /pricing -> 301 Redirect to /services)
+│   ├── How It Works (مراحل انجام کار - /how-it-works)
+│   │   ├── 4-Step Infographic (اینفوگرافیک ساده ۴ مرحله‌ای)
+│   │   ├── Postcode operating boundary checker (بررسی محدوده کدپستی)
+│   │   └── Interactive London Map Overlay (نقشه تعاملی لندن)
+│   └── FAQ (سوالات متداول - /faq)
+│
+├── Services Catalog (کاتالوگ خدمات)
+│   ├── Services Hub (صفحه اصلی خدمات - /services)
+│   │   ├── Live Search & Autocomplete (جستجوی آنی خدمات)
+│   │   └── Category Sidebar Filter (فیلتر بر اساس دسته‌بندی)
+│   └── Dynamic Service Categories (دسته‌بندی‌های داینامیک خدمات - /services/[slug])
+│       ├── Laptops & Notebooks (تعمیر لپ‌تاپ و نوت‌بوک - /services/laptops-notebooks)
+│       ├── PC & Desktop Computers (تعمیر کامپیوترهای رومیزی - /services/pc-desktops)
+│       ├── Apple Mac Repair (تعمیرات تخصصی اپل مکینتاش - /services/apple-mac)
+│       ├── WiFi & Network Setup (راه‌اندازی شبکه و اینترنت - /services/wifi-networking)
+│       ├── Data Recovery & Backup (بازیابی اطلاعات و بکاپ - /services/data-recovery)
+│       ├── Smart Home & IoT (اینترنت اشیا و خانه هوشمند - /services/smart-home-iot)
+│       ├── Gaming Consoles (تعمیر کنسول‌های بازی - /services/gaming-consoles)
+│       ├── Software & OS Troubleshooting (عیب‌یابی سیستم‌عامل و نرم‌افزار - /services/software-os)
+│       ├── Cyber Security & Antivirus (امنیت سایبری و ویروس‌کشی - /services/security-antivirus)
+│       └── Business IT Support (پشتیبانی شبکه و آی‌تی کسب‌وکارها - /services/business-support)
+│
+├── Local SEO Target Landings (صفحات فرود محلی سئو مناطق لندن)
+│   ├── Areas Hub (نقشه مناطق - /areas)
+│   └── Dynamic Borough Landing Pages (۳۳ صفحه فرود برای هر منطقه - /areas/[borough])
+│       ├── Camden (تعمیرات در کمدن - /areas/camden)
+│       ├── Westminster (تعمیرات در وست‌مینستر - /areas/westminster)
+│       ├── Islington (تعمیرات در ایزلینگتون - /areas/islington)
+│       ├── Kensington & Chelsea (تعمیرات در کنزینگتون - /areas/kensington-chelsea)
+│       ├── Hammersmith & Fulham (تعمیرات در همرسمیت - /areas/hammersmith-fulham)
+│       └── (Other London Borough Landings...)
+│
+├── Blog Directory (وبلاگ و اخبار فناوری)
+│   ├── Blog Hub (صفحه اصلی وبلاگ - /blog)
+│   │   ├── SEO Category Archives (آرشیو موضوعی وبلاگ - /blog/category/[slug])
+│   │   └── Search & Tag Cloud (جستجو و ابر برچسب‌ها)
+│   └── Blog Article Page (صفحه نمایش مقاله - /blog/[slug])
+│       ├── Auto-generated Table of Contents (فهرست مطالب هوشمند و تعاملی)
+│       ├── Estimated Reading Time Indicator (نمایش زمان تخمینی مطالعه)
+│       ├── Related Posts Carousel (چرخ‌فلک مقالات مرتبط)
+│       └── GDPR Privacy-Respecting Share Buttons (اشتراک‌گذاری ایمن)
+│
+├── Conversion Booking Funnel (قیف ثبت سفارش و تبدیل) 🎯 [CRITICAL PATH]
+│   └── Booking Funnel Form (فرم ثبت سفارش - /book)
+│       ├── Step 1: Device & Issue (انتخاب نوع دستگاه، برند و شرح کامل مشکل)
+│       ├── Step 2: Estimate & Surcharges (نمایش پیش‌فاکتور، هزینه رفت‌وآمد و توافق‌نامه GDPR)
+│       └── Step 3: Success Confirmation (تأیید سفارش، پرداخت بیعانه و ساخت خودکار اکانت)
+│
+├── Guest Ticket Tracker (رهگیری سریع سفارش مهمان)
+│   └── Portal Guest Route (رهگیری با توکن امنیتی مهمان - /portal/ticket/[id]?token=[securityToken])
+│
+├── Authentication Gate (دروازه ورود و عضویت)
+│   └── Login Gate Page (/login)
+│       ├── Passwordless Magic Link Email Send (ورود بدون کلمه عبور با لینک اختصاصی)
+│       └── Google OAuth SSO (ورود سریع با اکانت گوگل)
+│
+├── Customer Portal (پورتال مدیریت کاربری مشتریان) 🔒 [AUTH REQUIRED - CUSTOMER ROLE]
+│   └── Dashboard (/portal)
+│       ├── Active Tickets Timeline (خط زمانی پیشرفت تعمیرات فعال)
+│       ├── Historical Repairs Log (آرشیو سابقه فاکتورها و سفارشات قبلی)
+│       ├── Profile & Privacy Preferences (مدیریت اطلاعات حساب و تنظیمات حریم خصوصی)
+│       └── Detailed Ticket View (نمایش جزئیات تیکت - /portal/ticket/[id])
+│           ├── Field Engineer Bio & Photo (مشخصات تکنسین اعزامی)
+│           ├── Live Status Timeline (ثبت مراحل از اعزام تا تست نهایی)
+│           └── Customer Rating form (ثبت ستاره و نظرات مشتری روی تیکت‌های کامل شده)
+│
+├── Admin Control Panel (پنل مدیریت ارشد کل سامانه) 🔒 [ADMIN AUTH REQUIRED]
+│   ├── Admin Dashboard Home (/admin)
+│   │   ├── Financial Stats (درآمد ماهانه، تیکت‌های باز و نرخ تبدیل)
+│   │   ├── Quick Dispatch Panel (پنل اعزام فوری تکنسین‌ها)
+│   │   └── Active Surcharges Widget (نمایش نرخ عوارض ترافیک و هزینه ایاب ذهاب)
+│   │
+│   ├── CRM Tickets Pipeline (مدیریت کل تیکت‌های تعمیرات - /admin/tickets)
+│   │   └── Ticket Editor Panel (ویرایش تیکت - /admin/tickets/[id])
+│   │       ├── Dispatch & Assign Field Tech (ارجاع به مهندس فنی)
+│   │       ├── Repair Status Update Slider (تغییر زنده وضعیت تیکت)
+│   │       ├── Custom Pricing & Deposit Editor (تغییر دستی مبلغ فاکتور و بیعانه)
+│   │       └── Diagnostic & Repair Internal Logger (ثبت گزارش کارگاهی داخلی)
+│   │
+│   ├── CMS Services Manager (مدیریت خدمات و قیمت‌ها - /admin/services)
+│   │   ├── Categories CRUD (ایجاد، حذف و ویرایش دسته‌بندی‌های خدمات)
+│   │   └── Service Item Details Editor (تعیین قیمت پایه و توضیحات هر سرویس)
+│   │
+│   ├── CMS Pages Editor (مدیریت صفحات عمومی سایت - /admin/pages)
+│   │   ├── Heading/Subtitle Inline Editor (ویرایش متون عمومی صفحات)
+│   │   └── SEO Meta-Tags Manager (کنترل عناوین سئو، توضیحات متا و کلمات کلیدی)
+│   │
+│   ├── CMS Blog Manager (مدیریت وبلاگ و اخبار روز - /admin/blog)
+│   │   ├── Category & Tag CRUD (مدیریت دسته‌ها و برچسب‌های وبلاگ - /admin/blog/categories)
+│   │   ├── Edit Blog Post (ویرایش مقالات موجود - /admin/blog/edit/[id])
+│   │   └── AI Autopilot Write Panel (پنل نگارش هوشمند مقالات - /admin/blog/new)
+│   │       ├── Suggest Hot Topics (یافتن عناوین داغ از طریق RSS خبرهای روز فناوری)
+│   │       ├── RAG News Context Feeds (اتصال به خبرهای تازه TechCrunch & VentureBeat)
+│   │       ├── Gemini 1.5 Pro Copywriter (تولید متن توسط هوش مصنوعی جمنای)
+│   │       └── Dual-Tab Live Markdown Preview & Media Upload (آپلود سنتر رسانه)
+│   │
+│   ├── CRM Customers Directory (بانک اطلاعاتی کل مشتریان - /admin/customers)
+│   │   └── Profile & Repair History Detail (/admin/customers/[id])
+│   │
+│   ├── CMS Testimonials Mod (مدیریت نظرات سایت - /admin/reviews)
+│   │   └── Review Approval Pipeline (تایید یا رد نظرات ارسالی مشتریان)
+│   │
+│   └── System Global Configs (تنظیمات سراسری سامانه - /admin/settings)
+│       ├── Active Contact Numbers (شماره تلفن‌ها و لینک دایرکت واتس‌اپ)
+│       └── Booking Surcharge Config (تنظیم هزینه پایه بیعانه و کرایه رفت‌وآمد)
+│
+└── Footer & Utility Legal Pages (لینک‌های حقوقی فوتر)
+    ├── Privacy Policy & GDPR Info (سیاست حریم خصوصی و ابزارهای پاکسازی داده - /privacy)
+    └── Terms & Conditions (شرایط و قوانین ارائه خدمات و عودت بیعانه - /terms)
+          </pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 2: USER FLOWS ==================== -->
+    <section id="tab-flows" class="tab-content space-y-6">
+      <div class="glass-panel rounded-2xl p-6 md:p-8 space-y-8">
+        <div>
+          <h2 class="text-xl font-bold text-white" id="flows-title">جریان‌های کاربر و منطق کارکرد سیستم (User & CRM Flows)</h2>
+          <p class="text-xs text-slate-400 mt-1" id="flows-subtitle">نمودارهای تعاملی برای نشان دادن نحوه حرکت کاربران، فرآیند تبدیل (ثبت سفارش) و تعامل بخش‌های مختلف سامانه.</p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-8">
+          
+          <!-- Flow A -->
+          <div class="bg-[#03060d] p-6 rounded-xl border border-slate-800/60 space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+              <h3 class="text-sm font-bold text-cyan-400" id="flow-a-title">جریان الف: ثبت سفارش مهمان و احراز هویت به تعویق افتاده (Deferred Auth Funnel)</h3>
+              <span class="text-[10px] bg-cyan-900/30 text-cyan-400 px-2 py-0.5 rounded font-mono">Book First, Auth Later</span>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed" id="flow-a-desc">این جریان تضمین می‌کند که کاربر پیش از مواجهه با فرم ورود یا ثبت‌نام، مراحل انتخاب دستگاه و مشاهده پیش‌فاکتور را با حداقل اصطکاک طی کند تا نرخ تبدیل تبدیل به حداکثر برسد.</p>
+            
+            <div class="mermaid flex justify-center py-4 bg-[#0a0f1d]/50 rounded-lg border border-slate-800/40">
+              graph TD
+                A[بازدیدکننده در صفحه اصلی یا صفحات سئو مناطق] -->|کلیک روی دکمه ثبت تعمیر| B[فرم ثبت دستگاه و شرح مشکل /book]
+                B -->|ثبت جزئیات و کدپستی| C[نمایش برآورد هزینه و هزینه ایاب ذهاب /book?step=1]
+                C -->|پذیرش پیش‌فاکتور و زدن دکمه رزرو نهایی| D{انتخاب روش پرداخت?}
+                D -->|گزینه ۱: پرداخت بیعانه آنلاین| E[تولید جلسه پرداخت Stripe Checkout]
+                E -->|انتقال به درگاه استرایپ| F[پرداخت موفق £14.99]
+                F --> G[ثبت تیکت در دیتابیس با وضعیت CREATED]
+                D -->|گزینه ۲: پرداخت در محل| H[فراخوانی OTP API و ارسال کد ۶ رقمی به ایمیل]
+                H --> I[کادر وارد کردن کد و شمارش معکوس ۶۰ ثانیه cooldown]
+                I -->|وارد کردن کد صحیح| J[تایید و ثبت تیکت در دیتابیس با وضعیت CREATED]
+                G & J --> K[انتقال به صفحه موفقیت و دریافت فاکتور]
+                K --> L[درخواست اختیاری ایجاد اکانت و تایید GDPR]
+                L -->|بله - ارسال Magic Link| M[ارسال ایمیل دسترسی به پورتال]
+                style A fill:#0d1527,stroke:#06b6d4,stroke-width:2px,color:#fff
+                style C fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#fff
+                style F fill:#081c15,stroke:#10b981,stroke-width:2px,color:#fff
+                style K fill:#0f172a,stroke:#34d399,stroke-width:2px,color:#fff
+            </div>
+          </div>
+
+          <!-- Flow B -->
+          <div class="bg-[#03060d] p-6 rounded-xl border border-slate-800/60 space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+              <h3 class="text-sm font-bold text-emerald-400" id="flow-b-title">جریان ب: پیگیری سریع تیکت مهمان با توکن امنیتی (Guest Ticket Tracking Journey)</h3>
+              <span class="text-[10px] bg-emerald-900/30 text-emerald-400 px-2 py-0.5 rounded font-mono">Tokenized Portal Access</span>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed" id="flow-b-desc">این جریان به مشتری مهمان اجازه می‌دهد بدون نیاز به ورود رسمی به حساب کاربری، وضعیت و پیشرفت زنده تیکت خود را بررسی کند.</p>
+            
+            <div class="mermaid flex justify-center py-4 bg-[#0a0f1d]/50 rounded-lg border border-slate-800/40">
+              graph TD
+                A[مشتری مهمان ایمیل ثبت سفارش را دریافت می‌کند] --> B[کلیک روی لینک اختصاصی حاوی توکن امنیتی]
+                B --> C[لینک: /portal/ticket/id?token=securityToken]
+                C --> D[سرور توکن را با دیتابیس بررسی می‌کند]
+                D -->|توکن معتبر و مطابقت تیکت| E[نمایش پورتال مهمان با دسترسی محدود به تیکت]
+                E --> F[نمایش پیشرفت زنده: تکنسین تخصیص یافته، وضعیت DBS و دکمه‌های تماس]
+                E -->|در صورت تکمیل تعمیرات| G[نمایش کادر امتیازدهی ستاره‌ای و ثبت نظرات مشتری]
+                G -->|ثبت نظر| H[ذخیره در دیتابیس با وضعیت تعلیق برای بررسی ادمین]
+                D -->|توکن نامعتبر یا منقضی| I[نمایش خطای ۴۰۴ و ارجاع به صفحه ورود اصلی]
+                style A fill:#0d1527,stroke:#10b981,stroke-width:2px,color:#fff
+                style E fill:#0f172a,stroke:#34d399,stroke-width:2px,color:#fff
+                style G fill:#081c15,stroke:#10b981,stroke-width:2px,color:#fff
+            </div>
+          </div>
+
+          <!-- Flow C -->
+          <div class="bg-[#03060d] p-6 rounded-xl border border-slate-800/60 space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+              <h3 class="text-sm font-bold text-purple-400" id="flow-c-title">جریان ج: نگارش وبلاگ مجهز به هوش مصنوعی و خزشگر خبرهای زنده (AI Copilot RAG Flow)</h3>
+              <span class="text-[10px] bg-purple-900/30 text-purple-400 px-2 py-0.5 rounded font-mono">Autopilot Writing</span>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed" id="flow-c-desc">این جریان نحوه تعامل ربات AI Autopilot را با اخبار روز فناوری و تولید پیش‌نویس مقالات سئو شده شرح می‌دهد.</p>
+            
+            <div class="mermaid flex justify-center py-4 bg-[#0a0f1d]/50 rounded-lg border border-slate-800/40">
+              graph TD
+                A[ادمین به مسیر /admin/blog/ai مراجعه می‌کند] --> B[کلیک روی دکمه Suggest Hot Topics]
+                B --> C[سرور فیدهای RSS اخبار زنده فناوری را خزش می‌کند]
+                C --> D[استخراج عناوین روز از TechCrunch و VentureBeat]
+                D --> E[ارسال عناوین به عنوان زمینه RAG به پرامپت Gemini 1.5 Pro]
+                E --> F[ارائه موضوعات پیشنهادی سئو شده به ادمین]
+                F -->|انتخاب موضوع توسط ادمین| G[شروع نوشتن متن کامل مقاله بر اساس خبرهای روز]
+                G --> H[تولید خودکار متا تگ‌ها، تگ‌ها و خلاصه‌نویسی]
+                H --> I[بارگذاری در ویرایشگر Markdown به صورت پیش‌نویس غیرفعال Draft]
+                I -->|بررسی دستی و تایید ادمین| J[کلیک روی Publish و انتشار در وبلاگ عمومی]
+                style A fill:#0d1527,stroke:#a855f7,stroke-width:2px,color:#fff
+                style E fill:#0f172a,stroke:#8b5cf6,stroke-width:2px,color:#fff
+                style I fill:#081c15,stroke:#f59e0b,stroke-width:2px,color:#fff
+                style J fill:#081c15,stroke:#10b981,stroke-width:2px,color:#fff
+            </div>
+          </div>
+
+          <!-- Flow D -->
+          <div class="bg-[#03060d] p-6 rounded-xl border border-slate-800/60 space-y-4">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+              <h3 class="text-sm font-bold text-amber-400" id="flow-d-title">جریان د: چرخه حیات تیکت تعمیرات در سیستم CRM (Ticket Lifecycle Pipeline)</h3>
+              <span class="text-[10px] bg-amber-900/30 text-amber-400 px-2 py-0.5 rounded font-mono">Prisma Schema States</span>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed" id="flow-d-desc">مراحل و وضعیت‌های مختلف یک سفارش تعمیر از لحظه ثبت توسط مشتری تا عیب‌یابی، تخصیص تکنسین و تحویل نهایی.</p>
+            
+            <div class="mermaid flex justify-center py-4 bg-[#0a0f1d]/50 rounded-lg border border-slate-800/40">
+              stateDiagram-v2
+                [*] --> CREATED : ثبت سفارش مشتری مهمان / کاربر
+                CREATED --> DIAGNOSING : شروع عیب‌یابی توسط پشتیبانی
+                DIAGNOSING --> CONFIRMED : تایید برآورد هزینه با مشتری
+                CONFIRMED --> TECH_ASSIGNED : تخصیص مهندس فنی به تیکت
+                TECH_ASSIGNED --> ON_THE_WAY : مهندس به سمت لوکیشن حرکت کرد
+                ON_THE_WAY --> REPAIRING : مهندس در حال تعمیر دستگاه در محل
+                REPAIRING --> COMPLETED : اتمام موفق تعمیرات و تسویه حساب
+                REPAIRING --> CANCELLED : انصراف مشتری یا عدم امکان تعمیر
+                DIAGNOSING --> CANCELLED
+                COMPLETED --> [*]
+                CANCELLED --> [*]
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 3: ROUTES MATRIX ==================== -->
+    <section id="tab-routes" class="tab-content space-y-6">
+      <div class="glass-panel rounded-2xl p-6 md:p-8 space-y-6">
+        <div>
+          <h2 class="text-xl font-bold text-white font-outfit" id="routes-title">جدول آدرس‌های سیستم و سطوح دسترسی (System Routes Security Matrix)</h2>
+          <p class="text-xs text-slate-400 mt-1" id="routes-subtitle">لیست کامل تمام آدرس‌های فعال در پروژه Next.js به همراه نوع صفحه، سطح دسترسی و هدف بیزینسی آن.</p>
+        </div>
+
+        <div class="overflow-x-auto rounded-xl border border-slate-800/80">
+          <table class="w-full text-right text-xs border-collapse" id="routes-table">
+            <thead>
+              <tr class="border-b border-slate-800 bg-slate-900/40 text-slate-400 font-mono">
+                <th class="py-3.5 px-4 font-bold text-right">آدرس مسیر (Path / Directory)</th>
+                <th class="py-3.5 px-4 font-bold text-right">نوع صفحه</th>
+                <th class="py-3.5 px-4 font-bold text-right">سطح دسترسی مورد نیاز</th>
+                <th class="py-3.5 px-4 font-bold text-right">هدف تجاری و کارکرد صفحه</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-800/60 text-slate-300">
+              <tr class="hover:bg-slate-900/20 transition">
+                <td class="py-3.5 px-4 font-mono text-cyan-400" dir="ltr">/</td>
+                <td class="py-3.5 px-4 font-semibold">استاتیک</td>
+                <td class="py-3.5 px-4 text-slate-400">عمومی / مهمان</td>
+                <td class="py-3.5 px-4">صفحه اصلی سایت. معرفی هویت برند، نمایش نظرات مشتریان و ترغیب به ثبت سفارش.</td>
+              </tr>
+              <tr class="hover:bg-slate-900/20 transition bg-slate-900/10">
+                <td class="py-3.5 px-4 font-mono text-cyan-400" dir="ltr">/about</td>
+                <td class="py-3.5 px-4 font-semibold">استاتیک</td>
+                <td class="py-3.5 px-4 text-slate-400">عمومی / مهمان</td>
+                <td class="py-3.5 px-4">صفحه درباره ما. معرفی تیم فنی، تجارب شرکت و سوابق فعالیت در لندن.</td>
+              </tr>
+              <tr class="hover:bg-slate-900/20 transition">
+                <td class="py-3.5 px-4 font-mono text-cyan-400" dir="ltr">/contact</td>
+                <td class="py-3.5 px-4 font-semibold">استاتیک</td>
+                <td class="py-3.5 px-4 text-slate-400">عمومی / مهمان</td>
+                <td class="py-3.5 px-4">صفحه ارتباط با ما. نمایش شماره‌های تماس، راه‌های ارتباطی مستقیم در واتس‌اپ و شبکه‌های اجتماعی.</td>
+              </tr>
+              <tr class="hover:bg-slate-900/20 transition bg-slate-900/10">
+                <td class="py-3.5 px-4 font-mono text-cyan-400" dir="ltr">/pricing</td>
+                <td class="py-3.5 px-4 font-semibold">ریدایرکت ۳۰۱</td>
+                <td class="py-3.5 px-4 text-slate-400">عمومی / مهمان</td>
+                <td class="py-3.5 px-4">ریدایرکت دائمی ۳۰۱ به صفحه خدمات (/services). ادغام قیمت‌ها و تعرفه‌ها.</td>
+              </tr>
+              <tr class="hover:bg-slate-900/20 transition">
+                <td class="py-3.5 px-4 font-mono text-cyan-400" dir="ltr">/how-it-works</td>
+                <td class="py-3.5 px-4 font-semibold">استاتیک</td>
+                <td class="py-3.5 px-4 text-slate-400">عمومی / مهمان</td>
+                <td class="py-3.5 px-4">راهنمای کارکرد. نمایش نمودار مراحل از ثبت تا تحویل دستگاه و ابزار بررسی کدپستی محدوده خدمات.</td>
+              </tr>
+              <tr class="hover:bg-slate-900/20 transition bg-slate-900/10">
+                <td class="py-3.5 px-4 font-mono text-cyan-400" dir="ltr">/faq</td>
+                <td class="py-3.5 px-4 font-semibold">استاتیک</td>
+                <td class="py-3.5 px-4 text-slate-400">عمومی / مهمان</td>
+                <td class="py-3.5 px-4">سوالات متداول. پاسخ به پرسش‌های معمول در زمینه زمان تعمیرات، گارانتی قطعات و نحوه پرداخت.</td>
+              </tr>
+              <tr class="hover:bg-slate-900/20 transition">
+                <td class="py-3.5 px-4 font-mono text-cyan-400" dir="ltr">/services</td>
+                <td class="py-3.5 px-4 font-semibold">استاتیک</td>
+                <td class="py-3.5 px-4 text-slate-400">عمومی / مهمان</td>
+                <td class="py-3.5 px-4">صفحه هاب خدمات. کاتالوگ جامع خدمات تعمیراتی همراه با جستجوی سریع، سایدبار دسته‌بندی‌ها و کارت عوارض.</td>
+              </tr>
+              <tr class="hover:bg-slate-900/20 transition bg-slate-900/10">
+                <td class="py-3.5 px-4 font-mono text-cyan-400" dir="ltr">/services/[slug]</td>
+                <td class="py-3.5 px-4 font-semibold">داینامیک</td>
+                <td class="py-3.5 px-4 text-slate-400">عمومی / مهمان</td>
+                <td class="py-3.5 px-4">صفحه فرود هر دسته‌بندی خدمات (مانند تعمیرات مک یا ریکاوری هارد). متمرکز روی کلمات کلیدی سئو.</td>
+              </tr>
+              <tr class="hover:bg-slate-900/20 transition">
+                <td class="py-3.5 px-4 font-mono text-cyan-400" dir="ltr">/areas</td>
+                <td class="py-3.5 px-4 font-semibold">استاتیک</td>
+                <td class="py-3.5 px-4 text-slate-400">عمومی / مهمان</td>
+                <td class="py-3.5 px-4">نقشه و مشخصات کل مناطق تحت پوشش خدمات تعمیر در لندن بزرگ به همراه جستجوی کدپستی.</td>
+              </tr>
+              <tr class="hover:bg-slate-900/20 transition bg-slate-900/10">
+                <td class="py-3.5 px-4 font-mono text-cyan-400" dir="ltr">/areas/[borough]</td>
+                <td class="py-3.5 px-4 font-semibold">داینامیک</td>
+                <td class="py-3.5 px-4 text-slate-400">عمومی / مهمان</td>
+                <td class="py-3.5 px-4">صفحه اختصاصی هر منطقه لندن (مثل کمدن و وست‌مینستر) با اسکیما و پیوندهای ضربدری سئو.</td>
+              </tr>
+              <tr class="hover:bg-slate-900/20 transition bg-slate-900/10">
+                <td class="py-3.5 px-4 font-mono text-cyan-400" dir="ltr">/blog</td>
+                <td class="py-3.5 px-4 font-semibold">استاتیک</td>
+                <td class="py-3.5 px-4 text-slate-400">عمومی / مهمان</td>
+                <td class="py-3.5 px-4">صفحه اصلی وبلاگ. نمایش مقالات با قابلیت فیلتر موضوعی و دسته‌بندی‌های پویا.</td>
+              </tr>
+              <tr class="hover:bg-slate-900/20 transition">
+                <td class="py-3.5 px-4 font-mono text-cyan-400" dir="ltr">/blog/category/[slug]</td>
+                <td class="py-3.5 px-4 font-semibold">داینامیک</td>
+                <td class="py-3.5 px-4 text-slate-400">عمومی / مهمان</td>
+                <td class="py-3.5 px-4">آرشیو دسته‌بندی وبلاگ. فیلترینگ فیزیکی و کاملاً سئو شده مقالات بر اساس دسته‌بندی‌های موضوعی.</td>
+              </tr>
+              <tr class="hover:bg-slate-900/20 transition bg-slate-900/10">
+                <td class="py-3.5 px-4 font-mono text-cyan-400" dir="ltr">/blog/[slug]</td>
+                <td class="py-3.5 px-4 font-semibold">داینامیک</td>
+                <td class="py-3.5 px-4 text-slate-400">عمومی / مهمان</td>
+                <td class="py-3.5 px-4">صفحه نمایش تک مقاله وبلاگ. مجهز به فهرست مطالب تعاملی، مقالات مرتبط و اشتراک‌گذاری.</td>
+              </tr>
+              <tr class="hover:bg-slate-900/20 transition">
+                <td class="py-3.5 px-4 font-mono text-amber-400 font-bold" dir="ltr">/book</td>
+                <td class="py-3.5 px-4 font-semibold">داینامیک</td>
+                <td class="py-3.5 px-4 text-amber-400 font-bold">مهمان / ذخیره لوکال</td>
+                <td class="py-3.5 px-4">فرم رزرو سفارش تعمیرات. هسته اصلی تبدیل و ثبت سفارشات پلتفرم.</td>
+              </tr>
+              <tr class="hover:bg-slate-900/20 transition bg-emerald-950/10">
+                <td class="py-3.5 px-4 font-mono text-emerald-400 font-bold" dir="ltr">/portal</td>
+                <td class="py-3.5 px-4 font-semibold">استاتیک</td>
+                <td class="py-3.5 px-4 text-emerald-400 font-bold">🔒 پورتال مشتریان</td>
+                <td class="py-3.5 px-4">داشبورد کاربری مشتریان. خط زمانی پیشرفت تعمیر، جزئیات پرداخت و آرشیو تیکت‌ها.</td>
+              </tr>
+              <tr class="hover:bg-slate-900/20 transition bg-emerald-950/10">
+                <td class="py-3.5 px-4 font-mono text-emerald-400" dir="ltr">/portal/ticket/[id]</td>
+                <td class="py-3.5 px-4 font-semibold">داینامیک</td>
+                <td class="py-3.5 px-4 text-emerald-400">🔒 پورتال مشتریان / توکن مهمان</td>
+                <td class="py-3.5 px-4">نمایش جزئیات زنده سفارش فعال، مشخصات تکنسین DBS شده، و امکان ثبت فیدبک اتمام تعمیر.</td>
+              </tr>
+              <tr class="hover:bg-slate-900/20 transition bg-purple-950/10">
+                <td class="py-3.5 px-4 font-mono text-purple-400 font-bold" dir="ltr">/admin</td>
+                <td class="py-3.5 px-4 font-semibold">استاتیک</td>
+                <td class="py-3.5 px-4 text-purple-400 font-bold">🔒 پنل مدیریت ارشد</td>
+                <td class="py-3.5 px-4">صفحه اصلی داشبورد ادمین. نمایش آمار درآمد، تیکت‌های باز، نظرات ارسالی و فیدها.</td>
+              </tr>
+              <tr class="hover:bg-slate-900/20 transition bg-purple-950/10">
+                <td class="py-3.5 px-4 font-mono text-purple-400" dir="ltr">/admin/tickets</td>
+                <td class="py-3.5 px-4 font-semibold">استاتیک</td>
+                <td class="py-3.5 px-4 text-purple-400 font-bold">🔒 پنل مدیریت ارشد</td>
+                <td class="py-3.5 px-4">پنل مدیریت تیکت‌های CRM. تخصیص تکنسین، تغییر مبالغ، وضعیت‌ها و ثبت یادداشت کارگاهی.</td>
+              </tr>
+              <tr class="hover:bg-slate-900/20 transition bg-purple-950/10">
+                <td class="py-3.5 px-4 font-mono text-purple-400" dir="ltr">/admin/services</td>
+                <td class="py-3.5 px-4 font-semibold">استاتیک</td>
+                <td class="py-3.5 px-4 text-purple-400 font-bold">🔒 پنل مدیریت ارشد</td>
+                <td class="py-3.5 px-4">پنل مدیریت کاتالوگ خدمات و ویرایش قیمت‌های پایه و ثبت یا ویرایش دسته‌ها.</td>
+              </tr>
+              <tr class="hover:bg-slate-900/20 transition bg-purple-950/10">
+                <td class="py-3.5 px-4 font-mono text-purple-400" dir="ltr">/admin/settings</td>
+                <td class="py-3.5 px-4 font-semibold">استاتیک</td>
+                <td class="py-3.5 px-4 text-purple-400 font-bold">🔒 پنل مدیریت ارشد</td>
+                <td class="py-3.5 px-4">تنظیمات سراسری و متغیرهای دیتابیس (هزینه بیعانه، تلفن، واتس‌اپ).</td>
+              </tr>
+              <tr class="hover:bg-slate-900/20 transition bg-purple-950/10">
+                <td class="py-3.5 px-4 font-mono text-purple-400" dir="ltr">/admin/blog/new</td>
+                <td class="py-3.5 px-4 font-semibold">استاتیک</td>
+                <td class="py-3.5 px-4 text-purple-400 font-bold">🔒 پنل مدیریت ارشد</td>
+                <td class="py-3.5 px-4">پنل نگارش هوش مصنوعی (AI Autopilot). پیشنهاد موضوعات با فید زنده و نگارش خودکار با جمنای.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 4: IA DOCUMENT ==================== -->
+    <section id="tab-doc" class="tab-content space-y-6">
+      <div class="glass-panel rounded-2xl p-6 md:p-8 space-y-8">
+        
+        <div class="border-b border-slate-800 pb-4">
+          <h2 class="text-xl font-bold text-white" id="doc-title">تحلیل معماری اطلاعات و تجربه کاربری (Information Architecture Report)</h2>
+          <p class="text-xs text-slate-400 mt-1" id="doc-subtitle">توضیحات و دلایل پیاده‌سازی ساختار اطلاعاتی Neuro IT بر اساس اصول تجربه کاربری و سئو محلی لندن.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="doc-cards">
+          
+          <!-- Card 1 -->
+          <div class="glass-card p-6 rounded-xl space-y-4">
+            <h3 class="text-md font-bold text-cyan-400 border-r-4 border-cyan-500 pr-3">حذف اصطکاک و ثبت نام تاخیری (Deferred Auth)</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              رویکرد پیشین الزام به ثبت‌نام پیش از رزرو تعمیرات حذف گردید. مشتری اکنون بدون هیچ‌گونه نیاز به پسورد یا ورود مسدودکننده، عیب و اطلاعات لوکیشن را وارد کرده و در مرحله آخر ثبت تیکت، فرآیند احراز هویت بدون کلمه عبور (Passwordless Email OTP / Google OAuth) انجام می‌گردد. اطلاعات رزرو به طور موقت در LocalStorage ذخیره و پس از ورود به طور خودکار بازیابی و ارسال می‌شود.
+            </p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="glass-card p-6 rounded-xl space-y-4">
+            <h3 class="text-md font-bold text-purple-400 border-r-4 border-purple-500 pr-3">لینک‌سازی ضربدری و سئو محلی (Local SEO Siloing)</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              به منظور بالا بردن رتبه سایت در نتایج گوگل مپ و نتایج جستجوی محلی لندن، سیستم ۳۳ صفحه فرود داینامیک برای هر منطقه لندن طراحی کرده است. خدمات پویای سایت مستقیماً به منطقه مربوطه لینک ضربدری داده شده و متقابلاً در صفحات فرود هر منطقه، خدمات محبوب به همراه کارت عوارض و اطلاعات محدوده نمایش داده می‌شوند.
+            </p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="glass-card p-6 rounded-xl space-y-4">
+            <h3 class="text-md font-bold text-emerald-400 border-r-4 border-emerald-500 pr-3">رهگیری با توکن امنیتی مهمان (Tokenized Guest Access)</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              برای جلوگیری از مجبور کردن مشتریان به عبور از فرآیندهای طولانی لاگین، سیستم برای هر تیکت رزرو شده یک توکن امنیتی یکتا تولید می‌کند. این توکن از طریق ایمیل به مشتری فرستاده می‌شود و او می‌تواند وضعیت تیکت خود را بدون لاگین کردن رسمی رصد کرده و در پایان نیز بازخورد و امتیاز خود را ثبت کند.
+            </p>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="glass-card p-6 rounded-xl space-y-4">
+            <h3 class="text-md font-bold text-amber-400 border-r-4 border-amber-500 pr-3">تولید محتوای هوشمند با Gemini AI Autopilot</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              پلتفرم با استفاده از خزش مستقیم فیدهای RSS اخبار از TechCrunch و VentureBeat، آخرین رویدادهای فناوری را دریافت کرده و به عنوان زمینه (Context) برای مدل زبانی Gemini استفاده می‌کند تا مطالب وبلاگ سئو شده، به‌روز و کاملاً منطبق با نیازهای بازار در وضعیت پیش‌نویس (Draft) تولید شوند.
+            </p>
+          </div>
+
+          <!-- Card 5 (replaces the B2B card with general pricing architecture details) -->
+          <div class="glass-card p-6 rounded-xl space-y-4 md:col-span-2">
+            <h3 class="text-md font-bold text-blue-400 border-r-4 border-blue-500 pr-3">ادغام صفحات هزینه‌ها و خدمات عمومی</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              صفحه سابق \`/pricing\` به دلیل همپوشانی و بهبود سئو، با ریدایرکت دائمی ۳۰۱ به صفحه \`/services\` منتقل گردید. تمامی قیمت‌ها در جدول خدمات ادغام شد تا شفافیت هزینه‌ها افزایش یافته و اصطکاک کاربران هنگام تصمیم‌گیری برای رزرو تعمیرات به حداقل برسد.
+            </p>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-slate-900 bg-[#04060d] py-8 mt-12 text-center text-xs text-slate-500 space-y-2">
+    <p class="font-outfit tracking-wider">NEURO IT SUPPORT SERVICES LTD. LONDON, UK. © 2026. ALL RIGHTS RESERVED.</p>
+    <p id="footer-team">طراحی و مستندسازی شده توسط تیم معماری اطلاعات پلتفرم</p>
+  </footer>
+
+  <script>
+    // Tab switching logic
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      document.getElementById(tabId).classList.add('active');
+
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-cyan-500', 'text-slate-950', 'font-bold');
+        btn.classList.add('bg-slate-900', 'text-slate-400', 'font-semibold');
+      });
+
+      const activeBtnMap = {
+        'tab-tree': 'btn-tab-tree',
+        'tab-flows': 'btn-tab-flows',
+        'tab-routes': 'btn-tab-routes',
+        'tab-doc': 'btn-tab-doc'
+      };
+      
+      const activeBtn = document.getElementById(activeBtnMap[tabId]);
+      activeBtn.classList.remove('bg-slate-900', 'text-slate-400', 'font-semibold');
+      activeBtn.classList.add('bg-cyan-500', 'text-slate-950', 'font-bold');
+    }
+
+    // Interactive tree search logic
+    const originalTreeContent = document.getElementById('sitemap-tree-data').innerHTML;
+    
+    function searchTree() {
+      const query = document.getElementById('tree-search').value.trim();
+      const treePre = document.getElementById('sitemap-tree-data');
+      const countSpan = document.getElementById('search-count');
+      
+      if (!query) {
+        treePre.innerHTML = originalTreeContent;
+        countSpan.textContent = "";
+        return;
+      }
+      
+      const lines = originalTreeContent.split('\n');
+      let matchCount = 0;
+      
+      const highlightedLines = lines.map(line => {
+        const lowerLine = line.toLowerCase();
+        const lowerQuery = query.toLowerCase();
+        
+        if (lowerLine.includes(lowerQuery)) {
+          matchCount++;
+          // Case insensitive replace helper
+          const regex = new RegExp(`(${query.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')})`, 'gi');
+          return line.replace(regex, '<span class="highlight-match">$1</span>');
+        }
+        return line;
+      });
+      
+      treePre.innerHTML = highlightedLines.join('\n');
+      countSpan.textContent = isFarsi ? `${matchCount} مورد یافت شد` : `${matchCount} matches found`;
+    }
+
+    // Bilingual toggles logic
+    let isFarsi = true;
+    
+    const translations = {
+      fa: {
+        title: "درخت‌واره و فلوچارت‌های سیستم | Neuro IT Sitemap & Flowcharts",
+        headerDesc: "سند معماری اطلاعات، درخت‌واره کامل و فلوچارت‌های تعاملی سیستم (Information Architecture)",
+        btnTree: "درخت‌واره (Sitemap Tree)",
+        btnFlows: "فلوچارت‌ها (Flowcharts)",
+        btnRoutes: "مسیرهای سیستم (Routes)",
+        btnDoc: "تحلیل معماری و سئو (UX & IA)",
+        ribbonText: `<strong class="text-cyan-400">سند معماری پلتفرم:</strong> فرآیند خرید مهمان بدون نیاز به احراز هویت اولیه <span class="font-outfit font-mono text-[11px] text-cyan-400 bg-cyan-900/20 px-1 rounded">Book First, Auth Later</span>، وبلاگ مجهز به هوش مصنوعی و پیگیری با توکن مهمان.`,
+        statTitle1: "تعداد کل صفحات و مسیرها",
+        statUnit1: "صفحه فعال",
+        statDesc1: "شامل ۳۳ صفحه فرود سئو برای مناطق لندن",
+        statTitle2: "سطوح دسترسی امنیتی",
+        statUnit2: "سطح امنیت",
+        statDesc2: "مهمان، کاربر عضو، پورتال و پنل مدیریت ارشد",
+        statTitle3: "موتور تبدیل مشتری (CRO)",
+        statDesc3: "فرم ۳ مرحله‌ای پویا با پیش‌فاکتور زنده",
+        statTitle4: "سیستم تولید محتوای وبلاگ",
+        statDesc4: "خزشگر اخبار زنده به همراه ربات نویسنده محتوا",
+        treeTitle: "درخت‌واره سلسله‌مراتبی ساختار سایت (Hierarchical Sitemap)",
+        treeSubtitle: "ساختار شاخه‌ای کامل وب‌سایت Neuro IT به همراه تمام زیرمجموعه‌ها، روت‌های پویای سئو، پورتال و مدیریت.",
+        searchPlaceholder: "جستجو در درخت‌واره (مثال: book, admin...)",
+        legendText: `
+          <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-cyan-950/40 border border-cyan-800/40 text-cyan-400 font-medium">
+            <span class="h-2 w-2 rounded-full bg-cyan-400"></span> صفحات عمومی و بازاریابی
+          </span>
+          <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-950/40 border border-emerald-800/40 text-emerald-400 font-medium">
+            <span class="h-2 w-2 rounded-full bg-emerald-400"></span> پورتال مشتریان (نیاز به لاگین)
+          </span>
+          <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-purple-950/40 border border-purple-800/40 text-purple-400 font-medium">
+            <span class="h-2 w-2 rounded-full bg-purple-400"></span> پنل مدیریت ارشد
+          </span>
+          <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-950/40 border border-amber-800/40 text-amber-400 font-medium">
+            <span class="h-2 w-2 rounded-full bg-amber-400"></span> صفحات تبدیل و قیف فروش (Conversion)
+          </span>
+        `,
+        flowsTitle: "جریان‌های کاربر و منطق کارکرد سیستم (User & CRM Flows)",
+        flowsSubtitle: "نمودارهای تعاملی برای نشان دادن نحوه حرکت کاربران، فرآیند تبدیل (ثبت سفارش) و تعامل بخش‌های مختلف سامانه.",
+        flowATitle: "جریان الف: ثبت سفارش مهمان و احراز هویت به تعویق افتاده (Deferred Auth Funnel)",
+        flowADesc: "این جریان تضمین می‌کند که کاربر پیش از مواجهه با فرم ورود یا ثبت‌نام, مراحل انتخاب دستگاه و مشاهده پیش‌فاکتور را با حداقل اصطکاک طی کند تا نرخ تبدیل تبدیل به حداکثر برسد.",
+        flowBTitle: "جریان ب: پیگیری سریع تیکت مهمان با توکن امنیتی (Guest Ticket Tracking Journey)",
+        flowBDesc: "این جریان به مشتری مهمان اجازه می‌دهد بدون نیاز به ورود رسمی به حساب کاربری، وضعیت و پیشرفت زنده تیکت خود را بررسی کند.",
+        flowCTitle: "جریان ج: نگارش وبلاگ مجهز به هوش مصنوعی و خزشگر خبرهای زنده (AI Copilot RAG Flow)",
+        flowCDesc: "این جریان نحوه تعامل ربات AI Autopilot را با اخبار روز فناوری و تولید پیش‌نویس مقالات سئو شده شرح می‌دهد.",
+        flowDTitle: "جریان د: چرخه حیات تیکت تعمیرات در سیستم CRM (Ticket Lifecycle Pipeline)",
+        flowDDesc: "مراحل و وضعیت‌های مختلف یک سفارش تعمیر از لحظه ثبت توسط مشتری تا عیب‌یابی، تخصیص تکنسین و تحویل نهایی.",
+        routesTitle: "جدول آدرس‌های سیستم و سطوح دسترسی (System Routes Security Matrix)",
+        routesSubtitle: "لیست کامل تمام آدرس‌های فعال در پروژه Next.js به همراه نوع صفحه، سطح دسترسی و هدف بیزینسی آن.",
+        routesTableHead: `
+          <tr class="border-b border-slate-800 bg-slate-900/40 text-slate-400 font-mono">
+            <th class="py-3.5 px-4 font-bold text-right">آدرس مسیر (Path / Directory)</th>
+            <th class="py-3.5 px-4 font-bold text-right">نوع صفحه</th>
+            <th class="py-3.5 px-4 font-bold text-right">سطح دسترسی مورد نیاز</th>
+            <th class="py-3.5 px-4 font-bold text-right">هدف تجاری و کارکرد صفحه</th>
+          </tr>
+        `,
+        docTitle: "تحلیل معماری اطلاعات و تجربه کاربری (Information Architecture Report)",
+        docSubtitle: "توضیحات و دلایل پیاده‌سازی ساختار اطلاعاتی Neuro IT بر اساس اصول تجربه کاربری و سئو محلی لندن.",
+        docCards: `
+          <div class="glass-card p-6 rounded-xl space-y-4">
+            <h3 class="text-md font-bold text-cyan-400 border-r-4 border-cyan-500 pr-3">حذف اصطکاک و ثبت نام تاخیری (Deferred Auth)</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              رویکرد پیشین الزام به ثبت‌نام پیش از رزرو تعمیرات حذف گردید. مشتری اکنون بدون هیچ‌گونه نیاز به پسورد یا ورود مسدودکننده، عیب و اطلاعات لوکیشن را وارد کرده و در مرحله آخر ثبت تیکت، فرآیند احراز هویت بدون کلمه عبور (Passwordless Email OTP / Google OAuth) انجام می‌گردد. اطلاعات رزرو به طور موقت در LocalStorage ذخیره و پس از ورود به طور خودکار بازیابی و ارسال می‌شود.
+            </p>
+          </div>
+          <div class="glass-card p-6 rounded-xl space-y-4">
+            <h3 class="text-md font-bold text-purple-400 border-r-4 border-purple-500 pr-3">لینک‌سازی ضربدری و سئو محلی (Local SEO Siloing)</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              به منظور بالا بردن رتبه سایت در نتایج گوگل مپ و نتایج جستجوی محلی لندن، سیستم ۳۳ صفحه فرود داینامیک برای هر منطقه لندن طراحی کرده است. خدمات پویای سایت مستقیماً به منطقه مربوطه لینک ضربدری داده شده و متقابلاً در صفحات فرود هر منطقه، خدمات محبوب به همراه کارت عوارض و اطلاعات محدوده نمایش داده می‌شوند.
+            </p>
+          </div>
+          <div class="glass-card p-6 rounded-xl space-y-4">
+            <h3 class="text-md font-bold text-emerald-400 border-r-4 border-emerald-500 pr-3">رهگیری با توکن امنیتی مهمان (Tokenized Guest Access)</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              برای جلوگیری از مجبور کردن مشتریان به عبور از فرآیندهای طولانی لاگین، سیستم برای هر تیکت رزرو شده یک توکن امنیتی یکتا تولید می‌کند. این توکن از طریق ایمیل به مشتری فرستاده می‌شود و او می‌تواند وضعیت تیکت خود را بدون لاگین کردن رسمی رصد کرده و در پایان نیز بازخورد و امتیاز خود را ثبت کند.
+            </p>
+          </div>
+          <div class="glass-card p-6 rounded-xl space-y-4">
+            <h3 class="text-md font-bold text-amber-400 border-r-4 border-amber-500 pr-3">تولید محتوای هوشمند با Gemini AI Autopilot</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              پلتفرم با استفاده از خزش مستقیم فیدهای RSS اخبار از TechCrunch و VentureBeat، آخرین رویدادهای فناوری را دریافت کرده و به عنوان زمینه (Context) برای مدل زبانی Gemini استفاده می‌کند تا مطالب وبلاگ سئو شده، به‌روز و کاملاً منطبق با نیازهای بازار در وضعیت پیش‌نویس (Draft) تولید شوند.
+            </p>
+          </div>
+          <div class="glass-card p-6 rounded-xl space-y-4 md:col-span-2">
+            <h3 class="text-md font-bold text-blue-400 border-r-4 border-blue-500 pr-3">ادغام صفحات هزینه‌ها و خدمات عمومی</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              صفحه سابق \`/pricing\` به دلیل همپوشانی و بهبود سئو، با ریدایرکت دائمی ۳۰۱ به صفحه \`/services\` منتقل گردید. تمامی قیمت‌ها در جدول خدمات ادغام شد تا شفافیت هزینه‌ها افزایش یافته و اصطکاک کاربران هنگام تصمیم‌گیری برای رزرو تعمیرات به حداقل برسد.
+            </p>
+          </div>
+        `,
+        footerTeam: "طراحی و مستندسازی شده توسط تیم معماری اطلاعات پلتفرم"
+      },
+      en: {
+        title: "Sitemap & Flowcharts Dashboard | Neuro IT",
+        headerDesc: "Information Architecture Document, Site Hierarchy Tree & Interactive User Flows",
+        btnTree: "Sitemap Tree",
+        btnFlows: "Flowcharts",
+        btnRoutes: "System Routes",
+        btnDoc: "UX & IA Analysis",
+        ribbonText: `<strong class="text-cyan-400">Architecture Policy:</strong> Frictionless guest booking <span class="font-outfit font-mono text-[11px] text-cyan-400 bg-cyan-900/20 px-1 rounded font-mono">Book First, Auth Later</span>, Gemini AI news writing & token-based guest ticket tracking.`,
+        statTitle1: "TOTAL PAGES & PATHS",
+        statUnit1: "Active Pages",
+        statDesc1: "Includes 33 London Borough local SEO landing pages",
+        statTitle2: "SECURITY TIERS",
+        statUnit2: "Access levels",
+        statDesc2: "Guest, Member, Customer Portal & Senior Admin Panel",
+        statTitle3: "CONVERSION MOTOR (CRO)",
+        statDesc3: "3-step interactive booking form with live pricing estimates",
+        statTitle4: "BLOG AI INTEGRATION",
+        statDesc4: "Live tech news crawler & Gemini autopilot content writer",
+        treeTitle: "Hierarchical Sitemap Tree",
+        treeSubtitle: "Detailed directory structure of the Neuro IT Next.js codebase, user dashboards, and back-office pipelines.",
+        searchPlaceholder: "Search sitemap (e.g. book, admin, login...)",
+        legendText: `
+          <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-cyan-950/40 border border-cyan-800/40 text-cyan-400 font-medium">
+            <span class="h-2 w-2 rounded-full bg-cyan-400"></span> Public Marketing Pages
+          </span>
+          <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-950/40 border border-emerald-800/40 text-emerald-400 font-medium">
+            <span class="h-2 w-2 rounded-full bg-emerald-400"></span> Customer Portal (Auth Required)
+          </span>
+          <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-purple-950/40 border border-purple-800/40 text-purple-400 font-medium">
+            <span class="h-2 w-2 rounded-full bg-purple-400"></span> Senior Administrator Panel
+          </span>
+          <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-950/40 border border-amber-800/40 text-amber-400 font-medium">
+            <span class="h-2 w-2 rounded-full bg-amber-400"></span> Primary Conversion Funnel (CTA)
+          </span>
+        `,
+        flowsTitle: "User & CRM System Flowcharts",
+        flowsSubtitle: "Visual logic diagrams describing user journeys, state transitions, AI integrations, and backend routing.",
+        flowATitle: "Flow A: Guest Booking & Deferred Authentication",
+        flowADesc: "Ensures maximum conversion by letting customers configure devices and view estimates before signing in.",
+        flowBTitle: "Flow B: Secure Token-Based Guest Tracking",
+        flowBDesc: "Allows anonymous customers to track ticket progress, view assigned technicians, and submit feedback without password restrictions.",
+        flowCTitle: "Flow C: AI Autopilot Content Writer (RSS + RAG)",
+        flowCDesc: "Crawls recent articles, injects RSS feeds as contextual parameters to Gemini 1.5 Pro, and populates live Drafts.",
+        flowDTitle: "Flow D: Repair Ticket CRM Lifecycle",
+        flowDDesc: "Prisma schema status states showing the transition from initial submission to diagnosing, technician dispatch, and completion.",
+        routesTitle: "System Security & Routes Matrix",
+        routesSubtitle: "Comprehensive directory of Next.js App Router paths, page styles, authentication guards, and business operations.",
+        routesTableHead: `
+          <tr class="border-b border-slate-800 bg-slate-900/40 text-slate-400 font-mono">
+            <th class="py-3.5 px-4 font-bold text-left">Route Path (App Router)</th>
+            <th class="py-3.5 px-4 font-bold text-left">Page Style</th>
+            <th class="py-3.5 px-4 font-bold text-left">Required Role / Auth</th>
+            <th class="py-3.5 px-4 font-bold text-left">Business Function & Purpose</th>
+          </tr>
+        `,
+        docTitle: "Information Architecture & User Experience Analysis",
+        docSubtitle: "Detailed UX and IA layout explanations for the Neuro IT London platform.",
+        docCards: `
+          <div class="glass-card p-6 rounded-xl space-y-4">
+            <h3 class="text-md font-bold text-cyan-400 border-r-4 border-cyan-500 pr-3">Frictionless Deferred Authentication</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Mandatory signup screens were moved to the end of the booking cycle. Users select services, postcodes, and describe issues anonymously. Draft state is cached locally, triggering login (Google OAuth / Passwordless OTP) right before ticket creation to minimize customer abandonment.
+            </p>
+          </div>
+          <div class="glass-card p-6 rounded-xl space-y-4">
+            <h3 class="text-md font-bold text-purple-400 border-r-4 border-purple-500 pr-3">Cross-Linked Local SEO Silos</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Built 33 dynamic London Borough landing pages linked bidirectionally with specialized service modules. This guarantees top rankings in neighborhood search patterns (e.g. laptop repairs Camden, IT support Westminster) while maintaining low server overhead.
+            </p>
+          </div>
+          <div class="glass-card p-6 rounded-xl space-y-4">
+            <h3 class="text-md font-bold text-emerald-400 border-r-4 border-emerald-500 pr-3">Tokenized Guest Portals</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              To accommodate one-time customers, each created ticket issues a dynamic secure token query parameter. Accessing the tracking page automatically reads this validator, bypassing authentication while securing data logs, technician details, and review submission boxes.
+            </p>
+          </div>
+          <div class="glass-card p-6 rounded-xl space-y-4">
+            <h3 class="text-md font-bold text-amber-400 border-r-4 border-amber-500 pr-3">AI Autopilot & RAG Blog Writing</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              The CMS utilizes RSS readers to fetch tech feeds from TechCrunch and VentureBeat. Feeds act as custom prompt context matrices, enabling Gemini 1.5 Pro to write comprehensive IT topics locally saved as Drafts.
+            </p>
+          </div>
+          <div class="glass-card p-6 rounded-xl space-y-4 md:col-span-2">
+            <h3 class="text-md font-bold text-blue-400 border-r-4 border-blue-500 pr-3">Integrated Services & Pricing Pages</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Merged the redundant /pricing route directly into the main /services hub with 301 redirection. All service prices and congestion charge warnings are combined into a single, comprehensive page to simplify pricing transparency.
+            </p>
+          </div>
+        `,
+        footerTeam: "Designed and documented by the Platform Information Architecture Team."
+      }
+    };
+
+    function toggleLang() {
+      isFarsi = !isFarsi;
+      
+      const lang = isFarsi ? 'fa' : 'en';
+      const dir = isFarsi ? 'rtl' : 'ltr';
+      
+      document.documentElement.dir = dir;
+      document.documentElement.lang = lang;
+      document.body.style.fontFamily = isFarsi ? "var(--font-fa)" : "var(--font-en)";
+      
+      // Update text nodes
+      document.title = translations[lang].title;
+      document.getElementById('header-desc').textContent = translations[lang].headerDesc;
+      document.getElementById('btn-tab-tree').textContent = translations[lang].btnTree;
+      document.getElementById('btn-tab-flows').textContent = translations[lang].btnFlows;
+      document.getElementById('btn-tab-routes').textContent = translations[lang].btnRoutes;
+      document.getElementById('btn-tab-doc').textContent = translations[lang].btnDoc;
+      document.getElementById('info-ribbon-text').innerHTML = translations[lang].ribbonText;
+      
+      document.getElementById('stat-title-1').textContent = translations[lang].statTitle1;
+      document.getElementById('stat-unit-1').innerHTML = `84 <span class="text-sm font-normal text-slate-500">${translations[lang].statUnit1}</span>`;
+      document.getElementById('stat-desc-1').textContent = translations[lang].statDesc1;
+      
+      document.getElementById('stat-title-2').textContent = translations[lang].statTitle2;
+      document.getElementById('stat-unit-2').innerHTML = `4 <span class="text-sm font-normal text-slate-500">${translations[lang].statUnit2}</span>`;
+      document.getElementById('stat-desc-2').textContent = translations[lang].statDesc2;
+      
+      document.getElementById('stat-title-3').textContent = translations[lang].statTitle3;
+      document.getElementById('stat-desc-3').textContent = translations[lang].statDesc3;
+      
+      document.getElementById('stat-title-4').textContent = translations[lang].statTitle4;
+      document.getElementById('stat-desc-4').textContent = translations[lang].statDesc4;
+      
+      document.getElementById('tree-title').textContent = translations[lang].treeTitle;
+      document.getElementById('tree-subtitle').textContent = translations[lang].treeSubtitle;
+      document.getElementById('tree-search').placeholder = translations[lang].searchPlaceholder;
+      document.getElementById('legend-container').innerHTML = translations[lang].legendText;
+      
+      document.getElementById('flows-title').textContent = translations[lang].flowsTitle;
+      document.getElementById('flows-subtitle').textContent = translations[lang].flowsSubtitle;
+      document.getElementById('flow-a-title').textContent = translations[lang].flowATitle;
+      document.getElementById('flow-a-desc').textContent = translations[lang].flowADesc;
+      document.getElementById('flow-b-title').textContent = translations[lang].flowBTitle;
+      document.getElementById('flow-b-desc').textContent = translations[lang].flowBDesc;
+      document.getElementById('flow-c-title').textContent = translations[lang].flowCTitle;
+      document.getElementById('flow-c-desc').textContent = translations[lang].flowCDesc;
+      document.getElementById('flow-d-title').textContent = translations[lang].flowDTitle;
+      document.getElementById('flow-d-desc').textContent = translations[lang].flowDDesc;
+      
+      document.getElementById('routes-title').textContent = translations[lang].routesTitle;
+      document.getElementById('routes-subtitle').textContent = translations[lang].routesSubtitle;
+      document.getElementById('routes-table').querySelector('thead').innerHTML = translations[lang].routesTableHead;
+      
+      // Update route table alignments
+      const ths = document.getElementById('routes-table').querySelectorAll('th');
+      const tds = document.getElementById('routes-table').querySelectorAll('td');
+      const alignment = isFarsi ? 'text-right' : 'text-left';
+      ths.forEach(th => {
+        th.className = `py-3.5 px-4 font-bold ${alignment}`;
+      });
+      // Skip the first cell (the font-mono path) which is always ltr/left
+      tds.forEach((td, index) => {
+        if (index % 4 !== 0) {
+          td.className = `py-3.5 px-4 ${alignment === 'text-right' ? '' : 'text-left'}`;
+        }
+      });
+
+      document.getElementById('doc-title').textContent = translations[lang].docTitle;
+      document.getElementById('doc-subtitle').textContent = translations[lang].docSubtitle;
+      document.getElementById('doc-cards').innerHTML = translations[lang].docCards;
+      
+      document.getElementById('footer-team').textContent = translations[lang].footerTeam;
+      
+      // Reset search if any
+      const searchBox = document.getElementById('tree-search');
+      if (searchBox.value) {
+        searchTree();
+      }
+    }
+
+    // Automatically switch to English on load since the website is strictly English
+    document.addEventListener('DOMContentLoaded', () => {
+      if (isFarsi) {
+        toggleLang();
+      }
+      const btnLang = document.getElementById('btn-lang');
+      if (btnLang) {
+        btnLang.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

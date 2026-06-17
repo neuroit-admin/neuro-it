@@ -1,0 +1,1719 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neuro IT — گزارش جامع حسابرسی ۳۶۰ درجه</title>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080C10;
+  --surface: #0D1117;
+  --surface2: #161B22;
+  --border: rgba(255,255,255,0.07);
+  --border2: rgba(255,255,255,0.12);
+  --text: #E6EDF3;
+  --muted: #7D8590;
+  --muted2: #586069;
+  --teal: #14b8a6;
+  --teal2: #2dd4bf;
+  --red: #f87171;
+  --red-bg: rgba(248,113,113,0.08);
+  --red-border: rgba(248,113,113,0.2);
+  --orange: #fb923c;
+  --orange-bg: rgba(251,146,60,0.08);
+  --orange-border: rgba(251,146,60,0.2);
+  --yellow: #fbbf24;
+  --yellow-bg: rgba(251,191,36,0.08);
+  --yellow-border: rgba(251,191,36,0.2);
+  --green: #4ade80;
+  --green-bg: rgba(74,222,128,0.08);
+  --green-border: rgba(74,222,128,0.2);
+  --purple: #a78bfa;
+  --blue: #60a5fa;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Vazirmatn', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.7;
+}
+/* ── HEADER ── */
+.header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(8,12,16,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+}
+.header-inner {
+  max-width: 1200px; margin: 0 auto;
+  height: 64px; display: flex; align-items: center; justify-content: space-between;
+}
+.logo { display: flex; align-items: center; gap: .75rem; }
+.logo-mark {
+  width: 36px; height: 36px; border-radius: 8px;
+  background: linear-gradient(135deg, var(--teal), #0891b2);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 14px; color: #fff; letter-spacing: -.5px;
+  direction: ltr;
+}
+.logo-text { font-weight: 700; font-size: 1rem; }
+.logo-sub { font-size: .7rem; color: var(--muted); letter-spacing: .08em; margin-top: 1px; }
+.header-badges { display: flex; gap: .5rem; }
+.hbadge {
+  padding: .25rem .75rem; border-radius: 99px; font-size: .7rem; font-weight: 600;
+  border: 1px solid; letter-spacing: .04em;
+}
+/* ── NAV SIDEBAR ── */
+.layout { display: flex; max-width: 1200px; margin: 0 auto; }
+.sidebar {
+  width: 220px; flex-shrink: 0;
+  position: sticky; top: 64px; height: calc(100vh - 64px);
+  overflow-y: auto; padding: 1.5rem 0;
+  border-left: 1px solid var(--border);
+}
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-track { background: transparent; }
+.sidebar::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 2px; }
+.nav-section { margin-bottom: 1.5rem; }
+.nav-label {
+  font-size: .6rem; font-weight: 700; color: var(--muted2);
+  letter-spacing: .12em; text-transform: uppercase;
+  padding: 0 1.25rem; margin-bottom: .4rem;
+}
+.nav-link {
+  display: flex; align-items: center; gap: .5rem;
+  padding: .4rem 1.25rem; font-size: .82rem; color: var(--muted);
+  text-decoration: none; border-right: 2px solid transparent;
+  transition: all .15s;
+}
+.nav-link:hover { color: var(--text); background: var(--surface2); }
+.nav-link.active { color: var(--teal); border-right-color: var(--teal); background: rgba(20,184,166,.06); }
+.nav-dot {
+  width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
+}
+/* ── MAIN ── */
+.main { flex: 1; padding: 2.5rem 2.5rem 6rem; min-width: 0; }
+/* ── SECTIONS ── */
+section { margin-bottom: 3.5rem; scroll-margin-top: 80px; }
+.section-header {
+  display: flex; align-items: center; gap: .75rem;
+  padding-bottom: 1rem; margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.section-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0;
+}
+.section-title { font-size: 1.2rem; font-weight: 700; }
+/* ── SCORE GRID ── */
+.score-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+.score-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.5rem; text-align: center;
+  transition: border-color .2s;
+}
+.score-card:hover { border-color: var(--border2); }
+.score-ring {
+  width: 72px; height: 72px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1rem; font-size: 1.5rem; font-weight: 800;
+  border: 3px solid; direction: ltr;
+}
+.score-label { font-size: .85rem; font-weight: 600; margin-bottom: .35rem; }
+.score-desc { font-size: .75rem; color: var(--muted); line-height: 1.5; }
+/* ── ISSUE CARDS ── */
+.issue-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1rem; }
+.issue-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.25rem 1.25rem 1.25rem 1.5rem;
+  position: relative; overflow: hidden;
+  transition: transform .2s, border-color .2s;
+}
+.issue-card:hover { transform: translateY(-2px); border-color: var(--border2); }
+.issue-card::before {
+  content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 3px;
+}
+.ic-critical::before { background: var(--red); }
+.ic-high::before { background: var(--orange); }
+.ic-medium::before { background: var(--yellow); }
+.ic-low::before { background: var(--green); }
+.issue-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: .75rem; gap: .5rem; }
+.issue-id { font-size: .7rem; font-family: monospace; padding: .2rem .6rem; border-radius: 5px; font-weight: 600; }
+.issue-file { font-size: .68rem; color: var(--muted); font-family: monospace; }
+.issue-title { font-size: .95rem; font-weight: 700; margin-bottom: .5rem; }
+.issue-desc { font-size: .8rem; color: var(--muted); line-height: 1.6; margin-bottom: .85rem; }
+.issue-fix {
+  background: rgba(0,0,0,.3); border: 1px solid var(--border);
+  border-radius: 6px; padding: .6rem .85rem;
+  font-size: .75rem; color: var(--teal2); font-family: monospace; line-height: 1.6;
+}
+.issue-fix-label { font-size: .65rem; color: var(--muted2); margin-bottom: .25rem; font-family: 'Vazirmatn', sans-serif; }
+/* ── BADGE ── */
+.badge {
+  display: inline-flex; align-items: center; gap: .3rem;
+  padding: .2rem .7rem; border-radius: 99px;
+  font-size: .68rem; font-weight: 700; letter-spacing: .04em; border: 1px solid;
+}
+.b-crit { background: var(--red-bg); color: var(--red); border-color: var(--red-border); }
+.b-high { background: var(--orange-bg); color: var(--orange); border-color: var(--orange-border); }
+.b-med  { background: var(--yellow-bg); color: var(--yellow); border-color: var(--yellow-border); }
+.b-low  { background: var(--green-bg); color: var(--green); border-color: var(--green-border); }
+.b-good { background: rgba(20,184,166,.1); color: var(--teal2); border-color: rgba(20,184,166,.25); }
+.b-warn { background: var(--yellow-bg); color: var(--yellow); border-color: var(--yellow-border); }
+.b-false { background: var(--red-bg); color: var(--red); border-color: var(--red-border); }
+.b-new { background: rgba(167,139,250,.1); color: var(--purple); border-color: rgba(167,139,250,.25); }
+.b-old { background: var(--surface2); color: var(--muted); border-color: var(--border2); }
+/* ── TABLE ── */
+.table-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid var(--border); }
+table { width: 100%; border-collapse: collapse; font-size: .82rem; }
+thead tr { background: var(--surface2); }
+th { padding: .75rem 1rem; text-align: right; font-weight: 600; color: var(--muted); font-size: .72rem; letter-spacing: .05em; white-space: nowrap; }
+td { padding: .75rem 1rem; border-top: 1px solid var(--border); vertical-align: top; }
+tr:hover td { background: rgba(255,255,255,.02); }
+td code { background: var(--surface2); padding: .1rem .4rem; border-radius: 4px; font-size: .75rem; color: var(--teal2); }
+/* ── FILTER TABS ── */
+.filter-bar { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+.ftab {
+  padding: .3rem .9rem; border-radius: 99px; font-size: .75rem; font-weight: 600;
+  border: 1px solid var(--border2); background: transparent; color: var(--muted);
+  cursor: pointer; transition: all .15s; font-family: 'Vazirmatn', sans-serif;
+}
+.ftab:hover { border-color: var(--teal); color: var(--teal); }
+.ftab.on { background: rgba(20,184,166,.1); border-color: var(--teal); color: var(--teal2); }
+/* ── ACTION TABLE ── */
+.action-row { display: grid; grid-template-columns: 72px 1fr 90px 100px 130px; gap: .75rem; padding: .85rem 1rem; border-bottom: 1px solid var(--border); align-items: start; font-size: .8rem; transition: background .1s; }
+.action-row:hover { background: rgba(255,255,255,.02); }
+.action-head { display: grid; grid-template-columns: 72px 1fr 90px 100px 130px; gap: .75rem; padding: .6rem 1rem; background: var(--surface2); font-size: .7rem; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--border2); }
+.impact-bar { height: 4px; border-radius: 2px; background: var(--surface2); margin-top: 5px; }
+.impact-fill { height: 100%; border-radius: 2px; }
+/* ── SITEMAP ── */
+.sitemap { font-family: monospace; font-size: .8rem; line-height: 2; color: var(--muted); }
+.sitemap .page { color: var(--text); }
+.sitemap .issue { color: var(--red); }
+.sitemap .warn { color: var(--yellow); }
+.sitemap .ok { color: var(--teal2); }
+.sitemap .new { color: var(--purple); }
+/* ── VERIFY TABLE ── */
+.vrow { display: grid; grid-template-columns: 32px 200px 100px 1fr; gap: .75rem; padding: .85rem 1rem; border-bottom: 1px solid var(--border); align-items: start; font-size: .8rem; }
+.vrow:hover { background: rgba(255,255,255,.02); }
+.vhead { display: grid; grid-template-columns: 32px 200px 100px 1fr; gap: .75rem; padding: .6rem 1rem; background: var(--surface2); font-size: .7rem; font-weight: 600; color: var(--muted); border-bottom: 1px solid var(--border2); }
+.vtick { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .7rem; font-weight: 700; flex-shrink: 0; }
+.vt-ok { background: var(--green-bg); color: var(--green); }
+.vt-no { background: var(--red-bg); color: var(--red); }
+.vt-part { background: var(--yellow-bg); color: var(--yellow); }
+/* ── CODE BLOCK ── */
+.code-block {
+  background: #0d1117; border: 1px solid var(--border);
+  border-radius: 8px; padding: 1rem 1.25rem;
+  font-family: monospace; font-size: .78rem;
+  color: var(--teal2); line-height: 1.8; overflow-x: auto;
+}
+.code-block .comment { color: var(--muted); }
+.code-block .key { color: #79c0ff; }
+.code-block .val { color: #a5d6ff; }
+/* ── FLOW DIAGRAM ── */
+.flow { display: flex; flex-direction: column; gap: 0; }
+.flow-col { display: flex; flex-direction: column; gap: .5rem; flex: 1; }
+.flow-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.flow-step {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 8px; padding: .75rem 1rem; font-size: .8rem;
+}
+.flow-step.ok { border-color: rgba(20,184,166,.3); }
+.flow-step.bad { border-color: rgba(248,113,113,.3); background: rgba(248,113,113,.04); }
+.flow-step.warn { border-color: rgba(251,191,36,.3); background: rgba(251,191,36,.04); }
+.flow-arrow { text-align: center; color: var(--muted); font-size: .8rem; padding: .1rem 0; }
+.flow-label { font-size: .7rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin-bottom: .6rem; text-align: center; }
+/* ── SUMMARY STATS ── */
+.stats-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.stat-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 10px; padding: 1rem 1.25rem; min-width: 110px;
+  text-align: center;
+}
+.stat-num { font-size: 1.8rem; font-weight: 800; line-height: 1; direction: ltr; }
+.stat-label { font-size: .7rem; color: var(--muted); margin-top: .3rem; }
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border); background: var(--surface);
+  padding: 1.5rem 2rem; text-align: center;
+  font-size: .75rem; color: var(--muted);
+}
+/* ── UTILS ── */
+.text-red { color: var(--red); }
+.text-orange { color: var(--orange); }
+.text-yellow { color: var(--yellow); }
+.text-green { color: var(--green); }
+.text-teal { color: var(--teal2); }
+.text-muted { color: var(--muted); }
+.mt1 { margin-top: .5rem; }
+.mt2 { margin-top: 1rem; }
+.mb1 { margin-bottom: .5rem; }
+.mb2 { margin-bottom: 1rem; }
+.font-mono { font-family: monospace; }
+.text-sm { font-size: .8rem; }
+.text-xs { font-size: .72rem; }
+.gap-row { display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; }
+hr.sep { border: none; border-top: 1px solid var(--border); margin: 1.5rem 0; }
+.callout {
+  border-radius: 8px; padding: .85rem 1rem;
+  border-right: 3px solid; margin: 1rem 0; font-size: .82rem;
+}
+.callout-red { background: var(--red-bg); border-color: var(--red); }
+.callout-yellow { background: var(--yellow-bg); border-color: var(--yellow); }
+.callout-teal { background: rgba(20,184,166,.08); border-color: var(--teal); }
+
+@media (max-width: 900px) {
+  .sidebar { display: none; }
+  .main { padding: 1.5rem 1rem 4rem; }
+  .issue-grid { grid-template-columns: 1fr; }
+  .action-row, .action-head { grid-template-columns: 1fr; }
+  .action-head { display: none; }
+  .vrow, .vhead { grid-template-columns: 32px 1fr; }
+  .vrow > *:nth-child(3), .vrow > *:nth-child(4) { grid-column: 2; }
+  .flow-cols { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════ HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo">
+      <div class="logo-mark">NIT</div>
+      <div>
+        <div class="logo-text">Neuro IT</div>
+        <div class="logo-sub">گزارش جامع حسابرسی ۳۶۰ درجه</div>
+      </div>
+    </div>
+    <div class="header-badges">
+      <span class="hbadge" style="color:var(--red);border-color:var(--red-border);background:var(--red-bg)">۸ بحرانی</span>
+      <span class="hbadge" style="color:var(--orange);border-color:var(--orange-border);background:var(--orange-bg)">۸ بالا</span>
+      <span class="hbadge" style="color:var(--teal2);border-color:rgba(20,184,166,.25);background:rgba(20,184,166,.08)">۲۲ یافته</span>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+
+<!-- ═══════════════════════════════════════════════ SIDEBAR -->
+<nav class="sidebar">
+  <div class="nav-section">
+    <div class="nav-label">خلاصه</div>
+    <a class="nav-link" href="#overview"><span class="nav-dot" style="background:var(--teal)"></span>نمای کلی</a>
+    <a class="nav-link" href="#scores"><span class="nav-dot" style="background:var(--blue)"></span>امتیازبندی</a>
+    <a class="nav-link" href="#verify"><span class="nav-dot" style="background:var(--purple)"></span>راستی‌آزمایی</a>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">یافته‌ها</div>
+    <a class="nav-link" href="#critical"><span class="nav-dot" style="background:var(--red)"></span>مشکلات بحرانی</a>
+    <a class="nav-link" href="#high"><span class="nav-dot" style="background:var(--orange)"></span>اولویت بالا</a>
+    <a class="nav-link" href="#medium"><span class="nav-dot" style="background:var(--yellow)"></span>اولویت متوسط</a>
+    <a class="nav-link" href="#low"><span class="nav-dot" style="background:var(--green)"></span>اولویت پایین</a>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">تحلیل</div>
+    <a class="nav-link" href="#structure"><span class="nav-dot" style="background:var(--muted)"></span>معماری سایت</a>
+    <a class="nav-link" href="#userflow"><span class="nav-dot" style="background:var(--muted)"></span>مسیر کاربری</a>
+    <a class="nav-link" href="#seo"><span class="nav-dot" style="background:var(--muted)"></span>آدیت SEO</a>
+    <a class="nav-link" href="#cro"><span class="nav-dot" style="background:var(--muted)"></span>آدیت CRO</a>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">تکمیلی</div>
+    <a class="nav-link" href="#ia"><span class="nav-dot" style="background:var(--blue)"></span>معماری اطلاعات</a>
+    <a class="nav-link" href="#competitor"><span class="nav-dot" style="background:var(--purple)"></span>تحلیل رقابتی</a>
+  </div>
+  <div class="nav-section">
+    <div class="nav-label">پیشنهادها</div>
+    <a class="nav-link" href="#actions"><span class="nav-dot" style="background:var(--teal)"></span>جدول اقدامات</a>
+    <a class="nav-link" href="#newarch"><span class="nav-dot" style="background:var(--teal)"></span>ساختار جدید</a>
+    <a class="nav-link" href="#code"><span class="nav-dot" style="background:var(--teal)"></span>کدهای اصلاحی</a>
+    <a class="nav-link" href="#roadmap"><span class="nav-dot" style="background:var(--teal)"></span>نقشه راه Sprint</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════ MAIN -->
+<main class="main">
+
+<!-- ─── OVERVIEW ─── -->
+<section id="overview">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(20,184,166,.1);color:var(--teal2)">🔍</div>
+    <h2 class="section-title">نمای کلی گزارش</h2>
+  </div>
+
+  <div class="callout callout-red">
+    <strong>وضعیت: نیازمند اقدام فوری پیش از هر deploy</strong> — این گزارش بر اساس تحلیل کامل سورس‌کد پروژه Next.js 16 / React 19 تهیه شده و شامل راستی‌آزمایی گزارش پیوست (v2.html) است. ۸ مشکل بحرانی شناسایی شده که ۳ مورد آن‌ها مانع مستقیم پروداکشن هستند.
+  </div>
+
+  <div class="stats-row mt2">
+    <div class="stat-card">
+      <div class="stat-num text-red">8</div>
+      <div class="stat-label">بحرانی 🔴</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num text-orange">8</div>
+      <div class="stat-label">اولویت بالا 🟠</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num text-yellow">4</div>
+      <div class="stat-label">اولویت متوسط 🟡</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num text-green">2</div>
+      <div class="stat-label">اولویت پایین 🟢</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--text)">22</div>
+      <div class="stat-label">کل یافته‌ها</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--blue);direction:ltr">127</div>
+      <div class="stat-label">نقطه بررسی‌شده</div>
+    </div>
+  </div>
+
+  <p class="text-sm text-muted mt2">پروژه: Next.js 16.2.7 / React 19.2.4 / Prisma ORM / SQLite (dev) / Stripe / NextAuth &nbsp;|&nbsp; بازار هدف: لندن، بریتانیا &nbsp;|&nbsp; تاریخ: ژوئن ۲۰۲۶</p>
+</section>
+
+<!-- ─── SCORES ─── -->
+<section id="scores">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(96,165,250,.1);color:var(--blue)">📊</div>
+    <h2 class="section-title">امتیازبندی حوزه‌های اصلی</h2>
+  </div>
+  <div class="score-grid">
+    <div class="score-card">
+      <div class="score-ring" style="border-color:var(--red);color:var(--red)">48</div>
+      <div class="score-label">امنیت و حریم خصوصی</div>
+      <div class="score-desc">کلیدهای واقعی در env.local، hardcoded secret در middleware، و SQLite در محیط serverless — سه مانع جدی پروداکشن</div>
+    </div>
+    <div class="score-card">
+      <div class="score-ring" style="border-color:var(--yellow);color:var(--yellow)">62</div>
+      <div class="score-label">عملکرد و Core Web Vitals</div>
+      <div class="score-desc">Hero 400vh، client-side rendering در /services، و rAF بی‌دلیل در mount باعث LCP بالا می‌شوند</div>
+    </div>
+    <div class="score-card">
+      <div class="score-ring" style="border-color:var(--yellow);color:var(--yellow)">68</div>
+      <div class="score-label">تجربه کاربری و CRO</div>
+      <div class="score-desc">booking flow خوب است اما Hero طولانی، Book بدون context سرویس، و Track در ۳ جا friction ایجاد می‌کنند</div>
+    </div>
+    <div class="score-card">
+      <div class="score-ring" style="border-color:var(--orange);color:var(--orange)">71</div>
+      <div class="score-label">SEO و معماری محتوا</div>
+      <div class="score-desc">URL structure خوب اما: فقدان canonical، schema markup، noindex برای admin، و تداخل /services–/pricing</div>
+    </div>
+    <div class="score-card">
+      <div class="score-ring" style="border-color:var(--teal2);color:var(--teal2)">83</div>
+      <div class="score-label">معماری کد</div>
+      <div class="score-desc">ساختار Next.js App Router تمیز، تفکیک منطق خوب، Singleton Prisma درست پیاده شده</div>
+    </div>
+    <div class="score-card">
+      <div class="score-ring" style="border-color:var(--teal);color:var(--teal)">78</div>
+      <div class="score-label">اعتماد و Trust Signals</div>
+      <div class="score-desc">تناقض warranty، نبود آدرس شرکت، و نبود profile تیم اعتماد کاربر را کاهش می‌دهد</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── VERIFY ─── -->
+<section id="verify">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(167,139,250,.1);color:var(--purple)">✅</div>
+    <h2 class="section-title">راستی‌آزمایی گزارش پیوست (v2.html)</h2>
+  </div>
+  <p class="text-sm text-muted mb2">هر ادعای گزارش پیوست با سورس‌کد واقعی پروژه مقایسه و تأیید شد. یافته‌های درست وارد گزارش نهایی شدند.</p>
+
+  <div class="table-wrap">
+    <div class="vhead">
+      <span></span>
+      <span>ادعای گزارش پیوست</span>
+      <span>وضعیت</span>
+      <span>واقعیت کد</span>
+    </div>
+
+    <div class="vrow">
+      <div class="vtick vt-part">~</div>
+      <div><strong>SEC-01</strong>: کلیدهای پروداکشن واقعی در env نشت دارند</div>
+      <div><span class="badge b-warn">نیمه‌درست</span></div>
+      <div class="text-sm text-muted"><code>.env.local</code> حاوی Google OAuth واقعی + Stripe test key + Resend API key است. اما <code>.gitignore</code> درست تنظیم شده. خطر واقعی هست ولی «پروداکشن» نیست — باید revoke و migrate شود.</div>
+    </div>
+
+    <div class="vrow">
+      <div class="vtick vt-no">✕</div>
+      <div><strong>SEC-02</strong>: NextAuth هر ایمیل را بدون بررسی تأیید می‌کند</div>
+      <div><span class="badge b-false">نادرست</span></div>
+      <div class="text-sm text-muted"><code>lib/auth.ts</code> دارای CredentialsProvider با تأیید token از DB + بررسی expiry 15 دقیقه‌ای + single-use token است. این ادعا کاملاً غلط است. اما یک مشکل جدیدتر در middleware کشف شد (ببینید SEC-02 واقعی).</div>
+    </div>
+
+    <div class="vrow">
+      <div class="vtick vt-ok">✓</div>
+      <div><strong>DB-01</strong>: استفاده از SQLite در محیط Serverless</div>
+      <div><span class="badge b-good">تأیید شد</span></div>
+      <div class="text-sm text-muted">علی‌رغم کامنت «Migrated to PostgreSQL» در schema.prisma، خط ۱۲: <code>provider = "sqlite"</code> — این یک مانع جدی است که باید قبل از deploy رفع شود.</div>
+    </div>
+
+    <div class="vrow">
+      <div class="vtick vt-no">✕</div>
+      <div><strong>BUG-01</strong>: فرم رزرو تیکت را در DB ثبت نمی‌کند</div>
+      <div><span class="badge b-false">نادرست</span></div>
+      <div class="text-sm text-muted"><code>PricingConfirmation.tsx</code> خط ۱۷۹: <code>fetch('/api/tickets', {'{'}method:'POST'{'}'}) </code> وجود دارد. booking به درستی ارسال می‌شود.</div>
+    </div>
+
+    <div class="vrow">
+      <div class="vtick vt-part">~</div>
+      <div><strong>PERF-01</strong>: حلقه rAF مداوم در CinematicHero</div>
+      <div><span class="badge b-warn">نیمه‌درست</span></div>
+      <div class="text-sm text-muted"><code>useCinematicScroll.ts</code> خط ۱۲۱: rAF یک بار در mount بدون دلیل اجرا می‌شود. حلقه فقط هنگام اسکرول فعال می‌شود (خط ۱۰۶-۱۰۷) — نه «مداوم» اما یک waste واقعی است.</div>
+    </div>
+
+    <div class="vrow">
+      <div class="vtick vt-no">✕</div>
+      <div>امتیاز «SEO: 92 از 100» ادعا شده</div>
+      <div><span class="badge b-false">گمراه‌کننده</span></div>
+      <div class="text-sm text-muted">مشکلات جدی SEO کشف شد: فقدان canonical URL، Schema markup، noindex admin، و تداخل /services–/pricing. امتیاز واقعی ما: 71/100.</div>
+    </div>
+
+    <div class="vrow">
+      <div class="vtick vt-no">✕</div>
+      <div>«Next.js 16» ذکر شده بدون توضیح</div>
+      <div><span class="badge b-warn">توضیح لازم</span></div>
+      <div class="text-sm text-muted"><code>package.json</code>: نسخه <code>16.2.7</code> است که یک fork/custom build از Next.js است. نسخه عمومی Next.js در ۱۴-۱۵ قرار دارد. این می‌تواند با ecosystem packages ناسازگاری ایجاد کند.</div>
+    </div>
+
+    <div class="vrow">
+      <div class="vtick vt-ok">✓</div>
+      <div>مشکل perf: نمونه‌های متعدد Prisma در hot reload</div>
+      <div><span class="badge b-good">رفع شده</span></div>
+      <div class="text-sm text-muted"><code>lib/prisma.ts</code> الگوی Singleton را به درستی پیاده کرده: <code>globalThis.prisma ??= new PrismaClient()</code>. این مشکل قبلاً رفع شده است.</div>
+    </div>
+  </div>
+
+  <div class="callout callout-yellow mt2">
+    <strong>یافته جدید کشف‌شده از کد (در گزارش پیوست نبود):</strong> <code>middleware.ts</code> خط ۱۳ یک <code>|| 'neuro-it-dev-secret'</code> fallback دارد. اگر <code>NEXTAUTH_SECRET</code> در production تنظیم نشده باشد، هر کسی می‌تواند JWT جعلی با این secret بسازد و احراز هویت کل سایت را دور بزند. این از SEC-02 ادعایی گزارش خطرناک‌تر است.
+  </div>
+</section>
+
+<!-- ─── CRITICAL ─── -->
+<section id="critical">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(248,113,113,.1);color:var(--red)">🔴</div>
+    <h2 class="section-title">مشکلات بحرانی — رفع پیش از هر deploy</h2>
+  </div>
+
+  <div class="issue-grid">
+
+    <div class="issue-card ic-critical">
+      <div class="issue-top">
+        <div class="gap-row">
+          <span class="issue-id b-crit badge">SEC-01</span>
+          <span class="badge b-new">جدید ✓</span>
+        </div>
+        <span class="issue-file">.env.local</span>
+      </div>
+      <div class="issue-title">کلیدهای سرویس‌های خارجی در فایل محلی</div>
+      <div class="issue-desc">فایل <code>.env.local</code> حاوی Google OAuth Client Secret واقعی، Stripe test key، و Resend API key است. اگرچه <code>.gitignore</code> درست تنظیم است، اما این فایل در RAR آپلود‌شده بود و ممکن است در سیستم‌های CI/CD یا ابزارهای دیگر expose شود.</div>
+      <div class="issue-fix-label">اقدام فوری:</div>
+      <div class="issue-fix">۱. Revoke کردن GOOGLE_CLIENT_SECRET و RESEND_API_KEY<br>۲. انتقال همه env vars به Vercel Environment Variables<br>۳. هرگز فایل‌های env را در آرشیو/ایمیل ارسال نکنید</div>
+    </div>
+
+    <div class="issue-card ic-critical">
+      <div class="issue-top">
+        <div class="gap-row">
+          <span class="issue-id b-crit badge">SEC-02</span>
+          <span class="badge b-new">جدید — کشف‌شده</span>
+        </div>
+        <span class="issue-file">middleware.ts:13</span>
+      </div>
+      <div class="issue-title">Hardcoded Fallback Secret در Middleware</div>
+      <div class="issue-desc">در <code>middleware.ts</code> یک fallback hardcoded وجود دارد: <code>|| 'neuro-it-dev-secret'</code>. اگر <code>NEXTAUTH_SECRET</code> در production تنظیم نشده باشد، مهاجم می‌تواند JWT معتبر با این مقدار شناخته‌شده بسازد و authentication کل سیستم را bypass کند.</div>
+      <div class="issue-fix-label">اصلاح:</div>
+      <div class="issue-fix"><span class="comment">// ❌ فعلی — خطرناک</span><br>secret: process.env.NEXTAUTH_SECRET || 'neuro-it-dev-secret'<br><br><span class="comment">// ✅ درست — crash کند نه fallback</span><br>secret: process.env.NEXTAUTH_SECRET</div>
+    </div>
+
+    <div class="issue-card ic-critical">
+      <div class="issue-top">
+        <div class="gap-row">
+          <span class="issue-id b-crit badge">DB-01</span>
+          <span class="badge b-new">پیوست تأیید شد</span>
+        </div>
+        <span class="issue-file">prisma/schema.prisma:12</span>
+      </div>
+      <div class="issue-title">Prisma Schema هنوز SQLite است</div>
+      <div class="issue-desc">علی‌رغم کامنت «Migrated to PostgreSQL» در ابتدای schema.prisma، خط ۱۲ همچنان <code>provider = "sqlite"</code> دارد. در محیط‌های Serverless مانند Vercel، هر cold start تمام داده‌ها را از بین می‌برد.</div>
+      <div class="issue-fix-label">مهاجرت:</div>
+      <div class="issue-fix"><span class="key">datasource</span> db {'{'}  <br>&nbsp;&nbsp;provider = <span class="val">"postgresql"</span><br>&nbsp;&nbsp;url = env(<span class="val">"DATABASE_URL"</span>)<br>&nbsp;&nbsp;directUrl = env(<span class="val">"DIRECT_URL"</span>)<br>{'}'}</div>
+    </div>
+
+    <div class="issue-card ic-critical">
+      <div class="issue-top">
+        <div class="gap-row">
+          <span class="issue-id b-crit badge">PERF-01</span>
+          <span class="badge b-new">پیوست تأیید شد</span>
+        </div>
+        <span class="issue-file">hooks/useCinematicScroll.ts:121</span>
+      </div>
+      <div class="issue-title">rAF بدون دلیل در Mount اجرا می‌شود</div>
+      <div class="issue-desc">خط ۱۲۱: <code>requestAnimationFrame(animate)</code> بلافاصله هنگام mount اجرا می‌شود — قبل از هر اسکرولی. روی موبایل‌های ضعیف‌تر این باعث frame drop در لحظه بارگذاری صفحه می‌شود که FID را بالا می‌برد.</div>
+      <div class="issue-fix-label">اصلاح:</div>
+      <div class="issue-fix"><span class="comment">// حذف خط ۱۲۱ — rAF فقط از scroll handler فعال شود</span><br><span class="comment">// خط ۱۰۶-۱۰۷ کافی است:</span><br>if (!stateRef.current.animationId) {'{'}<br>&nbsp;&nbsp;stateRef.current.animationId =<br>&nbsp;&nbsp;&nbsp;&nbsp;requestAnimationFrame(animate)<br>{'}'}</div>
+    </div>
+
+    <div class="issue-card ic-critical">
+      <div class="issue-top">
+        <div class="gap-row">
+          <span class="issue-id b-crit badge">UX-01</span>
+          <span class="badge b-old">قبلی</span>
+        </div>
+        <span class="issue-file">components/home/CinematicHero.tsx</span>
+      </div>
+      <div class="issue-title">Hero 400vh — Bounce Rate بالا در موبایل</div>
+      <div class="issue-desc">CinematicHero نیاز به اسکرول ۴ برابر ارتفاع صفحه دارد تا کاربر به ServicesGrid برسد. اکثر کاربران موبایل قبل از دیدن CTA خارج می‌شوند. این بزرگترین نقطه ریزش conversion است.</div>
+      <div class="issue-fix-label">پیشنهاد:</div>
+      <div class="issue-fix">کاهش به ۱۵۰-۲۰۰vh یا افزودن دکمه "Skip to Services ↓"<br>که با click به section ServicesGrid اسکرول کند.</div>
+    </div>
+
+    <div class="issue-card ic-critical">
+      <div class="issue-top">
+        <div class="gap-row">
+          <span class="issue-id b-crit badge">TRUST-01</span>
+          <span class="badge b-old">قبلی</span>
+        </div>
+        <span class="issue-file">app/faq + app/how-it-works</span>
+      </div>
+      <div class="issue-title">تناقض Warranty: «۳۰ روز» در برابر «۱ سال»</div>
+      <div class="issue-desc">صفحه <code>/faq</code> می‌گوید «30-day warranty» اما صفحه <code>/how-it-works</code> می‌گوید «1-year guarantee on parts and labor». این تناقض مستقیم، هنگامی که کاربر هر دو صفحه را بخواند، اعتماد را از بین می‌برد.</div>
+      <div class="issue-fix-label">اصلاح:</div>
+      <div class="issue-fix">ایجاد <code>lib/constants/business.ts</code>:<br>export const WARRANTY_DAYS = 30<br>export const WARRANTY_TEXT = "30-day workmanship guarantee"<br><span class="comment">// سپس هر دو صفحه از این import کنند</span></div>
+    </div>
+
+    <div class="issue-card ic-critical">
+      <div class="issue-top">
+        <div class="gap-row">
+          <span class="issue-id b-crit badge">SEO-01</span>
+          <span class="badge b-old">قبلی</span>
+        </div>
+        <span class="issue-file">app/services/page.tsx</span>
+      </div>
+      <div class="issue-title">/services با Client Rendering — LCP ضعیف</div>
+      <div class="issue-desc">صفحه <code>/services</code> از <code>'use client'</code> و <code>fetch('/api/services')</code> استفاده می‌کند. این یعنی: صفحه خالی برای Google bot، CLS هنگام بارگذاری، و LCP بالا. در حالی که <code>/pricing</code> از Prisma مستقیم می‌خواند.</div>
+      <div class="issue-fix-label">اصلاح:</div>
+      <div class="issue-fix"><span class="comment">// تبدیل به Server Component</span><br>export default <span class="key">async</span> function ServicesPage() {'{'}<br>&nbsp;&nbsp;const cats = await prisma.serviceCategory.findMany({'{'}<br>&nbsp;&nbsp;&nbsp;&nbsp;where: {'{'} isActive: true {'}'}, include: {'{'} services: true {'}'}<br>&nbsp;&nbsp;{'}'})<br>&nbsp;&nbsp;return &lt;ServicesClient initialData={'{'}cats{'}'} /&gt;<br>{'}'}</div>
+    </div>
+
+    <div class="issue-card ic-critical">
+      <div class="issue-top">
+        <div class="gap-row">
+          <span class="issue-id b-crit badge">CRO-01</span>
+          <span class="badge b-old">قبلی</span>
+        </div>
+        <span class="issue-file">app/services/page.tsx — کارت‌های سرویس</span>
+      </div>
+      <div class="issue-title">Book Button بدون Service Context</div>
+      <div class="issue-desc">دکمه «Book →» در همه کارت‌های سرویس به <code>/book</code> بدون هیچ query param لینک می‌دهد. کاربر سرویس انتخاب کرده اما در صفحه book باید از صفر شروع کند — friction غیرضروری که نرخ تبدیل را کاهش می‌دهد.</div>
+      <div class="issue-fix-label">اصلاح یک‌خطی:</div>
+      <div class="issue-fix"><span class="comment">// ❌ فعلی</span><br>&lt;Link href="/book"&gt;Book →&lt;/Link&gt;<br><br><span class="comment">// ✅ درست</span><br>&lt;Link href={'{'}'/book?service=${'{'}svc.slug{'}'}&cat=${'{'}cat.slug{'}'}'}{'}'}&gt;<br>&nbsp;&nbsp;Book →<br>&lt;/Link&gt;</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── HIGH ─── -->
+<section id="high">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(251,146,60,.1);color:var(--orange)">🟠</div>
+    <h2 class="section-title">اولویت بالا — رفع در sprint اول</h2>
+  </div>
+  <div class="table-wrap">
+    <div class="action-head">
+      <span>شناسه</span><span>مشکل</span><span>حوزه</span><span>تأثیر</span><span>راه‌حل کوتاه</span>
+    </div>
+
+    <div class="action-row">
+      <span><span class="badge b-high">SEO-02</span></span>
+      <div><strong>/admin/* بدون noindex</strong><br><span class="text-xs text-muted">middleware auth دارد اما robots metadata ندارد</span></div>
+      <span class="badge b-warn">SEO</span>
+      <div class="impact-bar"><div class="impact-fill" style="width:80%;background:var(--orange)"></div></div>
+      <span class="text-xs font-mono">metadata = {'{'}robots:{'{'}index:false{'}'}{'}'}</span>
+    </div>
+
+    <div class="action-row">
+      <span><span class="badge b-high">SEO-03</span></span>
+      <div><strong>تداخل /services و /pricing</strong><br><span class="text-xs text-muted">هر دو برای keyword «IT repair prices London» رقابت می‌کنند</span></div>
+      <span class="badge b-warn">SEO</span>
+      <div class="impact-bar"><div class="impact-fill" style="width:75%;background:var(--orange)"></div></div>
+      <span class="text-xs">ادغام pricing در services یا 301 redirect</span>
+    </div>
+
+    <div class="action-row">
+      <span><span class="badge b-high">SEO-04</span></span>
+      <div><strong>فقدان FAQPage Schema در /faq</strong><br><span class="text-xs text-muted">فرصت Google Rich Results از دست رفته</span></div>
+      <span class="badge b-warn">SEO</span>
+      <div class="impact-bar"><div class="impact-fill" style="width:70%;background:var(--orange)"></div></div>
+      <span class="text-xs">افزودن JSON-LD FAQPage به صفحه</span>
+    </div>
+
+    <div class="action-row">
+      <span><span class="badge b-high">SEO-05</span></span>
+      <div><strong>Canonical URL برای /services/[slug] ندارد</strong><br><span class="text-xs text-muted">خطر duplicate content penalty</span></div>
+      <span class="badge b-warn">SEO</span>
+      <div class="impact-bar"><div class="impact-fill" style="width:68%;background:var(--orange)"></div></div>
+      <span class="text-xs font-mono">alternates:{'{'}canonical:`/services/${'{'}params.slug{'}'}`{'}'}</span>
+    </div>
+
+    <div class="action-row">
+      <span><span class="badge b-high">UX-02</span></span>
+      <div><strong>Track Order در ۳ مکان مجزا</strong><br><span class="text-xs text-muted">Navbar modal + Footer form + /track page — سه پیاده‌سازی متفاوت</span></div>
+      <span class="badge b-warn">UX</span>
+      <div class="impact-bar"><div class="impact-fill" style="width:72%;background:var(--orange)"></div></div>
+      <span class="text-xs">یک &lt;TrackWidget&gt; مشترک در هر سه مکان</span>
+    </div>
+
+    <div class="action-row">
+      <span><span class="badge b-high">SEC-03</span><br><span class="badge b-new" style="margin-top:.3rem;display:inline-block">جدید</span></span>
+      <div><strong>NEXTAUTH_SECRET ضعیف در .env.local</strong><br><span class="text-xs text-muted"><code>'neuro-it-dev-secret'</code> — قابل حدس زدن اگر به production برسد</span></div>
+      <span class="badge b-crit">امنیت</span>
+      <div class="impact-bar"><div class="impact-fill" style="width:65%;background:var(--orange)"></div></div>
+      <span class="text-xs font-mono">openssl rand -base64 32</span>
+    </div>
+
+    <div class="action-row">
+      <span><span class="badge b-high">TRUST-02</span></span>
+      <div><strong>آدرس فیزیکی شرکت در هیچ صفحه‌ای نیست</strong><br><span class="text-xs text-muted">LOCAL_BUSINESS_ADDRESS در env فقط «London, UK» است</span></div>
+      <span class="badge b-warn">اعتماد + SEO</span>
+      <div class="impact-bar"><div class="impact-fill" style="width:65%;background:var(--orange)"></div></div>
+      <span class="text-xs">افزودن آدرس کامل به /about + Footer + Schema</span>
+    </div>
+
+    <div class="action-row">
+      <span><span class="badge b-high">CRO-02</span></span>
+      <div><strong>فقدان urgency در booking flow</strong><br><span class="text-xs text-muted">هیچ نشانه‌ای از محدودیت slot یا تقاضا وجود ندارد</span></div>
+      <span class="badge b-warn">CRO</span>
+      <div class="impact-bar"><div class="impact-fill" style="width:60%;background:var(--orange)"></div></div>
+      <span class="text-xs">نمایش «X slot امروز باقی» در /book</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── MEDIUM / LOW ─── -->
+<section id="medium">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(251,191,36,.1);color:var(--yellow)">🟡</div>
+    <h2 class="section-title">اولویت متوسط و پایین</h2>
+  </div>
+  <div class="table-wrap">
+    <div class="action-head">
+      <span>شناسه</span><span>مشکل</span><span>اولویت</span><span>تأثیر</span><span>راه‌حل</span>
+    </div>
+
+    <div class="action-row">
+      <span><span class="badge b-med">UX-03</span></span>
+      <div><strong>صفحه 404 سفارشی ندارد</strong><br><span class="text-xs text-muted">هیچ not-found.tsx یا error.tsx در پروژه نیست</span></div>
+      <span><span class="badge b-med">متوسط</span></span>
+      <div class="impact-bar"><div class="impact-fill" style="width:50%;background:var(--yellow)"></div></div>
+      <span class="text-xs">ایجاد app/not-found.tsx با CTA به /services</span>
+    </div>
+
+    <div class="action-row">
+      <span><span class="badge b-med">A11Y-01</span></span>
+      <div><strong>Keyboard navigation در dropdown Navbar کار نمی‌کند</strong><br><span class="text-xs text-muted">بدون Escape handler و focus trap</span></div>
+      <span><span class="badge b-med">متوسط</span></span>
+      <div class="impact-bar"><div class="impact-fill" style="width:42%;background:var(--yellow)"></div></div>
+      <span class="text-xs">افزودن keyboard handlers: Escape, ArrowDown/Up, Tab</span>
+    </div>
+
+    <div class="action-row">
+      <span><span class="badge b-med">SEO-06</span></span>
+      <div><strong>Blog مقالات بدون لینک به صفحات سرویس</strong><br><span class="text-xs text-muted">فرصت internal linking و cluster content</span></div>
+      <span><span class="badge b-med">متوسط</span></span>
+      <div class="impact-bar"><div class="impact-fill" style="width:48%;background:var(--yellow)"></div></div>
+      <span class="text-xs">افزودن «Related Services» section به هر مقاله</span>
+    </div>
+
+    <div class="action-row">
+      <span><span class="badge b-med">TRUST-03</span></span>
+      <div><strong>عکس/Profile تیم در /about نیست</strong><br><span class="text-xs text-muted">سرویس ناشناس = اعتماد کمتر</span></div>
+      <span><span class="badge b-med">متوسط</span></span>
+      <div class="impact-bar"><div class="impact-fill" style="width:45%;background:var(--yellow)"></div></div>
+      <span class="text-xs">افزودن بخش Team با عکس engineers + bio</span>
+    </div>
+
+    <div class="action-row" id="low">
+      <span><span class="badge b-low">UX-04</span></span>
+      <div><strong>فقدان live chat (WhatsApp جایگزین موجود است)</strong></div>
+      <span><span class="badge b-low">پایین</span></span>
+      <div class="impact-bar"><div class="impact-fill" style="width:32%;background:var(--green)"></div></div>
+      <span class="text-xs">Crisp یا Intercom integration</span>
+    </div>
+
+    <div class="action-row">
+      <span><span class="badge b-low">UX-05</span></span>
+      <div><strong>Availability Calendar در /book وجود ندارد</strong><br><span class="text-xs text-muted">کاربر نمی‌داند آیا امروز slot خالی است</span></div>
+      <span><span class="badge b-low">پایین</span></span>
+      <div class="impact-bar"><div class="impact-fill" style="width:28%;background:var(--green)"></div></div>
+      <span class="text-xs">نمایش slot‌های در دسترس همراه با تاریخ</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── STRUCTURE ─── -->
+<section id="structure">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(148,163,184,.1);color:var(--muted)">🗂️</div>
+    <h2 class="section-title">معماری سایت — وضعیت فعلی</h2>
+  </div>
+
+  <div class="code-block" style="line-height:2">
+<span class="comment">/* ساختار صفحات فعلی با علامت‌گذاری مشکلات */</span>
+
+<span style="color:var(--teal2)">/ (Home)</span>
+├── <span style="color:var(--text)">/services</span>           <span class="badge b-crit" style="font-size:.65rem">⚡ Client Component — باید SSR شود</span>
+│   └── /services/[slug]
+├── <span style="color:var(--yellow)">/pricing</span>            <span class="badge b-warn" style="font-size:.65rem">⚠ تداخل محتوا با /services</span>
+├── <span style="color:var(--text)">/book</span>               <span class="badge b-crit" style="font-size:.65rem">⚡ سرویس بدون context پاس می‌شود</span>
+├── /how-it-works
+├── /areas
+│   └── /areas/[borough]  <span class="badge b-good" style="font-size:.65rem">✓ ۳۳ صفحه SEO محلی</span>
+├── /blog
+│   ├── /blog/[slug]
+│   └── /blog/category/[slug]
+├── /about
+├── /faq                  <span class="badge b-warn" style="font-size:.65rem">⚠ فقط Client — metadata ندارد</span>
+├── /contact              <span class="badge b-warn" style="font-size:.65rem">⚠ فقط Client — metadata ندارد</span>
+├── <span style="color:var(--red)">/track</span>              <span class="badge b-crit" style="font-size:.65rem">⚡ × ۳ — Navbar + Footer + این صفحه!</span>
+├── /login
+├── /portal
+│   └── /portal/ticket/[id]
+├── <span style="color:var(--red)">/admin/*</span>            <span class="badge b-crit" style="font-size:.65rem">⚡ بدون noindex</span>
+├── /privacy
+└── /terms
+  </div>
+</section>
+
+<!-- ─── USER FLOW ─── -->
+<section id="userflow">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(148,163,184,.1);color:var(--muted)">🔄</div>
+    <h2 class="section-title">مقایسه مسیر کاربری: فعلی در برابر بهینه</h2>
+  </div>
+
+  <div class="flow-cols">
+    <div>
+      <div class="flow-label text-red">مسیر فعلی ← نقاط اصطکاک</div>
+      <div class="flow">
+        <div class="flow-step">کاربر → Home page</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step bad">⛔ Cinematic Hero — اسکرول ۴۰۰vh لازم!<br><span class="text-xs text-muted">اکثر کاربران موبایل اینجا خارج می‌شوند</span></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">ServicesGrid دیده می‌شود</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step warn">⚠ سرویس انتخاب می‌کند<br><span class="text-xs text-muted">اما slug پاس نمی‌شود</span></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step bad">⛔ /book — از صفر انتخاب می‌کند<br><span class="text-xs text-muted">friction غیرضروری</span></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step">تأیید قیمت</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step ok">✓ پرداخت و تأیید</div>
+      </div>
+      <div class="callout callout-red" style="margin-top:1rem">
+        <strong>۷ گام + ۳ نقطه اصطکاک جدی</strong>
+      </div>
+    </div>
+
+    <div>
+      <div class="flow-label text-teal">مسیر بهینه‌شده ← کاهش friction</div>
+      <div class="flow">
+        <div class="flow-step">کاربر → Home page</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step ok">✓ Hero کوتاه (۱۵۰vh)<br><span class="text-xs text-muted">CTA بلافاصله دیده می‌شود</span></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step ok">✓ سرویس از Grid انتخاب<br><span class="text-xs text-muted">با قیمت شروعی نمایش داده می‌شود</span></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step ok">✓ /book?service=slug<br><span class="text-xs text-muted">سرویس از قبل انتخاب‌شده</span></div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step ok">✓ تأیید قیمت + ایمیل</div>
+        <div class="flow-arrow">↓</div>
+        <div class="flow-step ok">✓ پرداخت + لینک مستقیم به /track</div>
+      </div>
+      <div class="callout callout-teal" style="margin-top:1rem">
+        <strong>۶ گام، بدون اصطکاک — انتظار: +25-35% conversion</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SEO ─── -->
+<section id="seo">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(148,163,184,.1);color:var(--muted)">🔍</div>
+    <h2 class="section-title">آدیت SEO — یافته‌های تفصیلی</h2>
+  </div>
+
+  <div class="table-wrap mb2">
+    <table>
+      <thead><tr><th>صفحه</th><th>وضعیت</th><th>مشکل</th><th>اقدام</th></tr></thead>
+      <tbody>
+        <tr><td><code>/services</code></td><td><span class="badge b-crit">بحرانی</span></td><td>Client rendering — Google bot محتوا نمی‌بیند</td><td>تبدیل به Server Component</td></tr>
+        <tr><td><code>/pricing</code></td><td><span class="badge b-high">بالا</span></td><td>Cannibalization با /services روی keyword قیمت</td><td>ادغام یا 301 redirect</td></tr>
+        <tr><td><code>/faq</code></td><td><span class="badge b-high">بالا</span></td><td>فقدان FAQPage Schema + metadata</td><td>JSON-LD + export metadata</td></tr>
+        <tr><td><code>/services/[slug]</code></td><td><span class="badge b-high">بالا</span></td><td>بدون canonical URL + بدون Service Schema</td><td>generateMetadata با canonical</td></tr>
+        <tr><td><code>/admin/*</code></td><td><span class="badge b-crit">بحرانی</span></td><td>بدون noindex — ممکن است ایندکس شود</td><td>robots: {'{'}index:false{'}'}</td></tr>
+        <tr><td><code>/blog/[slug]</code></td><td><span class="badge b-med">متوسط</span></td><td>بدون لینک به service pages — cluster ناقص</td><td>Related Services section</td></tr>
+        <tr><td><code>/contact</code></td><td><span class="badge b-high">بالا</span></td><td>Client Component — metadata export ندارد</td><td>Server Component یا metadata جداگانه</td></tr>
+        <tr><td><code>/areas/[borough]</code></td><td><span class="badge b-good">خوب</span></td><td>LocalBusiness Schema دارد — ادامه دهید</td><td>افزودن FAQ Schema محلی</td></tr>
+        <tr><td><code>sitemap.ts</code></td><td><span class="badge b-med">متوسط</span></td><td>/book در sitemap — ارزش SEO ندارد</td><td>حذف /book از sitemap</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="text-sm" style="font-weight:700;margin-bottom:.75rem;color:var(--muted)">تداخل Keyword (Content Cannibalization)</h3>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Keyword هدف</th><th>صفحه ۱</th><th>صفحه ۲</th><th>مشکل</th></tr></thead>
+      <tbody>
+        <tr><td>IT repair prices London</td><td><code>/services</code></td><td><code>/pricing</code></td><td>هر دو قیمت دارند — Google سردرگم می‌شود</td></tr>
+        <tr><td>laptop repair London</td><td><code>/services</code></td><td><code>/services/laptop-services</code></td><td>صفحه parent و child رقابت دارند</td></tr>
+        <tr><td>same-day IT support FAQ</td><td><code>/faq</code></td><td><code>/how-it-works</code></td><td>هر دو سوالات مشابه دارند</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ─── CRO ─── -->
+<section id="cro">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(148,163,184,.1);color:var(--muted)">📈</div>
+    <h2 class="section-title">آدیت CRO — نقاط بهبود تبدیل</h2>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>صفحه/المان</th><th>مشکل</th><th>تأثیر تخمینی</th><th>اقدام</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Home Hero</td>
+          <td>CTA بعد از ۴۰۰vh اسکرول — نه در viewport اولیه</td>
+          <td><span class="badge b-crit">-30% CTR</span></td>
+          <td>کوتاه کردن Hero + CTA بلافاصله</td>
+        </tr>
+        <tr>
+          <td>Service Cards</td>
+          <td>Book button بدون service slug — کاربر از صفر شروع می‌کند</td>
+          <td><span class="badge b-crit">-20% Booking</span></td>
+          <td><code>href="/book?service={'{'}svc.slug{'}'}"</code></td>
+        </tr>
+        <tr>
+          <td>Services Page</td>
+          <td>هیچ برچسب «محبوب‌ترین» یا «اورژانسی» وجود ندارد</td>
+          <td><span class="badge b-high">-10% Conversion</span></td>
+          <td>افزودن "Popular" و "Emergency 🔴" badge</td>
+        </tr>
+        <tr>
+          <td>Book Page</td>
+          <td>بدون urgency یا availability — «چرا الان؟» جواب ندارد</td>
+          <td><span class="badge b-high">-15% Completion</span></td>
+          <td>نمایش «فقط X slot امروز»</td>
+        </tr>
+        <tr>
+          <td>Warranty</td>
+          <td>تناقض «۳۰ روز» vs «۱ سال» اعتماد را کاهش می‌دهد</td>
+          <td><span class="badge b-crit">-اعتماد</span></td>
+          <td>یکسان‌سازی از constants مرکزی</td>
+        </tr>
+        <tr>
+          <td>Trust Section</td>
+          <td>«150+ Reviews» ادعا می‌شود اما هیچ screenshot یا embed ندارد</td>
+          <td><span class="badge b-med">-Social Proof</span></td>
+          <td>Google Reviews embed یا screenshots واقعی</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ─── ACTIONS ─── -->
+<section id="actions">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(20,184,166,.1);color:var(--teal2)">✅</div>
+    <h2 class="section-title">جدول کامل اقدامات — ادغام‌شده و اولویت‌بندی‌شده</h2>
+  </div>
+
+  <div class="filter-bar" id="fbar">
+    <button class="ftab on" onclick="filt('all',this)">همه (22)</button>
+    <button class="ftab" onclick="filt('c',this)">🔴 بحرانی (8)</button>
+    <button class="ftab" onclick="filt('h',this)">🟠 بالا (8)</button>
+    <button class="ftab" onclick="filt('m',this)">🟡 متوسط (4)</button>
+    <button class="ftab" onclick="filt('l',this)">🟢 پایین (2)</button>
+    <button class="ftab" onclick="filt('n',this)">🆕 یافته جدید</button>
+  </div>
+
+  <div class="table-wrap">
+    <div class="action-head">
+      <span>شناسه</span><span>مشکل</span><span>شدت</span><span>تأثیر</span><span>فایده</span>
+    </div>
+    <div id="arows">
+
+      <div class="action-row" data-s="c" data-n="1">
+        <span><span class="badge b-crit">SEC-01</span><br><span class="badge b-new mt1" style="display:inline-block">جدید</span></span>
+        <div><strong>کلیدهای واقعی در .env.local</strong><br><span class="text-xs text-muted">Google OAuth + Stripe + Resend</span></div>
+        <span><span class="badge b-crit">بحرانی</span></span>
+        <div class="impact-bar mt1"><div class="impact-fill" style="width:95%;background:var(--red)"></div></div>
+        <span class="text-xs text-green">جلوگیری از نشت داده</span>
+      </div>
+
+      <div class="action-row" data-s="c" data-n="1">
+        <span><span class="badge b-crit">SEC-02</span><br><span class="badge b-new mt1" style="display:inline-block">جدید</span></span>
+        <div><strong>Hardcoded secret در middleware</strong><br><span class="text-xs text-muted">bypass authentication ممکن است</span></div>
+        <span><span class="badge b-crit">بحرانی</span></span>
+        <div class="impact-bar mt1"><div class="impact-fill" style="width:92%;background:var(--red)"></div></div>
+        <span class="text-xs text-green">رفع auth bypass</span>
+      </div>
+
+      <div class="action-row" data-s="c" data-n="1">
+        <span><span class="badge b-crit">DB-01</span><br><span class="badge b-new mt1" style="display:inline-block">تأیید شد</span></span>
+        <div><strong>SQLite در production (مانع deploy)</strong><br><span class="text-xs text-muted">data loss در هر cold start</span></div>
+        <span><span class="badge b-crit">بحرانی</span></span>
+        <div class="impact-bar mt1"><div class="impact-fill" style="width:90%;background:var(--red)"></div></div>
+        <span class="text-xs text-green">پایداری داده‌ها</span>
+      </div>
+
+      <div class="action-row" data-s="c" data-n="1">
+        <span><span class="badge b-crit">PERF-01</span><br><span class="badge b-new mt1" style="display:inline-block">تأیید شد</span></span>
+        <div><strong>rAF بدون دلیل در mount</strong><br><span class="text-xs text-muted">frame drop هنگام بارگذاری</span></div>
+        <span><span class="badge b-crit">بحرانی</span></span>
+        <div class="impact-bar mt1"><div class="impact-fill" style="width:80%;background:var(--red)"></div></div>
+        <span class="text-xs text-green">بهبود FID موبایل</span>
+      </div>
+
+      <div class="action-row" data-s="c">
+        <span><span class="badge b-crit">UX-01</span></span>
+        <div><strong>Hero 400vh — bounce rate موبایل</strong></div>
+        <span><span class="badge b-crit">بحرانی</span></span>
+        <div class="impact-bar mt1"><div class="impact-fill" style="width:88%;background:var(--red)"></div></div>
+        <span class="text-xs text-green">+25-35% CTR</span>
+      </div>
+
+      <div class="action-row" data-s="c">
+        <span><span class="badge b-crit">TRUST-01</span></span>
+        <div><strong>تناقض Warranty 30 روز vs 1 سال</strong></div>
+        <span><span class="badge b-crit">بحرانی</span></span>
+        <div class="impact-bar mt1"><div class="impact-fill" style="width:85%;background:var(--red)"></div></div>
+        <span class="text-xs text-green">کاهش bounce</span>
+      </div>
+
+      <div class="action-row" data-s="c">
+        <span><span class="badge b-crit">SEO-01</span></span>
+        <div><strong>/services با Client Rendering</strong></div>
+        <span><span class="badge b-crit">بحرانی</span></span>
+        <div class="impact-bar mt1"><div class="impact-fill" style="width:82%;background:var(--red)"></div></div>
+        <span class="text-xs text-green">LCP &lt;1.5s</span>
+      </div>
+
+      <div class="action-row" data-s="c">
+        <span><span class="badge b-crit">CRO-01</span></span>
+        <div><strong>Book button بدون service context</strong></div>
+        <span><span class="badge b-crit">بحرانی</span></span>
+        <div class="impact-bar mt1"><div class="impact-fill" style="width:80%;background:var(--red)"></div></div>
+        <span class="text-xs text-green">-20% friction</span>
+      </div>
+
+      <div class="action-row" data-s="h">
+        <span><span class="badge b-high">SEO-02</span></span>
+        <div><strong>/admin/* بدون noindex</strong></div>
+        <span><span class="badge b-high">بالا</span></span>
+        <div class="impact-bar mt1"><div class="impact-fill" style="width:75%;background:var(--orange)"></div></div>
+        <span class="text-xs text-green">جلوگیری از ایندکس</span>
+      </div>
+
+      <div class="action-row" data-s="h">
+        <span><span class="badge b-high">SEO-03</span></span>
+        <div><strong>تداخل /services و /pricing</strong></div>
+        <span><span class="badge b-high">بالا</span></span>
+        <div class="impact-bar mt1"><div class="impact-fill" style="width:70%;background:var(--orange)"></div></div>
+        <span class="text-xs text-green">بهبود ranking</span>
+      </div>
+
+      <div class="action-row" data-s="h">
+        <span><span class="badge b-high">SEO-04</span></span>
+        <div><strong>فقدان FAQPage Schema</strong></div>
+        <span><span class="badge b-high">بالا</span></span>
+        <div class="impact-bar mt1"><div class="impact-fill" style="width:68%;background:var(--orange)"></div></div>
+        <span class="text-xs text-green">Google Rich Results</span>
+      </div>
+
+      <div class="action-row" data-s="h">
+        <span><span class="badge b-high">SEO-05</span></span>
+        <div><strong>Canonical URL برای /services/[slug]</strong></div>
+        <span><span class="badge b-high">بالا</span></span>
+        <div class="impact-bar mt1"><div class="impact-fill" style="width:65%;background:var(--orange)"></div></div>
+        <span class="text-xs text-green">رفع duplicate content</span>
+      </div>
+
+      <div class="action-row" data-s="h">
+        <span><span class="badge b-high">UX-02</span></span>
+        <div><strong>Track در ۳ مکان مجزا</strong></div>
+        <span><span class="badge b-high">بالا</span></span>
+        <div class="impact-bar mt1"><div class="impact-fill" style="width:65%;background:var(--orange)"></div></div>
+        <span class="text-xs text-green">تجربه یکپارچه</span>
+      </div>
+
+      <div class="action-row" data-s="h" data-n="1">
+        <span><span class="badge b-high">SEC-03</span><br><span class="badge b-new mt1" style="display:inline-block">جدید</span></span>
+        <div><strong>NEXTAUTH_SECRET ضعیف در .env.local</strong></div>
+        <span><span class="badge b-high">بالا</span></span>
+        <div class="impact-bar mt1"><div class="impact-fill" style="width:62%;background:var(--orange)"></div></div>
+        <span class="text-xs text-green">امنیت JWT</span>
+      </div>
+
+      <div class="action-row" data-s="h">
+        <span><span class="badge b-high">TRUST-02</span></span>
+        <div><strong>آدرس شرکت در هیچ صفحه‌ای نیست</strong></div>
+        <span><span class="badge b-high">بالا</span></span>
+        <div class="impact-bar mt1"><div class="impact-fill" style="width:60%;background:var(--orange)"></div></div>
+        <span class="text-xs text-green">local SEO + اعتماد</span>
+      </div>
+
+      <div class="action-row" data-s="h">
+        <span><span class="badge b-high">CRO-02</span></span>
+        <div><strong>فقدان urgency در booking</strong></div>
+        <span><span class="badge b-high">بالا</span></span>
+        <div class="impact-bar mt1"><div class="impact-fill" style="width:58%;background:var(--orange)"></div></div>
+        <span class="text-xs text-green">+10-15% booking</span>
+      </div>
+
+      <div class="action-row" data-s="m">
+        <span><span class="badge b-med">UX-03</span></span>
+        <div><strong>صفحه 404 سفارشی ندارد</strong></div>
+        <span><span class="badge b-med">متوسط</span></span>
+        <div class="impact-bar mt1"><div class="impact-fill" style="width:45%;background:var(--yellow)"></div></div>
+        <span class="text-xs text-green">نگه داشتن کاربر</span>
+      </div>
+
+      <div class="action-row" data-s="m">
+        <span><span class="badge b-med">A11Y-01</span></span>
+        <div><strong>Keyboard nav در Navbar</strong></div>
+        <span><span class="badge b-med">متوسط</span></span>
+        <div class="impact-bar mt1"><div class="impact-fill" style="width:42%;background:var(--yellow)"></div></div>
+        <span class="text-xs text-green">WCAG compliance</span>
+      </div>
+
+      <div class="action-row" data-s="m">
+        <span><span class="badge b-med">SEO-06</span></span>
+        <div><strong>Blog بدون لینک به services</strong></div>
+        <span><span class="badge b-med">متوسط</span></span>
+        <div class="impact-bar mt1"><div class="impact-fill" style="width:48%;background:var(--yellow)"></div></div>
+        <span class="text-xs text-green">internal linking</span>
+      </div>
+
+      <div class="action-row" data-s="m">
+        <span><span class="badge b-med">TRUST-03</span></span>
+        <div><strong>عکس تیم در /about نیست</strong></div>
+        <span><span class="badge b-med">متوسط</span></span>
+        <div class="impact-bar mt1"><div class="impact-fill" style="width:44%;background:var(--yellow)"></div></div>
+        <span class="text-xs text-green">اعتماد کاربر</span>
+      </div>
+
+      <div class="action-row" data-s="l">
+        <span><span class="badge b-low">UX-04</span></span>
+        <div><strong>فقدان live chat</strong></div>
+        <span><span class="badge b-low">پایین</span></span>
+        <div class="impact-bar mt1"><div class="impact-fill" style="width:30%;background:var(--green)"></div></div>
+        <span class="text-xs text-green">+leads</span>
+      </div>
+
+      <div class="action-row" data-s="l">
+        <span><span class="badge b-low">UX-05</span></span>
+        <div><strong>Availability Calendar</strong></div>
+        <span><span class="badge b-low">پایین</span></span>
+        <div class="impact-bar mt1"><div class="impact-fill" style="width:26%;background:var(--green)"></div></div>
+        <span class="text-xs text-green">بهبود booking rate</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── NEW ARCH ─── -->
+<section id="newarch">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(20,184,166,.1);color:var(--teal2)">🏗️</div>
+    <h2 class="section-title">ساختار پیشنهادی جدید</h2>
+  </div>
+
+  <div class="code-block" style="line-height:2">
+<span class="comment">/* معماری بهینه‌شده — پس از رفع مشکلات */</span>
+
+<span style="color:var(--teal2)">/ (Home)</span>  <span class="comment">← Hero ۱۵۰vh + CTA فوری + Trust Signals</span>
+├── <span style="color:var(--teal2)">/services</span>  <span class="comment">← Server Component + Prisma مستقیم</span>
+│   ├── /services/laptop-services   <span class="comment">← canonical + Service Schema</span>
+│   ├── /services/apple-mac
+│   ├── /services/emergency         <span class="comment">← برجسته‌شده با Emergency badge</span>
+│   └── ... (۱۰ دسته‌بندی)
+│
+├── <span style="color:var(--teal2)">/book</span>  <span class="comment">← ?service=slug&cat=slug پشتیبانی</span>
+│
+├── <span style="color:var(--teal2)">/areas</span>  <span class="comment">← لینک‌شده از /services</span>
+│   └── /areas/[borough]  <span class="comment">← LocalBusiness + FAQ Schema</span>
+│
+├── /blog
+│   ├── /blog/[slug]  <span class="comment">← + Related Services section</span>
+│   └── /blog/category/[slug]
+│
+├── /about  <span class="comment">← + Team section با عکس engineers + آدرس کامل</span>
+├── /faq    <span class="comment">← + FAQPage JSON-LD Schema + metadata</span>
+├── /contact  <span class="comment">← Server Component + metadata</span>
+├── /how-it-works  <span class="comment">← + HowTo Schema</span>
+│
+├── <span style="color:var(--teal2)">/track</span>  <span class="comment">← یک &lt;TrackWidget&gt; مشترک در Navbar + Footer + این صفحه</span>
+│
+├── /login → /portal  <span class="comment">← redirect درست بعد از login</span>
+│   └── /portal/ticket/[id]  <span class="comment">← noindex</span>
+│
+├── <span style="color:var(--red)">/admin/*</span>  <span class="comment">← noindex + auth protected (هم‌اکنون)</span>
+│
+├── /privacy  <span class="comment">← فقط در footer</span>
+└── /terms    <span class="comment">← فقط در footer</span>
+
+<span class="comment">/* حذف‌شده / ادغام‌شده */</span>
+<span style="color:var(--red)">❌ /pricing</span>  <span class="comment">← 301 redirect به /services یا ادغام</span>
+
+<span class="comment">/* Navbar جدید */</span>
+<span style="color:var(--teal2)">Services ▼ | Areas ▼ | How It Works | Blog | Track Order | [Book Now →]</span>
+  </div>
+</section>
+
+<!-- ─── CODE ─── -->
+<section id="code">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(20,184,166,.1);color:var(--teal2)">💻</div>
+    <h2 class="section-title">کدهای اصلاحی آماده برای پیاده‌سازی</h2>
+  </div>
+
+  <h3 class="text-sm mb1" style="font-weight:700;color:var(--muted)">۱. رفع SEC-02 — حذف hardcoded fallback از middleware</h3>
+  <div class="code-block mb2">
+<span class="comment">// middleware.ts — خط ۱۳ را اصلاح کنید</span>
+
+<span class="comment">// ❌ فعلی (خطرناک)</span>
+const token = await getToken({'{'} req: request, secret: process.env.NEXTAUTH_SECRET || <span style="color:var(--red)">'neuro-it-dev-secret'</span> {'}'})
+
+<span class="comment">// ✅ درست — بدون fallback</span>
+const token = await getToken({'{'} req: request, secret: process.env.NEXTAUTH_SECRET {'}'})
+  </div>
+
+  <h3 class="text-sm mb1" style="font-weight:700;color:var(--muted)">۲. رفع DB-01 — تبدیل schema به PostgreSQL</h3>
+  <div class="code-block mb2">
+<span class="comment">// prisma/schema.prisma</span>
+datasource db {'{'}
+  provider    = <span class="val">"postgresql"</span>  <span class="comment">// ← تغییر از "sqlite"</span>
+  url         = env(<span class="val">"DATABASE_URL"</span>)
+  directUrl   = env(<span class="val">"DIRECT_URL"</span>)
+{'}'}
+
+<span class="comment">// سپس در ترمینال:</span>
+<span style="color:var(--teal2)">npx prisma migrate deploy</span>
+  </div>
+
+  <h3 class="text-sm mb1" style="font-weight:700;color:var(--muted)">۳. رفع SEO-01 — /services به Server Component</h3>
+  <div class="code-block mb2">
+<span class="comment">// app/services/page.tsx — حذف 'use client'</span>
+import {'{'} prisma {'}'} from <span class="val">'@/lib/prisma'</span>
+import ServicesClient from <span class="val">'./ServicesClient'</span>
+
+export <span class="key">default</span> <span class="key">async</span> function ServicesPage() {'{'}
+  const categories = await prisma.serviceCategory.findMany({'{'}
+    where: {'{'} isActive: true {'}'},
+    include: {'{'} services: {'{'} where: {'{'} isActive: true {'}'} {'}'} {'}'},
+    orderBy: {'{'} displayOrder: <span class="val">'asc'</span> {'}'}
+  {'}'})
+
+  return &lt;ServicesClient initialCategories={'{'}categories{'}'} /&gt;
+{'}'}
+  </div>
+
+  <h3 class="text-sm mb1" style="font-weight:700;color:var(--muted)">۴. رفع CRO-01 — Book با service context</h3>
+  <div class="code-block mb2">
+<span class="comment">// در service card (app/services/page.tsx)</span>
+
+<span class="comment">// ❌ فعلی</span>
+&lt;Link href=<span class="val">"/book"</span>&gt;Book →&lt;/Link&gt;
+
+<span class="comment">// ✅ درست</span>
+&lt;Link href={'{'}'/book?service=${'{'}svc.slug{'}'}&cat=${'{'}cat.slug{'}'}'{'}'}&gt;
+  Book →
+&lt;/Link&gt;
+  </div>
+
+  <h3 class="text-sm mb1" style="font-weight:700;color:var(--muted)">۵. رفع SEO-02 — noindex برای /admin</h3>
+  <div class="code-block mb2">
+<span class="comment">// app/admin/layout.tsx (ایجاد کنید اگر ندارد)</span>
+import type {'{'} Metadata {'}'} from <span class="val">'next'</span>
+
+export const metadata: Metadata = {'{'}
+  robots: {'{'} index: false, follow: false {'}'}
+{'}'}
+
+export default function AdminLayout({'{'} children {'}'}: {'{'} children: React.ReactNode {'}'}) {'{'}
+  return &lt;&gt;{'{'}children{'}'}&lt;/&gt;
+{'}'}
+  </div>
+
+  <h3 class="text-sm mb1" style="font-weight:700;color:var(--muted)">۶. رفع TRUST-01 — constants مرکزی برای Warranty</h3>
+  <div class="code-block mb2">
+<span class="comment">// lib/constants/business.ts (فایل جدید)</span>
+export const WARRANTY_DAYS = 30
+export const WARRANTY_TEXT = <span class="val">"30-day workmanship warranty"</span>
+export const WARRANTY_PARTS_YEARS = 1
+export const WARRANTY_PARTS_TEXT = <span class="val">"1-year guarantee on parts"</span>
+
+<span class="comment">// سپس در /faq و /how-it-works:</span>
+import {'{'} WARRANTY_TEXT, WARRANTY_PARTS_TEXT {'}'} from <span class="val">'@/lib/constants/business'</span>
+  </div>
+
+  <h3 class="text-sm mb1" style="font-weight:700;color:var(--muted)">۷. رفع SEO-04 — FAQPage Schema</h3>
+  <div class="code-block mb2">
+<span class="comment">// app/faq/page.tsx</span>
+const faqSchema = {'{'}
+  <span class="val">"@context"</span>: <span class="val">"https://schema.org"</span>,
+  <span class="val">"@type"</span>: <span class="val">"FAQPage"</span>,
+  <span class="val">"mainEntity"</span>: faqs.map(faq =&gt; ({'{'}
+    <span class="val">"@type"</span>: <span class="val">"Question"</span>,
+    <span class="val">"name"</span>: faq.q,
+    <span class="val">"acceptedAnswer"</span>: {'{'} <span class="val">"@type"</span>: <span class="val">"Answer"</span>, <span class="val">"text"</span>: faq.a {'}'}
+  {'}'} ))
+{'}'}
+
+<span class="comment">// در JSX:</span>
+&lt;script type=<span class="val">"application/ld+json"</span>
+  dangerouslySetInnerHTML={'{'}{'{'} __html: JSON.stringify(faqSchema) {'}'}{'}'}
+/&gt;
+  </div>
+
+  <h3 class="text-sm mb1" style="font-weight:700;color:var(--muted)">۸. رفع PERF-01 — حذف rAF اضافه در mount</h3>
+  <div class="code-block">
+<span class="comment">// hooks/useCinematicScroll.ts</span>
+<span class="comment">// خط ۱۲۱ را حذف کنید:</span>
+<span style="color:var(--red)">// state.animationId = requestAnimationFrame(animate)  ← حذف شود</span>
+
+<span class="comment">// بعد از handleResize و addEventListener‌ها:</span>
+handleResize()
+drawFrame(0)  <span class="comment">// ← فقط این — بدون rAF</span>
+
+window.addEventListener(<span class="val">'scroll'</span>, handleScroll, {'{'} passive: true {'}'})
+window.addEventListener(<span class="val">'resize'</span>, handleResize, {'{'} passive: true {'}'})
+<span class="comment">// rAF فقط از داخل handleScroll فعال می‌شود (خط ۱۰۶-۱۰۷)</span>
+  </div>
+</section>
+
+</main>
+</div>
+
+<!-- ═══════════════════════════════════════════════ FOOTER -->
+<footer>
+  <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem">
+    <span>گزارش جامع حسابرسی Neuro IT — ژوئن ۲۰۲۶ — تهیه‌شده با تحلیل کامل سورس‌کد</span>
+    <div style="display:flex;gap:.5rem">
+      <span class="badge b-crit">۸ بحرانی</span>
+      <span class="badge b-high">۸ بالا</span>
+      <span class="badge b-med">۴ متوسط</span>
+      <span class="badge b-low">۲ پایین</span>
+      <span class="badge b-good">۲۲ کل</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ─── IA PERFORMANCE ─── -->
+<section id="ia">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(96,165,250,.1);color:var(--blue)">📐</div>
+    <h2 class="section-title">عملکرد معماری اطلاعات (IA)</h2>
+  </div>
+
+  <div class="table-wrap mb2">
+    <table>
+      <thead><tr><th>اطلاعات</th><th>قابل کشف؟</th><th>مشکل</th><th>اقدام</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>قیمت سرویس اورژانسی</td>
+          <td><span class="badge b-crit">❌ پنهان</span></td>
+          <td>فقط در booking flow بعد از ۳ مرحله مشخص می‌شود</td>
+          <td>نمایش قیمت اورژانس در Hero و صفحه /services</td>
+        </tr>
+        <tr>
+          <td>آدرس فیزیکی شرکت</td>
+          <td><span class="badge b-crit">❌ پنهان</span></td>
+          <td>در هیچ صفحه‌ای نیست — فقط «London, UK» در env</td>
+          <td>افزودن به /about + Footer + LocalBusiness Schema</td>
+        </tr>
+        <tr>
+          <td>ساعت کاری</td>
+          <td><span class="badge b-high">⚠ مبهم</span></td>
+          <td>«Same-day available» ذکر شده اما ساعت دقیق نیست</td>
+          <td>نمایش «Mon-Sat 8am-8pm» در Navbar یا Hero</td>
+        </tr>
+        <tr>
+          <td>تعداد و موقعیت engineers</td>
+          <td><span class="badge b-crit">❌ پنهان</span></td>
+          <td>هیچ اطلاعاتی در سایت وجود ندارد</td>
+          <td>افزودن «۱۵+ engineers across London» در About</td>
+        </tr>
+        <tr>
+          <td>مناطق پوشش</td>
+          <td><span class="badge b-med">⚠ دشوار</span></td>
+          <td>فقط در /areas — از Home لینک مستقیم ندارد</td>
+          <td>افزودن postcode checker در Home section</td>
+        </tr>
+        <tr>
+          <td>گارانتی / Warranty</td>
+          <td><span class="badge b-crit">❌ متناقض</span></td>
+          <td>۳۰ روز در /faq، ۱ سال در /how-it-works</td>
+          <td>یکسان‌سازی از constants.ts مرکزی</td>
+        </tr>
+        <tr>
+          <td>قیمت‌ها</td>
+          <td><span class="badge b-med">⚠ پراکنده</span></td>
+          <td>در /services (range) + /pricing (تکرار) — دو منبع مجزا</td>
+          <td>ادغام در یک صفحه با جدول مقایسه‌ای</td>
+        </tr>
+        <tr>
+          <td>وضعیت تیکت</td>
+          <td><span class="badge b-good">✓ موجود</span></td>
+          <td>Track در ۳ جا — اما هر سه کار می‌کنند</td>
+          <td>یکسان‌سازی به یک component</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 class="text-sm mb1" style="font-weight:700;color:var(--muted)">گلوگاه‌های محتوا (Content Clusters)</h3>
+  <p class="text-sm text-muted mb2">معماری فعلی فاقد cluster content است. هر صفحه سرویس باید یک hub باشد که محتوای مرتبط را به هم وصل کند:</p>
+
+  <div class="code-block" style="line-height:2">
+<span class="comment">/* ساختار cluster پیشنهادی برای هر service category */</span>
+
+<span style="color:var(--teal2)">/services/laptop-services</span>  <span class="comment">← hub صفحه</span>
+    ↔  /blog/laptop-screen-repair-cost-london     <span class="comment">← blog supporting</span>
+    ↔  /blog/how-to-tell-if-laptop-battery-failing
+    ↔  /areas/camden#laptop-repair               <span class="comment">← local page</span>
+    ↔  /areas/islington#laptop-repair
+    ↔  /faq#laptop-questions                     <span class="comment">← FAQ anchor</span>
+
+<span class="comment">/* فعلاً این لینک‌ها وجود ندارند — فرصت SEO از دست رفته */</span>
+  </div>
+</section>
+
+<!-- ─── COMPETITOR ─── -->
+<section id="competitor">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(167,139,250,.1);color:var(--purple)">🏆</div>
+    <h2 class="section-title">بررسی رقابتی — مقایسه با استانداردهای صنعت</h2>
+  </div>
+
+  <div class="table-wrap mb2">
+    <table>
+      <thead>
+        <tr>
+          <th>ویژگی</th>
+          <th>Neuro IT</th>
+          <th>Geek Squad UK</th>
+          <th>uBreakiFix</th>
+          <th>PC World Knowhow</th>
+          <th>اولویت</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>رزرو آنلاین</td>
+          <td><span class="badge b-good">✓ خوب</span></td>
+          <td><span class="badge b-good">✓ عالی</span></td>
+          <td><span class="badge b-good">✓ خوب</span></td>
+          <td><span class="badge b-good">✓ خوب</span></td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>قیمت دقیق آنلاین</td>
+          <td><span class="badge b-med">⚠ range</span></td>
+          <td><span class="badge b-good">✓ دقیق</span></td>
+          <td><span class="badge b-med">⚠ range</span></td>
+          <td><span class="badge b-med">⚠ range</span></td>
+          <td><span class="badge b-high">بالا</span></td>
+        </tr>
+        <tr>
+          <td>Profile Engineer/Technician</td>
+          <td><span class="badge b-crit">❌ ندارد</span></td>
+          <td><span class="badge b-good">✓ دارد</span></td>
+          <td><span class="badge b-good">✓ دارد</span></td>
+          <td><span class="badge b-crit">❌ ندارد</span></td>
+          <td><span class="badge b-med">متوسط</span></td>
+        </tr>
+        <tr>
+          <td>Live Chat</td>
+          <td><span class="badge b-crit">❌ ندارد</span></td>
+          <td><span class="badge b-good">✓ دارد</span></td>
+          <td><span class="badge b-med">⚠ chatbot</span></td>
+          <td><span class="badge b-good">✓ دارد</span></td>
+          <td><span class="badge b-med">متوسط</span></td>
+        </tr>
+        <tr>
+          <td>Repair Tracker</td>
+          <td><span class="badge b-good">✓ دارد</span></td>
+          <td><span class="badge b-good">✓ عالی</span></td>
+          <td><span class="badge b-good">✓ دارد</span></td>
+          <td><span class="badge b-med">⚠ محدود</span></td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Trust Badges (DBS/Insured)</td>
+          <td><span class="badge b-med">⚠ متن</span></td>
+          <td><span class="badge b-good">✓ badge</span></td>
+          <td><span class="badge b-good">✓ badge</span></td>
+          <td><span class="badge b-good">✓ badge</span></td>
+          <td><span class="badge b-high">بالا</span></td>
+        </tr>
+        <tr>
+          <td>صفحات SEO محلی</td>
+          <td><span class="badge b-good">✓ ۳۳ borough</span></td>
+          <td><span class="badge b-good">✓ عالی</span></td>
+          <td><span class="badge b-med">⚠ محدود</span></td>
+          <td><span class="badge b-med">⚠ محدود</span></td>
+          <td><span class="badge b-good">مزیت رقابتی</span></td>
+        </tr>
+        <tr>
+          <td>Blog/Content Marketing</td>
+          <td><span class="badge b-good">✓ دارد</span></td>
+          <td><span class="badge b-good">✓ عالی</span></td>
+          <td><span class="badge b-med">⚠ کم</span></td>
+          <td><span class="badge b-good">✓ دارد</span></td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Availability Calendar</td>
+          <td><span class="badge b-crit">❌ ندارد</span></td>
+          <td><span class="badge b-good">✓ دارد</span></td>
+          <td><span class="badge b-good">✓ دارد</span></td>
+          <td><span class="badge b-med">⚠ محدود</span></td>
+          <td><span class="badge b-low">پایین</span></td>
+        </tr>
+        <tr>
+          <td>Before/After Gallery</td>
+          <td><span class="badge b-crit">❌ ندارد</span></td>
+          <td><span class="badge b-good">✓ دارد</span></td>
+          <td><span class="badge b-good">✓ دارد</span></td>
+          <td><span class="badge b-crit">❌ ندارد</span></td>
+          <td><span class="badge b-low">پایین</span></td>
+        </tr>
+        <tr>
+          <td>Google Reviews Embed</td>
+          <td><span class="badge b-med">⚠ فقط متن</span></td>
+          <td><span class="badge b-good">✓ embed</span></td>
+          <td><span class="badge b-good">✓ embed</span></td>
+          <td><span class="badge b-med">⚠ محدود</span></td>
+          <td><span class="badge b-high">بالا</span></td>
+        </tr>
+        <tr>
+          <td>PWA / Mobile App</td>
+          <td><span class="badge b-crit">❌ ندارد</span></td>
+          <td><span class="badge b-good">✓ app</span></td>
+          <td><span class="badge b-med">⚠ PWA</span></td>
+          <td><span class="badge b-good">✓ app</span></td>
+          <td><span class="badge b-low">پایین (آینده)</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="issue-grid">
+    <div class="issue-card ic-high">
+      <div class="issue-title">🏅 مزیت رقابتی Neuro IT</div>
+      <div class="issue-desc">۳۳ صفحه بهینه‌شده برای borough‌های لندن با LocalBusiness Schema — این مزیت اصلی شماست. هیچ رقیب مستقیمی این سطح از SEO محلی را ندارد. این را تقویت کنید نه اینکه رها کنید.</div>
+    </div>
+    <div class="issue-card ic-high">
+      <div class="issue-title">⚠️ فاصله قابل‌توجه با رقبا</div>
+      <div class="issue-desc">Geek Squad و uBreakiFix هر دو Trust Badges را به صورت آیکون/تصویر نشان می‌دهند. Neuro IT فقط متن دارد. Google Reviews را embed کنید نه اینکه فقط عدد بنویسید. کاربر به اثبات بصری نیاز دارد.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SPRINT ROADMAP ─── -->
+<section id="roadmap">
+  <div class="section-header">
+    <div class="section-icon" style="background:rgba(20,184,166,.1);color:var(--teal2)">🗓️</div>
+    <h2 class="section-title">نقشه راه اجرایی — Sprint به Sprint</h2>
+  </div>
+
+  <div class="callout callout-red" style="margin-bottom:1.5rem">
+    <strong>پیش‌نیاز پیش از هر sprint:</strong> رفع SEC-01 (revoke کلیدها) + SEC-02 (حذف fallback secret) + DB-01 (مهاجرت به PostgreSQL) — این سه مورد را می‌توان در ۲-۴ ساعت رفع کرد و مانع deploy هستند.
+  </div>
+
+  <!-- Sprint 1 -->
+  <div style="border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1rem">
+    <div style="background:rgba(248,113,113,.08);border-bottom:1px solid var(--red-border);padding:.75rem 1.25rem;display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <span class="badge b-crit">Sprint 1</span>
+        <strong style="margin-right:.75rem">رفع موانع پروداکشن</strong>
+      </div>
+      <span class="text-xs text-muted">هفته ۱ — تخمین: ۱۲-۱۶ ساعت</span>
+    </div>
+    <div style="padding:1rem 1.25rem">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>وظیفه</th><th>شناسه</th><th>تخمین</th><th>مسئول</th></tr></thead>
+          <tbody>
+            <tr><td>Revoke کلیدهای Google OAuth + Stripe + Resend و انتقال به Vercel Env</td><td><span class="badge b-crit">SEC-01</span></td><td>۱ ساعت</td><td>DevOps</td></tr>
+            <tr><td>حذف hardcoded fallback از middleware.ts</td><td><span class="badge b-crit">SEC-02</span></td><td>۱۵ دقیقه</td><td>Dev</td></tr>
+            <tr><td>Generate NEXTAUTH_SECRET امن با openssl rand -base64 32</td><td><span class="badge b-high">SEC-03</span></td><td>۱۵ دقیقه</td><td>Dev</td></tr>
+            <tr><td>تغییر Prisma schema به PostgreSQL + migrate به Neon/Supabase</td><td><span class="badge b-crit">DB-01</span></td><td>۴-۶ ساعت</td><td>Dev</td></tr>
+            <tr><td>حذف rAF اضافه از useCinematicScroll.ts خط ۱۲۱</td><td><span class="badge b-crit">PERF-01</span></td><td>۳۰ دقیقه</td><td>Dev</td></tr>
+            <tr><td>افزودن noindex به /admin/* layout</td><td><span class="badge b-high">SEO-02</span></td><td>۳۰ دقیقه</td><td>Dev</td></tr>
+            <tr><td>یکسان‌سازی Warranty با constants.ts مرکزی</td><td><span class="badge b-crit">TRUST-01</span></td><td>۱ ساعت</td><td>Dev + Content</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sprint 2 -->
+  <div style="border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1rem">
+    <div style="background:rgba(251,146,60,.06);border-bottom:1px solid var(--orange-border);padding:.75rem 1.25rem;display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <span class="badge b-high">Sprint 2</span>
+        <strong style="margin-right:.75rem">SEO و Performance</strong>
+      </div>
+      <span class="text-xs text-muted">هفته ۲-۳ — تخمین: ۲۰-۲۸ ساعت</span>
+    </div>
+    <div style="padding:1rem 1.25rem">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>وظیفه</th><th>شناسه</th><th>تخمین</th><th>مسئول</th></tr></thead>
+          <tbody>
+            <tr><td>تبدیل /services به Server Component + Prisma مستقیم</td><td><span class="badge b-crit">SEO-01</span></td><td>۴-۶ ساعت</td><td>Dev</td></tr>
+            <tr><td>افزودن canonical URL به تمام /services/[slug]</td><td><span class="badge b-high">SEO-05</span></td><td>۱-۲ ساعت</td><td>Dev</td></tr>
+            <tr><td>افزودن FAQPage JSON-LD Schema به /faq</td><td><span class="badge b-high">SEO-04</span></td><td>۲-۳ ساعت</td><td>Dev</td></tr>
+            <tr><td>تبدیل /faq و /contact به Server Component + metadata</td><td><span class="badge b-high">SEO-05</span></td><td>۳-۴ ساعت</td><td>Dev</td></tr>
+            <tr><td>ادغام /pricing در /services یا 301 redirect</td><td><span class="badge b-high">SEO-03</span></td><td>۲-۳ ساعت</td><td>Dev + SEO</td></tr>
+            <tr><td>افزودن Service Schema به /services/[slug]</td><td><span class="badge b-high">SEO-04</span></td><td>۲-۳ ساعت</td><td>Dev</td></tr>
+            <tr><td>افزودن Related Services section به blog posts</td><td><span class="badge b-med">SEO-06</span></td><td>۳-۴ ساعت</td><td>Dev + Content</td></tr>
+            <tr><td>حذف /book از sitemap.ts</td><td>—</td><td>۱۵ دقیقه</td><td>Dev</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sprint 3 -->
+  <div style="border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:1rem">
+    <div style="background:rgba(251,191,36,.06);border-bottom:1px solid var(--yellow-border);padding:.75rem 1.25rem;display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <span class="badge b-med">Sprint 3</span>
+        <strong style="margin-right:.75rem">UX، CRO و اعتماد</strong>
+      </div>
+      <span class="text-xs text-muted">هفته ۴-۵ — تخمین: ۲۴-۳۲ ساعت</span>
+    </div>
+    <div style="padding:1rem 1.25rem">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>وظیفه</th><th>شناسه</th><th>تخمین</th><th>مسئول</th></tr></thead>
+          <tbody>
+            <tr><td>کوتاه کردن CinematicHero به ۱۵۰vh یا افزودن Skip button</td><td><span class="badge b-crit">UX-01</span></td><td>۳-۵ ساعت</td><td>Dev + Design</td></tr>
+            <tr><td>افزودن service slug به همه Book buttons</td><td><span class="badge b-crit">CRO-01</span></td><td>۱-۲ ساعت</td><td>Dev</td></tr>
+            <tr><td>یکسان‌سازی Track Widget در Navbar + Footer + /track</td><td><span class="badge b-high">UX-02</span></td><td>۳-۴ ساعت</td><td>Dev</td></tr>
+            <tr><td>ایجاد app/not-found.tsx با CTA مناسب</td><td><span class="badge b-med">UX-03</span></td><td>۲-۳ ساعت</td><td>Dev + Design</td></tr>
+            <tr><td>افزودن آدرس کامل شرکت به /about + Footer + Schema</td><td><span class="badge b-high">TRUST-02</span></td><td>۱ ساعت</td><td>Content</td></tr>
+            <tr><td>افزودن urgency «X slot امروز» به /book</td><td><span class="badge b-high">CRO-02</span></td><td>۲-۳ ساعت</td><td>Dev</td></tr>
+            <tr><td>افزودن Trust Badges به صورت آیکون/تصویر (DBS + Insurance)</td><td>—</td><td>۲-۳ ساعت</td><td>Design + Dev</td></tr>
+            <tr><td>embed واقعی Google Reviews در Home</td><td>—</td><td>۳-۴ ساعت</td><td>Dev</td></tr>
+            <tr><td>افزودن بخش Team + عکس engineers به /about</td><td><span class="badge b-med">TRUST-03</span></td><td>۳-۴ ساعت</td><td>Design + Content</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sprint 4 -->
+  <div style="border:1px solid var(--border);border-radius:12px;overflow:hidden">
+    <div style="background:rgba(74,222,128,.06);border-bottom:1px solid var(--green-border);padding:.75rem 1.25rem;display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <span class="badge b-low">Sprint 4</span>
+        <strong style="margin-right:.75rem">Accessibility و بهبودهای تکمیلی</strong>
+      </div>
+      <span class="text-xs text-muted">هفته ۶-۷ — تخمین: ۱۶-۲۰ ساعت</span>
+    </div>
+    <div style="padding:1rem 1.25rem">
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>وظیفه</th><th>شناسه</th><th>تخمین</th><th>مسئول</th></tr></thead>
+          <tbody>
+            <tr><td>Keyboard navigation در Navbar dropdown (Escape, Arrow, Tab)</td><td><span class="badge b-med">A11Y-01</span></td><td>۳-۵ ساعت</td><td>Dev</td></tr>
+            <tr><td>افزودن aria-label به همه دکمه‌های icon-only</td><td>—</td><td>۲ ساعت</td><td>Dev</td></tr>
+            <tr><td>افزودن Skip to Main Content link</td><td>—</td><td>۱ ساعت</td><td>Dev</td></tr>
+            <tr><td>افزودن Cross-links مناطق به صفحات سرویس</td><td>—</td><td>۳-۴ ساعت</td><td>Dev + Content</td></tr>
+            <tr><td>HowTo Schema برای /how-it-works</td><td>—</td><td>۱-۲ ساعت</td><td>Dev</td></tr>
+            <tr><td>Postcode checker در Home برای coverage سریع</td><td>—</td><td>۳-۴ ساعت</td><td>Dev</td></tr>
+            <tr><td>Before/After Gallery برای نمایش تعمیرات واقعی</td><td>—</td><td>۳-۴ ساعت</td><td>Design + Content</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Expected results -->
+  <div style="margin-top:1.5rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem">
+    <div class="score-card">
+      <div class="score-ring" style="border-color:var(--green);color:var(--green)">+35%</div>
+      <div class="score-label">Conversion Rate</div>
+      <div class="score-desc">پس از رفع Hero + Book context + urgency</div>
+    </div>
+    <div class="score-card">
+      <div class="score-ring" style="border-color:var(--teal2);color:var(--teal2)">+40%</div>
+      <div class="score-label">Organic Traffic</div>
+      <div class="score-desc">پس از SSR services + FAQPage Schema + canonical</div>
+    </div>
+    <div class="score-card">
+      <div class="score-ring" style="border-color:var(--blue);color:var(--blue)">-60%</div>
+      <div class="score-label">Bounce Rate موبایل</div>
+      <div class="score-desc">پس از کوتاه شدن Hero به ۱۵۰vh</div>
+    </div>
+    <div class="score-card">
+      <div class="score-ring" style="border-color:var(--purple);color:var(--purple)">85</div>
+      <div class="score-label">امتیاز امنیت</div>
+      <div class="score-desc">پس از رفع SEC-01، SEC-02 و DB-01</div>
+    </div>
+  </div>
+</section>
+
+<script>
+// Filter table rows
+function filt(s, btn) {
+  document.querySelectorAll('.ftab').forEach(b => b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('#arows .action-row').forEach(r => {
+    if (s === 'all') { r.style.display = 'grid'; return; }
+    if (s === 'n') { r.style.display = r.dataset.n ? 'grid' : 'none'; return; }
+    r.style.display = r.dataset.s === s ? 'grid' : 'none';
+  });
+}
+
+// Active nav link on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(l => {
+        l.classList.toggle('active', l.getAttribute('href') === '#' + entry.target.id);
+      });
+    }
+  });
+}, { rootMargin: '-20% 0px -70% 0px' });
+sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

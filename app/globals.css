@@ -1,0 +1,315 @@
+@import "tailwindcss";
+
+:root {
+  --bg-color: #060608;
+  --font-syne: 'Syne', sans-serif;
+  --font-dm-sans: 'DM Sans', sans-serif;
+  --font-jetbrains: 'JetBrains Mono', monospace;
+
+  --accent: #00D2FF;
+  --surface: rgba(10, 10, 12, 0.45);
+  --surface-secondary: rgba(18, 18, 20, 0.50);
+  --border: rgba(255, 255, 255, 0.10);
+  --text-primary: #FFFFFF;
+  --text-secondary: #E0E0E0;
+  --text-muted: #888888;
+  --bg-gradient: radial-gradient(ellipse at 50% 0%, rgba(0, 210, 255, 0.08) 0%, transparent 75%);
+}
+
+[data-theme="light"] {
+  --bg-color: #FAFAFA;
+  --surface: #FFFFFF;
+  --surface-secondary: #F1F5F9;
+  --border: #E2E8F0;
+  --text-primary: #0F172A;
+  --text-secondary: #334155;
+  --text-muted: #64748B;
+}
+
+[data-theme="light"] main,
+[data-theme="light"] section,
+[data-theme="light"] footer {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+[data-theme="light"] [style*="var(--surface)"] {
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+}
+
+[data-theme="light"] [style*="var(--surface-secondary)"] {
+  background-color: rgba(241, 245, 249, 0.7) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-secondary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+main {
+  background-image: var(--bg-gradient) !important;
+  background-repeat: no-repeat !important;
+  background-position: top center !important;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-color);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00D2FF;
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 210, 255, 0.3);
+  color: #E0E0E0;
+}
+
+/* Canvas hero - no gap */
+canvas {
+  display: block;
+}
+
+/* Smooth chapter transitions */
+.chapter-text {
+  transition: opacity 0.4s ease-in-out;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8), 0 0 60px rgba(0, 0, 0, 0.6);
+}
+
+/* Glass morphism utility */
+.glass {
+  background: var(--surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+}
+
+/* Gradient overlay for hero */
+.hero-gradient {
+  background: linear-gradient(
+    to top,
+    rgba(10, 10, 10, 0.75) 0%,
+    rgba(10, 10, 10, 0.2) 30%,
+    transparent 60%
+  );
+}
+
+/* Primary glow effect */
+.glow-primary {
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
+}
+
+/* Animated border */
+@keyframes borderGlow {
+  0%, 100% { border-color: rgba(0, 210, 255, 0.4); }
+  50% { border-color: rgba(0, 210, 255, 0.8); }
+}
+
+/* Loading bar animation */
+@keyframes loadingProgress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+/* Typing dots */
+@keyframes dot-bounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-6px); }
+}
+
+.typing-dot:nth-child(1) { animation: dot-bounce 1.4s infinite 0s; }
+.typing-dot:nth-child(2) { animation: dot-bounce 1.4s infinite 0.2s; }
+.typing-dot:nth-child(3) { animation: dot-bounce 1.4s infinite 0.4s; }
+
+/* Fluid Organic Blob Background */
+.fluid-bg-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.fluid-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px); /* Slightly sharper blur for more defined color fields */
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+[data-theme="light"] .fluid-blob {
+  opacity: 0.48; /* Bolder pastel color bubbles (up from 0.32) */
+}
+
+/* Ice Blue blob */
+.fluid-blob-1 {
+  top: -10%;
+  left: 15%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.75) 0%, transparent 70%);
+  animation: float-slow-1 25s infinite alternate ease-in-out;
+}
+
+/* Pale Violet blob */
+.fluid-blob-2 {
+  bottom: 5%;
+  right: -5%;
+  width: 60vw;
+  height: 60vw;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.65) 0%, transparent 70%);
+  animation: float-slow-2 30s infinite alternate ease-in-out;
+}
+
+/* Mint Teal blob */
+.fluid-blob-3 {
+  top: 35%;
+  left: 45%;
+  width: 45vw;
+  height: 45vw;
+  background: radial-gradient(circle, rgba(45, 212, 191, 0.55) 0%, transparent 70%);
+  animation: float-slow-3 28s infinite alternate ease-in-out;
+}
+
+@keyframes float-slow-1 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(8%, 12%) scale(1.15); }
+  100% { transform: translate(-8%, -8%) scale(0.9); }
+}
+
+@keyframes float-slow-2 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-12%, -6%) scale(0.85); }
+  100% { transform: translate(6%, 8%) scale(1.1); }
+}
+
+@keyframes float-slow-3 {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(12%, -12%) scale(1.2); }
+  100% { transform: translate(-12%, 12%) scale(0.8); }
+}
+
+/* Transparent overrides for dark mode sections */
+[data-theme="dark"] main,
+[data-theme="dark"] section,
+[data-theme="dark"] footer,
+:root:not([data-theme="light"]) main,
+:root:not([data-theme="light"]) section,
+:root:not([data-theme="light"]) footer {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* Glassmorphism for dark cards */
+[data-theme="dark"] [style*="var(--surface)"],
+:root:not([data-theme="light"]) [style*="var(--surface)"] {
+  background-color: rgba(10, 10, 12, 0.45) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+}
+
+[data-theme="dark"] [style*="var(--surface-secondary)"],
+:root:not([data-theme="light"]) [style*="var(--surface-secondary)"] {
+  background-color: rgba(18, 18, 20, 0.50) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+}
+
+/* Blob visibility and custom gradients in dark mode */
+[data-theme="dark"] .fluid-blob,
+:root:not([data-theme="light"]) .fluid-blob {
+  opacity: 0.28; /* Slightly more visible ambient glow in dark mode */
+}
+
+/* Cyber Cyan in dark mode */
+[data-theme="dark"] .fluid-blob-1,
+:root:not([data-theme="light"]) .fluid-blob-1 {
+  background: radial-gradient(circle, rgba(0, 210, 255, 0.62) 0%, transparent 70%) !important;
+}
+
+/* Neon Purple in dark mode */
+[data-theme="dark"] .fluid-blob-2,
+:root:not([data-theme="light"]) .fluid-blob-2 {
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.52) 0%, transparent 70%) !important;
+}
+
+/* Deep Ocean Blue in dark mode */
+[data-theme="dark"] .fluid-blob-3,
+:root:not([data-theme="light"]) .fluid-blob-3 {
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.52) 0%, transparent 70%) !important;
+}
+
+/* Mobile responsive adjustments for fluid organic blobs */
+@media (max-width: 767px) {
+  .fluid-blob {
+    filter: blur(45px);
+  }
+  [data-theme="dark"] .fluid-blob,
+  :root:not([data-theme="light"]) .fluid-blob {
+    opacity: 0.50; /* Boosted opacity in dark mode to prevent dilution on mobile */
+  }
+  [data-theme="light"] .fluid-blob {
+    opacity: 0.75; /* Boosted opacity in light mode to keep pastel colors rich */
+  }
+  .fluid-blob-1 {
+    width: 100vw;
+    height: 100vw;
+    top: -10%;
+    left: -20%;
+  }
+  .fluid-blob-2 {
+    width: 120vw;
+    height: 120vw;
+    bottom: -10%;
+    right: -20%;
+  }
+  .fluid-blob-3 {
+    width: 90vw;
+    height: 90vw;
+    top: 35%;
+    left: -10%;
+  }
+}
+
+/* Mobile menu card overrides - slightly more transparent glass style */
+.mobile-menu-card {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}
+
+[data-theme="dark"] .mobile-menu-card,
+:root:not([data-theme="light"]) .mobile-menu-card {
+  background-color: rgba(12, 12, 16, 0.95) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+}

@@ -1,0 +1,383 @@
+// =============================================================================
+// Neuro IT — Production Prisma Schema
+// DB: PostgreSQL (Neon / Supabase / Railway)
+// Migrated from SQLite — all JSON fields converted to native Json type
+// =============================================================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model AuthProvider {
+  id                String   @id @default(uuid())
+  userId            String
+  provider          String
+  providerAccountId String
+  createdAt         DateTime @default(now())
+
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model User {
+  id               String    @id @default(uuid())
+  role             String    @default("CUSTOMER")
+  name             String
+  email            String?   @unique
+  phone            String?   @unique
+  avatarUrl        String?
+  stripeCustomerId String?
+
+  gdprConsent          Boolean   @default(false)
+  gdprConsentAt        DateTime?
+  deletionRequested    Boolean   @default(false)
+  deletionRequestedAt  DateTime?
+
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  authProviders    AuthProvider[]
+  addresses        Address[]
+  devices          Device[]
+  ticketsAsClient  Ticket[]             @relation("CustomerTickets")
+  ticketsAsTech    Ticket[]             @relation("TechTickets")
+  reviews          Review[]             @relation("UserReviews")
+  auditActions     AuditLog[]           @relation("AuditPerformedBy")
+  conversations    ConversationSession[]
+  techProfile      TechnicianProfile?
+  notifications    NotificationLog[]
+  payments         Payment[]            @relation("CustomerPayments")
+}
+
+model TechnicianProfile {
+  id              String   @id @default(uuid())
+  userId          String   @unique
+  bio             String?
+  photoUrl        String?
+  isDbsChecked    Boolean  @default(false)
+  dbsCheckedAt    DateTime?
+  isAvailable     Boolean  @default(true)
+  lastLat         Float?
+  lastLng         Float?
+
+  user            User           @relation(fields: [userId], references: [id])
+}
+
+model Address {
+  id               String   @id @default(uuid())
+  userId           String
+  postcode         String
+  houseNumber      String
+  addressLine1     String
+  addressLine2     String?
+  city             String   @default("London")
+  lat              Float?
+  lng              Float?
+  isUlezZone       Boolean  @default(false)
+  isCongestionZone Boolean  @default(false)
+  isDefault        Boolean  @default(false)
+  createdAt        DateTime @default(now())
+
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tickets          Ticket[]
+}
+
+model Device {
+  id           String   @id @default(uuid())
+  userId       String
+  brand        String?
+  model        String?
+  serialNumber String?
+  os           String?
+  notes        String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tickets      Ticket[]
+}
+
+model ServiceCategory {
+  id           String    @id @default(uuid())
+  name         String
+  slug         String    @unique
+  icon         String?
+  displayOrder Int       @default(0)
+  isActive     Boolean   @default(true)
+
+  services     Service[]
+}
+
+model Service {
+  id               String          @id @default(uuid())
+  categoryId       String
+  name             String
+  slug             String          @unique
+  description      String?
+  basePriceMin     Float
+  basePriceMax     Float
+  callOutFee       Float           @default(0)
+  isEmergencyReady Boolean         @default(true)
+  isActive         Boolean         @default(true)
+  seoTitle         String?
+  seoDescription   String?
+  displayOrder     Int             @default(0)
+
+  category         ServiceCategory @relation(fields: [categoryId], references: [id])
+  tickets          Ticket[]
+}
+
+model Ticket {
+  id               String   @id @default(uuid())
+  referenceCode    String   @unique
+  securityToken    String?  @unique
+  customerId       String
+  techId           String?
+  serviceId        String?
+  deviceId         String?
+  addressId        String?
+  serviceType      String   @default("HOME_VISIT")
+  shippingLabelUrl String?
+  dropOffSlot      String?
+  returnAddress    String?
+  returnTrackingNum String?
+  dropOffDate      DateTime?
+  status           String   @default("CREATED")
+  priority         String   @default("STANDARD")
+  devicePhotos     DevicePhoto[]
+
+  issueDescription  String?
+  aiDiagnosisNotes  String?
+  techInternalNote  String?
+  adminNote         String?
+
+  estimatedPriceMin Float?
+  estimatedPriceMax Float?
+  finalPrice        Float?
+
+  isUlezSurcharge       Boolean  @default(false)
+  isCongestionSurcharge Boolean  @default(false)
+
+  scheduledFor     DateTime?
+  techAssignedAt   DateTime?
+  techOnWayAt      DateTime?
+  completedAt      DateTime?
+  cancelledAt      DateTime?
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
+
+  customer            User              @relation("CustomerTickets", fields: [customerId], references: [id])
+  technician          User?             @relation("TechTickets", fields: [techId], references: [id])
+  service             Service?          @relation(fields: [serviceId], references: [id])
+  device              Device?           @relation(fields: [deviceId], references: [id])
+  address             Address?          @relation(fields: [addressId], references: [id])
+  payment             Payment?
+  auditLogs           AuditLog[]
+  review              Review?
+  conversationSession ConversationSession?
+}
+
+model Payment {
+  id               String   @id @default(uuid())
+  ticketId         String   @unique
+  customerId       String
+  amount           Float
+  depositAmount    Float    @default(0)
+  currency         String   @default("GBP")
+  stripeIntentId   String?  @unique
+  stripeCustomerId String?
+  status           String   @default("PENDING")
+  paidAt           DateTime?
+  refundedAt       DateTime?
+  refundReason     String?
+  createdAt        DateTime @default(now())
+
+  ticket           Ticket   @relation(fields: [ticketId], references: [id])
+  customer         User     @relation("CustomerPayments", fields: [customerId], references: [id])
+  invoice          Invoice?
+}
+
+model Invoice {
+  id            String   @id @default(uuid())
+  paymentId     String   @unique
+  invoiceNumber String   @unique
+  pdfUrl        String?
+  issuedAt      DateTime @default(now())
+  vatRate       Float    @default(0)
+  vatAmount     Float    @default(0)
+  subtotal      Float
+  total         Float
+
+  payment       Payment  @relation(fields: [paymentId], references: [id])
+}
+
+model Review {
+  id          String   @id @default(uuid())
+  ticketId    String   @unique
+  customerId  String
+  rating      Int
+  comment     String?
+  isApproved  Boolean  @default(false)
+  isPublic    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  ticket      Ticket   @relation(fields: [ticketId], references: [id])
+  customer    User     @relation("UserReviews", fields: [customerId], references: [id])
+}
+
+model ConversationSession {
+  id           String   @id @default(uuid())
+  userId       String?
+  ticketId     String?  @unique
+  sessionToken String?  @unique
+  messages     String   @default("[]")
+  stage        String?
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  user         User?    @relation(fields: [userId], references: [id])
+  ticket       Ticket?  @relation(fields: [ticketId], references: [id])
+}
+
+model AuditLog {
+  id            String   @id @default(uuid())
+  ticketId      String?
+  action        String
+  performedById String?
+  metadata      String?
+  ipAddress     String?
+  timestamp     DateTime @default(now())
+
+  ticket        Ticket?  @relation(fields: [ticketId], references: [id])
+  performedBy   User?    @relation("AuditPerformedBy", fields: [performedById], references: [id])
+}
+
+model NotificationLog {
+  id          String   @id @default(uuid())
+  userId      String
+  channel     String
+  templateKey String
+  payload     String?
+  status      String
+  sentAt      DateTime @default(now())
+
+  user        User     @relation(fields: [userId], references: [id])
+}
+
+// Rate limiting table — replaces in-memory counters across serverless instances
+model RateLimit {
+  id        String   @id @default(uuid())
+  key       String   @unique          // e.g. "ai-chat:ip:1.2.3.4"
+  count     Int      @default(1)
+  windowEnd DateTime
+  createdAt DateTime @default(now())
+
+  @@index([key, windowEnd])
+}
+
+model VerificationToken {
+  id        String   @id @default(uuid())
+  email     String
+  token     String   @unique
+  expires   DateTime
+  createdAt DateTime @default(now())
+}
+
+model SystemSetting {
+  key         String   @id
+  value       String
+  description String?
+  updatedAt   DateTime @updatedAt
+}
+
+model CmsPage {
+  id              String   @id @default(uuid())
+  slug            String   @unique
+  title           String
+  metaTitle       String?
+  metaDescription String?
+  ogImage         String?
+  sections        String
+  isActive        Boolean  @default(true)
+  updatedAt       DateTime @updatedAt
+}
+
+model Category {
+  id        String     @id @default(uuid())
+  name      String     @unique
+  slug      String     @unique
+  posts     BlogPost[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+}
+
+model BlogPost {
+  id              String    @id @default(uuid())
+  slug            String    @unique
+  title           String
+  content         String    // markdown or HTML format
+  excerpt         String?
+  categoryId      String?
+  category        Category? @relation(fields: [categoryId], references: [id])
+  tags            String?   // comma-separated tags
+  metaTitle       String?
+  metaDescription String?
+  ogImage         String?
+  published       Boolean   @default(false)
+  publishedAt     DateTime?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
+
+model Lead {
+  id        String   @id @default(uuid())
+  email     String
+  phone     String?
+  postcode  String
+  createdAt DateTime @default(now())
+}
+
+model B2bLead {
+  id          String   @id @default(uuid())
+  companyName String
+  contactName String
+  email       String
+  phone       String
+  fleetSize   Int?
+  slaRequired String?
+  details     String?
+  createdAt   DateTime @default(now())
+}
+
+model CoverageBorough {
+  id        String   @id @default(uuid())
+  name      String
+  slug      String   @unique
+  zone      String   // "STANDARD" or "EXTENDED"
+  lat       Float
+  lng       Float
+  postcodes String   // Comma-separated list of prefixes, e.g. "EN4,EN5,N2"
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model DevicePhoto {
+  id         String   @id @default(uuid())
+  ticketId   String
+  ticket     Ticket   @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  url        String
+  label      String   // "FRONT" | "BACK" | "DAMAGE"
+  uploadedAt DateTime @default(now())
+}
+
+
+

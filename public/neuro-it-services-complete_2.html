@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Neuro IT — All Services | London's Smartest IT Support</title>
+<meta name="description" content="50+ IT repair and support services in London. DBS-checked technicians, same-day emergency visits, no fix no fee. Laptop, PC, Mac, network, virus removal and more."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0A0A0A;--surface:#121212;--surface-high:#1C1C1C;
+  --primary:#00D2FF;--primary-dim:#0099BB;
+  --text:#E0E0E0;--muted:#888;--dim:#555;
+  --success:#22C55E;--warning:#F59E0B;--danger:#EF4444;--purple:#8B5CF6;
+  --border:#2A2A2A;--border-soft:rgba(255,255,255,0.06);
+  --font-d:'Syne',sans-serif;--font-b:'DM Sans',sans-serif;--font-m:'JetBrains Mono',monospace;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-b);font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:#2A2A2A;border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--primary)}
+::selection{background:rgba(0,210,255,0.2)}
+
+/* ── NAVBAR ── */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;background:rgba(10,10,10,0.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border-soft);transition:background .3s}
+.navbar-logo{font-family:var(--font-d);font-size:1.35rem;font-weight:800;color:var(--text);text-decoration:none;letter-spacing:-.02em;display:flex;align-items:center;gap:8px}
+.logo-dot{width:8px;height:8px;background:var(--primary);border-radius:50%;animation:pulse 2s infinite}
+.navbar-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.navbar-links a{color:var(--muted);text-decoration:none;font-size:.9rem;transition:color .2s}
+.navbar-links a:hover{color:var(--text)}
+.navbar-cta{background:var(--primary);color:#000!important;padding:.5rem 1.25rem;border-radius:6px;font-weight:600!important;transition:background .2s,transform .15s!important}
+.navbar-cta:hover{background:var(--primary-dim)!important;transform:translateY(-1px)}
+
+/* ── PAGE HERO ── */
+.page-hero{padding:8rem 2rem 4rem;text-align:center;background:radial-gradient(ellipse at 50% 0%,rgba(0,210,255,0.06) 0%,transparent 60%);border-bottom:1px solid var(--border-soft);position:relative;overflow:hidden}
+.page-hero::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(0,210,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,210,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+.breadcrumb{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--font-m);font-size:.7rem;color:var(--muted);letter-spacing:.1em;margin-bottom:1.5rem}
+.breadcrumb a{color:var(--primary);text-decoration:none}
+.breadcrumb-sep{color:var(--border)}
+.page-hero h1{font-family:var(--font-d);font-size:clamp(2.5rem,5vw,4rem);font-weight:800;line-height:1.05;letter-spacing:-.03em;margin-bottom:1rem}
+.page-hero h1 span{color:var(--primary)}
+.page-hero p{font-size:1.1rem;color:var(--muted);max-width:560px;margin:0 auto 2rem;line-height:1.7;font-weight:300}
+.hero-pills{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+.pill{display:inline-flex;align-items:center;gap:.4rem;padding:.4rem 1rem;border:1px solid var(--border);border-radius:100px;font-size:.78rem;color:var(--muted);background:var(--surface);transition:all .2s;cursor:pointer;font-family:var(--font-b)}
+.pill.active,.pill:hover{border-color:var(--primary);color:var(--primary);background:rgba(0,210,255,.05)}
+.pill-dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0}
+
+/* ── LAYOUT ── */
+.container{max-width:1200px;margin:0 auto;padding:0 2rem}
+.page-body{display:grid;grid-template-columns:280px 1fr;gap:0;align-items:start;min-height:60vh}
+
+/* ── SIDEBAR ── */
+.sidebar{position:sticky;top:80px;padding:2rem 0;border-right:1px solid var(--border-soft);max-height:calc(100vh - 100px);overflow-y:auto;scrollbar-width:thin}
+.sidebar::-webkit-scrollbar{width:3px}
+.sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.sidebar-label{font-family:var(--font-m);font-size:.65rem;letter-spacing:.15em;color:var(--dim);text-transform:uppercase;padding:0 1.5rem;margin-bottom:.75rem;margin-top:1.25rem}
+.sidebar-label:first-child{margin-top:0}
+.sidebar-link{display:flex;align-items:center;gap:.75rem;padding:.65rem 1.5rem;font-size:.875rem;color:var(--muted);text-decoration:none;transition:all .2s;border-left:2px solid transparent;cursor:pointer;background:none;border-top:none;border-right:none;border-bottom:none;width:100%;text-align:left;font-family:var(--font-b)}
+.sidebar-link:hover{color:var(--text);background:rgba(255,255,255,.02)}
+.sidebar-link.active{color:var(--primary);border-left-color:var(--primary);background:rgba(0,210,255,.04)}
+.sidebar-icon{width:20px;height:20px;flex-shrink:0;opacity:.7;display:flex;align-items:center;justify-content:center}
+.sidebar-count{margin-left:auto;font-family:var(--font-m);font-size:.65rem;color:var(--dim);background:var(--surface-high);padding:2px 6px;border-radius:4px}
+
+/* ── MAIN CONTENT ── */
+.main-content{padding:3rem 0 6rem 3rem}
+
+/* ── SECTION BLOCK ── */
+.service-section{margin-bottom:5rem;scroll-margin-top:90px}
+.service-section-header{display:flex;align-items:flex-start;gap:1.25rem;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--border-soft)}
+.service-section-ico{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:22px}
+.service-section-meta{}
+.service-section-tag{font-family:var(--font-m);font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:.4rem}
+.service-section-title{font-family:var(--font-d);font-size:1.6rem;font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:.4rem}
+.service-section-sub{font-size:.875rem;color:var(--muted);line-height:1.6;max-width:480px}
+
+/* ── SERVICE ITEM CARDS ── */
+.services-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem}
+.svc-item{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1.5rem;transition:all .25s;position:relative;overflow:hidden}
+.svc-item::before{content:'';position:absolute;top:0;right:0;width:80px;height:80px;border-radius:0 12px 0 0;opacity:0;transition:opacity .3s}
+.svc-item:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.35)}
+.svc-item:hover::before{opacity:1}
+.svc-item-top{display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;margin-bottom:.6rem}
+.svc-item-name{font-family:var(--font-d);font-size:.95rem;font-weight:700;line-height:1.2;flex:1}
+.svc-item-time{font-family:var(--font-m);font-size:.65rem;padding:3px 8px;border-radius:4px;flex-shrink:0;white-space:nowrap;margin-top:2px}
+.svc-item-desc{font-size:.8rem;color:var(--muted);line-height:1.6;margin-bottom:.9rem}
+.svc-item-footer{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+.svc-item-price{font-family:var(--font-m);font-size:.82rem;font-weight:500}
+.svc-item-btn{display:inline-flex;align-items:center;gap:.3rem;padding:.35rem .9rem;border:none;border-radius:6px;font-size:.75rem;font-weight:600;font-family:var(--font-b);cursor:pointer;text-decoration:none;transition:all .2s;white-space:nowrap}
+
+/* ── COLOUR THEMES per category ── */
+/* Laptop - cyan */
+.theme-cyan .service-section-ico{background:rgba(0,210,255,.1);border:1px solid rgba(0,210,255,.2)}
+.theme-cyan .service-section-tag{color:var(--primary)}
+.theme-cyan .svc-item:hover{border-color:rgba(0,210,255,.4)}
+.theme-cyan .svc-item::before{background:radial-gradient(circle at top right,rgba(0,210,255,.12),transparent)}
+.theme-cyan .svc-item-price{color:var(--primary)}
+.theme-cyan .svc-item-time{background:rgba(0,210,255,.08);color:var(--primary)}
+.theme-cyan .svc-item-btn{background:rgba(0,210,255,.1);color:var(--primary)}
+.theme-cyan .svc-item-btn:hover{background:var(--primary);color:#000}
+/* Purple */
+.theme-purple .service-section-ico{background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.2)}
+.theme-purple .service-section-tag{color:var(--purple)}
+.theme-purple .svc-item:hover{border-color:rgba(139,92,246,.4)}
+.theme-purple .svc-item::before{background:radial-gradient(circle at top right,rgba(139,92,246,.12),transparent)}
+.theme-purple .svc-item-price{color:var(--purple)}
+.theme-purple .svc-item-time{background:rgba(139,92,246,.08);color:var(--purple)}
+.theme-purple .svc-item-btn{background:rgba(139,92,246,.1);color:var(--purple)}
+.theme-purple .svc-item-btn:hover{background:var(--purple);color:#fff}
+/* Red/Danger */
+.theme-red .service-section-ico{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2)}
+.theme-red .service-section-tag{color:var(--danger)}
+.theme-red .svc-item:hover{border-color:rgba(239,68,68,.4)}
+.theme-red .svc-item::before{background:radial-gradient(circle at top right,rgba(239,68,68,.12),transparent)}
+.theme-red .svc-item-price{color:var(--danger)}
+.theme-red .svc-item-time{background:rgba(239,68,68,.08);color:var(--danger)}
+.theme-red .svc-item-btn{background:rgba(239,68,68,.1);color:var(--danger)}
+.theme-red .svc-item-btn:hover{background:var(--danger);color:#fff}
+/* Amber */
+.theme-amber .service-section-ico{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.2)}
+.theme-amber .service-section-tag{color:var(--warning)}
+.theme-amber .svc-item:hover{border-color:rgba(245,158,11,.4)}
+.theme-amber .svc-item::before{background:radial-gradient(circle at top right,rgba(245,158,11,.12),transparent)}
+.theme-amber .svc-item-price{color:var(--warning)}
+.theme-amber .svc-item-time{background:rgba(245,158,11,.08);color:var(--warning)}
+.theme-amber .svc-item-btn{background:rgba(245,158,11,.1);color:var(--warning)}
+.theme-amber .svc-item-btn:hover{background:var(--warning);color:#000}
+/* Green */
+.theme-green .service-section-ico{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2)}
+.theme-green .service-section-tag{color:var(--success)}
+.theme-green .svc-item:hover{border-color:rgba(34,197,94,.4)}
+.theme-green .svc-item::before{background:radial-gradient(circle at top right,rgba(34,197,94,.12),transparent)}
+.theme-green .svc-item-price{color:var(--success)}
+.theme-green .svc-item-time{background:rgba(34,197,94,.08);color:var(--success)}
+.theme-green .svc-item-btn{background:rgba(34,197,94,.1);color:var(--success)}
+.theme-green .svc-item-btn:hover{background:var(--success);color:#000}
+/* Grey/Apple */
+.theme-grey .service-section-ico{background:rgba(120,120,120,.1);border:1px solid rgba(120,120,120,.2)}
+.theme-grey .service-section-tag{color:#aaa}
+.theme-grey .svc-item:hover{border-color:rgba(150,150,150,.4)}
+.theme-grey .svc-item::before{background:radial-gradient(circle at top right,rgba(150,150,150,.1),transparent)}
+.theme-grey .svc-item-price{color:#ccc}
+.theme-grey .svc-item-time{background:rgba(150,150,150,.08);color:#aaa}
+.theme-grey .svc-item-btn{background:rgba(150,150,150,.1);color:#ccc}
+.theme-grey .svc-item-btn:hover{background:#555;color:#fff}
+
+/* ── TRUST STRIP ── */
+.trust-strip{background:var(--surface);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);padding:1.25rem 2rem}
+.trust-strip-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:3rem;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:.6rem;font-size:.82rem;color:var(--muted)}
+.trust-ico{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+/* ── PRICING CTA BANNER ── */
+.cta-banner{background:linear-gradient(135deg,rgba(0,210,255,.06) 0%,rgba(0,153,187,.03) 100%);border:1px solid rgba(0,210,255,.15);border-radius:16px;padding:2.5rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;margin-bottom:5rem}
+.cta-banner-text h3{font-family:var(--font-d);font-size:1.3rem;font-weight:700;margin-bottom:.4rem}
+.cta-banner-text p{font-size:.875rem;color:var(--muted);line-height:1.6;max-width:480px}
+.cta-banner-actions{display:flex;gap:.75rem;flex-shrink:0;flex-wrap:wrap}
+.btn-p{display:inline-flex;align-items:center;gap:.4rem;padding:.75rem 1.75rem;background:var(--primary);color:#000;font-weight:600;font-size:.9rem;font-family:var(--font-b);border-radius:8px;border:none;cursor:pointer;text-decoration:none;transition:all .2s}
+.btn-p:hover{background:var(--primary-dim);transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,210,255,.25)}
+.btn-s{display:inline-flex;align-items:center;gap:.4rem;padding:.75rem 1.75rem;background:transparent;color:var(--muted);font-weight:500;font-size:.9rem;font-family:var(--font-b);border-radius:8px;border:1px solid var(--border);cursor:pointer;text-decoration:none;transition:all .2s}
+.btn-s:hover{border-color:rgba(0,210,255,.4);color:var(--primary);background:rgba(0,210,255,.04)}
+
+/* ── FOOTER ── */
+footer{background:var(--surface);border-top:1px solid var(--border-soft);padding:2.5rem 2rem;margin-top:0}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.footer-brand{font-family:var(--font-d);font-size:1.1rem;font-weight:800}
+.footer-brand span{color:var(--primary)}
+.footer-copy{font-size:.78rem;color:var(--dim)}
+
+/* ── ANIMATIONS ── */
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:none}
+
+/* ── MOBILE STICKY ── */
+.sticky-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(18,18,18,.95);backdrop-filter:blur(12px);border-top:1px solid var(--border-soft);padding:.75rem 1rem;gap:.5rem}
+@media(max-width:768px){
+  .sticky-bar{display:flex}
+  body{padding-bottom:68px}
+  .page-body{grid-template-columns:1fr}
+  .sidebar{display:none}
+  .main-content{padding:2rem 0 4rem}
+  .cta-banner{flex-direction:column}
+  .navbar-links{display:none}
+  .trust-strip-inner{gap:1.5rem}
+}
+.sticky-btn{flex:1;padding:.65rem;border-radius:8px;border:none;font-family:var(--font-b);font-size:.78rem;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;text-decoration:none;transition:all .2s}
+.sticky-wa{background:#25D366;color:#fff}.sticky-wa:hover{background:#1da851}
+.sticky-call{background:var(--surface-high);color:var(--text);border:1px solid var(--border)}.sticky-call:hover{border-color:var(--primary);color:var(--primary)}
+.sticky-book{background:var(--primary);color:#000}.sticky-book:hover{background:var(--primary-dim)}
+
+/* ── MOBILE FILTER PILLS ── */
+.mobile-filter{display:none;gap:.5rem;overflow-x:auto;padding:1.25rem 2rem;background:var(--surface);border-bottom:1px solid var(--border-soft);scrollbar-width:none}
+.mobile-filter::-webkit-scrollbar{display:none}
+@media(max-width:768px){.mobile-filter{display:flex}}
+
+/* ── SEARCH ── */
+.search-bar{display:flex;align-items:center;gap:.75rem;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:.65rem 1rem;margin-bottom:2rem;transition:border-color .2s}
+.search-bar:focus-within{border-color:rgba(0,210,255,.4)}
+.search-bar input{flex:1;background:none;border:none;outline:none;font-family:var(--font-b);font-size:.9rem;color:var(--text);min-width:0}
+.search-bar input::placeholder{color:var(--dim)}
+
+/* ── EMPTY STATE ── */
+.empty-state{text-align:center;padding:4rem 2rem;color:var(--muted)}
+.empty-state svg{opacity:.3;margin-bottom:1rem}
+.empty-state h3{font-family:var(--font-d);font-size:1.1rem;margin-bottom:.5rem;color:var(--text)}
+.empty-state p{font-size:.875rem}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="navbar">
+  <a href="index.html" class="navbar-logo">
+    <span class="logo-dot"></span>
+    Neuro<span style="color:var(--primary)">&nbsp;IT</span>
+  </a>
+  <ul class="navbar-links">
+    <li><a href="index.html#services">Services</a></li>
+    <li><a href="index.html#pricing">Pricing</a></li>
+    <li><a href="index.html#portal">My Portal</a></li>
+    <li><a href="index.html#faq">FAQ</a></li>
+    <li><a href="#" class="navbar-cta" onclick="openBooking()">Book Now</a></li>
+  </ul>
+  <button onclick="openBooking()" style="display:none" class="navbar-mobile-menu" id="mob-nav-btn">Book Now</button>
+</nav>
+
+<!-- TRUST STRIP -->
+<div class="trust-strip" style="margin-top:64px">
+  <div class="trust-strip-inner">
+    <div class="trust-item">
+      <div class="trust-ico" style="background:rgba(34,197,94,.12)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      DBS Checked Engineers
+    </div>
+    <div class="trust-item">
+      <div class="trust-ico" style="background:rgba(34,197,94,.12)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      £1M Public Liability
+    </div>
+    <div class="trust-item">
+      <div class="trust-ico" style="background:rgba(34,197,94,.12)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      No Fix, No Fee
+    </div>
+    <div class="trust-item">
+      <div class="trust-ico" style="background:rgba(0,210,255,.12)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      </div>
+      Same-Day Available
+    </div>
+    <div class="trust-item">
+      <div class="trust-ico" style="background:rgba(245,158,11,.12)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--warning)" stroke="var(--warning)" stroke-width="0"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      Rated 4.9 / 5.0
+    </div>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span class="breadcrumb-sep">/</span>
+    <span>All Services</span>
+  </div>
+  <h1>Every IT Problem,<br><span>Solved at Your Door</span></h1>
+  <p>50+ specialist services. DBS-checked engineers. Transparent pricing before you pay. No fix, no fee — guaranteed.</p>
+  <div class="hero-pills" id="filter-pills">
+    <button class="pill active" data-filter="all"><span class="pill-dot"></span>All Services</button>
+    <button class="pill" data-filter="laptop">💻 Laptop</button>
+    <button class="pill" data-filter="desktop">🖥 Desktop</button>
+    <button class="pill" data-filter="software">⚙️ Software</button>
+    <button class="pill" data-filter="virus">🛡 Security</button>
+    <button class="pill" data-filter="data">💾 Data</button>
+    <button class="pill" data-filter="network">📡 Network</button>
+    <button class="pill" data-filter="remote">🖱 Remote</button>
+    <button class="pill" data-filter="setup">📦 Setup</button>
+    <button class="pill" data-filter="apple">🍎 Apple</button>
+    <button class="pill" data-filter="emergency">⚡ Emergency</button>
+  </div>
+</div>
+
+<!-- MOBILE FILTER -->
+<div class="mobile-filter" id="mobile-filter">
+  <button class="pill active" data-filter="all">All</button>
+  <button class="pill" data-filter="laptop">Laptop</button>
+  <button class="pill" data-filter="desktop">Desktop</button>
+  <button class="pill" data-filter="software">Software</button>
+  <button class="pill" data-filter="virus">Security</button>
+  <button class="pill" data-filter="data">Data</button>
+  <button class="pill" data-filter="network">Network</button>
+  <button class="pill" data-filter="remote">Remote</button>
+  <button class="pill" data-filter="setup">Setup</button>
+  <button class="pill" data-filter="apple">Apple</button>
+  <button class="pill" data-filter="emergency">Emergency</button>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="container">
+  <div class="page-body">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-label">Categories</div>
+      <button class="sidebar-link active" data-sidebar="laptop" onclick="scrollTo('s-laptop')">
+        <span class="sidebar-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></span>
+        Laptop Services
+        <span class="sidebar-count">8</span>
+      </button>
+      <button class="sidebar-link" data-sidebar="desktop" onclick="scrollTo('s-desktop')">
+        <span class="sidebar-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg></span>
+        Desktop / PC
+        <span class="sidebar-count">6</span>
+      </button>
+      <button class="sidebar-link" data-sidebar="software" onclick="scrollTo('s-software')">
+        <span class="sidebar-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+        Software & OS
+        <span class="sidebar-count">6</span>
+      </button>
+      <button class="sidebar-link" data-sidebar="virus" onclick="scrollTo('s-virus')">
+        <span class="sidebar-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+        Virus & Security
+        <span class="sidebar-count">6</span>
+      </button>
+      <button class="sidebar-link" data-sidebar="data" onclick="scrollTo('s-data')">
+        <span class="sidebar-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg></span>
+        Data & Recovery
+        <span class="sidebar-count">6</span>
+      </button>
+      <button class="sidebar-link" data-sidebar="network" onclick="scrollTo('s-network')">
+        <span class="sidebar-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg></span>
+        Home Network
+        <span class="sidebar-count">6</span>
+      </button>
+      <button class="sidebar-link" data-sidebar="remote" onclick="scrollTo('s-remote')">
+        <span class="sidebar-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></span>
+        Remote Support
+        <span class="sidebar-count">3</span>
+      </button>
+      <button class="sidebar-link" data-sidebar="setup" onclick="scrollTo('s-setup')">
+        <span class="sidebar-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span>
+        New Device Setup
+        <span class="sidebar-count">4</span>
+      </button>
+      <button class="sidebar-link" data-sidebar="apple" onclick="scrollTo('s-apple')">
+        <span class="sidebar-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg></span>
+        Apple / Mac
+        <span class="sidebar-count">6</span>
+      </button>
+      <button class="sidebar-link" data-sidebar="emergency" onclick="scrollTo('s-emergency')">
+        <span class="sidebar-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+        Emergency
+        <span class="sidebar-count">4</span>
+      </button>
+
+      <div class="sidebar-label" style="margin-top:2rem">Quick Actions</div>
+      <button onclick="openBooking()" class="sidebar-link" style="color:var(--primary)">
+        <span class="sidebar-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+        Book a Technician
+      </button>
+      <a href="https://wa.me/447700000000" class="sidebar-link" style="color:var(--success)">
+        <span class="sidebar-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+        WhatsApp Us
+      </a>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main-content" id="main-content">
+
+      <!-- SEARCH -->
+      <div class="search-bar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--dim)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="search-input" placeholder="Search services — e.g. screen repair, virus, WiFi setup..." oninput="handleSearch(this.value)"/>
+        <button onclick="clearSearch()" id="search-clear" style="display:none;background:none;border:none;cursor:pointer;color:var(--dim)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+
+      <!-- ══ LAPTOP SERVICES ══ -->
+      <section class="service-section theme-cyan reveal" id="s-laptop" data-cat="laptop">
+        <div class="service-section-header">
+          <div class="service-section-ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <div class="service-section-meta">
+            <div class="service-section-tag">Laptop Services</div>
+            <h2 class="service-section-title">Laptop Repair & Upgrades</h2>
+            <p class="service-section-sub">All brands covered — Dell, HP, Lenovo, ASUS, Acer, Samsung and more. OEM-quality parts with a 90-day repair warranty.</p>
+          </div>
+        </div>
+        <div class="services-list">
+          <div class="svc-item" data-keywords="screen display cracked broken lcd">
+            <div class="svc-item-top"><div class="svc-item-name">Screen Replacement</div><div class="svc-item-time">Same day</div></div>
+            <p class="svc-item-desc">Cracked or broken screen replaced with OEM-quality parts. All brands and resolutions — FHD, QHD, OLED. Colour calibrated and tested before handover.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £79</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="battery replace charge power draining">
+            <div class="svc-item-top"><div class="svc-item-name">Battery Replacement</div><div class="svc-item-time">1–2 hrs</div></div>
+            <p class="svc-item-desc">Genuine-spec cells restore full capacity. We test and report battery health before and after. Covers all laptop models including MacBook (see Apple section).</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £49</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="keyboard key type broken sticky">
+            <div class="svc-item-top"><div class="svc-item-name">Keyboard Replacement</div><div class="svc-item-time">Same day</div></div>
+            <p class="svc-item-desc">Full keyboard swap or individual key repair for sticky, broken, or missing keys. UK and US layouts available. Backlit keyboards fully supported.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £59</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="charging port usb-c magsafe socket power">
+            <div class="svc-item-top"><div class="svc-item-name">Charging Port Repair</div><div class="svc-item-time">Same day</div></div>
+            <p class="svc-item-desc">Loose, damaged or broken charging ports. USB-C, MagSafe and barrel connectors all covered. Port cleaning included for intermittent charging faults.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £49</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="ram memory upgrade slow performance">
+            <div class="svc-item-top"><div class="svc-item-name">RAM Upgrade</div><div class="svc-item-time">1 hr</div></div>
+            <p class="svc-item-desc">Boost multitasking performance without buying a new laptop. We advise the best upgrade path for your specific model and test under load after fitting.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £39</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="ssd storage upgrade hdd hard drive slow">
+            <div class="svc-item-top"><div class="svc-item-name">SSD / Storage Upgrade</div><div class="svc-item-time">2 hrs</div></div>
+            <p class="svc-item-desc">Replace a slow spinning hard drive or upgrade to a faster NVMe SSD. Full data migration included — everything as you left it, just much faster.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £49</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="overheating fan thermal hot temperature">
+            <div class="svc-item-top"><div class="svc-item-name">Overheating Fix</div><div class="svc-item-time">Same day</div></div>
+            <p class="svc-item-desc">Thermal paste replacement, deep fan cleaning and heatsink reseating. We benchmark temps before and after to confirm the fix — prevents long-term CPU damage.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £39</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="water damage spill liquid wet repair">
+            <div class="svc-item-top"><div class="svc-item-name">Water Damage Recovery</div><div class="svc-item-time">24–48 hrs</div></div>
+            <p class="svc-item-desc">Board-level inspection, ultrasonic cleaning and controlled drying. Best chance of saving your laptop after a spill. No fix, no fee applies — power off immediately and call us.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £89</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ DESKTOP ══ -->
+      <section class="service-section theme-purple reveal" id="s-desktop" data-cat="desktop">
+        <div class="service-section-header">
+          <div class="service-section-ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/></svg>
+          </div>
+          <div class="service-section-meta">
+            <div class="service-section-tag">Desktop / PC</div>
+            <h2 class="service-section-title">PC Repair, Build & Upgrade</h2>
+            <p class="service-section-sub">Home desktop and gaming PC repair, custom builds, component upgrades and full system configuration.</p>
+          </div>
+        </div>
+        <div class="services-list">
+          <div class="svc-item" data-keywords="pc repair diagnostic fault broken">
+            <div class="svc-item-top"><div class="svc-item-name">PC Repair & Diagnostics</div><div class="svc-item-time">Same day</div></div>
+            <p class="svc-item-desc">Full hardware and software diagnosis of any desktop fault. We identify and fix the root cause — not just the symptom. All components bench-tested and load-tested.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £49</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="custom build gaming pc assemble">
+            <div class="svc-item-top"><div class="svc-item-name">Custom PC Build</div><div class="svc-item-time">Next day</div></div>
+            <p class="svc-item-desc">We source, assemble, cable-manage and configure your dream build. Gaming, workstation or home office. OS installation, driver setup and benchmark testing included.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £99</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="upgrade gpu cpu ram parts">
+            <div class="svc-item-top"><div class="svc-item-name">PC Upgrade</div><div class="svc-item-time">Same day</div></div>
+            <p class="svc-item-desc">GPU, CPU, RAM or storage upgrades with full compatibility checking before any parts are ordered. Performance benchmarking before and after upgrade included.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £39</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="no power dead won't turn on psu">
+            <div class="svc-item-top"><div class="svc-item-name">No Power Fix</div><div class="svc-item-time">Same day</div></div>
+            <p class="svc-item-desc">PSU testing, motherboard diagnosis and component-level fault finding. We carry common PSU models for same-day swap if needed. Won't start? We'll find out why.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £59</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="graphics card gpu repair display artifacts">
+            <div class="svc-item-top"><div class="svc-item-name">Graphics Card Repair</div><div class="svc-item-time">1–2 days</div></div>
+            <p class="svc-item-desc">Reflow, reballing and thermal compound replacement for failing GPUs. Covers NVIDIA and AMD cards. Artifacts, black screen and driver crash faults all diagnosed.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £69</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="clean dust maintenance service fan">
+            <div class="svc-item-top"><div class="svc-item-name">Dust Clean & Maintenance</div><div class="svc-item-time">1 hr</div></div>
+            <p class="svc-item-desc">Deep compressed-air clean, thermal paste refresh on CPU/GPU and a full health check. Extends component life significantly and reduces noise. Recommended annually.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £29</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ SOFTWARE ══ -->
+      <section class="service-section theme-cyan reveal" id="s-software" data-cat="software">
+        <div class="service-section-header">
+          <div class="service-section-ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <div class="service-section-meta">
+            <div class="service-section-tag">Software & OS</div>
+            <h2 class="service-section-title">Software, Windows & OS Fixes</h2>
+            <p class="service-section-sub">Operating system reinstalls, driver fixes, speed optimisation and software configuration — for Windows and macOS.</p>
+          </div>
+        </div>
+        <div class="services-list">
+          <div class="svc-item" data-keywords="windows reinstall install os fresh">
+            <div class="svc-item-top"><div class="svc-item-name">Windows Reinstall</div><div class="svc-item-time">2–3 hrs</div></div>
+            <p class="svc-item-desc">Clean Windows 11 install with all drivers. Data backed up to external drive first and restored after. Activation included. Your apps re-installed and configured to your preferences.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £49</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="driver install sound graphics network missing">
+            <div class="svc-item-top"><div class="svc-item-name">Driver Installation</div><div class="svc-item-time">1 hr</div></div>
+            <p class="svc-item-desc">Missing or corrupt drivers fixed. Sound, graphics, network, Bluetooth, printer and specialist hardware drivers. No more yellow warning signs in Device Manager.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £29</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="software install setup office microsoft adobe">
+            <div class="svc-item-top"><div class="svc-item-name">Software Setup</div><div class="svc-item-time">1 hr</div></div>
+            <p class="svc-item-desc">Installation and configuration of any software. Microsoft 365, Adobe Creative Cloud, Zoom, Slack, specialist business tools. Licences transferred and accounts signed in.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £29</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="slow pc optimise speed up performance startup">
+            <div class="svc-item-top"><div class="svc-item-name">PC Optimisation</div><div class="svc-item-time">1–2 hrs</div></div>
+            <p class="svc-item-desc">Speed up a slow machine without hardware upgrades. Startup programs, background services, disk cleanup, bloatware removal and registry optimisation. Before/after comparison provided.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £39</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="password reset locked forgot windows bios">
+            <div class="svc-item-top"><div class="svc-item-name">Password Recovery</div><div class="svc-item-time">Same day</div></div>
+            <p class="svc-item-desc">Locked out of Windows, macOS or even BIOS? We regain access without data loss. Local accounts, Microsoft accounts and domain logins all covered.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £39</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="email setup gmail outlook icloud account configure">
+            <div class="svc-item-top"><div class="svc-item-name">Email Setup</div><div class="svc-item-time">1 hr</div></div>
+            <p class="svc-item-desc">Gmail, Outlook, Apple Mail or business IMAP/Exchange configured on all your devices. Signature setup, contacts synced and calendar integrated across PC, phone and tablet.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £29</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ VIRUS ══ -->
+      <section class="service-section theme-red reveal" id="s-virus" data-cat="virus">
+        <div class="service-section-header">
+          <div class="service-section-ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="service-section-meta">
+            <div class="service-section-tag">Virus & Security</div>
+            <h2 class="service-section-title">Virus Removal & Cybersecurity</h2>
+            <p class="service-section-sub">Complete malware removal, security hardening and privacy tools. We eliminate threats and prevent re-infection.</p>
+          </div>
+        </div>
+        <div class="services-list">
+          <div class="svc-item" data-keywords="virus malware spyware adware remove clean infected">
+            <div class="svc-item-top"><div class="svc-item-name">Virus Removal</div><div class="svc-item-time">Same day</div></div>
+            <p class="svc-item-desc">Complete malware, spyware, adware and rootkit removal using professional-grade tools. Root-cause analysis to understand how you were infected and prevent it happening again.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £49</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="ransomware encrypted files locked pay ransom">
+            <div class="svc-item-top"><div class="svc-item-name">Ransomware Recovery</div><div class="svc-item-time">24 hrs</div></div>
+            <p class="svc-item-desc">Encrypted files? We attempt decryption using known decryptors, isolate the infection and secure your system against repeat attacks. Do not pay the ransom — call us first.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £89</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="security audit check vulnerability network">
+            <div class="svc-item-top"><div class="svc-item-name">Security Audit</div><div class="svc-item-time">2 hrs</div></div>
+            <p class="svc-item-desc">Full vulnerability assessment of your home or business network and connected devices. We produce a written report with prioritised recommendations — actionable, not just a list of risks.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £59</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="parental controls children screen time filter">
+            <div class="svc-item-top"><div class="svc-item-name">Parental Controls Setup</div><div class="svc-item-time">1 hr</div></div>
+            <p class="svc-item-desc">Safe browsing filters, screen time limits, content categorisation and app restrictions configured across all family devices — router level and per-device for maximum coverage.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £29</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="vpn privacy anonymous encrypted browsing">
+            <div class="svc-item-top"><div class="svc-item-name">VPN & Privacy Setup</div><div class="svc-item-time">1 hr</div></div>
+            <p class="svc-item-desc">Encrypted VPN, private DNS (AdGuard / NextDNS), tracker blocking and privacy-hardened browser configured correctly so they actually work — not just installed and forgotten.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £39</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="2fa two factor authentication account security">
+            <div class="svc-item-top"><div class="svc-item-name">Two-Factor Authentication</div><div class="svc-item-time">1 hr</div></div>
+            <p class="svc-item-desc">2FA configured across email, banking, social media and cloud accounts using an authenticator app. Backup codes stored safely. Hardware key (YubiKey) setup also available.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £29</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ DATA ══ -->
+      <section class="service-section theme-amber reveal" id="s-data" data-cat="data">
+        <div class="service-section-header">
+          <div class="service-section-ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+          </div>
+          <div class="service-section-meta">
+            <div class="service-section-tag">Data & Recovery</div>
+            <h2 class="service-section-title">Data Recovery & Backup</h2>
+            <p class="service-section-sub">Recover lost files, failed drives and corrupted media. Set up automated backups so it never happens again. No recovery, no fee.</p>
+          </div>
+        </div>
+        <div class="services-list">
+          <div class="svc-item" data-keywords="hard drive recover deleted lost hdd failed">
+            <div class="svc-item-top"><div class="svc-item-name">Hard Drive Recovery</div><div class="svc-item-time">1–3 days</div></div>
+            <p class="svc-item-desc">Recover files from failed, damaged, formatted or accidental deletion scenarios. Logical and minor mechanical issues covered in-house. No data, no fee — always.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £99</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="ssd nvme m2 recovery failed dead">
+            <div class="svc-item-top"><div class="svc-item-name">SSD Data Recovery</div><div class="svc-item-time">1–3 days</div></div>
+            <p class="svc-item-desc">Specialist recovery from failed SSDs including NVMe, M.2 and SATA formats. Controller failure, NAND issues and firmware corruption all diagnosed. Clean-room referral for severe cases.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £119</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="photo video recover deleted memory card formatted">
+            <div class="svc-item-top"><div class="svc-item-name">Photo & Video Recovery</div><div class="svc-item-time">Same day</div></div>
+            <p class="svc-item-desc">Deleted photos, corrupted SD cards, formatted drives and crashed camera storage recovered using professional imaging tools. JPEG, RAW, MP4, MOV all supported.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £79</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="backup cloud onedrive google drive icloud automated">
+            <div class="svc-item-top"><div class="svc-item-name">Cloud Backup Setup</div><div class="svc-item-time">1–2 hrs</div></div>
+            <p class="svc-item-desc">Automated backup to OneDrive, Google Drive, iCloud or Backblaze configured and tested. Versioning enabled, schedule set, alerts configured. Never lose data again.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £39</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="data migration transfer move files old new device">
+            <div class="svc-item-top"><div class="svc-item-name">Data Migration</div><div class="svc-item-time">2–3 hrs</div></div>
+            <p class="svc-item-desc">Move everything from old to new device — files, settings, apps, browser bookmarks, email, contacts and accounts. We verify every folder before leaving your home.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £49</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="raid nas server array recovery">
+            <div class="svc-item-top"><div class="svc-item-name">RAID Recovery</div><div class="svc-item-time">2–5 days</div></div>
+            <p class="svc-item-desc">RAID 0, 1, 5 and 10 array recovery for home NAS devices and small business servers. Synology, QNAP and custom arrays. Array rebuild and health monitoring setup included.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £149</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ NETWORK ══ -->
+      <section class="service-section theme-green reveal" id="s-network" data-cat="network">
+        <div class="service-section-header">
+          <div class="service-section-ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+          </div>
+          <div class="service-section-meta">
+            <div class="service-section-tag">Home Network</div>
+            <h2 class="service-section-title">WiFi, Smart Home & Networking</h2>
+            <p class="service-section-sub">Professional network setup, dead zone elimination, smart home integration and home server configuration.</p>
+          </div>
+        </div>
+        <div class="services-list">
+          <div class="svc-item" data-keywords="wifi router setup configure install internet">
+            <div class="svc-item-top"><div class="svc-item-name">WiFi Setup & Configuration</div><div class="svc-item-time">1–2 hrs</div></div>
+            <p class="svc-item-desc">Router setup, SSID configuration, WPA3 security, optimal channel selection and band steering. ISP router or own equipment — we make it fast, stable and secure.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £49</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="dead zone weak signal slow wifi mesh extender">
+            <div class="svc-item-top"><div class="svc-item-name">WiFi Dead Zone Fix</div><div class="svc-item-time">1–2 hrs</div></div>
+            <p class="svc-item-desc">Mesh systems, access points and powerline adapters to eliminate weak signal areas. We do a full site survey before recommending the right solution for your property layout.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £49</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="smart home alexa google home bulbs plug thermostat">
+            <div class="svc-item-top"><div class="svc-item-name">Smart Home Setup</div><div class="svc-item-time">2–3 hrs</div></div>
+            <p class="svc-item-desc">Alexa, Google Home, Apple HomeKit, Philips Hue, smart plugs, Ring doorbells and thermostats — configured, automated and integrated so everything works together seamlessly.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £59</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="network security firewall guest password">
+            <div class="svc-item-top"><div class="svc-item-name">Network Security Hardening</div><div class="svc-item-time">1–2 hrs</div></div>
+            <p class="svc-item-desc">Firewall rules, guest network isolation, MAC address filtering, firmware updates and DNS-level ad blocking. Your home network, locked down properly.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £49</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="printer setup wireless wifi print scan">
+            <div class="svc-item-top"><div class="svc-item-name">Printer Setup</div><div class="svc-item-time">1 hr</div></div>
+            <p class="svc-item-desc">Wired or wireless printer connected to all devices in your home. Scan-to-email, mobile printing via AirPrint or Google Cloud Print, and fax-to-email where applicable.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £29</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="nas synology qnap home server plex media">
+            <div class="svc-item-top"><div class="svc-item-name">NAS / Home Server Setup</div><div class="svc-item-time">3–4 hrs</div></div>
+            <p class="svc-item-desc">Synology, QNAP or custom NAS configured for media streaming (Plex/Jellyfin), automated backup, remote access and RAID protection. Everything set up, tested and explained.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £79</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ REMOTE ══ -->
+      <section class="service-section theme-cyan reveal" id="s-remote" data-cat="remote">
+        <div class="service-section-header">
+          <div class="service-section-ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+          </div>
+          <div class="service-section-meta">
+            <div class="service-section-tag">Remote Support</div>
+            <h2 class="service-section-title">Remote IT Support Sessions</h2>
+            <p class="service-section-sub">Connect instantly via secure remote access. No engineer visit needed — perfect for software, settings and diagnosis.</p>
+          </div>
+        </div>
+        <div class="services-list">
+          <div class="svc-item" data-keywords="remote support 30 min quick help">
+            <div class="svc-item-top"><div class="svc-item-name">Remote Session — 30 min</div><div class="svc-item-time">Immediate</div></div>
+            <p class="svc-item-desc">Quick remote session via secure screen share. Perfect for software glitches, settings, account issues and quick fixes. No travel charge. Available same day, often within the hour.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">£29 flat</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="remote support 1 hour session extended help">
+            <div class="svc-item-top"><div class="svc-item-name">Remote Session — 1 Hour</div><div class="svc-item-time">Immediate</div></div>
+            <p class="svc-item-desc">Extended remote session for more complex software problems — virus scans, system optimisation, driver conflicts and configuration issues. No waiting, no travel, no hassle.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">£49 flat</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="business monthly plan subscription remote support priority">
+            <div class="svc-item-top"><div class="svc-item-name">Business Remote Plan</div><div class="svc-item-time">Priority</div></div>
+            <p class="svc-item-desc">Monthly remote support retainer for small businesses. Dedicated technician, guaranteed 4-hour response, unlimited remote sessions and quarterly security audits. Billed monthly, cancel anytime.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £79/mo</span><button class="svc-item-btn" onclick="openBooking()">Enquire →</button></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ NEW DEVICE SETUP ══ -->
+      <section class="service-section theme-purple reveal" id="s-setup" data-cat="setup">
+        <div class="service-section-header">
+          <div class="service-section-ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <div class="service-section-meta">
+            <div class="service-section-tag">New Device Setup</div>
+            <h2 class="service-section-title">New Device Setup & Migration</h2>
+            <p class="service-section-sub">Unbox, configure and migrate — we set up your new devices exactly how you want them, with everything transferred from your old one.</p>
+          </div>
+        </div>
+        <div class="services-list">
+          <div class="svc-item" data-keywords="new laptop setup configure migrate data transfer">
+            <div class="svc-item-top"><div class="svc-item-name">New Laptop Setup</div><div class="svc-item-time">2 hrs</div></div>
+            <p class="svc-item-desc">Unbox, Windows activation, all drivers installed, your apps set up and data migrated from your old laptop. Accounts signed in, email configured, printer connected. Ready to use immediately.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £49</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="new pc setup desktop configure">
+            <div class="svc-item-top"><div class="svc-item-name">New PC Setup</div><div class="svc-item-time">2–3 hrs</div></div>
+            <p class="svc-item-desc">Windows activation, all drivers, software installation, security configuration and peripheral setup. Existing files migrated from old machine. We don't leave until everything works.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £49</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="iphone android new phone setup transfer contacts apps">
+            <div class="svc-item-top"><div class="svc-item-name">New Phone Setup</div><div class="svc-item-time">1 hr</div></div>
+            <p class="svc-item-desc">iPhone or Android — contacts, photos, apps, messages and accounts transferred from your old phone. WhatsApp history migrated. Everything works from day one, nothing lost.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £29</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="smart tv setup netflix streaming disney amazon configure">
+            <div class="svc-item-top"><div class="svc-item-name">Smart TV Setup</div><div class="svc-item-time">1 hr</div></div>
+            <p class="svc-item-desc">Netflix, Prime, Disney+, Apple TV+ and other streaming services signed in and configured. Screencasting, HDMI-ARC, soundbar pairing and parental controls all included.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £39</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ APPLE ══ -->
+      <section class="service-section theme-grey reveal" id="s-apple" data-cat="apple">
+        <div class="service-section-header">
+          <div class="service-section-ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#aaa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
+          </div>
+          <div class="service-section-meta">
+            <div class="service-section-tag">Apple / Mac</div>
+            <h2 class="service-section-title">Apple Mac & iPhone Repair</h2>
+            <p class="service-section-sub">Specialist Apple repair for MacBook, iMac, Mac Mini and iPhone. OEM-spec parts, True Tone and Face ID preserved.</p>
+          </div>
+        </div>
+        <div class="services-list">
+          <div class="svc-item" data-keywords="macbook screen retina display replace cracked broken">
+            <div class="svc-item-top"><div class="svc-item-name">MacBook Screen Replacement</div><div class="svc-item-time">Same day</div></div>
+            <p class="svc-item-desc">OEM-quality Retina and Liquid Retina displays for all MacBook Air and Pro models (M1, M2, M3, Intel). Colour calibrated and True Tone restored after fitting.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £149</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="macbook battery replace low capacity magsafe usb-c">
+            <div class="svc-item-top"><div class="svc-item-name">MacBook Battery Replacement</div><div class="svc-item-time">Same day</div></div>
+            <p class="svc-item-desc">Apple-spec capacity cells that pass Apple's own battery health diagnostic. Covers all MacBook models including MagSafe and USB-C. Cycle count reset confirmed.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £89</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="macos reinstall install restore time machine">
+            <div class="svc-item-top"><div class="svc-item-name">macOS Reinstall</div><div class="svc-item-time">2–3 hrs</div></div>
+            <p class="svc-item-desc">Clean macOS install, Time Machine restore or fresh setup with data migration. Sonoma, Ventura, Monterey all covered. Data backed up before any work begins.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £59</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="iphone screen repair smashed cracked broken display">
+            <div class="svc-item-top"><div class="svc-item-name">iPhone Screen Repair</div><div class="svc-item-time">1 hr</div></div>
+            <p class="svc-item-desc">OEM-quality OLED and LCD screens for all iPhone models (12 through 16 Pro Max). True Tone, Face ID and ProMotion 120Hz all preserved. 90-day parts warranty included.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £49</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="iphone battery replace draining low capacity">
+            <div class="svc-item-top"><div class="svc-item-name">iPhone Battery Replacement</div><div class="svc-item-time">1 hr</div></div>
+            <p class="svc-item-desc">Genuine-spec cells that restore your battery capacity to 100% and pass Apple's battery health check. Covers iPhone 12 through 16. Maximum capacity guarantee.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £39</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="mac upgrade ssd ram imac mac mini older">
+            <div class="svc-item-top"><div class="svc-item-name">Mac Upgrade (RAM / SSD)</div><div class="svc-item-time">2–3 hrs</div></div>
+            <p class="svc-item-desc">Upgrade older Intel Macs with faster SSDs and more RAM for a significant performance boost. iMac, Mac Mini and older MacBook Pro models supported. Data migrated, nothing lost.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £79</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══ EMERGENCY ══ -->
+      <section class="service-section theme-red reveal" id="s-emergency" data-cat="emergency">
+        <div class="service-section-header">
+          <div class="service-section-ico">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--danger)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+          </div>
+          <div class="service-section-meta">
+            <div class="service-section-tag" style="color:var(--danger)">Emergency</div>
+            <h2 class="service-section-title">Emergency & Priority Response</h2>
+            <p class="service-section-sub">Same-day dispatch, evenings, weekends and bank holidays. For when it absolutely can't wait until tomorrow.</p>
+          </div>
+        </div>
+        <div class="services-list">
+          <div class="svc-item" data-keywords="emergency same day urgent priority dispatch">
+            <div class="svc-item-top"><div class="svc-item-name">Same-Day Emergency Callout</div><div class="svc-item-time">Within 2 hrs</div></div>
+            <p class="svc-item-desc">Priority engineer dispatched to your location — available 7 days a week including bank holidays. WhatsApp ETA tracking from the moment of booking. 100% upfront payment required for emergency slots.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £89</span><button class="svc-item-btn" onclick="openBooking()">Book Now →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="evening weekend out of hours late night">
+            <div class="svc-item-top"><div class="svc-item-name">Out-of-Hours Callout</div><div class="svc-item-time">Within 3 hrs</div></div>
+            <p class="svc-item-desc">Evening (after 6pm) and weekend emergency response for critical issues that genuinely can't wait. Surcharge applies for out-of-hours visits — shown transparently before payment.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £119</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="business critical server down network ransomware">
+            <div class="svc-item-top"><div class="svc-item-name">Business Critical Response</div><div class="svc-item-time">Within 1 hr</div></div>
+            <p class="svc-item-desc">Server down, ransomware attack or total network failure? Priority dispatch for business-critical emergencies. Remote triage begins immediately while engineer is en route.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £149</span><button class="svc-item-btn" onclick="openBooking()">Enquire →</button></div>
+          </div>
+          <div class="svc-item" data-keywords="pre event presentation tech check conference">
+            <div class="svc-item-top"><div class="svc-item-name">Pre-Event Tech Check</div><div class="svc-item-time">Scheduled</div></div>
+            <p class="svc-item-desc">Presentation tomorrow? Conference next week? We come to your location in advance and ensure every piece of tech works perfectly — projectors, laptops, AV, WiFi and backup plans.</p>
+            <div class="svc-item-footer"><span class="svc-item-price">From £79</span><button class="svc-item-btn" onclick="openBooking()">Book →</button></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA BANNER -->
+      <div class="cta-banner reveal">
+        <div class="cta-banner-text">
+          <h3>Not sure which service you need?</h3>
+          <p>Describe your problem to our AI assistant in plain English and it'll identify the right service, give you a transparent price estimate and book your engineer — all in under 2 minutes.</p>
+        </div>
+        <div class="cta-banner-actions">
+          <button class="btn-p" onclick="openBooking()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Book a Technician
+          </button>
+          <a href="https://wa.me/447700000000" class="btn-s">
+            💬 WhatsApp Us
+          </a>
+        </div>
+      </div>
+
+      <!-- EMPTY STATE (hidden by default, shown during search) -->
+      <div class="empty-state" id="empty-state" style="display:none">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <h3>No services found</h3>
+        <p>Try a different search term, or <button onclick="clearSearch()" style="background:none;border:none;color:var(--primary);cursor:pointer;font-family:var(--font-b);font-size:.875rem">clear search</button> to see all services.</p>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">Neuro<span>&nbsp;IT</span></div>
+      <p style="font-size:.78rem;color:var(--dim);margin-top:.3rem">London's Smartest IT Support</p>
+    </div>
+    <div class="footer-copy">© 2026 Neuro IT Ltd · ICO Reg: ZB000000 · <a href="#" style="color:var(--dim);text-decoration:none">Privacy</a> · <a href="#" style="color:var(--dim);text-decoration:none">Terms</a></div>
+  </div>
+</footer>
+
+<!-- STICKY MOBILE BAR -->
+<div class="sticky-bar">
+  <a href="https://wa.me/447700000000" class="sticky-btn sticky-wa">💬 WhatsApp</a>
+  <a href="tel:02000000000" class="sticky-btn sticky-call">📞 Call</a>
+  <button onclick="openBooking()" class="sticky-btn sticky-book">⚡ Book Now</button>
+</div>
+
+<script>
+// ── SCROLL REVEAL
+const revealObs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target)}});
+},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+
+// ── SIDEBAR ACTIVE ON SCROLL
+const sections = document.querySelectorAll('.service-section');
+const sidebarLinks = document.querySelectorAll('.sidebar-link[data-sidebar]');
+window.addEventListener('scroll',()=>{
+  let current='';
+  sections.forEach(s=>{
+    if(window.scrollY>=s.offsetTop-120) current=s.dataset.cat;
+  });
+  sidebarLinks.forEach(l=>{
+    l.classList.toggle('active',l.dataset.sidebar===current);
+  });
+},{passive:true});
+
+// ── SCROLL TO SECTION
+function scrollTo(id){
+  document.getElementById(id)?.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ── FILTER PILLS (page hero)
+document.querySelectorAll('[data-filter]').forEach(pill=>{
+  pill.addEventListener('click',function(){
+    const filter = this.dataset.filter;
+    // Update all pills with same filter
+    document.querySelectorAll('[data-filter]').forEach(p=>p.classList.toggle('active', p.dataset.filter===filter));
+    // Show/hide sections
+    sections.forEach(s=>{
+      const match = filter==='all' || s.dataset.cat===filter;
+      s.style.display = match?'':'none';
+    });
+    // Scroll to first visible section if not "all"
+    if(filter!=='all'){
+      const target = document.getElementById('s-'+filter)||document.querySelector(`[data-cat="${filter}"]`);
+      if(target) setTimeout(()=>target.scrollIntoView({behavior:'smooth',block:'start'}),100);
+    }
+  });
+});
+
+// ── SEARCH
+function handleSearch(q){
+  const query = q.toLowerCase().trim();
+  document.getElementById('search-clear').style.display = query?'flex':'none';
+  let anyVisible = false;
+  // Reset filter pills
+  document.querySelectorAll('[data-filter]').forEach(p=>p.classList.toggle('active',p.dataset.filter==='all'));
+
+  if(!query){
+    sections.forEach(s=>s.style.display='');
+    document.querySelectorAll('.svc-item').forEach(i=>i.style.display='');
+    document.getElementById('empty-state').style.display='none';
+    return;
+  }
+  sections.forEach(section=>{
+    const items = section.querySelectorAll('.svc-item');
+    let sectionHasMatch = false;
+    items.forEach(item=>{
+      const name = item.querySelector('.svc-item-name')?.textContent.toLowerCase()||'';
+      const desc = item.querySelector('.svc-item-desc')?.textContent.toLowerCase()||'';
+      const keywords = (item.dataset.keywords||'').toLowerCase();
+      const match = name.includes(query)||desc.includes(query)||keywords.includes(query);
+      item.style.display = match?'':'none';
+      if(match){sectionHasMatch=true;anyVisible=true}
+    });
+    section.style.display = sectionHasMatch?'':'none';
+  });
+  document.getElementById('empty-state').style.display = anyVisible?'none':'block';
+}
+
+function clearSearch(){
+  document.getElementById('search-input').value='';
+  handleSearch('');
+}
+
+// ── BOOKING STUB
+function openBooking(){
+  // In production, this opens the AI booking modal from the main site
+  alert('Booking modal — connect to main site booking flow here.');
+}
+
+// ── MOBILE NAV
+document.getElementById('mob-nav-btn').style.display='flex';
+</script>
+</body>
+</html>
