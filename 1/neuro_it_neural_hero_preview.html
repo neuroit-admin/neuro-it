@@ -1,0 +1,157 @@
+
+<h2 class="sr-only">پیش‌نمایش طراحی Hero شبکه عصبی تعاملی برای Neuro IT</h2>
+<style>
+#hero-wrap{position:relative;width:100%;height:520px;background:#050a0f;overflow:hidden;border-radius:12px;cursor:none}
+#ncanvas{position:absolute;inset:0;width:100%;height:100%}
+.hero-content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;pointer-events:none;z-index:2}
+.hero-eyebrow{font-size:11px;font-weight:500;letter-spacing:.22em;color:rgba(0,210,255,.55);text-transform:uppercase;margin-bottom:1.25rem;font-family:monospace}
+.hero-h1{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;line-height:1.08;color:#fff;margin-bottom:1rem;font-family:system-ui,sans-serif}
+.hero-h1 span{color:#00d2ff}
+.hero-sub{font-size:clamp(.85rem,1.5vw,1.05rem);color:rgba(200,220,235,.65);max-width:440px;line-height:1.65;margin-bottom:2rem}
+.hero-trust{display:flex;gap:1.5rem;justify-content:center;margin-bottom:2rem;flex-wrap:wrap}
+.trust-item{font-size:.72rem;color:rgba(0,210,255,.7);display:flex;align-items:center;gap:.4rem;letter-spacing:.06em}
+.trust-dot{width:5px;height:5px;border-radius:50%;background:#00d2ff;box-shadow:0 0 6px #00d2ff}
+.hero-btn{pointer-events:all;display:inline-flex;align-items:center;gap:.6rem;padding:.85rem 2rem;font-size:.9rem;font-weight:700;font-family:system-ui,sans-serif;letter-spacing:.04em;color:#050a0f;background:#00d2ff;border:none;border-radius:6px;cursor:pointer;position:relative;overflow:hidden;transition:transform .18s,box-shadow .18s}
+.hero-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,210,255,.45)}
+.hero-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.25) 50%,transparent 70%);transform:translateX(-100%);transition:transform .5s}
+.hero-btn:hover::before{transform:translateX(100%)}
+.cursor-glow{position:absolute;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(0,210,255,.12) 0%,transparent 70%);pointer-events:none;transform:translate(-50%,-50%);transition:left .08s,top .08s;z-index:1}
+.stats-row{position:absolute;bottom:1.5rem;left:0;right:0;display:flex;justify-content:center;gap:2.5rem;z-index:3}
+.stat{text-align:center}
+.stat-n{font-size:1.1rem;font-weight:800;color:#00d2ff;font-family:system-ui}
+.stat-l{font-size:.62rem;color:rgba(200,220,235,.45);letter-spacing:.08em;text-transform:uppercase;margin-top:2px}
+</style>
+
+<div id="hero-wrap">
+  <canvas id="ncanvas"></canvas>
+  <div class="cursor-glow" id="cglow"></div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">London's Premier IT Support</div>
+    <h1 class="hero-h1">Neuro<span>IT</span><br>Smarter Support.</h1>
+    <p class="hero-sub">Certified engineers at your door — same day, no fix no fee. Trusted across all 33 London boroughs.</p>
+    <div class="hero-trust">
+      <span class="trust-item"><span class="trust-dot"></span>DBS Checked</span>
+      <span class="trust-item"><span class="trust-dot"></span>Fully Insured</span>
+      <span class="trust-item"><span class="trust-dot"></span>4.9 ★ on Google</span>
+      <span class="trust-item"><span class="trust-dot"></span>Same-Day Available</span>
+    </div>
+    <button class="hero-btn" onclick="alert('Book a Technician →')">Book a Technician →</button>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat"><div class="stat-n">150+</div><div class="stat-l">Reviews</div></div>
+    <div class="stat"><div class="stat-n">33</div><div class="stat-l">Boroughs</div></div>
+    <div class="stat"><div class="stat-n">98%</div><div class="stat-l">Fix Rate</div></div>
+    <div class="stat"><div class="stat-n">&lt;2h</div><div class="stat-l">Response</div></div>
+  </div>
+</div>
+
+<script>
+const wrap = document.getElementById('hero-wrap')
+const canvas = document.getElementById('ncanvas')
+const glow = document.getElementById('cglow')
+const ctx = canvas.getContext('2d')
+
+let W, H, nodes = [], mouse = {x: -1000, y: -1000}, raf
+
+const NODE_COUNT = 70
+const CONNECT_DIST = 130
+const MOUSE_PULL = 90
+
+function resize(){
+  W = canvas.width = wrap.clientWidth
+  H = canvas.height = wrap.clientHeight
+}
+
+function randBetween(a, b){ return a + Math.random() * (b - a) }
+
+function initNodes(){
+  nodes = []
+  for(let i = 0; i < NODE_COUNT; i++){
+    nodes.push({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: randBetween(-.25, .25),
+      vy: randBetween(-.25, .25),
+      r: randBetween(1.5, 3.5),
+      pulse: Math.random() * Math.PI * 2,
+      pulseSpeed: randBetween(.015, .04)
+    })
+  }
+}
+
+function draw(){
+  ctx.clearRect(0, 0, W, H)
+
+  for(let i = 0; i < nodes.length; i++){
+    const n = nodes[i]
+    // mouse attraction
+    const dx = mouse.x - n.x, dy = mouse.y - n.y
+    const dist = Math.sqrt(dx*dx + dy*dy)
+    if(dist < MOUSE_PULL && dist > 0){
+      const force = (1 - dist/MOUSE_PULL) * 0.018
+      n.vx += dx/dist * force
+      n.vy += dy/dist * force
+    }
+    // friction
+    n.vx *= .985; n.vy *= .985
+    n.x += n.vx; n.y += n.vy
+    // bounce
+    if(n.x < 0){n.x=0;n.vx*=-1} if(n.x > W){n.x=W;n.vx*=-1}
+    if(n.y < 0){n.y=0;n.vy*=-1} if(n.y > H){n.y=H;n.vy*=-1}
+
+    // connections
+    for(let j = i+1; j < nodes.length; j++){
+      const m = nodes[j]
+      const ex = m.x-n.x, ey = m.y-n.y
+      const ed = Math.sqrt(ex*ex+ey*ey)
+      if(ed < CONNECT_DIST){
+        const alpha = (1 - ed/CONNECT_DIST) * 0.38
+        const fromMouse = Math.min(1, Math.max(0, 1 - dist/200))
+        const bright = alpha + fromMouse * 0.3
+        ctx.beginPath()
+        ctx.moveTo(n.x, n.y)
+        ctx.lineTo(m.x, m.y)
+        ctx.strokeStyle = `rgba(0,210,255,${Math.min(bright, 0.65)})`
+        ctx.lineWidth = ed < 50 ? .8 : .4
+        ctx.stroke()
+      }
+    }
+
+    // node dot
+    n.pulse += n.pulseSpeed
+    const gAlpha = 0.5 + Math.sin(n.pulse) * 0.3
+    const mouseDist2 = Math.sqrt((mouse.x-n.x)**2+(mouse.y-n.y)**2)
+    const boost = mouseDist2 < 120 ? (1 - mouseDist2/120) * 0.5 : 0
+    const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 3)
+    grad.addColorStop(0, `rgba(0,210,255,${gAlpha + boost})`)
+    grad.addColorStop(1, 'rgba(0,210,255,0)')
+    ctx.beginPath()
+    ctx.arc(n.x, n.y, n.r * 3, 0, Math.PI*2)
+    ctx.fillStyle = grad
+    ctx.fill()
+    ctx.beginPath()
+    ctx.arc(n.x, n.y, n.r, 0, Math.PI*2)
+    ctx.fillStyle = `rgba(180,240,255,${gAlpha + boost})`
+    ctx.fill()
+  }
+  raf = requestAnimationFrame(draw)
+}
+
+wrap.addEventListener('mousemove', e => {
+  const rect = wrap.getBoundingClientRect()
+  mouse.x = e.clientX - rect.left
+  mouse.y = e.clientY - rect.top
+  glow.style.left = mouse.x + 'px'
+  glow.style.top = mouse.y + 'px'
+})
+wrap.addEventListener('mouseleave', () => {
+  mouse.x = W/2; mouse.y = H/2
+  glow.style.left = '-500px'
+})
+
+resize()
+initNodes()
+draw()
+</script>

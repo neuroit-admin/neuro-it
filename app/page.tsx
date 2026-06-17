@@ -1,4 +1,4 @@
-import CinematicHero from '@/components/home/CinematicHero'
+import NeuralHero from '@/components/home/NeuralHero'
 import ServicesGrid from '@/components/home/ServicesGrid'
 import TrustBadges from '@/components/home/TrustBadges'
 import ReviewsCarousel from '@/components/home/ReviewsCarousel'
@@ -128,8 +128,8 @@ export default async function HomePage() {
       />
       <Navbar />
       <main>
-        {/* Cinematic Canvas Hero — 400vh scroll */}
-        <CinematicHero />
+        {/* Interactive Neural Network Hero */}
+        <NeuralHero />
 
         {/* Below-hero CTA bridge */}
         <section
