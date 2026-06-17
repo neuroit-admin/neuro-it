@@ -624,18 +624,19 @@ async function main() {
   }
 
   // Create admin user if not exists
+  const adminEmail = process.env.ADMIN_EMAIL || 'admin@neuro-it.co.uk'
   await prisma.user.upsert({
-    where: { email: 'admin@neuro-it.co.uk' },
-    update: {},
+    where: { email: adminEmail },
+    update: { role: 'ADMIN' },
     create: {
-      email: 'admin@neuro-it.co.uk',
+      email: adminEmail,
       name: 'Admin',
       role: 'ADMIN',
       gdprConsent: true,
       gdprConsentAt: new Date(),
     },
   })
-  console.log('✅ Admin user verified: admin@neuro-it.co.uk')
+  console.log(`✅ Admin user verified: ${adminEmail}`)
 
   // Create some default tickets for testing if table is empty
   const ticketCount = await prisma.ticket.count()

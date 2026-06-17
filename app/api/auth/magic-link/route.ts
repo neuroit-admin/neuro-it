@@ -23,16 +23,37 @@ export async function POST(req: Request) {
     const cleanEmail = email.trim().toLowerCase()
     
     // 2. Enforce separation between Admin and Customer login
-    const user = await prisma.user.findUnique({
+    let user = await prisma.user.findUnique({
       where: { email: cleanEmail }
     })
 
+    const targetAdminEmail = (process.env.ADMIN_EMAIL || 'admin@neuro-it.co.uk').trim().toLowerCase()
+
     if (isAdminLogin) {
       if (!user || user.role !== 'ADMIN') {
-        return NextResponse.json(
-          { error: 'Access denied. Only administrator accounts are allowed.' },
-          { status: 403 }
-        )
+        if (cleanEmail === targetAdminEmail) {
+          if (user) {
+            user = await prisma.user.update({
+              where: { email: cleanEmail },
+              data: { role: 'ADMIN' }
+            })
+          } else {
+            user = await prisma.user.create({
+              data: {
+                email: cleanEmail,
+                name: 'Admin',
+                role: 'ADMIN',
+                gdprConsent: true,
+                gdprConsentAt: new Date()
+              }
+            })
+          }
+        } else {
+          return NextResponse.json(
+            { error: 'Access denied. Only administrator accounts are allowed.' },
+            { status: 403 }
+          )
+        }
       }
     } else {
       if (user && user.role === 'ADMIN') {

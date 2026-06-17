@@ -66,15 +66,23 @@ export const authOptions: NextAuthOptions = {
           where: { email: dbToken.email },
         })
 
+        const targetAdminEmail = (process.env.ADMIN_EMAIL || 'admin@neuro-it.co.uk').trim().toLowerCase()
+        const isAdmin = dbToken.email.trim().toLowerCase() === targetAdminEmail
+
         if (!user) {
           user = await prisma.user.create({
             data: {
               email: dbToken.email,
-              name: dbToken.email.split('@')[0],
-              role: 'CUSTOMER',
+              name: isAdmin ? 'Admin' : dbToken.email.split('@')[0],
+              role: isAdmin ? 'ADMIN' : 'CUSTOMER',
               gdprConsent: true,
               gdprConsentAt: new Date(),
             },
+          })
+        } else if (isAdmin && user.role !== 'ADMIN') {
+          user = await prisma.user.update({
+            where: { email: dbToken.email },
+            data: { role: 'ADMIN' }
           })
         }
 

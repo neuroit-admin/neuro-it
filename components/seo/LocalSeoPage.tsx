@@ -99,9 +99,19 @@ function LocalSeoPage({ area, areaSlug, description, postcodes, services }: Loca
           <h2 className="font-syne" style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '1.5rem', marginBottom: '1rem' }}>
             Areas We Cover in {area}
           </h2>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: 1.8, marginBottom: '2rem' }}>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: 1.8, marginBottom: '1.5rem' }}>
             We cover the following postcode areas: {postcodes.join(', ')}
           </p>
+          <div style={{ marginBottom: '2.5rem' }}>
+            <a 
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${area}, London, UK`)}`}
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{ color: '#00D2FF', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '0.4rem' }}
+            >
+              📍 View our {area} service coverage on Google Maps →
+            </a>
+          </div>
 
           {/* CTA */}
           <div style={{ textAlign: 'center', padding: '3rem 2rem', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '4px' }}>
