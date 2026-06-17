@@ -6,6 +6,8 @@ import { sendEmail, sendAdminNewTicketNotification } from '@/lib/resend'
 import fs from 'fs'
 import path from 'path'
 
+export const dynamic = 'force-dynamic'
+
 export async function GET() {
   const session = await getServerSession(authOptions)
   if (!session?.user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })

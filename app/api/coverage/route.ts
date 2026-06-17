@@ -51,6 +51,8 @@ const DEFAULT_BOROUGHS = [
   { name: 'Wandsworth', slug: 'wandsworth', zone: 'LONDON_FLEX', lat: 51.4567, lng: -0.1910, postcodes: 'SW11,SW15,SW17,SW18' }
 ]
 
+export const dynamic = 'force-dynamic'
+
 export async function GET() {
   try {
     // Sync DEFAULT_BOROUGHS with database records
