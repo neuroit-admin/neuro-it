@@ -161,7 +161,6 @@ canvas {
 .fluid-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(100px); /* Slightly sharper blur for more defined color fields */
   opacity: 0;
   transition: opacity 0.5s ease;
 }
@@ -270,9 +269,6 @@ canvas {
 
 /* Mobile responsive adjustments for fluid organic blobs */
 @media (max-width: 767px) {
-  .fluid-blob {
-    filter: blur(45px);
-  }
   [data-theme="dark"] .fluid-blob,
   :root:not([data-theme="light"]) .fluid-blob {
     opacity: 0.50; /* Boosted opacity in dark mode to prevent dilution on mobile */
