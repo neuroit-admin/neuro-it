@@ -28,7 +28,7 @@ export async function generateMetadata(props: {
     title: `${category.name} IT Articles & Guides | Neuro IT`,
     description: `Read professional guides, troubleshooting tips, and news about ${category.name} from Neuro IT field engineers in London.`,
     alternates: {
-      canonical: `https://neuro-it.co.uk/blog/category/${slug}`,
+      canonical: `https://neuroit.co.uk/blog/category/${slug}`,
     },
   }
 }
@@ -71,7 +71,7 @@ export default async function BlogCategoryPage(props: {
     'publisher': {
       '@type': 'LocalBusiness',
       'name': 'Neuro IT',
-      'image': 'https://neuro-it.co.uk/assets/logo.png',
+      'image': 'https://neuroit.co.uk/assets/logo.png',
       'address': {
         '@type': 'PostalAddress',
         'addressLocality': 'London',
@@ -84,7 +84,7 @@ export default async function BlogCategoryPage(props: {
       '@type': 'BlogPosting',
       'headline': post.title,
       'description': post.excerpt || post.metaDescription,
-      'url': `https://neuro-it.co.uk/blog/${post.slug}`,
+      'url': `https://neuroit.co.uk/blog/${post.slug}`,
       'datePublished': post.publishedAt?.toISOString(),
       'dateModified': post.updatedAt?.toISOString(),
       'author': {

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Our Coverage Areas | London IT Support & Laptop Repair | Neuro IT',
   description: 'We offer certified, vetted same-day home visit IT support and laptop repair services across all London boroughs. Check your postcode for eligibility.',
   alternates: {
-    canonical: 'https://neuro-it.co.uk/areas',
+    canonical: 'https://neuroit.co.uk/areas',
   },
 }
 

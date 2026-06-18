@@ -624,7 +624,7 @@ async function main() {
   }
 
   // Create admin user if not exists
-  const adminEmail = process.env.ADMIN_EMAIL || 'admin@neuro-it.co.uk'
+  const adminEmail = process.env.ADMIN_EMAIL || 'admin@neuroit.co.uk'
   await prisma.user.upsert({
     where: { email: adminEmail },
     update: { role: 'ADMIN' },

@@ -14,11 +14,11 @@ export const metadata: Metadata = {
     title: 'Services & Pricing | Neuro IT London',
     description:
       'Browse 50+ professional IT repair services with transparent pricing. Same-day home visits by DBS-checked engineers.',
-    url: 'https://neuro-it.co.uk/services',
+    url: 'https://neuroit.co.uk/services',
     type: 'website',
   },
   alternates: {
-    canonical: 'https://neuro-it.co.uk/services',
+    canonical: 'https://neuroit.co.uk/services',
   },
 }
 

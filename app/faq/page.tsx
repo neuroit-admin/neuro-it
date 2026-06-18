@@ -12,11 +12,11 @@ export const metadata: Metadata = {
     title: 'FAQ | Neuro IT London — Home IT Support Questions Answered',
     description:
       'Quick answers about our London home IT repair services. Same-day visits, No Fix No Fee, DBS-checked technicians.',
-    url: 'https://neuro-it.co.uk/faq',
+    url: 'https://neuroit.co.uk/faq',
     type: 'website',
   },
   alternates: {
-    canonical: 'https://neuro-it.co.uk/faq',
+    canonical: 'https://neuroit.co.uk/faq',
   },
 }
 

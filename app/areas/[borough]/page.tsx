@@ -201,7 +201,7 @@ export async function generateMetadata({ params }: { params: Promise<{ borough: 
   return {
     title: `IT Support ${data.name} | Same-Day Home Visits | Neuro IT`,
     description: data.desc || `Expert IT support in ${data.name}. Same-day home visits, vetted technicians. Laptop repair, virus removal, WiFi setup. No fix no fee guarantee.`,
-    alternates: { canonical: `https://neuro-it.co.uk/areas/${borough}` },
+    alternates: { canonical: `https://neuroit.co.uk/areas/${borough}` },
   }
 }
 

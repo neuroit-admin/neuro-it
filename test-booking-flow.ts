@@ -5,7 +5,7 @@ async function runTest() {
   console.log('--- STARTING BOOKING FLOW INTEGRATION TEST ---')
 
   // 1. Setup a test customer user
-  const testEmail = 'tester@neuro-it.co.uk'
+  const testEmail = 'tester@neuroit.co.uk'
   let user = await prisma.user.findUnique({
     where: { email: testEmail },
   })

@@ -41,14 +41,14 @@ export function LocalBusinessSchema({ areaName, areaUrl, latitude, longitude, po
   const schema = {
     '@context':   'https://schema.org',
     '@type':      'LocalBusiness',
-    '@id':        `https://neuro-it.co.uk${areaUrl ?? ''}#business`,
+    '@id':        `https://neuroit.co.uk${areaUrl ?? ''}#business`,
     name:         'Neuro IT',
     description:  `London's smartest home IT support. Same-day vetted technicians${areaName ? ` in ${areaName}` : ' across London'}.`,
-    url:          `https://neuro-it.co.uk${areaUrl ?? ''}`,
+    url:          `https://neuroit.co.uk${areaUrl ?? ''}`,
     telephone:    process.env.NEXT_PUBLIC_PHONE_NUMBER ?? '+442000000000',
-    email:        'hello@neuro-it.co.uk',
-    logo:         'https://neuro-it.co.uk/logo.png',
-    image:        'https://neuro-it.co.uk/og-image.jpg',
+    email:        'hello@neuroit.co.uk',
+    logo:         'https://neuroit.co.uk/logo.png',
+    image:        'https://neuroit.co.uk/og-image.jpg',
     priceRange:   '££',
     currenciesAccepted: 'GBP',
     paymentAccepted:    'Cash, Credit Card, Debit Card',
@@ -155,7 +155,7 @@ export function ServicePageSchema({ serviceName, description, priceMin, priceMax
     provider: {
       '@type': 'LocalBusiness',
       name:    'Neuro IT',
-      url:     'https://neuro-it.co.uk',
+      url:     'https://neuroit.co.uk',
     },
     areaServed:    { '@type': 'City', name: 'London' },
     offers: {

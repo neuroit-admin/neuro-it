@@ -16,7 +16,7 @@ export async function sendEmail({
   if (resend) {
     try {
       const response = await resend.emails.send({
-        from: process.env.RESEND_FROM_EMAIL || 'noreply@neuro-it.co.uk',
+        from: process.env.RESEND_FROM_EMAIL || 'noreply@neuroit.co.uk',
         to,
         subject,
         html,
@@ -46,7 +46,7 @@ export async function sendBookingConfirmation(email: string, referenceCode: stri
       <h2>Booking Confirmed</h2>
       <p>Your booking for <strong>${serviceName}</strong> has been confirmed.</p>
       <p>Reference: <code>${referenceCode}</code></p>
-      <p>Track your repair at: <a href="https://neuro-it.co.uk/portal">My Portal</a></p>
+      <p>Track your repair at: <a href="https://neuroit.co.uk/portal">My Portal</a></p>
     `,
   })
 }
@@ -71,7 +71,7 @@ export async function sendAdminNewTicketNotification(ticketDetails: {
   estimatedPrice: string
 }) {
   return sendEmail({
-    to: process.env.ADMIN_EMAIL || 'admin@neuro-it.co.uk',
+    to: process.env.ADMIN_EMAIL || 'admin@neuroit.co.uk',
     subject: `[NEW TICKET] Repair Request Received — ${ticketDetails.referenceCode}`,
     html: `
       <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 2rem; background: #0A0A0A; color: #FFFFFF; border: 1px solid #2A2A2A; border-radius: 8px;">

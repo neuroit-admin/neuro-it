@@ -8,7 +8,7 @@ import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'About Us | Neuro IT — London Home IT Support',
   description: 'Learn about Neuro IT — London\'s trusted home IT support service. DBS-checked engineers, No Fix No Fee guarantee, same-day visits across all boroughs.',
-  alternates: { canonical: 'https://neuro-it.co.uk/about' },
+  alternates: { canonical: 'https://neuroit.co.uk/about' },
 }
 
 export default function AboutPage() {

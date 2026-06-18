@@ -27,7 +27,7 @@ export async function POST(req: Request) {
       where: { email: cleanEmail }
     })
 
-    const targetAdminEmail = (process.env.ADMIN_EMAIL || 'admin@neuro-it.co.uk').trim().toLowerCase()
+    const targetAdminEmail = (process.env.ADMIN_EMAIL || 'admin@neuroit.co.uk').trim().toLowerCase()
 
     if (isAdminLogin) {
       if (!user || user.role !== 'ADMIN') {

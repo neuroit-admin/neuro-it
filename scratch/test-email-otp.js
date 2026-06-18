@@ -47,7 +47,7 @@ async function makeRequest(url, method, body) {
 async function runTests() {
   console.log('--- STARTING EMAIL OTP INTEGRATION TESTS ---');
   const serviceId = 'c2d6c51c-bf68-439f-864b-116abeec2704'; // Screen Replacement
-  const testEmail = `test-${Date.now()}@neuro-it.co.uk`;
+  const testEmail = `test-${Date.now()}@neuroit.co.uk`;
 
   const bookingBase = {
     serviceId: serviceId,

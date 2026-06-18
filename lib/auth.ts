@@ -66,7 +66,7 @@ export const authOptions: NextAuthOptions = {
           where: { email: dbToken.email },
         })
 
-        const targetAdminEmail = (process.env.ADMIN_EMAIL || 'admin@neuro-it.co.uk').trim().toLowerCase()
+        const targetAdminEmail = (process.env.ADMIN_EMAIL || 'admin@neuroit.co.uk').trim().toLowerCase()
         const isAdmin = dbToken.email.trim().toLowerCase() === targetAdminEmail
 
         if (!user) {

@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { prisma } from '@/lib/prisma'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://neuro-it.co.uk'
+  const baseUrl = 'https://neuroit.co.uk'
 
   const staticPages = [
     { url: baseUrl, priority: 1.0, changeFrequency: 'weekly' as const },

@@ -84,9 +84,9 @@ export default async function HomePage() {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     'name': 'Neuro IT',
-    'image': 'https://neuro-it.co.uk/assets/logo.png',
-    '@id': 'https://neuro-it.co.uk/#localbusiness',
-    'url': 'https://neuro-it.co.uk',
+    'image': 'https://neuroit.co.uk/assets/logo.png',
+    '@id': 'https://neuroit.co.uk/#localbusiness',
+    'url': 'https://neuroit.co.uk',
     'telephone': businessPhone,
     'priceRange': '££',
     'address': {

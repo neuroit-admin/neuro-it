@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title: 'Expert IT Support & Computer Repair Blog | Neuro IT',
   description: 'Read the Neuro IT blog for professional IT support tips, home cybersecurity advice, laptop repair guides, and technology insights in London.',
   alternates: {
-    canonical: 'https://neuro-it.co.uk/blog',
+    canonical: 'https://neuroit.co.uk/blog',
   },
 }
 
@@ -54,7 +54,7 @@ export default async function BlogIndexPage(props: {
     'publisher': {
       '@type': 'LocalBusiness',
       'name': 'Neuro IT',
-      'image': 'https://neuro-it.co.uk/assets/logo.png',
+      'image': 'https://neuroit.co.uk/assets/logo.png',
       'address': {
         '@type': 'PostalAddress',
         'addressLocality': 'London',
@@ -67,7 +67,7 @@ export default async function BlogIndexPage(props: {
       '@type': 'BlogPosting',
       'headline': post.title,
       'description': post.excerpt || post.metaDescription,
-      'url': `https://neuro-it.co.uk/blog/${post.slug}`,
+      'url': `https://neuroit.co.uk/blog/${post.slug}`,
       'datePublished': post.publishedAt?.toISOString(),
       'dateModified': post.updatedAt?.toISOString(),
       'author': {

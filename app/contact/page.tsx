@@ -11,11 +11,11 @@ export const metadata: Metadata = {
     title: 'Contact Neuro IT | London Home IT Support & Tech Repair',
     description:
       'Get in touch with Neuro IT. Contact our London dispatchers via WhatsApp, phone, email, or fill out our online contact form for rapid home IT support & device repairs.',
-    url: 'https://neuro-it.co.uk/contact',
+    url: 'https://neuroit.co.uk/contact',
     type: 'website',
   },
   alternates: {
-    canonical: 'https://neuro-it.co.uk/contact',
+    canonical: 'https://neuroit.co.uk/contact',
   },
 }
 

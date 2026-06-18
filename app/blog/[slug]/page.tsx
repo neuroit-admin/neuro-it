@@ -30,7 +30,7 @@ export async function generateMetadata({
     title: `${post.metaTitle || post.title} | Neuro IT`,
     description: post.metaDescription || post.excerpt || 'Neuro IT Support & Repair Blog Article',
     alternates: {
-      canonical: `https://neuro-it.co.uk/blog/${post.slug}`,
+      canonical: `https://neuroit.co.uk/blog/${post.slug}`,
     },
   }
 }
@@ -237,17 +237,17 @@ export default async function BlogPostDetailPage({
     'description': post.excerpt || post.metaDescription,
     'datePublished': post.publishedAt?.toISOString(),
     'dateModified': post.updatedAt?.toISOString(),
-    'url': `https://neuro-it.co.uk/blog/${post.slug}`,
-    'image': post.ogImage || 'https://neuro-it.co.uk/assets/blog-placeholder.png',
+    'url': `https://neuroit.co.uk/blog/${post.slug}`,
+    'image': post.ogImage || 'https://neuroit.co.uk/assets/blog-placeholder.png',
     'author': {
       '@type': 'Organization',
       'name': 'Neuro IT',
-      'url': 'https://neuro-it.co.uk',
+      'url': 'https://neuroit.co.uk',
     },
     'publisher': {
       '@type': 'LocalBusiness',
       'name': 'Neuro IT',
-      'image': 'https://neuro-it.co.uk/assets/logo.png',
+      'image': 'https://neuroit.co.uk/assets/logo.png',
       'address': {
         '@type': 'PostalAddress',
         'addressLocality': 'London',
@@ -347,7 +347,7 @@ export default async function BlogPostDetailPage({
                 <span style={{ color: 'var(--text-muted)', fontSize: '0.85rem', fontWeight: 600 }}>Share Article:</span>
                 <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                   <a
-                    href={`https://twitter.com/intent/tweet?url=https://neuro-it.co.uk/blog/${post.slug}&text=${encodeURIComponent(post.title)}`}
+                    href={`https://twitter.com/intent/tweet?url=https://neuroit.co.uk/blog/${post.slug}&text=${encodeURIComponent(post.title)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
@@ -364,7 +364,7 @@ export default async function BlogPostDetailPage({
                     X / Twitter
                   </a>
                   <a
-                    href={`https://www.linkedin.com/sharing/share-offsite/?url=https://neuro-it.co.uk/blog/${post.slug}`}
+                    href={`https://www.linkedin.com/sharing/share-offsite/?url=https://neuroit.co.uk/blog/${post.slug}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
@@ -381,7 +381,7 @@ export default async function BlogPostDetailPage({
                     LinkedIn
                   </a>
                   <a
-                    href={`https://www.facebook.com/sharer/sharer.php?u=https://neuro-it.co.uk/blog/${post.slug}`}
+                    href={`https://www.facebook.com/sharer/sharer.php?u=https://neuroit.co.uk/blog/${post.slug}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{
@@ -398,7 +398,7 @@ export default async function BlogPostDetailPage({
                     Facebook
                   </a>
                   <a
-                    href={`https://api.whatsapp.com/send?text=${encodeURIComponent(post.title + ' - https://neuro-it.co.uk/blog/' + post.slug)}`}
+                    href={`https://api.whatsapp.com/send?text=${encodeURIComponent(post.title + ' - https://neuroit.co.uk/blog/' + post.slug)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     style={{

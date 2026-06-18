@@ -41,7 +41,7 @@ export default function PrivacyPage() {
             },
             {
               title: '6. Your Rights',
-              body: 'Under UK GDPR you have the right to:\n• Access your personal data\n• Rectify inaccurate data\n• Erase your data ("right to be forgotten")\n• Object to processing\n• Data portability\n• Withdraw consent\n\nTo exercise these rights, email privacy@neuro-it.co.uk or use the data export/delete features in your account portal.',
+              body: 'Under UK GDPR you have the right to:\n• Access your personal data\n• Rectify inaccurate data\n• Erase your data ("right to be forgotten")\n• Object to processing\n• Data portability\n• Withdraw consent\n\nTo exercise these rights, email privacy@neuroit.co.uk or use the data export/delete features in your account portal.',
             },
             {
               title: '7. Data Security',
@@ -53,7 +53,7 @@ export default function PrivacyPage() {
             },
             {
               title: '9. Contact',
-              body: 'For privacy enquiries:\nEmail: privacy@neuro-it.co.uk\nICO Registration: ZB000000\nYou may also contact the ICO at ico.org.uk if you have concerns.',
+              body: 'For privacy enquiries:\nEmail: privacy@neuroit.co.uk\nICO Registration: ZB000000\nYou may also contact the ICO at ico.org.uk if you have concerns.',
             },
           ].map(({ title, body }) => (
             <section key={title} style={{ marginBottom: '2.5rem' }}>

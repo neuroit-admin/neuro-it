@@ -39,7 +39,7 @@ const jetbrains = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://neuro-it.co.uk'),
+  metadataBase: new URL('https://neuroit.co.uk'),
 
   title: {
     template: '%s | Neuro IT London',
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
     description: 'Same-day IT support at your door. Vetted technicians, no fix no fee.',
     type:        'website',
     locale:      'en_GB',
-    url:         'https://neuro-it.co.uk',
+    url:         'https://neuroit.co.uk',
     siteName:    'Neuro IT',
     images: [
       {
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
   },
 
   alternates: {
-    canonical: 'https://neuro-it.co.uk',
+    canonical: 'https://neuroit.co.uk',
   },
 
   manifest: '/manifest.json',

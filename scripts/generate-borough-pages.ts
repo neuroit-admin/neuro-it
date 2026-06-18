@@ -44,7 +44,7 @@ import { LocalBusinessSchema } from '@/components/seo/JsonLd'
 export const metadata: Metadata = {
   title: 'IT Support ${b.name} | Same-Day Home Visits | Neuro IT',
   description: 'Expert IT support in ${b.name}. Same-day home visits, DBS-checked technicians. Laptop repair, virus removal, WiFi setup. No fix no fee guarantee.',
-  alternates: { canonical: 'https://neuro-it.co.uk/it-support-${b.slug}' },
+  alternates: { canonical: 'https://neuroit.co.uk/it-support-${b.slug}' },
 }
 
 export default function BoroughPage() {

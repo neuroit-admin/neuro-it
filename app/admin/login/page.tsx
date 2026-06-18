@@ -176,7 +176,7 @@ export default function AdminLoginPage() {
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && handleAdminLogin()}
-                placeholder="admin@neuro-it.co.uk"
+                placeholder="admin@neuroit.co.uk"
                 disabled={isLoading}
                 style={{
                   width: '100%',

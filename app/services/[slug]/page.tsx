@@ -70,11 +70,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       title: meta.title,
       description: meta.description,
-      url: `https://neuro-it.co.uk/services/${slug}`,
+      url: `https://neuroit.co.uk/services/${slug}`,
       type: 'website',
     },
     alternates: {
-      canonical: `https://neuro-it.co.uk/services/${slug}`,
+      canonical: `https://neuroit.co.uk/services/${slug}`,
     },
   }
 }
