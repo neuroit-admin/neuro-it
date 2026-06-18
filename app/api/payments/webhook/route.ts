@@ -15,15 +15,18 @@ export async function POST(req: Request) {
     const isProduction = process.env.NODE_ENV === 'production'
     const hasStripeSecret = process.env.STRIPE_WEBHOOK_SECRET && !process.env.STRIPE_WEBHOOK_SECRET.startsWith('your-')
 
-    if (isProduction && !hasStripeSecret) {
-      console.error('[STRIPE WEBHOOK] Missing Stripe webhook secret in production!')
-      return NextResponse.json({ error: 'Webhook configuration error' }, { status: 500 })
-    }
-
-    if (hasStripeSecret) {
+    if (isProduction) {
+      if (!hasStripeSecret || !process.env.STRIPE_SECRET_KEY) {
+        console.error('[STRIPE WEBHOOK] Missing Stripe webhook secret or secret key in production!')
+        return NextResponse.json({ error: 'Webhook configuration error' }, { status: 500 })
+      }
+      
       const Stripe = (await import('stripe')).default
       const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2023-10-16' as any })
-      const sig = req.headers.get('stripe-signature')!
+      const sig = req.headers.get('stripe-signature')
+      if (!sig) {
+        return NextResponse.json({ error: 'Missing stripe-signature header' }, { status: 400 })
+      }
 
       const event = stripe.webhooks.constructEvent(body, sig, process.env.STRIPE_WEBHOOK_SECRET!)
 
@@ -36,17 +39,38 @@ export async function POST(req: Request) {
         stripeCustomerId = session.customer || ''
       }
     } else {
-      // Mock webhook event for local development only
-      try {
-        const jsonBody = JSON.parse(body)
-        if (jsonBody.type === 'checkout.session.completed' || jsonBody.mock_success) {
-          ticketId = jsonBody.ticketId
-          referenceCode = jsonBody.referenceCode
-          amountTotal = jsonBody.amount || 25
-          stripeIntentId = jsonBody.paymentIntentId || `pi_mock_${Date.now()}`
+      if (hasStripeSecret) {
+        const Stripe = (await import('stripe')).default
+        const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2023-10-16' as any })
+        const sig = req.headers.get('stripe-signature')
+        if (sig) {
+          try {
+            const event = stripe.webhooks.constructEvent(body, sig, process.env.STRIPE_WEBHOOK_SECRET!)
+            if (event.type === 'checkout.session.completed') {
+              const session = event.data.object as any
+              ticketId = session.metadata?.ticketId
+              referenceCode = session.metadata?.referenceCode
+              amountTotal = (session.amount_total ?? 0) / 100
+              stripeIntentId = session.payment_intent || ''
+              stripeCustomerId = session.customer || ''
+            }
+          } catch (err) {
+            console.error('[STRIPE WEBHOOK] Failed to construct stripe event in development:', err)
+          }
         }
-      } catch (err) {
-        console.log('[MOCK STRIPE WEBHOOK] Received raw web request:', body)
+      } else {
+        // Mock webhook event for local development only
+        try {
+          const jsonBody = JSON.parse(body)
+          if (jsonBody.type === 'checkout.session.completed' || jsonBody.mock_success) {
+            ticketId = jsonBody.ticketId
+            referenceCode = jsonBody.referenceCode
+            amountTotal = jsonBody.amount || 25
+            stripeIntentId = jsonBody.paymentIntentId || `pi_mock_${Date.now()}`
+          }
+        } catch (err) {
+          console.log('[MOCK STRIPE WEBHOOK] Received raw web request:', body)
+        }
       }
     }
 

@@ -1,0 +1,707 @@
+[
+  {
+    "id": "static-cat-1",
+    "name": "Laptop Services",
+    "slug": "laptop-services",
+    "icon": "Laptop",
+    "isActive": true,
+    "displayOrder": 1,
+    "services": [
+      {
+        "id": "static-svc-laptop-services-1",
+        "name": "Screen Replacement",
+        "slug": "screen-replacement",
+        "description": "Cracked or broken screen replaced with OEM-quality parts. All brands and resolutions — FHD, QHD, OLED. Colour calibrated and tested before handover.",
+        "basePriceMin": 79,
+        "basePriceMax": 250,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-laptop-services-2",
+        "name": "Battery Replacement",
+        "slug": "battery-replacement",
+        "description": "Genuine-spec cells restore full capacity. We test and report battery health before and after. Covers all laptop models including MacBook.",
+        "basePriceMin": 49,
+        "basePriceMax": 120,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-laptop-services-3",
+        "name": "Keyboard Replacement",
+        "slug": "keyboard-replacement",
+        "description": "Full keyboard swap or individual key repair for sticky, broken, or missing keys. UK and US layouts available. Backlit keyboards fully supported.",
+        "basePriceMin": 59,
+        "basePriceMax": 150,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-laptop-services-4",
+        "name": "Charging Port Repair",
+        "slug": "charging-port-repair",
+        "description": "Loose, damaged or broken charging ports. USB-C, MagSafe and barrel connectors all covered. Port cleaning included for intermittent charging faults.",
+        "basePriceMin": 49,
+        "basePriceMax": 100,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-laptop-services-5",
+        "name": "RAM Upgrade",
+        "slug": "ram-upgrade",
+        "description": "Boost multitasking performance without buying a new laptop. We advise the best upgrade path for your specific model and test under load after fitting.",
+        "basePriceMin": 39,
+        "basePriceMax": 90,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-laptop-services-6",
+        "name": "SSD / Storage Upgrade",
+        "slug": "ssd-storage-upgrade",
+        "description": "Replace a slow spinning hard drive or upgrade to a faster NVMe SSD. Full data migration included — everything as you left it, just much faster.",
+        "basePriceMin": 49,
+        "basePriceMax": 180,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-laptop-services-7",
+        "name": "Overheating Fix",
+        "slug": "overheating-fix",
+        "description": "Thermal paste replacement, deep fan cleaning and heatsink reseating. We benchmark temps before and after to confirm the fix — prevents long-term CPU damage.",
+        "basePriceMin": 39,
+        "basePriceMax": 80,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-laptop-services-8",
+        "name": "Water Damage Recovery",
+        "slug": "water-damage-recovery",
+        "description": "Board-level inspection, ultrasonic cleaning and controlled drying. Best chance of saving your laptop after a spill. No fix, no fee applies — power off immediately and call us.",
+        "basePriceMin": 89,
+        "basePriceMax": 250,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      }
+    ]
+  },
+  {
+    "id": "static-cat-2",
+    "name": "Desktop / PC",
+    "slug": "desktop-pc",
+    "icon": "Monitor",
+    "isActive": true,
+    "displayOrder": 2,
+    "services": [
+      {
+        "id": "static-svc-desktop-pc-1",
+        "name": "PC Repair & Diagnostics",
+        "slug": "pc-repair-diagnostics",
+        "description": "Full hardware and software diagnosis of any desktop fault. We identify and fix the root cause — not just the symptom. All components bench-tested and load-tested.",
+        "basePriceMin": 49,
+        "basePriceMax": 150,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-desktop-pc-2",
+        "name": "Custom PC Build",
+        "slug": "custom-pc-build",
+        "description": "We source, assemble, cable-manage and configure your dream build. Gaming, workstation or home office. OS installation, driver setup and benchmark testing included.",
+        "basePriceMin": 99,
+        "basePriceMax": 499,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-desktop-pc-3",
+        "name": "PC Upgrade",
+        "slug": "pc-upgrade",
+        "description": "GPU, CPU, RAM or storage upgrades with full compatibility checking before any parts are ordered. Performance benchmarking before and after upgrade included.",
+        "basePriceMin": 39,
+        "basePriceMax": 200,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-desktop-pc-4",
+        "name": "No Power Fix",
+        "slug": "no-power-fix",
+        "description": "PSU testing, motherboard diagnosis and component-level fault finding. We carry common PSU models for same-day swap if needed. Won't start? We'll find out why.",
+        "basePriceMin": 59,
+        "basePriceMax": 150,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-desktop-pc-5",
+        "name": "Graphics Card Repair",
+        "slug": "graphics-card-repair",
+        "description": "Reflow, reballing and thermal compound replacement for failing GPUs. Covers NVIDIA and AMD cards. Artifacts, black screen and driver crash faults all diagnosed.",
+        "basePriceMin": 69,
+        "basePriceMax": 250,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-desktop-pc-6",
+        "name": "Dust Clean & Maintenance",
+        "slug": "dust-clean-maintenance",
+        "description": "Deep compressed-air clean, thermal paste refresh on CPU/GPU and a full health check. Extends component life significantly and reduces noise. Recommended annually.",
+        "basePriceMin": 29,
+        "basePriceMax": 79,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      }
+    ]
+  },
+  {
+    "id": "static-cat-3",
+    "name": "Software & OS",
+    "slug": "software-os",
+    "icon": "Code",
+    "isActive": true,
+    "displayOrder": 3,
+    "services": [
+      {
+        "id": "static-svc-software-os-1",
+        "name": "Windows Reinstall",
+        "slug": "windows-reinstall",
+        "description": "Clean Windows 11 install with all drivers. Data backed up to external drive first and restored after. Activation included. Your apps re-installed and configured to your preferences.",
+        "basePriceMin": 49,
+        "basePriceMax": 120,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-software-os-2",
+        "name": "Driver Installation",
+        "slug": "driver-installation",
+        "description": "Missing or corrupt drivers fixed. Sound, graphics, network, Bluetooth, printer and specialist hardware drivers. No more yellow warning signs in Device Manager.",
+        "basePriceMin": 29,
+        "basePriceMax": 69,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-software-os-3",
+        "name": "Software Setup",
+        "slug": "software-setup",
+        "description": "Installation and configuration of any software. Microsoft 365, Adobe Creative Cloud, Zoom, Slack, specialist business tools. Licences transferred and accounts signed in.",
+        "basePriceMin": 29,
+        "basePriceMax": 79,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-software-os-4",
+        "name": "PC Optimisation",
+        "slug": "pc-optimisation",
+        "description": "Speed up a slow machine without hardware upgrades. Startup programs, background services, disk cleanup, bloatware removal and registry optimisation. Before/after comparison provided.",
+        "basePriceMin": 39,
+        "basePriceMax": 99,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-software-os-5",
+        "name": "Password Recovery",
+        "slug": "password-recovery",
+        "description": "Locked out of Windows, macOS or even BIOS? We regain access without data loss. Local accounts, Microsoft accounts and domain logins all covered.",
+        "basePriceMin": 39,
+        "basePriceMax": 89,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-software-os-6",
+        "name": "Email Setup",
+        "slug": "email-setup",
+        "description": "Gmail, Outlook, Apple Mail or business IMAP/Exchange configured on all your devices. Signature setup, contacts synced and calendar integrated across PC, phone and tablet.",
+        "basePriceMin": 29,
+        "basePriceMax": 69,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      }
+    ]
+  },
+  {
+    "id": "static-cat-4",
+    "name": "Virus & Security",
+    "slug": "virus-security",
+    "icon": "Shield",
+    "isActive": true,
+    "displayOrder": 4,
+    "services": [
+      {
+        "id": "static-svc-virus-security-1",
+        "name": "Virus Removal",
+        "slug": "virus-removal",
+        "description": "Complete malware, spyware, adware and rootkit removal using professional-grade tools. Root-cause analysis to understand how you were infected and prevent it happening again.",
+        "basePriceMin": 49,
+        "basePriceMax": 120,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-virus-security-2",
+        "name": "Ransomware Recovery",
+        "slug": "ransomware-recovery",
+        "description": "Encrypted files? We attempt decryption using known decryptors, isolate the infection and secure your system against repeat attacks. Do not pay the ransom — call us first.",
+        "basePriceMin": 89,
+        "basePriceMax": 299,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-virus-security-3",
+        "name": "Security Audit",
+        "slug": "security-audit",
+        "description": "Full vulnerability assessment of your home or business network and connected devices. We produce a written report with prioritised recommendations — actionable, not just a list of risks.",
+        "basePriceMin": 59,
+        "basePriceMax": 149,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-virus-security-4",
+        "name": "Parental Controls Setup",
+        "slug": "parental-controls-setup",
+        "description": "Safe browsing filters, screen time limits, content categorisation and app restrictions configured across all family devices — router level and per-device for maximum coverage.",
+        "basePriceMin": 29,
+        "basePriceMax": 79,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-virus-security-5",
+        "name": "VPN & Privacy Setup",
+        "slug": "vpn-privacy-setup",
+        "description": "Encrypted VPN, private DNS (AdGuard / NextDNS), tracker blocking and privacy-hardened browser configured correctly so they actually work — not just installed and forgotten.",
+        "basePriceMin": 39,
+        "basePriceMax": 99,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-virus-security-6",
+        "name": "Two-Factor Authentication",
+        "slug": "two-factor-authentication",
+        "description": "2FA configured across email, banking, social media and cloud accounts using an authenticator app. Backup codes stored safely. Hardware key (YubiKey) setup also available.",
+        "basePriceMin": 29,
+        "basePriceMax": 69,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      }
+    ]
+  },
+  {
+    "id": "static-cat-5",
+    "name": "Data & Recovery",
+    "slug": "data-recovery",
+    "icon": "Database",
+    "isActive": true,
+    "displayOrder": 5,
+    "services": [
+      {
+        "id": "static-svc-data-recovery-1",
+        "name": "Hard Drive Recovery",
+        "slug": "hard-drive-recovery",
+        "description": "Recover files from failed, damaged, formatted or accidental deletion scenarios. Logical and minor mechanical issues covered in-house. No data, no fee — always.",
+        "basePriceMin": 99,
+        "basePriceMax": 299,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-data-recovery-2",
+        "name": "SSD Data Recovery",
+        "slug": "ssd-data-recovery",
+        "description": "Specialist recovery from failed SSDs including NVMe, M.2 and SATA formats. Controller failure, NAND issues and firmware corruption all diagnosed. Clean-room referral for severe cases.",
+        "basePriceMin": 119,
+        "basePriceMax": 349,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-data-recovery-3",
+        "name": "Photo & Video Recovery",
+        "slug": "photo-video-recovery",
+        "description": "Deleted photos, corrupted SD cards, formatted drives and crashed camera storage recovered using professional imaging tools. JPEG, RAW, MP4, MOV all supported.",
+        "basePriceMin": 79,
+        "basePriceMax": 199,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-data-recovery-4",
+        "name": "Cloud Backup Setup",
+        "slug": "cloud-backup-setup",
+        "description": "Automated backup to OneDrive, Google Drive, iCloud or Backblaze configured and tested. Versioning enabled, schedule set, alerts configured. Never lose data again.",
+        "basePriceMin": 39,
+        "basePriceMax": 99,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-data-recovery-5",
+        "name": "Data Migration",
+        "slug": "data-migration",
+        "description": "Move everything from old to new device — files, settings, apps, browser bookmarks, email, contacts and accounts. We verify every folder before leaving your home.",
+        "basePriceMin": 49,
+        "basePriceMax": 120,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-data-recovery-6",
+        "name": "RAID Recovery",
+        "slug": "raid-recovery",
+        "description": "RAID 0, 1, 5 and 10 array recovery for home NAS devices and small business servers. Synology, QNAP and custom arrays. Array rebuild and health monitoring setup included.",
+        "basePriceMin": 149,
+        "basePriceMax": 499,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      }
+    ]
+  },
+  {
+    "id": "static-cat-6",
+    "name": "Home Network",
+    "slug": "home-network",
+    "icon": "Wifi",
+    "isActive": true,
+    "displayOrder": 6,
+    "services": [
+      {
+        "id": "static-svc-home-network-1",
+        "name": "WiFi Setup & Configuration",
+        "slug": "wifi-setup-configuration",
+        "description": "Router setup, SSID configuration, WPA3 security, optimal channel selection and band steering. ISP router or own equipment — we make it fast, stable and secure.",
+        "basePriceMin": 49,
+        "basePriceMax": 120,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-home-network-2",
+        "name": "WiFi Dead Zone Fix",
+        "slug": "wifi-dead-zone-fix",
+        "description": "Mesh systems, access points and powerline adapters to eliminate weak signal areas. We do a full site survey before recommending the right solution for your property layout.",
+        "basePriceMin": 49,
+        "basePriceMax": 149,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-home-network-3",
+        "name": "Smart Home Setup",
+        "slug": "smart-home-setup",
+        "description": "Alexa, Google Home, Apple HomeKit, Philips Hue, smart plugs, Ring doorbells and thermostats — configured, automated and integrated so everything works together seamlessly.",
+        "basePriceMin": 59,
+        "basePriceMax": 199,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-home-network-4",
+        "name": "Network Security Hardening",
+        "slug": "network-security-hardening",
+        "description": "Firewall rules, guest network isolation, MAC address filtering, firmware updates and DNS-level ad blocking. Your home network, locked down properly.",
+        "basePriceMin": 49,
+        "basePriceMax": 120,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-home-network-5",
+        "name": "Printer Setup",
+        "slug": "printer-setup",
+        "description": "Wired or wireless printer connected to all devices in your home. Scan-to-email, mobile printing via AirPrint or Google Cloud Print, and fax-to-email where applicable.",
+        "basePriceMin": 29,
+        "basePriceMax": 69,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-home-network-6",
+        "name": "NAS / Home Server Setup",
+        "slug": "nas-home-server-setup",
+        "description": "Synology, QNAP or custom NAS configured for media streaming (Plex/Jellyfin), automated backup, remote access and RAID protection. Everything set up, tested and explained.",
+        "basePriceMin": 79,
+        "basePriceMax": 249,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      }
+    ]
+  },
+  {
+    "id": "static-cat-7",
+    "name": "Remote Support",
+    "slug": "remote-support",
+    "icon": "MousePointer",
+    "isActive": true,
+    "displayOrder": 7,
+    "services": [
+      {
+        "id": "static-svc-remote-support-1",
+        "name": "Remote Session — 30 min",
+        "slug": "remote-session-30-min",
+        "description": "Quick remote session via secure screen share. Perfect for software glitches, settings, account issues and quick fixes. No travel charge. Available same day, often within the hour.",
+        "basePriceMin": 29,
+        "basePriceMax": 29,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-remote-support-2",
+        "name": "Remote Session — 1 Hour",
+        "slug": "remote-session-1-hour",
+        "description": "Extended remote session for more complex software problems — virus scans, system optimisation, driver conflicts and configuration issues. No waiting, no travel, no hassle.",
+        "basePriceMin": 49,
+        "basePriceMax": 49,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-remote-support-3",
+        "name": "Business Remote Plan",
+        "slug": "business-remote-plan",
+        "description": "Monthly remote support retainer for small businesses. Dedicated technician, guaranteed 4-hour response, unlimited remote sessions and quarterly security audits. Billed monthly, cancel anytime.",
+        "basePriceMin": 79,
+        "basePriceMax": 79,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      }
+    ]
+  },
+  {
+    "id": "static-cat-8",
+    "name": "New Device Setup",
+    "slug": "new-device-setup",
+    "icon": "Package",
+    "isActive": true,
+    "displayOrder": 8,
+    "services": [
+      {
+        "id": "static-svc-new-device-setup-1",
+        "name": "New Laptop Setup",
+        "slug": "new-laptop-setup",
+        "description": "Unbox, Windows activation, all drivers installed, your apps set up and data migrated from your old laptop. Accounts signed in, email configured, printer connected. Ready to use immediately.",
+        "basePriceMin": 49,
+        "basePriceMax": 120,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-new-device-setup-2",
+        "name": "New PC Setup",
+        "slug": "new-pc-setup",
+        "description": "Windows activation, all drivers, software installation, security configuration and peripheral setup. Existing files migrated from old machine. We don't leave until everything works.",
+        "basePriceMin": 49,
+        "basePriceMax": 140,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-new-device-setup-3",
+        "name": "New Phone Setup",
+        "slug": "new-phone-setup",
+        "description": "iPhone or Android — contacts, photos, apps, messages and accounts transferred from your old phone. WhatsApp history migrated. Everything works from day one, nothing lost.",
+        "basePriceMin": 29,
+        "basePriceMax": 69,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-new-device-setup-4",
+        "name": "Smart TV Setup",
+        "slug": "smart-tv-setup",
+        "description": "Netflix, Prime, Disney+, Apple TV+ and other streaming services signed in and configured. Screencasting, HDMI-ARC, soundbar pairing and parental controls all included.",
+        "basePriceMin": 39,
+        "basePriceMax": 99,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      }
+    ]
+  },
+  {
+    "id": "static-cat-9",
+    "name": "Apple / Mac",
+    "slug": "apple-mac",
+    "icon": "Apple",
+    "isActive": true,
+    "displayOrder": 9,
+    "services": [
+      {
+        "id": "static-svc-apple-mac-1",
+        "name": "MacBook Screen Replacement",
+        "slug": "macbook-screen-replacement",
+        "description": "OEM-quality Retina and Liquid Retina displays for all MacBook Air and Pro models (M1, M2, M3, Intel). Colour calibrated and True Tone restored after fitting.",
+        "basePriceMin": 149,
+        "basePriceMax": 399,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-apple-mac-2",
+        "name": "MacBook Battery Replacement",
+        "slug": "macbook-battery-replacement",
+        "description": "Apple-spec capacity cells that pass Apple's own battery health diagnostic. Covers all MacBook models including MagSafe and USB-C. Cycle count reset confirmed.",
+        "basePriceMin": 89,
+        "basePriceMax": 199,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-apple-mac-3",
+        "name": "macOS Reinstall",
+        "slug": "macos-reinstall-apple",
+        "description": "Clean macOS install, Time Machine restore or fresh setup with data migration. Sonoma, Ventura, Monterey all covered. Data backed up before any work begins.",
+        "basePriceMin": 59,
+        "basePriceMax": 129,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-apple-mac-4",
+        "name": "iPhone Screen Repair",
+        "slug": "iphone-screen-repair",
+        "description": "OEM-quality OLED and LCD screens for all iPhone models (12 through 16 Pro Max). True Tone, Face ID and ProMotion 120Hz all preserved. 90-day parts warranty included.",
+        "basePriceMin": 49,
+        "basePriceMax": 199,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-apple-mac-5",
+        "name": "iPhone Battery Replacement",
+        "slug": "iphone-battery-replacement",
+        "description": "Genuine-spec cells that restore your battery capacity to 100% and pass Apple's battery health check. Covers iPhone 12 through 16. Maximum capacity guarantee.",
+        "basePriceMin": 39,
+        "basePriceMax": 99,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-apple-mac-6",
+        "name": "Mac Upgrade (RAM / SSD)",
+        "slug": "mac-upgrade-ram-ssd",
+        "description": "Upgrade older Intel Macs with faster SSDs and more RAM for a significant performance boost. iMac, Mac Mini and older MacBook Pro models supported. Data migrated, nothing lost.",
+        "basePriceMin": 79,
+        "basePriceMax": 249,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      }
+    ]
+  },
+  {
+    "id": "static-cat-10",
+    "name": "Emergency",
+    "slug": "emergency",
+    "icon": "Zap",
+    "isActive": true,
+    "displayOrder": 10,
+    "services": [
+      {
+        "id": "static-svc-emergency-1",
+        "name": "Same-Day Emergency Callout",
+        "slug": "emergency-same-day-home-visit",
+        "description": "Priority engineer dispatched to your location — available 7 days a week including bank holidays. WhatsApp ETA tracking from the moment of booking. 100% upfront payment required for emergency slots.",
+        "basePriceMin": 89,
+        "basePriceMax": 199,
+        "callOutFee": 50,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-emergency-2",
+        "name": "Out-of-Hours Callout",
+        "slug": "out-of-hours-support",
+        "description": "Evening (after 6pm) and weekend emergency response for critical issues that genuinely can't wait. Surcharge applies for out-of-hours visits — shown transparently before payment.",
+        "basePriceMin": 119,
+        "basePriceMax": 249,
+        "callOutFee": 75,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-emergency-3",
+        "name": "Business Critical Response",
+        "slug": "business-critical-response",
+        "description": "Server down, ransomware attack or total network failure? Priority dispatch for business-critical emergencies. Remote triage begins immediately while engineer is en route.",
+        "basePriceMin": 149,
+        "basePriceMax": 349,
+        "callOutFee": 100,
+        "isEmergencyReady": true,
+        "isActive": true
+      },
+      {
+        "id": "static-svc-emergency-4",
+        "name": "Pre-Event Tech Check",
+        "slug": "pre-event-tech-check",
+        "description": "Presentation tomorrow? Conference next week? We come to your location in advance and ensure every piece of tech works perfectly — projectors, laptops, AV, WiFi and backup plans.",
+        "basePriceMin": 79,
+        "basePriceMax": 199,
+        "callOutFee": 0,
+        "isEmergencyReady": true,
+        "isActive": true
+      }
+    ]
+  }
+]

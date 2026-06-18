@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server'
-import fs from 'fs'
-import path from 'path'
+import { prisma } from '@/lib/prisma'
 import { checkRateLimit, CONTACT_LIMIT, getClientIp } from '@/lib/rate-limit'
 
 function sanitizeInput(text: string): string {
@@ -38,35 +37,17 @@ export async function POST(req: Request) {
     const sanitizedPhone = sanitizeInput(phone ? phone.trim() : '')
     const sanitizedMessage = sanitizeInput(message.trim())
 
-    const submission = {
-      id: Math.random().toString(36).substring(2, 9),
-      name: sanitizedName,
-      email: sanitizedEmail,
-      phone: sanitizedPhone,
-      message: sanitizedMessage,
-      createdAt: new Date().toISOString(),
-    }
+    // Save to the database instead of local file
+    const contactMessage = await prisma.contactMessage.create({
+      data: {
+        name: sanitizedName,
+        email: sanitizedEmail,
+        phone: sanitizedPhone || null,
+        message: sanitizedMessage,
+      },
+    })
 
-    // Append to a local JSON file inside uploads directory for persistence
-    const dirPath = path.join(process.cwd(), 'uploads')
-    if (!fs.existsSync(dirPath)) {
-      fs.mkdirSync(dirPath, { recursive: true })
-    }
-
-    const filePath = path.join(dirPath, 'contacts.json')
-    let submissions = []
-    if (fs.existsSync(filePath)) {
-      try {
-        const fileContent = fs.readFileSync(filePath, 'utf-8')
-        submissions = JSON.parse(fileContent)
-      } catch (e) {
-        submissions = []
-      }
-    }
-    submissions.push(submission)
-    fs.writeFileSync(filePath, JSON.stringify(submissions, null, 2), 'utf-8')
-
-    console.log('New Contact Submission:', submission)
+    console.log('New Contact Submission Saved to DB:', contactMessage)
 
     return NextResponse.json({ success: true, message: 'Message sent successfully' })
   } catch (error) {

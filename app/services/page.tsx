@@ -4,6 +4,7 @@ import Footer from '@/components/layout/Footer'
 import StickyBottomBar from '@/components/layout/StickyBottomBar'
 import { prisma } from '@/lib/prisma'
 import ServicesClient from './ServicesClient'
+import staticCategories from '@/lib/staticServices.json'
 
 export const metadata: Metadata = {
   title: 'Services & Pricing | Neuro IT London',
@@ -60,7 +61,11 @@ async function getCategories() {
 }
 
 export default async function ServicesPage() {
-  const categories = await getCategories()
+  let categories = await getCategories()
+
+  if (!categories || categories.length === 0) {
+    categories = staticCategories
+  }
 
   return (
     <>

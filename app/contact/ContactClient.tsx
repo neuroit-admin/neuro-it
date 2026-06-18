@@ -195,7 +195,7 @@ export default function ContactClient() {
           <div>
             <h3 className="font-syne" style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '1.1rem', marginBottom: '0.25rem' }}>Service Headquarters</h3>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: 1.4, margin: 0 }}>
-              Neuro IT Support Services • London Wall, City of London • EC1A 1BB, United Kingdom
+              {process.env.NEXT_PUBLIC_BUSINESS_NAME || 'Neuro IT'} • {process.env.NEXT_PUBLIC_BUSINESS_ADDRESS || '71-75 Shelton Street, Covent Garden, London, WC2H 9JQ'}
             </p>
           </div>
         </div>

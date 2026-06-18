@@ -34,6 +34,10 @@ export async function POST(req: Request) {
     }
 
     // Mock response for development only
+    if (isProduction) {
+      return NextResponse.json({ error: 'Payment gateway configuration error' }, { status: 500 })
+    }
+
     const mockId = `pi_mock_${Date.now()}_${Math.random().toString(36).substr(2, 6)}`
     console.log(`[MOCK STRIPE] Payment intent created: £${amount} (${mockId})`)
 

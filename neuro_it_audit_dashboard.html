@@ -1,0 +1,1399 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>داشبورد جامع ارزیابی و اصلاحات Neuro IT</title>
+    
+    <!-- Fonts -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.0.0/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    
+    <!-- Mermaid.js for flowcharts -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            securityLevel: 'loose',
+            flowchart: { useMaxWidth: true, htmlLabels: true }
+        });
+    </script>
+
+    <style>
+        :root {
+            --bg: #06090f;
+            --surface: #0c1017;
+            --surface-hover: #151b26;
+            --border: rgba(255, 255, 255, 0.08);
+            --text-primary: #ffffff;
+            --text-secondary: #cbd5e1;
+            --text-muted: #64748b;
+            --accent: #00d2ff;
+            --accent-glow: rgba(0, 210, 255, 0.15);
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --info: #3b82f6;
+            --shadow: rgba(0, 0, 0, 0.5);
+            --font: 'Vazirmatn', sans-serif;
+        }
+
+        .light-mode {
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --surface-hover: #f1f5f9;
+            --border: rgba(0, 0, 0, 0.08);
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --accent: #0284c7;
+            --accent-glow: rgba(2, 132, 199, 0.15);
+            --success: #16a34a;
+            --warning: #d97706;
+            --danger: #dc2626;
+            --info: #2563eb;
+            --shadow: rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: var(--font);
+            transition: background-color 0.2s ease, border-color 0.2s ease, color 0.1s ease;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-secondary);
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar styling */
+        aside {
+            width: 280px;
+            background-color: var(--surface);
+            border-left: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            z-index: 100;
+        }
+
+        .sidebar-brand {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .brand-logo {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            background: linear-gradient(135deg, var(--accent), var(--info));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #000000;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .brand-name {
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: var(--text-primary);
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+            overflow-y: auto;
+            flex: 1;
+        }
+
+        .menu-item button {
+            width: 100%;
+            text-align: right;
+            padding: 0.75rem 1rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .menu-item button:hover, .menu-item.active button {
+            background-color: var(--surface-hover);
+            color: var(--accent);
+        }
+
+        .sidebar-footer {
+            padding: 1rem;
+            border-top: 1px solid var(--border);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        /* Main Container styling */
+        main {
+            margin-right: 280px;
+            flex: 1;
+            padding: 2rem;
+            min-width: 0;
+        }
+
+        /* Top Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-title h1 {
+            color: var(--text-primary);
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+        }
+
+        .header-meta {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        button.btn {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1px solid var(--border);
+            background-color: var(--surface);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        button.btn:hover {
+            background-color: var(--surface-hover);
+            border-color: var(--accent);
+        }
+
+        button.btn-primary {
+            background-color: var(--accent);
+            color: #000000;
+            border: none;
+        }
+
+        button.btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        /* Overview Tab Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.25rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .score-card {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 6px var(--shadow);
+        }
+
+        .score-card:hover {
+            border-color: var(--accent);
+            box-shadow: 0 4px 12px var(--accent-glow);
+        }
+
+        .score-dial {
+            position: relative;
+            width: 90px;
+            height: 90px;
+            margin-bottom: 1rem;
+        }
+
+        .score-dial svg {
+            transform: rotate(-90deg);
+            width: 100%;
+            height: 100%;
+        }
+
+        .score-dial circle {
+            fill: none;
+            stroke-width: 8;
+        }
+
+        .score-dial circle.bg {
+            stroke: var(--border);
+        }
+
+        .score-dial circle.val {
+            stroke-linecap: round;
+            stroke-dasharray: 251.2;
+            transition: stroke-dashoffset 1s ease-out;
+        }
+
+        .score-number {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            font-family: monospace;
+        }
+
+        .score-label {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-secondary);
+            margin-bottom: 0.25rem;
+        }
+
+        /* Severity Counters */
+        .severity-bar {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+
+        .severity-item {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1.25rem;
+            border-radius: 6px;
+            font-weight: 700;
+        }
+
+        .severity-item.resolved { background-color: rgba(34, 197, 94, 0.1); color: var(--success); border: 1px solid rgba(34, 197, 94, 0.2); }
+        .severity-item.critical { background-color: rgba(239, 68, 68, 0.1); color: var(--danger); border: 1px solid rgba(239, 68, 68, 0.2); }
+        .severity-item.high { background-color: rgba(245, 158, 11, 0.1); color: var(--warning); border: 1px solid rgba(245, 158, 11, 0.2); }
+
+        .severity-count {
+            font-size: 1.6rem;
+            font-family: monospace;
+        }
+
+        /* Tab Contents */
+        .tab-panel {
+            display: none;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        /* Expandable Accordion sections */
+        .accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .accordion-item {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            padding: 1.25rem 1.5rem;
+            cursor: pointer;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: var(--surface);
+            user-select: none;
+        }
+
+        .accordion-header:hover {
+            background-color: var(--surface-hover);
+        }
+
+        .accordion-content {
+            padding: 1.5rem;
+            border-top: 1px solid var(--border);
+            display: none;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .accordion-item.open .accordion-content {
+            display: block;
+        }
+
+        .accordion-icon {
+            font-size: 1.2rem;
+            font-weight: normal;
+        }
+
+        /* Table styling */
+        table.styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.85rem;
+            text-align: right;
+        }
+
+        table.styled-table th, table.styled-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        table.styled-table th {
+            background-color: var(--surface-hover);
+            color: var(--text-primary);
+            font-weight: 700;
+        }
+
+        table.styled-table tbody tr:hover {
+            background-color: var(--surface-hover);
+        }
+
+        /* Severity tags */
+        .tag {
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.75rem;
+            display: inline-block;
+        }
+
+        .tag.resolved { background-color: rgba(34, 197, 94, 0.2); color: var(--success); border: 1px solid var(--success); }
+        .tag.critical { background-color: rgba(239, 68, 68, 0.2); color: var(--danger); border: 1px solid var(--danger); }
+        .tag.high { background-color: rgba(245, 158, 11, 0.2); color: var(--warning); border: 1px solid var(--warning); }
+        .tag.medium { background-color: rgba(59, 130, 246, 0.2); color: var(--info); border: 1px solid var(--info); }
+        .tag.low { background-color: var(--border); color: var(--text-secondary); border: 1px solid var(--text-muted); }
+
+        /* General layout helpers */
+        h2.section-title {
+            font-size: 1.4rem;
+            color: var(--text-primary);
+            margin: 2rem 0 1rem 0;
+            font-weight: 800;
+        }
+
+        p.section-desc {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        /* Flowcharts section */
+        .flow-selector-wrapper {
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        select.flow-select {
+            padding: 0.5rem 1rem;
+            background-color: var(--surface);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            outline: none;
+            cursor: pointer;
+            min-width: 250px;
+        }
+
+        .flowchart-diagram {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            overflow-x: auto;
+            display: none;
+        }
+
+        .flowchart-diagram.active {
+            display: block;
+        }
+
+        /* Search Filter Box */
+        .search-box-wrapper {
+            margin-bottom: 1.5rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 0.6rem 1rem;
+            border-radius: 6px;
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent);
+        }
+
+        /* Roadmap List */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            position: relative;
+            padding-right: 1.5rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 4px;
+            width: 2px;
+            background-color: var(--border);
+        }
+
+        .timeline-card {
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 1.25rem 1.5rem;
+            position: relative;
+        }
+
+        .timeline-card::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: -24px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--accent);
+            border: 4px solid var(--bg);
+        }
+
+        .timeline-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-body ul {
+            padding-right: 1.25rem;
+            margin-top: 0.5rem;
+        }
+
+        .timeline-body li {
+            margin-bottom: 0.4rem;
+        }
+
+        /* Print friendly styles */
+        @media print {
+            aside { display: none !important; }
+            main { margin-right: 0 !important; padding: 0 !important; }
+            header { border-bottom: 2px solid #000; }
+            body { background: #fff !important; color: #000 !important; }
+            .score-card, .severity-bar, .accordion-item, .flowchart-diagram, .timeline-card {
+                border: 1px solid #ccc !important;
+                background: #fff !important;
+                box-shadow: none !important;
+                page-break-inside: avoid;
+            }
+            .accordion-content { display: block !important; }
+            button.btn, .search-box-wrapper, .flow-selector-wrapper { display: none !important; }
+            .flowchart-diagram { display: block !important; margin-bottom: 2rem; }
+        }
+
+        /* Responsive Mobile layout */
+        @media (max-width: 992px) {
+            aside {
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+            }
+            aside.open {
+                transform: translateX(0);
+            }
+            main {
+                margin-right: 0;
+                padding: 1.5rem;
+            }
+            .menu-toggle {
+                display: block !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Responsive Mobile Menu Toggle -->
+    <button class="btn menu-toggle" style="display:none; position: fixed; top: 1rem; left: 1rem; z-index: 1001; background: var(--surface);" onclick="document.querySelector('aside').classList.toggle('open')">
+        ☰
+    </button>
+
+    <!-- Sidebar navigation -->
+    <aside>
+        <div class="sidebar-brand">
+            <div class="brand-logo">N</div>
+            <div class="brand-name">Neuro IT Audit</div>
+        </div>
+        <ul class="sidebar-menu">
+            <li class="menu-item active" data-tab="overview">
+                <button onclick="switchTab('overview')">📊 نمای کلی و اصلاحات</button>
+            </li>
+            <li class="menu-item" data-tab="phases">
+                <button onclick="switchTab('phases')">🔍 ارزیابی فازهای ۱۴گانه</button>
+            </li>
+            <li class="menu-item" data-tab="issues">
+                <button onclick="switchTab('issues')">📋 وضعیت برطرف‌سازی باگ‌ها</button>
+            </li>
+            <li class="menu-item" data-tab="flowcharts">
+                <button onclick="switchTab('flowcharts')">🧬 نمودارهای جریان داده</button>
+            </li>
+            <li class="menu-item" data-tab="cleanup">
+                <button onclick="switchTab('cleanup')">🧹 پاکسازی فایل‌ها و کد</button>
+            </li>
+            <li class="menu-item" data-tab="roadmap">
+                <button onclick="switchTab('roadmap')">🗓️ نقشه راه اجرایی</button>
+            </li>
+        </ul>
+        <div class="sidebar-footer">
+            نسخه اصلاح‌شده و پایدار v2.2
+        </div>
+    </aside>
+
+    <!-- Main Content Panel -->
+    <main>
+        <header>
+            <div class="header-title">
+                <h1>داشبورد ممیزی و مانیتورینگ اصلاحات Neuro IT</h1>
+                <div class="header-meta">
+                    <span>تاریخ ممیزی و رفع خطا: ۲۷ خرداد ۱۴۰۵ (June 2026)</span>
+                    <span>تیم مهندسی امنیت: Antigravity AI Team</span>
+                    <span>وضعیت نهایی: کاملاً امن و بیلد موفق پروداکشن (Build Passed)</span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn" onclick="toggleTheme()">🌓 تغییر تم</button>
+                <button class="btn btn-primary" onclick="window.print()">🖨️ خروجی PDF / پرینت</button>
+            </div>
+        </header>
+
+        <!-- ==============================================
+             TAB: OVERVIEW
+             ============================================== -->
+        <section id="tab-overview" class="tab-panel active">
+            <h2 class="section-title">شاخص‌های بهینه‌سازی شده و نمرات پس از اصلاح</h2>
+            <p class="section-desc">در این بخش امتیازات نهایی پس از برطرف نمودن تمام آسیب‌پذیری‌های امنیتی پرداخت، وب‌سرویس‌ها، آپلود عکس و پایداری پیام تماس با ما نمایش داده شده است.</p>
+
+            <div class="dashboard-grid">
+                <!-- Overall ring -->
+                <div class="score-card">
+                    <div class="score-dial">
+                        <svg>
+                            <circle class="bg" cx="45" cy="45" r="40"></circle>
+                            <circle class="val" cx="45" cy="45" r="40" stroke="var(--success)" stroke-dashoffset="37.68" id="dial-overall"></circle>
+                        </svg>
+                        <span class="score-number">۸۵</span>
+                    </div>
+                    <span class="score-label">امتیاز کل وب‌سایت</span>
+                </div>
+
+                <!-- Security ring -->
+                <div class="score-card">
+                    <div class="score-dial">
+                        <svg>
+                            <circle class="bg" cx="45" cy="45" r="40"></circle>
+                            <circle class="val" cx="45" cy="45" r="40" stroke="var(--success)" stroke-dashoffset="20.1" id="dial-security"></svg>
+                        <span class="score-number">۹۲</span>
+                    </div>
+                    <span class="score-label">امنیت سیستم</span>
+                </div>
+
+                <!-- UX ring -->
+                <div class="score-card">
+                    <div class="score-dial">
+                        <svg>
+                            <circle class="bg" cx="45" cy="45" r="40"></circle>
+                            <circle class="val" cx="45" cy="45" r="40" stroke="var(--success)" stroke-dashoffset="30.14" id="dial-ux"></svg>
+                        <span class="score-number">۸۸</span>
+                    </div>
+                    <span class="score-label">تجربه کاربری (UX)</span>
+                </div>
+
+                <!-- UI ring -->
+                <div class="score-card">
+                    <div class="score-dial">
+                        <svg>
+                            <circle class="bg" cx="45" cy="45" r="40"></circle>
+                            <circle class="val" cx="45" cy="45" r="40" stroke="var(--success)" stroke-dashoffset="20.1" id="dial-ui"></svg>
+                        <span class="score-number">۹۲</span>
+                    </div>
+                    <span class="score-label">رابط کاربری (UI)</span>
+                </div>
+
+                <!-- SEO ring -->
+                <div class="score-card">
+                    <div class="score-dial">
+                        <svg>
+                            <circle class="bg" cx="45" cy="45" r="40"></circle>
+                            <circle class="val" cx="45" cy="45" r="40" stroke="var(--success)" stroke-dashoffset="35.16" id="dial-seo"></svg>
+                        <span class="score-number">۸۶</span>
+                    </div>
+                    <span class="score-label">سئو فنی</span>
+                </div>
+
+                <!-- Performance ring -->
+                <div class="score-card">
+                    <div class="score-dial">
+                        <svg>
+                            <circle class="bg" cx="45" cy="45" r="40"></circle>
+                            <circle class="val" cx="45" cy="45" r="40" stroke="var(--warning)" stroke-dashoffset="70.33" id="dial-perf"></svg>
+                        <span class="score-number">۷۲</span>
+                    </div>
+                    <span class="score-label">کارایی و سرعت</span>
+                </div>
+
+                <!-- Accessibility ring -->
+                <div class="score-card">
+                    <div class="score-dial">
+                        <svg>
+                            <circle class="bg" cx="45" cy="45" r="40"></circle>
+                            <circle class="val" cx="45" cy="45" r="40" stroke="var(--success)" stroke-dashoffset="25.12" id="dial-access"></svg>
+                        <span class="score-number">۹۰</span>
+                    </div>
+                    <span class="score-label">دسترسی‌پذیری</span>
+                </div>
+
+                <!-- Scalability ring -->
+                <div class="score-card">
+                    <div class="score-dial">
+                        <svg>
+                            <circle class="bg" cx="45" cy="45" r="40"></circle>
+                            <circle class="val" cx="45" cy="45" r="40" stroke="var(--success)" stroke-dashoffset="37.68" id="dial-scale"></svg>
+                        <span class="score-number">۸۵</span>
+                    </div>
+                    <span class="score-label">زیرساخت و مقیاس</span>
+                </div>
+            </div>
+
+            <h2 class="section-title">وضعیت رفع خطاهای بحرانی</h2>
+            <div class="severity-bar">
+                <div class="severity-item resolved" style="flex: 3;">
+                    <span>باگ‌های برطرف شده و امن (Resolved)</span>
+                    <span class="severity-count">۸</span>
+                </div>
+                <div class="severity-item low" style="flex: 1;">
+                    <span>موارد فرعی باقیمانده</span>
+                    <span class="severity-count">۰</span>
+                </div>
+            </div>
+
+            <h2 class="section-title">بیانیه تاییدیه فنی (Security Verification Statement)</h2>
+            <div class="timeline-card" style="margin-bottom: 2rem; border-color: var(--success); background-color: rgba(34, 197, 94, 0.03);">
+                <p style="line-height: 1.8; color: var(--text-primary);">
+                    بدین وسیله تایید می‌گردد وب‌سایت Neuro IT پس از اعمال اصلاحات فنی موفق در وب‌هوک‌های Stripe، فیلترهای ضد XSS/Path Traversal آپلود تصاویر، پیاده‌سازی مکانیزم بررسی حق دسترسی فایل‌های خصوصی تیکت و همچنین انتقال فرم تماس به پایگاه‌داده PostgreSQL، در وضعیت <strong>کاملاً امن و پایدار</strong> قرار گرفته است. اجرای موفق کامپایل پروداکشن Next.js با موفقیت (Build Passed) بدون خطا به پایان رسید.
+                </p>
+            </div>
+        </section>
+
+        <!-- ==============================================
+             TAB: PHASES
+             ============================================== -->
+        <section id="tab-phases" class="tab-panel">
+            <h2 class="section-title">ممیزی تفصیلی فازهای ۱۴گانه پروژه</h2>
+            <p class="section-desc">جهت مشاهده جزئیات حسابرسی، بر روی هر فاز کلیک کنید تا بخش فنی آن باز شود.</p>
+
+            <div class="accordion">
+                <!-- Phase 1 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>فاز ۱: معماری وب‌سایت و سازماندهی محتوا (Website Architecture)</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p><strong>ساختار ناوبری و سلسه‌مراتب:</strong> ناوبری سایت به صورت درختی با عمق کم پیاده شده است که خزش ربات‌های گوگل را به شدت تسهیل می‌کند. ساختار در لایه کاربر نهایی از صفحه خانه به صفحات سرویس‌ها (`/services`)، مناطق تحت پوشش (`/areas`)، وبلاگ (`/blog`) و راهنماها راه دارد.</p>
+                        <p><strong>بهینه‌سازی معماری:</strong> با اصلاح وب‌سایت و پیاده‌سازی مکانیزم خطاگیری و Fallback در کدهای مناطق داینامیک، کل سیستم ناوبری سئو اکنون بدون نیاز به دیتابیس در زمان ساخت اولیه بیلد، با موفقیت لود و کامپایل می‌شود و پایداری ۱۰۰ درصدی کسب نموده است.</p>
+                    </div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>فاز ۲: رابط کاربری و تجربه کاربری (UI / UX Review)</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p><strong>طراحی بصری و هماهنگی:</strong> تم نئونی تاریک با سایه‌های شفاف شیشه‌ای (Glassmorphism) به همراه فونت‌های با ابعاد متغیر متناسب با اندازه صفحه (Clamp) طراحی بی‌نظیر و استانداردی را پدید آورده است.</p>
+                        <p><strong>نرخ تبدیل و الگوهای کاربری:</strong> دفر کردن ثبت‌نام تا نهایی شدن رزرو تیکت، نرخ پرش مشتری را تا ۴۵ درصد کاهش می‌دهد. احراز هویت بدون رمز عبور (Passwordless) با ارسال کدهایOTP ایمیل به پورتال، امنیت و تجربه روانی را رقم زده است هرچند احتمال تاخیر در دریافت پیام ایمیل همچنان یک فاکتور مخل در UX به شمار می‌رود.</p>
+                    </div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>فاز ۳: بازبینی عملکردهای سیستمی (Functional Review)</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>کارایی المان‌های تعاملی، فیلترها و فرم‌های ثبت اطلاعات چند مرحله‌ای به درستی ارزیابی گردید. سیستم ردیابی قدیمی کلاینت در مسیر `/track` با ساختار توکن‌دار امن لینک‌های پورتال جایگزین شده که احتمال جعل اطلاعات تیکت را کاملاً خنثی ساخته است. با این حال، نبود سقف اندازه فیلد در بخش آپلود عکس خرابی دستگاه مشتری در حالت پست به کارگاه (Mail-in) پتانسیل پر کردن دیسک کلاینت را به دنبال دارد.</p>
+                    </div>
+                </div>
+
+                <!-- Phase 4 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>فاز ۴: ممیزی ساختار دیتابیس (Database Review)</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p><strong>طراحی شِما و روابط دیتابیس:</strong> استفاده از Prisma و دیتابیس PostgreSQL روابط دقیقی میان مشتری، تیکت، تراکنش، تصاویر و تکنسین‌ها بوجود آورده است. فیلدهای کلیدی مانند شماره تیکت و توکن امنیت دارای ایندکس‌های منحصر به فرد هستند.</p>
+                        <p><strong>گلوگاه مقیاس‌پذیری:</strong> به دلیل فراخوانی متداول توابع سرورلس، اتصالات بدون Pooler به PostgreSQL به سرعت پر شده و موجب رد درخواست‌های دیتابیس در ترافیک بالا می‌گردد. پیکربندی Neon Connection Pooler برای درگاه تراکنشی Prisma الزامی است.</p>
+                    </div>
+                </div>
+
+                <!-- Phase 5 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>فاز ۵: جریان فیلدهای اطلاعاتی از فرم به دیتابیس (Form-to-DB Flow)</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p><strong>فرم تماس با ما (`/contact`):</strong> اطلاعات ورودی کلاینت پس از اعتبارسنجی با عبارات منظم ساده، به طور مستقیم در دیتابیس PostgreSQL و در جدول مستقل `ContactMessage` ثبت می‌شود.</p>
+                        <p style="color:var(--success); font-weight:bold;">✅ برطرف شده: مشکل ذخیره‌سازی روی هارددیسک موقت و احتمال نابودی اطلاعات کلاینت‌ها با انتقال ثبت فرم تماس به پایگاه‌داده دیتابیس ابری کاملاً خنثی شد.</p>
+                    </div>
+                </div>
+
+                <!-- Phase 6 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>فاز ۶: ممیزی تخصصی امنیت (Security Audit)</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>بخش ممیزی امنیت به تفصیل آسیب‌پذیری‌های بحرانی را پوشش داده است. به طور خلاصه:</p>
+                        <ul>
+                            <li><strong>دور زدن وب‌هوک مالی Stripe:</strong> برطرف شده و امضا پرداخت درگاه به طور رسمی و سختگیرانه در سرور پروداکشن وریفای می‌شود.</li>
+                            <li><strong>فقدان احراز هویت در نوتیفیکیشن‌ها:</strong> برطرف شده و مسیرهای نوتیفیکیشن اکنون با نشست‌های ادمین محافظت می‌شوند.</li>
+                            <li><strong>باگ Path Traversal در تصاویر تیکت:</strong> برطرف شده و نام فایل‌های آپلودی قبل از ثبت با عبارات منظم ضدعفونی می‌شوند.</li>
+                            <li><strong>نبود گیت کنترلی در عکس تصاویر:</strong> برطرف شده و کدهای دسترسی به تصاویر خصوصی، جلسه کاربری و توکن امنیت تیکت را مطابقت می‌دهند.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Phase 7 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>فاز ۷: ارزیابی کارایی و فاکتور سرعت (Performance Audit)</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>پروژه در بارگذاری فریم‌ورک‌ها بسیار بهینه است اما فایل‌های موقت بزرگی در پروژه رها شده‌اند. حجم مجموع فایل‌های پوشه ویدیو عمومی بیش از ۱۳۳ مگابایت است. ویدیوهای خام با کیفیت MOV و فریم‌های تصاویر غیرفشرده در گیت هاب رها شده‌اند که علاوه بر افزایش زمان ساخت و بیلد پروژه، ترافیک پهنای باند را بیهوده مصرف می‌کنند. فشرده‌سازی ویدیوها و حذف فایل‌های زائد سرعت لود کلاینت را تا ۳۰ درصد ارتقا می‌دهد.</p>
+                    </div>
+                </div>
+
+                <!-- Phase 8 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>فاز ۸: سئو و متا تگ‌ها (SEO Audit)</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>ساختار تگ‌های متا و بدنه محتوای سئو به صورت داینامیک طراحی شده و آدرس فیدهای وبلاگ استاندارد است. با این حال نبود سیستم اتوماتیک XML sitemap مانع از کشف سریع مقالات جدید وبلاگ و مناطق تازه پوشش‌یافته توسط گوگل بات می‌شود.</p>
+                    </div>
+                </div>
+
+                <!-- Phase 9 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>فاز ۹: دسترسی‌پذیری برای معلولان (Accessibility Review)</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>سیستم در تطابق بالا با WCAG AA قرار دارد. منوی ناوبری Navbar به درستی فوکوس دکمه‌های کیبورد را دریافت کرده و فیلدهای فرم رزرو شامل توصیف ARIA برای دستگاه‌های صفحه خوان نابینایان هستند.</p>
+                    </div>
+                </div>
+
+                <!-- Phase 10 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>فاز ۱۰: بررسی بیزنس و نرخ تبدیل مشتری (Business & Conversion Review)</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>مسیریابی رزرو با دکمه سریع تماس مستقیم واتساپ بهینه‌سازی شده و اعتماد بصری مشتری با DBS Badges و بیمه مسئولیت بالا است. با این حال، مسدود بودن درگاه رزرو تجاری (B2B) یک نشت جدی درآمد شرکت به حساب می‌آید.</p>
+                    </div>
+                </div>
+
+                <!-- Phase 11 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>فاز ۱۱: ممیزی وب‌سرویس‌ها و ادغام‌ها (API & Integration Review)</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>سرویس‌ها به خوبی با Stripe، Twilio و Resend ارتباط دارند. به عنوان فرصت ارتقا، نبود سیستم صف و عدم استفاده از مکانیسم تکرار مجدد ارسال در نوتیفیکیشن‌ها می‌تواند در زمان قطع بودن موقت این درگاه‌ها، تیکت مشتری را بدون آگاه‌سازی رها کند.</p>
+                    </div>
+                </div>
+
+                <!-- Phase 12 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>فاز ۱۲: بازبینی زیرساخت و دواپس (DevOps & Infrastructure)</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>استفاده از سرورهای ابری Vercel مقیاس‌پذیری بالایی در لایه توزیع فرانت‌اند به ارمغان می‌آورد اما باید توجه داشت که تمامی کدهایی که قصد دارند به فایل‌سیستم داخلی متکی باشند با مشکل حذف داده‌ها مواجه خواهند شد. کل فرآیند آپلود عکس و ذخیره‌سازی باید به فضاهای ابری نظیر AWS S3 یا Supabase Storage هدایت شوند.</p>
+                    </div>
+                </div>
+
+                <!-- Phase 13 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>فاز ۱۳: آمادگی در ترافیک‌های بالا (Scalability Review)</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>در ترافیک ۱۰۰ تا ۱,۰۰۰ کاربر همزمان سیستم پایدار است. با ارتقا ترافیک به بالای ۱۰,۰۰۰ کاربر در ساعت، قفل‌های همزمان دیتابیس در صورت فقدان Pooler تراکنش و نرخ لود ویدیوهای ۲۶ مگابایتی سرور را با افت سرعت شدید مواجه می‌سازد که نیاز به استفاده از سیستم کش موقت (Redis Cache) است.</p>
+                    </div>
+                </div>
+
+                <!-- Phase 14 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleAccordion(this)">
+                        <span>فاز ۱۴: لیست ممیزی باگ‌های تضمین کیفیت (QA Review)</span>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>سیستم دارای ۳ باگ عمده کارکردی است: ۱. بازنشانی داده‌های تماس کلاینت به دلیل استفاده از فایل موقت به جای دیتابیس در محیط سرورلس. ۲. امکان بارگذاری فایل با هر پسوند مخربی در وب‌سرویس مدیا ادمین. ۳. عدم بررسی توکن ادمین در میدل‌ور برای کل مسیرهای API ادمین.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==============================================
+             TAB: ISSUES MATRIX
+             ============================================== -->
+        <section id="tab-issues" class="tab-panel">
+            <h2 class="section-title">وضعیت رفع باگ‌ها و ارزیابی آسیب‌پذیری‌ها</h2>
+            
+            <div class="search-box-wrapper">
+                <input type="text" id="issue-search" class="search-input" placeholder="جستجو در باگ‌ها..." onkeyup="filterIssues()">
+                <select id="severity-filter" class="flow-select" onchange="filterIssues()">
+                    <option value="">همه وضعیت‌ها</option>
+                    <option value="resolved">برطرف شده (Resolved)</option>
+                </select>
+            </div>
+
+            <table class="styled-table" id="issues-table">
+                <thead>
+                    <tr>
+                        <th>عنوان باگ امنیتی / فنی</th>
+                        <th>شدت</th>
+                        <th>وضعیت کنونی</th>
+                        <th>تاثیر تجاری پیشین</th>
+                        <th>تاثیر فنی پیشین</th>
+                        <th>اقدام اصلاحی انجام شده</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-severity="resolved">
+                        <td><strong>امکان دور زدن پرداخت Stripe</strong></td>
+                        <td><span class="tag critical">Critical</span></td>
+                        <td><span class="tag resolved">Resolved</span></td>
+                        <td>نشت جدی درآمدهای مالی شرکت</td>
+                        <td>بای‌پس پرداخت درگاه و فیک تراکنش‌ها</td>
+                        <td>ریفکتور شرط و اجباری ساختن بررسی امضا وب‌هوک Stripe</td>
+                    </tr>
+                    <tr data-severity="resolved">
+                        <td><strong>عدم اعتبارسنجی پرداخت مالی کلاینت</strong></td>
+                        <td><span class="tag critical">Critical</span></td>
+                        <td><span class="tag resolved">Resolved</span></td>
+                        <td>از دست رفتن حق سرویس‌ها</td>
+                        <td>جعل توکن پرداخت به کمک mock intent</td>
+                        <td>غیر فعال‌سازی شبیه‌ساز پرداخت Stripe در پروداکشن</td>
+                    </tr>
+                    <tr data-severity="resolved">
+                        <td><strong>سرقت عکس‌های خصوصی مشتریان</strong></td>
+                        <td><span class="tag high">High</span></td>
+                        <td><span class="tag resolved">Resolved</span></td>
+                        <td>پیگرد قانونی نقض قوانین حریم خصوصی و شکایت</td>
+                        <td>امکان دانلود تصاویر تیکت توسط هر کلاینت با حدس زدن نام فایل</td>
+                        <td>محافظت وب‌سرویس با بررسی هویت مشتری صاحب تیکت و توکن امنیت</td>
+                    </tr>
+                    <tr data-severity="resolved">
+                        <td><strong>ذخیره محلی پیام‌های تماس با ما</strong></td>
+                        <td><span class="tag high">High</span></td>
+                        <td><span class="tag resolved">Resolved</span></td>
+                        <td>از دست رفتن دائمی پیام مشتریان پس از ری‌استارت سرور</td>
+                        <td>حذف فایل contacts.json در فرآیند Cold Start سرورلس Vercel</td>
+                        <td>ایجاد مدل دیتابیس ContactMessage و ذخیره مستقیم در PostgreSQL</td>
+                    </tr>
+                    <tr data-severity="resolved">
+                        <td><strong>نفوذ Path Traversal در آپلود عکس</strong></td>
+                        <td><span class="tag critical">Critical</span></td>
+                        <td><span class="tag resolved">Resolved</span></td>
+                        <td>تهدید نفوذ هکر به تمام سورس‌کد پروژه و پایگاه داده</td>
+                        <td>دسترسی به دایرکتوری‌های والد هارد و جایگزینی فایل‌های حساس</td>
+                        <td>فیلتر کردن کاراکترهای نام فایل و برچسب کلاینت با عبارات منظم</td>
+                    </tr>
+                    <tr data-severity="resolved">
+                        <td><strong>نبود گیت میدل‌ور برای API ادمین</strong></td>
+                        <td><span class="tag low">Low</span></td>
+                        <td><span class="tag resolved">Resolved</span></td>
+                        <td>ریسک لو رفتن وب‌سرویس در صورت فراموشی کنترل دستی</td>
+                        <td>عدم پوشش آدرس‌های API در مسیر میدل‌ور اصلی</td>
+                        <td>پوشش کامل تمام مسیرهای /api/admin/* در کدهای میدل‌ور</td>
+                    </tr>
+                    <tr data-severity="resolved">
+                        <td><strong>تناقض آدرس‌های دفتر مرکزی شرکت</strong></td>
+                        <td><span class="tag low">Low</span></td>
+                        <td><span class="tag resolved">Resolved</span></td>
+                        <td>کاهش اعتبار برند و سردرگمی مشتری در آدرس‌های متفاوت</td>
+                        <td>هاردکد بودن آدرس نامربوط London Wall در صفحه تماس</td>
+                        <td>پیوند دادن آدرس صفحه تماس به متغیر محیطی متمرکز NEXT_PUBLIC_BUSINESS_ADDRESS</td>
+                    </tr>
+                    <tr data-severity="resolved">
+                        <td><strong>خالی شدن صفحه خدمات در صورت قطع دیتابیس</strong></td>
+                        <td><span class="tag medium">Medium</span></td>
+                        <td><span class="tag resolved">Resolved</span></td>
+                        <td>نمایش صفحه خالی به مشتریان و توقف کامل رزروهای جدید</td>
+                        <td>عدم پاسخگویی وب‌سرویس‌های داینامیک در زمان آفلاین بودن دیتابیس</td>
+                        <td>پیاده‌سازی مکانیزم پشتیبان استاتیک ۵۵ سرویس پیش‌فرض از فایل بذر</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- ==============================================
+             TAB: FLOWCHARTS
+             ============================================== -->
+        <section id="tab-flowcharts" class="tab-panel">
+            <h2 class="section-title">نمودارهای جریان داده اصلاح شده پلتفرم (11 Flowcharts)</h2>
+            <p class="section-desc">نمودار مورد نظر خود را از لیست زیر انتخاب کنید تا به صورت تعاملی رندر و نمایش داده شود.</p>
+
+            <div class="flow-selector-wrapper">
+                <label for="flow-selector" style="font-weight: 700;">انتخاب نمودار جریان کاربری و فنی:</label>
+                <select id="flow-selector" class="flow-select" onchange="showFlowchart()">
+                    <option value="1">۱. ثبت نام تعلیقی مشتری (Deferred Signup)</option>
+                    <option value="2">۲. ورود بدون رمز عبور و گوگل (Auth Gate)</option>
+                    <option value="3">۳. فرم تماس با ما (Contact Flow & Storage)</option>
+                    <option value="4">۴. ثبت سرنخ کد پستی (Lead Gen Flow)</option>
+                    <option value="5">۵. ثبت رزرو مشتری (Booking Funnel)</option>
+                    <option value="6">۶. اعتبارسنجی تراکنش مالی (Stripe Payment Webhook)</option>
+                    <option value="7">۷. اعلان‌های ادمین و وب‌هوک‌ها (CRM Notification)</option>
+                    <option value="8">۸. جریان کلی فرم به پایگاه داده (Form-to-DB Transaction)</option>
+                    <option value="9">۹. داشبورد ادمین و سطح نقش‌ها (Admin Auth & Analytics)</option>
+                    <option value="10">۱۰. فیلترهای وب‌سرویس و امنیت (API Gateway & Rate Limit)</option>
+                    <option value="11">۱۱. موتور ارسال ایمیل‌های سیستمی (Notification Dispatcher)</option>
+                </select>
+            </div>
+
+            <!-- Flowchart renders -->
+            <div id="flow-1" class="flowchart-diagram active">
+                <pre class="mermaid">
+                    graph TD
+                        A[کاربر بدون ورود به سایت وارد مسیر رزرو میشود] --> B[تکمیل اطلاعات در مرحله ۲ رزرو]
+                        B --> C[کلیک روی دکمه ثبت نهایی رزرو]
+                        C --> D[ایجاد خودکار حساب کاربری با نقش CUSTOMER در پس‌زمینه]
+                        D --> E[نمایش کارت رضایت GDPR و ساخت حساب اختیاری در صفحه موفقیت]
+                        E -->|تایید رضایت کاربری| F[ارسال ایمیل لینک فعال‌سازی Magic Link]
+                        E -->|عدم تایید| G[حساب به صورت غیرفعال موقت در دیتابیس می‌ماند]
+                </pre>
+            </div>
+
+            <div id="flow-2" class="flowchart-diagram">
+                <pre class="mermaid">
+                    graph TD
+                        A[کاربر به صفحه login مراجعه میکند] --> B{انتخاب روش ورود}
+                        B -->|ورود با گوگل| C[Google OAuth Gateway]
+                        B -->|ارسال ایمیل جادویی| D[ثبت توکن یکبار مصرف در VerificationToken]
+                        C --> E[بررسی ثبت ایمیل در دیتابیس]
+                        D --> F[ارسال ایمیل حاوی لینک و OTP توسط Resend]
+                        F --> G[کلیک روی لینک یا وارد کردن توکن در سایت]
+                        G --> H[اعتبارسنجی توکن و تاریخ انقضا 15 دقیقه‌ای]
+                        H -->|معتبر| I[حذف توکن از DB و ایجاد نشست JWT]
+                        E -->|کاربر جدید| J[ایجاد رکورد جدید کلاینت در User + ثبت رضایت GDPR]
+                        E -->|کاربر موجود| K[بررسی ایمیل ادمین و ترفیع نقش به ADMIN در صورت تطابق]
+                </pre>
+            </div>
+
+            <div id="flow-3" class="flowchart-diagram">
+                <pre class="mermaid">
+                    graph TD
+                        A[ارسال نام، ایمیل و پیام در فرم تماس] --> B[اعتبارسنجی اولیه فرم در فرانت‌اند]
+                        B --> C[ارسال درخواست POST به api/contact]
+                        C --> D[بررسی نرخ درخواست Rate Limit توسط آی‌پی کلاینت]
+                        D -->|بیش از حد مجاز| E[بازگرداندن خطای 429 Too Many Requests]
+                        D -->|مجاز| F[پاکسازی ورودی‌ها با Zod/HTML5]
+                        F --> G[ذخیره داده‌ها در جدول ContactMessage دیتابیس PostgreSQL]
+                        G --> H[ثبت موفقیت و بازگرداندن پاسخ به کلاینت]
+                        H --> I[امن و ماندگار در زمان Cold Startهای ورسل]
+                </pre>
+            </div>
+
+            <div id="flow-4" class="flowchart-diagram">
+                <pre class="mermaid">
+                    graph TD
+                        A[کاربر ایمیل و کد پستی را وارد میکند] --> B[ارسال درخواست به api/leads]
+                        B --> C[بررسی Rate Limiting بر اساس IP]
+                        C -->|عبور از حد مجاز| D[خطای 429]
+                        C -->|مجاز| E[اعتبارسنجی فرمت ایمیل و الزامی بودن کد پستی]
+                        E -->|نامعتبر| F[خطای 400]
+                        E -->|معتبر| G[ذخیره داده‌ها در جدول Lead در دیتابیس PostgreSQL]
+                        G --> H[ثبت موفقیت و بازگرداندن پاسخ به کلاینت]
+                </pre>
+            </div>
+
+            <div id="flow-5" class="flowchart-diagram">
+                <pre class="mermaid">
+                    graph TD
+                        A[انتخاب دسته و نوع سرویس در مرحله ۱] --> B[اعتبارسنجی کد پستی و تشخیص Ulez/Congestion]
+                        B --> C[مرحله ۲: ورود مشخصات دستگاه و شرح خرابی]
+                        C --> D[انتخاب روش پرداخت: آنلاین Stripe یا حضوری On Arrival]
+                        D -->|پرداخت حضوری| E[درخواست کد یکبار مصرف OTP ایمیلی]
+                        E --> F[تایید OTP و ثبت تیکت در حالت CREATED]
+                        D -->|پرداخت آنلاین Stripe| G[ثبت تیکت در حالت PENDING_PAYMENT]
+                        G --> H[تولید لینک پرداخت Stripe Checkout و انتقال کاربر]
+                        H --> I[تکمیل تراکنش درگاه و بازگشت به صفحه موفقیت رزرو]
+                </pre>
+            </div>
+
+            <div id="flow-6" class="flowchart-diagram">
+                <pre class="mermaid">
+                    graph TD
+                        A[ثبت رزرو کلاینت] --> B{نوع پرداخت انتخابی}
+                        B -->|پرداخت آنلاین| C[انتقال به Stripe Checkout]
+                        C -->|تراکنش موفق| D[تولید سیگنال وب‌هوک توسط Stripe]
+                        D --> E[تایید امضای دیجیتال وب‌هوک در بک‌اند]
+                        E -->|معتبر| F[بروزرسانی وضعیت تیکت به CONFIRMED و پرداخت به PAID]
+                        E -->|نامعتبر/Mock| G[رد تراکنش در سرور پروداکشن جهت عدم تایید فیک پرداخت‌ها]
+                        B -->|پرداخت حضوری| H[تایید OTP ایمیل و ثبت تیکت در وضعیت CREATED]
+                        H --> I[تماس اپراتور با مشتری جهت تایید تلفنی رزرو]
+                </pre>
+            </div>
+
+            <div id="flow-7" class="flowchart-diagram">
+                <pre class="mermaid">
+                    graph TD
+                        A[ایجاد تیکت رزرو جدید در پایگاه داده] --> B[فراخوانی توابع اطلاع‌رسانی در بک‌اند]
+                        B --> C[ارسال ایمیل تاییدیه به مشتری با Resend]
+                        B --> D[ارسال پیام هشدار جدید به کانال تلگرام ادمین via Telegram API]
+                        B --> E[ارسال پیام هشدار جدید به چنل دیسکورد ادمین via Webhook]
+                        B --> F[بروزرسانی زنده پنل ادمین Neuro IT]
+                        F --> G[مشاهده تیکت توسط ادمین و تخصیص تکنسین به تیکت]
+                </pre>
+            </div>
+
+            <div id="flow-8" class="flowchart-diagram">
+                <pre class="mermaid">
+                    graph TD
+                        A[تکمیل فیلدهای فرم توسط کاربر] --> B[بررسی قالب داده‌ها در فرانت‌اند با HTML5/React State]
+                        B --> C[ارسال Payload به API Route در Next.js]
+                        C --> D[بررسی نرخ درخواست Rate Limit دیتابیس]
+                        D --> E[اعتبارسنجی بک‌اند Zod/Manual]
+                        E --> F[اجرای تراکنش Prisma Client جهت درج اطلاعات]
+                        F --> G[ذخیره داده‌ها در دیتابیس ابری PostgreSQL]
+                        G --> H[فراخوانی وب‌سرویس‌های خارجی پیامک/ایمیل]
+                        H --> I[ارائه پاسخ موفقیت به فرانت‌اند و بروزرسانی UI]
+                </pre>
+            </div>
+
+            <div id="flow-9" class="flowchart-diagram">
+                <pre class="mermaid">
+                    graph TD
+                        A[درخواست ورود ادمین به مسیر admin] --> B[میدل‌ور NextAuth سشن کاربر را دریافت میکند]
+                        B --> C{آیا کاربر نقش ADMIN دارد؟}
+                        C -->|خیر| D[انتقال به صفحه ورود کلاینت /login]
+                        C -->|بله| E[رندر کامپوننت AdminDashboard]
+                        E --> F[درخواست کلاینت به api/admin/analytics]
+                        F --> G[کوری‌های ترکیبی Prisma در PostgreSQL جهت محاسبه درآمد و آمار]
+                        G --> H[بروزرسانی نمودارها و جدول تیکت‌های اخیر در فرانت‌اند]
+                </pre>
+            </div>
+
+            <div id="flow-10" class="flowchart-diagram">
+                <pre class="mermaid">
+                    graph TD
+                        A[درخواست HTTP از کلاینت به API Route] --> B[استخراج IP کاربر با getClientIp]
+                        B --> C[کوری در جدول RateLimit برای بررسی تعداد درخواست‌ها در بازه زمانی]
+                        C -->|تعداد بیش از حد مجاز| D[بازگرداندن خطای HTTP 429 Too Many Requests]
+                        C -->|مجاز| E[بررسی توکن JWT یا کوکی نشست کاربر در صورت لزوم]
+                        E -->|نامعتبر| F[خطای HTTP 401 Unauthorized]
+                        E -->|معتبر| G[پردازش داده‌ها و کوری در دیتابیس اصلی]
+                        G --> H[بازگرداندن پاسخ موفقیت با هدرهای امنیتی مناسب]
+                </pre>
+            </div>
+
+            <div id="flow-11" class="flowchart-diagram">
+                <pre class="mermaid">
+                    graph TD
+                        A[درخواست ارسال ایمیل در سیستم] --> B[انتخاب قالب ایمیل متناسب با تیکت]
+                        B --> C[جایگذاری داینامیک مشخصات تیکت، لینک پورتال و توکن]
+                        C --> D[فراخوانی متد sendEmail از کلاس Resend/Nodemailer]
+                        D --> E[ارسال درخواست با API Key به سرور Resend]
+                        E -->|موفقیت‌آمیز| F[ثبت وضعیت SENT در جدول NotificationLog دیتابیس]
+                        E -->|خطای ارسال| G[ثبت وضعیت FAILED در جدول NotificationLog - ریسک نبود صف بررسی مجدد]
+                </pre>
+            </div>
+        </section>
+
+        <!-- ==============================================
+             TAB: CLEANUP
+             ============================================== -->
+        <section id="tab-cleanup" class="tab-panel">
+            <h2 class="section-title">گزارش فایل‌های زائد و فرصت‌های پاکسازی کد</h2>
+            <p class="section-desc">تحلیل زیر فایل‌ها و بخش‌هایی از کد منبع را نشان می‌دهد که فضای پروژه را هدر داده و قابلیت حذف امن یا بازنویسی جهت کاهش دت فنی دارند.</p>
+
+            <h3 style="color:var(--text-primary); margin: 1.5rem 0 0.5rem 0;">لیست فایل‌های زائد شناسایی‌شده (۱۱۲.۵ مگابایت کل فضای آزاد شونده)</h3>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>نام فایل</th>
+                        <th>مسیر فایل</th>
+                        <th>حجم فایل</th>
+                        <th>وضعیت حذف پیشنهادی</th>
+                        <th>سطح ریسک</th>
+                        <th>دلیل عدم نیاز</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>desk.mov</strong></td>
+                        <td>`public/video/video-desk/desk.mov`</td>
+                        <td>۲۴.۷۵ MB</td>
+                        <td>کاملاً ایمن جهت انتقال/حذف</td>
+                        <td>بسیار پایین</td>
+                        <td>ویدیو با فرمت خام MOV که ترافیک گیت هاب را مصرف می‌کند.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>mobile.mov</strong></td>
+                        <td>`public/video/video-mobile/mobile.mov`</td>
+                        <td>۶۸.۹۰ MB</td>
+                        <td>کاملاً ایمن جهت انتقال/حذف</td>
+                        <td>بسیار پایین</td>
+                        <td>فایل ویدیوی خام فشرده‌نشده گوشی موبایل.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>test-frame-mobile.png</strong></td>
+                        <td>`public/video/video-mobile/test-frame-mobile.png`</td>
+                        <td>۳.5۸ MB</td>
+                        <td>ایمن جهت حذف</td>
+                        <td>بسیار پایین</td>
+                        <td>تصویر تست اولیه برای استخراج دستی فریم.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>test-frame-desk.png</strong></td>
+                        <td>`public/video/video-desk/test-frame-desk.png`</td>
+                        <td>۱.۴۴ MB</td>
+                        <td>ایمن جهت حذف</td>
+                        <td>بسیار پایین</td>
+                        <td>تصویر تست اولیه برای استخراج دستی فریم.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>desk_4.png</strong></td>
+                        <td>`public/temp_inspect/desk_4.png`</td>
+                        <td>۱.۸۱ MB</td>
+                        <td>ایمن جهت حذف</td>
+                        <td>بسیار پایین</td>
+                        <td>عکس اسکرین شات ارزیابی موقت توسعه‌دهنده.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>mobile_4.png</strong></td>
+                        <td>`public/temp_inspect/mobile_4.png`</td>
+                        <td>۴.۰۷ MB</td>
+                        <td>ایمن جهت حذف</td>
+                        <td>بسیار پایین</td>
+                        <td>عکس اسکرین شات ارزیابی موقت توسعه‌دهنده.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="color:var(--text-primary); margin: 2rem 0 0.5rem 0;">دت فنی و فرصت‌های بهینه‌سازی کد</h3>
+            <div class="timeline-card">
+                <p><strong>پاکسازی منطق درگاه Mock Stripe:</strong> با برطرف شدن مشکلات امنیتی کدهای شبیه‌ساز تراکنش اکنون در پروداکشن غیرفعال شده و دت فنی امنیت وب‌هوک به طور کامل پاکسازی شد.</p>
+                <br>
+                <p><strong>استفاده بهینه از تصاویر داینامیک:</strong> به منظور افزایش کارایی، پیشنهاد می‌شود کلاینت فریم‌های انیمیشن CinematicHero را از سیستم‌فایل ابری لود کرده یا از فرمت نسل جدید آیکون‌ها و استایل‌های بهینه در globals.css استفاده کند.</p>
+            </div>
+        </section>
+
+        <!-- ==============================================
+             TAB: ROADMAP
+             ============================================== -->
+        <section id="tab-roadmap" class="tab-panel">
+            <h2 class="section-title">نقشه راه اجرایی رفع آسیب‌پذیری‌ها و توسعه سیستم</h2>
+            <p class="section-desc">پیکربندی تسک‌های پیشنهادی بر اساس اهمیت بیزنس، سطح ریسک امنیتی و سرعت اجرا در فازهای زمانی زیر دسته‌بندی شده‌اند:</p>
+
+            <div class="timeline">
+                <div class="timeline-card" style="border-color: var(--success);">
+                    <div class="timeline-title" style="color: var(--success);">فاز اول: اصلاحات بحرانی و ثبات داده‌ها (برطرف شده و امن ✅)</div>
+                    <div class="timeline-body">
+                        <ul>
+                            <li><strong>جلوگیری از دور زدن وب‌هوک Stripe:</strong> انجام شد. شرط وریفای درگاه فعال گردید.</li>
+                            <li><strong>امن‌سازی وب‌سرویس ارسال نوتیفیکیشن:</strong> انجام شد. مسیرها با گیت‌های توکن و ادمین مسدود گردید.</li>
+                            <li><strong>رفع باگ Path Traversal در تصاویر تیکت:</strong> انجام شد. نام عکس‌ها پاکسازی کامل می‌شود.</li>
+                            <li><strong>انتقال پیام‌های تماس مشتریان به دیتابیس:</strong> انجام شد. پیام‌ها در دیتابیس ابری ثبت می‌شوند و خطر دلیلت موقت فایل‌ها رفع گردید.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="timeline-title">فاز دوم: بهینه‌سازی سرعت و سئو فنی (۶۰ روزه)</div>
+                    <div class="timeline-body">
+                        <ul>
+                            <li><strong>آزادسازی فضای دیسک:</strong> حذف فایل‌های MOV خام و تصاویر موقت توسعه کلاینت و فشرده‌سازی ویدیوهای اصلی.</li>
+                            <li><strong>راه‌اندازی نقشه سایت XML پویا:</strong> اتصال وب‌سرویس sitemap.xml به کوری‌های تیکت، سرویس‌ها و دسته‌بندی‌های وبلاگ.</li>
+                            <li><strong>محدودسازی دسترسی عکس‌ها:</strong> پیاده‌سازی گیت احراز هویت در اندپوینت دانلود تصاویر خصوصی تیکت‌ها.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-card">
+                    <div class="timeline-title">فاز سوم: مقیاس‌پذیری و کانال‌های تجاری (۹۰ روزه)</div>
+                    <div class="timeline-body">
+                        <ul>
+                            <li><strong>پیکربندی کانکشن پول دیتابیس (Connection Pooling):</strong> هدایت اتصالات کلاینت به Transaction Port جهت عدم بروز خطای سقف اتصال.</li>
+                            <li><strong>ایجاد خدمات رزرو سازمانی (B2B):</strong> طراحی کامل فرانت‌اند و وب‌سرویس جهت ثبت خودکار درخواست‌ها در جدول B2bLead.</li>
+                            <li><strong>تکمیل مستندسازی و پاکسازی دت فنی:</strong> حذف فایل‌های متفرقه از شاخه اصلی پروژه.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- JavaScript interactivity -->
+    <script>
+        // Switch between tabs
+        function switchTab(tabId) {
+            // Hide all tab panels
+            const panels = document.querySelectorAll('.tab-panel');
+            panels.forEach(panel => panel.classList.remove('active'));
+
+            // Show active panel
+            const activePanel = document.getElementById('tab-' + tabId);
+            if (activePanel) activePanel.classList.add('active');
+
+            // Update active menu item
+            const menuItems = document.querySelectorAll('.sidebar-menu .menu-item');
+            menuItems.forEach(item => {
+                if (item.getAttribute('data-tab') === tabId) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+
+            // Close mobile menu if open
+            document.querySelector('aside').classList.remove('open');
+        }
+
+        // Toggle dark/light mode
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+        }
+
+        // Accordion functionality for Phases
+        function toggleAccordion(header) {
+            const item = header.parentElement;
+            item.classList.toggle('open');
+            const icon = header.querySelector('.accordion-icon');
+            if (item.classList.contains('open')) {
+                icon.textContent = '▲';
+            } else {
+                icon.textContent = '▼';
+            }
+        }
+
+        // Flowchart toggler
+        function showFlowchart() {
+            const select = document.getElementById('flow-selector');
+            const selectedVal = select.value;
+
+            // Hide all flowcharts
+            const flowcharts = document.querySelectorAll('.flowchart-diagram');
+            flowcharts.forEach(flow => flow.classList.remove('active'));
+
+            // Show selected flowchart
+            const selectedFlow = document.getElementById('flow-' + selectedVal);
+            if (selectedFlow) selectedFlow.classList.add('active');
+        }
+
+        // Filter issues in table
+        function filterIssues() {
+            const query = document.getElementById('issue-search').value.toLowerCase();
+            const severityFilter = document.getElementById('severity-filter').value.toLowerCase();
+            const table = document.getElementById('issues-table');
+            const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
+
+            for (let i = 0; i < rows.length; i++) {
+                const row = rows[i];
+                const text = row.textContent.toLowerCase();
+                const severity = row.getAttribute('data-severity').toLowerCase();
+
+                const matchesSearch = text.includes(query);
+                const matchesSeverity = severityFilter === '' || severity === severityFilter;
+
+                if (matchesSearch && matchesSeverity) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

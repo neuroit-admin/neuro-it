@@ -231,41 +231,51 @@ export default async function BoroughPage({ params }: { params: Promise<{ boroug
   }
 
   // Fetch 6 popular/active services for smart internal linking
-  let services = await prisma.service.findMany({
-    where: {
-      isActive: true,
-      slug: {
-        in: [
-          'screen-replacement',
-          'virus-removal',
-          'wifi-setup-configuration',
-          'hard-drive-recovery',
-          'new-laptop-setup',
-          'emergency-same-day-home-visit'
-        ]
-      }
-    },
-    select: {
-      name: true,
-      slug: true
-    }
-  })
+  let services = [
+    { name: 'Screen Replacement', slug: 'screen-replacement' },
+    { name: 'Virus Removal', slug: 'virus-removal' },
+    { name: 'WiFi Setup & Configuration', slug: 'wifi-setup-configuration' },
+    { name: 'Hard Drive Recovery', slug: 'hard-drive-recovery' },
+    { name: 'New Laptop Setup', slug: 'new-laptop-setup' },
+    { name: 'Emergency Same-day Home Visit', slug: 'emergency-same-day-home-visit' }
+  ]
 
-  if (services.length < 6) {
-    const extra = await prisma.service.findMany({
+  try {
+    const dbServices = await prisma.service.findMany({
       where: {
         isActive: true,
-        NOT: {
-          slug: { in: services.map(s => s.slug) }
+        slug: {
+          in: services.map(s => s.slug)
         }
       },
-      take: 6 - services.length,
       select: {
         name: true,
         slug: true
       }
     })
-    services = [...services, ...extra]
+
+    if (dbServices.length > 0) {
+      services = dbServices
+    }
+
+    if (services.length < 6) {
+      const extra = await prisma.service.findMany({
+        where: {
+          isActive: true,
+          NOT: {
+            slug: { in: services.map(s => s.slug) }
+          }
+        },
+        take: 6 - services.length,
+        select: {
+          name: true,
+          slug: true
+        }
+      })
+      services = [...services, ...extra]
+    }
+  } catch (error) {
+    console.error('Failed to fetch services for internal linking:', error)
   }
 
   // Retrieve details for local business schema

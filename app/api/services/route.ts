@@ -24,7 +24,7 @@ export async function GET() {
       },
     })
 
-    const formatted = categories.map(cat => ({
+    let formatted = categories.map(cat => ({
       id: cat.id,
       name: cat.name,
       slug: cat.slug,
@@ -44,6 +44,11 @@ export async function GET() {
       })),
     }))
 
+    if (!formatted || formatted.length === 0) {
+      const staticCategories = require('@/lib/staticServices.json')
+      formatted = staticCategories
+    }
+
     // Fetch flat deposit fee
     let flatDepositFee = 10.00
     try {
@@ -59,7 +64,12 @@ export async function GET() {
 
     return NextResponse.json({ categories: formatted, flatDepositFee })
   } catch (error) {
-    console.error('Public services API error:', error)
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    console.error('Public services API error, using static fallback:', error)
+    try {
+      const staticCategories = require('@/lib/staticServices.json')
+      return NextResponse.json({ categories: staticCategories, flatDepositFee: 10.00 })
+    } catch (fallbackError) {
+      return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
+    }
   }
 }
