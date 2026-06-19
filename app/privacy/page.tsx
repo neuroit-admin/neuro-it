@@ -21,7 +21,7 @@ export default function PrivacyPage() {
           {[
             {
               title: '1. Who We Are',
-              body: 'Neuro IT ("we", "us", "our") is a London-based IT support service. We are registered with the ICO under registration ZB000000. We act as the Data Controller for any personal data you provide.',
+              body: 'Neuro IT ("we", "us", "our") is a London-based IT support service. We act as the Data Controller for any personal data you provide, ensuring compliance with UK GDPR and data protection laws.',
             },
             {
               title: '2. Data We Collect',
@@ -53,7 +53,7 @@ export default function PrivacyPage() {
             },
             {
               title: '9. Contact',
-              body: 'For privacy enquiries:\nEmail: privacy@neuroit.co.uk\nICO Registration: ZB000000\nYou may also contact the ICO at ico.org.uk if you have concerns.',
+              body: 'For privacy enquiries:\nEmail: privacy@neuroit.co.uk\nYou may also contact the Information Commissioner\'s Office (ICO) at ico.org.uk if you have data protection concerns.',
             },
           ].map(({ title, body }) => (
             <section key={title} style={{ marginBottom: '2.5rem' }}>

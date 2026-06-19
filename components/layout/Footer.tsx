@@ -344,7 +344,6 @@ export default function Footer() {
             © {currentYear} Neuro IT. All rights reserved.
           </p>
           <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem' }}>
-            ICO Reg: {process.env.NEXT_PUBLIC_ICO_NUMBER || 'ZB000000'} •{' '}
             <Link href="/privacy" style={{ color: 'var(--text-muted)', textDecoration: 'none' }}>
               Privacy
             </Link>{' '}

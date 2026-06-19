@@ -58,7 +58,7 @@ export async function PATCH(
             </p>
             <p style="font-size: 13px; color: #555;">Please note that tracking information can take a few hours to populate on the carrier website.</p>
             <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;" />
-            <p style="font-size: 12px; color: #888;">NEURO IT SUPPORT SERVICES LTD · London, EN5 5YL</p>
+            <p style="font-size: 12px; color: #888;">NEURO IT · London, EN5 5YL</p>
           </div>
         `
       }).catch(err => console.error('Failed to send dispatch tracking email:', err))

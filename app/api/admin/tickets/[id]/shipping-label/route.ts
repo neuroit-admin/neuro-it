@@ -72,7 +72,7 @@ export async function POST(
               <a href="${portalUrl}" style="background-color: #00D2FF; color: #000; padding: 12px 24px; text-decoration: none; font-weight: bold; border-radius: 4px; display: inline-block;">Download Shipping Label</a>
             </p>
             <hr style="border: none; border-top: 1px solid #eee; margin: 20px 0;" />
-            <p style="font-size: 12px; color: #888;">NEURO IT SUPPORT SERVICES LTD · London, EN5 5YL</p>
+            <p style="font-size: 12px; color: #888;">NEURO IT · London, EN5 5YL</p>
           </div>
         `
       }).catch(err => console.error('Failed to send shipping label notification email:', err))

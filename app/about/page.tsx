@@ -235,15 +235,11 @@ export default function AboutPage() {
           {/* Registered Office & Contact Info */}
           <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '8px', padding: '2rem', marginBottom: '4rem', display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2rem' }}>
             <div>
-              <h3 className="font-syne" style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '1.25rem', marginBottom: '0.75rem' }}>Registered Office</h3>
+              <h3 className="font-syne" style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '1.25rem', marginBottom: '0.75rem' }}>Business Address</h3>
               <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', lineHeight: 1.6, margin: 0 }}>
-                <strong>Neuro IT Ltd</strong><br />
+                <strong>Neuro IT</strong><br />
                 {process.env.NEXT_PUBLIC_BUSINESS_ADDRESS || '71-75 Shelton Street, Covent Garden, London, WC2H 9JQ'}<br />
                 United Kingdom
-              </p>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.75rem', marginTop: '1rem', margin: 0, lineHeight: 1.5 }}>
-                Company Registration No. 12948281 (Registered in England & Wales)<br />
-                ICO Data Protection Registration: {process.env.NEXT_PUBLIC_ICO_NUMBER || 'ZB000000'}
               </p>
             </div>
             <div>
