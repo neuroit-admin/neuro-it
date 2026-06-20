@@ -322,6 +322,7 @@ export default function NeuralHero() {
 
         {/* Subtitle */}
         <p
+          className="hidden md:block"
           style={{
             color: 'rgba(200,220,235,0.65)',
             fontSize: 'clamp(0.95rem, 2vw, 1.1rem)',
@@ -337,8 +338,8 @@ export default function NeuralHero() {
 
         {/* Trust row */}
         <div
+          className="hidden md:flex"
           style={{
-            display: 'flex',
             gap: '1.5rem',
             justifyContent: 'center',
             flexWrap: 'wrap',
@@ -417,12 +418,12 @@ export default function NeuralHero() {
 
       {/* ── Bottom Page Stats ── */}
       <div
+        className="hidden md:flex"
         style={{
           position: 'absolute',
           bottom: '1.75rem',
           left: 0,
           right: 0,
-          display: 'flex',
           justifyContent: 'center',
           gap: 'clamp(1.5rem, 4vw, 3rem)',
           zIndex: 3,
