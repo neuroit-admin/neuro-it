@@ -506,8 +506,8 @@ export default function ServiceSelector({ bookingData, updateData, onNext, onBac
           <button
             type="button"
             onClick={() => setServiceType('HOME_VISIT')}
+            className="p-4 md:p-6"
             style={{
-              padding: '1.5rem',
               background: serviceType === 'HOME_VISIT' ? 'rgba(0, 210, 255, 0.08)' : 'var(--surface)',
               border: `1px solid ${serviceType === 'HOME_VISIT' ? '#00D2FF' : 'var(--border)'}`,
               borderRadius: '8px',
@@ -551,8 +551,8 @@ export default function ServiceSelector({ bookingData, updateData, onNext, onBac
           <button
             type="button"
             onClick={() => setServiceType('MAIL_IN')}
+            className="p-4 md:p-6"
             style={{
-              padding: '1.5rem',
               background: serviceType === 'MAIL_IN' ? 'rgba(0, 210, 255, 0.08)' : 'var(--surface)',
               border: `1px solid ${serviceType === 'MAIL_IN' ? '#00D2FF' : 'var(--border)'}`,
               borderRadius: '8px',
@@ -596,8 +596,8 @@ export default function ServiceSelector({ bookingData, updateData, onNext, onBac
           <button
             type="button"
             onClick={() => setServiceType('DROP_OFF')}
+            className="p-4 md:p-6"
             style={{
-              padding: '1.5rem',
               background: serviceType === 'DROP_OFF' ? 'rgba(0, 210, 255, 0.08)' : 'var(--surface)',
               border: `1px solid ${serviceType === 'DROP_OFF' ? '#00D2FF' : 'var(--border)'}`,
               borderRadius: '8px',
@@ -641,11 +641,11 @@ export default function ServiceSelector({ bookingData, updateData, onNext, onBac
 
       {/* WhatsApp Bypass Banner */}
       <div
+        className="whatsapp-bypass-banner p-4 md:py-5 md:px-6"
         style={{
           background: 'rgba(37, 211, 102, 0.04)',
           border: '1px solid rgba(37, 211, 102, 0.15)',
           borderRadius: '12px',
-          padding: '1.25rem 1.5rem',
           marginBottom: '2.5rem',
           display: 'flex',
           flexDirection: 'row',
@@ -654,13 +654,11 @@ export default function ServiceSelector({ bookingData, updateData, onNext, onBac
           gap: '1.5rem',
           flexWrap: 'wrap'
         }}
-        className="whatsapp-bypass-banner"
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: 1, minWidth: '260px' }}>
           <div
+            className="w-10 h-10 md:w-11 md:h-11"
             style={{
-              width: '44px',
-              height: '44px',
               borderRadius: '50%',
               background: 'rgba(37, 211, 102, 0.1)',
               display: 'flex',
@@ -670,7 +668,7 @@ export default function ServiceSelector({ bookingData, updateData, onNext, onBac
               flexShrink: 0
             }}
           >
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <svg viewBox="0 0 24 24" className="w-5 h-5 md:w-6 md:h-6" fill="currentColor">
               <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.42 9.863-9.864.001-2.63-1.023-5.101-2.883-6.963C16.588 1.964 14.116.94 11.487.94c-5.438 0-9.863 4.42-9.866 9.863 0 1.902.5 3.755 1.452 5.378l-.956 3.493 3.58-.938zM17.51 15.35c-.274-.137-1.62-.8-1.872-.892-.254-.094-.44-.137-.623.137-.18.272-.7.892-.857 1.077-.16.182-.317.205-.592.069-.275-.137-1.16-.427-2.21-1.366-.817-.728-1.37-1.629-1.53-1.902-.16-.275-.017-.424.12-.561.124-.124.275-.318.412-.478.136-.16.182-.272.274-.457.09-.186.047-.346-.024-.482-.07-.137-.623-1.5-.855-2.058-.225-.544-.45-.47-.623-.478-.16-.008-.343-.01-.527-.01-.18 0-.476.067-.723.34-.247.272-.943.922-.943 2.25s.965 2.61 1.1 2.795c.137.185 1.902 2.903 4.606 4.07 1.21.524 2.153.837 2.887 1.07.74.234 1.41.203 1.943.124.593-.087 1.62-.663 1.85-1.27.23-.607.23-1.128.16-1.24-.07-.11-.253-.18-.528-.317z" />
             </svg>
           </div>
@@ -687,36 +685,7 @@ export default function ServiceSelector({ bookingData, updateData, onNext, onBac
           href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '447700000000'}?text=${encodeURIComponent("Hi Neuro IT, I need assistance with an IT issue. My postcode is: [   ] and my device/fault is: [   ]")}`}
           target="_blank"
           rel="noopener noreferrer"
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            padding: '0.65rem 1.25rem',
-            background: 'transparent',
-            color: '#25D366',
-            fontWeight: 700,
-            fontSize: '0.82rem',
-            fontFamily: 'var(--font-syne)',
-            borderRadius: '6px',
-            textDecoration: 'none',
-            border: '1px solid rgba(37, 211, 102, 0.4)',
-            transition: 'all 0.2s',
-            boxShadow: '0 4px 12px rgba(37,211,102,0.05)',
-          }}
-          onMouseEnter={e => {
-            const btn = e.currentTarget as HTMLAnchorElement
-            btn.style.background = '#25D366'
-            btn.style.color = 'var(--bg-color)'
-            btn.style.borderColor = '#25D366'
-            btn.style.transform = 'translateY(-1px)'
-          }}
-          onMouseLeave={e => {
-            const btn = e.currentTarget as HTMLAnchorElement
-            btn.style.background = 'transparent'
-            btn.style.color = '#25D366'
-            btn.style.borderColor = 'rgba(37, 211, 102, 0.4)'
-            btn.style.transform = 'none'
-          }}
+          className="glass-glow-btn-whatsapp w-full md:w-auto text-center"
         >
           Book via WhatsApp →
         </a>
