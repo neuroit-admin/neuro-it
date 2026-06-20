@@ -175,18 +175,7 @@ export async function POST(req: Request) {
       : true
     
     // Retrieve dynamic deposit amount based on postcode zone
-    let flatDeposit = 10.00
-    try {
-      const { getPostcodeZone } = await import('@/lib/coverage')
-      const postcodeZone = address ? await getPostcodeZone(address.postcode) : null
-      if (postcodeZone === 'STANDARD_999') {
-        flatDeposit = 15.00
-      } else if (postcodeZone === 'FREE_CALL_OUT') {
-        flatDeposit = 10.00
-      }
-    } catch (err) {
-      console.error('Failed to retrieve dynamic zone deposit, using fallback:', err)
-    }
+    let flatDeposit = 15.00
 
     let status = 'CREATED'
     if (isHomeVisit) {

@@ -91,10 +91,7 @@ export default function PricingConfirmation({ bookingData, updateData, onNext, o
   const totalMax     = selectedService.basePriceMax + callOutFee + ulezFee + congestionFee
   const getDepositAmount = () => {
     if (!isHomeVisit) return 0
-    if (address?.zone === 'FREE_CALL_OUT') return 10.00
-    if (address?.zone === 'STANDARD_999') return 15.00
-    if (isInZone) return 10.00
-    return 0
+    return 15.00
   }
   const depositAmt = getDepositAmount()
 
@@ -304,7 +301,7 @@ export default function PricingConfirmation({ bookingData, updateData, onNext, o
           <div style={{ padding: '1.25rem', background: 'rgba(0,210,255,0.05)', border: '1px solid rgba(0,210,255,0.2)', borderRadius: '4px', marginBottom: '2rem' }}>
             <p style={{ color: COLORS.accent, fontWeight: 600, fontSize: '0.9rem', marginBottom: '0.25rem' }}>
               {isHomeVisit 
-                ? (isInZone ? 'Upfront Diagnostic & Travel Fee Prepayment' : 'No deposit required (Subject to negotiation)')
+                ? 'Upfront Diagnostic & Travel Fee Prepayment'
                 : 'No deposit required (Pay on completion)'
               }
             </p>
@@ -313,7 +310,8 @@ export default function PricingConfirmation({ bookingData, updateData, onNext, o
                 <>
                   Prepayment due now: <strong style={{ color: COLORS.textSecondary }}>£{depositAmt.toFixed(2)}</strong> (upfront diagnostic & travel fee).
                   {address?.zone === 'FREE_CALL_OUT' && ' This deposit is fully deducted from your final repair invoice.'}
-                  {address?.zone === 'STANDARD_999' && ' The remaining balance of the repair is paid to the technician on-site upon completion.'}
+                  {address?.zone === 'STANDARD_999' && ' This is a flat travel & dispatch fee.'}
+                  {(address?.zone !== 'FREE_CALL_OUT' && address?.zone !== 'STANDARD_999') && ' This is a base travel deposit. Any additional travel charges based on distance will be calculated and added to your final invoice.'}
                 </>
               ) : (
                 <>

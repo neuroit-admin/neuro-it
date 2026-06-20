@@ -90,6 +90,5 @@ export async function getPostcodeZone(postcode: string): Promise<'FREE_CALL_OUT'
  * Checks if a UK postcode outward code is within our active standard operating zone.
  */
 export async function isPostcodeInOperatingArea(postcode: string): Promise<boolean> {
-  const zone = await getPostcodeZone(postcode)
-  return zone === 'FREE_CALL_OUT' || zone === 'STANDARD_999'
+  return true
 }

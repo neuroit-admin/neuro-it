@@ -147,8 +147,7 @@ export default function ServiceSelector({ bookingData, updateData, onNext, onBac
   }
 
   const checkCoverage = (pc: string): boolean => {
-    const zone = getPostcodeZoneFrontend(pc)
-    return zone === 'FREE_CALL_OUT' || zone === 'STANDARD_999'
+    return true
   }
 
   const [categories, setCategories] = useState<Category[]>([])
@@ -540,7 +539,7 @@ export default function ServiceSelector({ bookingData, updateData, onNext, onBac
                 Home Visit (On-Site)
               </h3>
               <p style={{ color: 'var(--text-muted)', fontSize: '0.75rem', lineHeight: 1.4 }}>
-                Vetted technician visits your home or office in London & Herts. Starting from £10.00.
+                Vetted technician visits your home or office. Flat £15.00 deposit/travel fee applies.
               </p>
             </div>
             {serviceType === 'HOME_VISIT' && (
