@@ -307,7 +307,7 @@ export default function NeuralHero() {
         <h1
           className="font-syne"
           style={{
-            fontSize: 'clamp(2.8rem, 7.5vw, 5rem)',
+            fontSize: 'clamp(2rem, 7.5vw, 5rem)',
             fontWeight: 800,
             color: '#FFFFFF',
             lineHeight: 1.07,
@@ -378,41 +378,13 @@ export default function NeuralHero() {
         {/* CTA Button — pointer-events: all for clickability */}
         <Link
           href="/book"
+          className="glass-glow-btn"
           style={{ pointerEvents: 'all' }}
         >
-          <span
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.55rem',
-              padding: '0.9rem 2.25rem',
-              fontSize: '0.95rem',
-              fontWeight: 700,
-              fontFamily: 'var(--font-syne)',
-              letterSpacing: '0.04em',
-              color: '#050a0f',
-              background: 'var(--accent)',
-              borderRadius: '5px',
-              textDecoration: 'none',
-              transition: 'transform 0.18s, box-shadow 0.18s',
-              boxShadow: '0 0 24px rgba(0,210,255,0.35)',
-            }}
-            onMouseEnter={(e) => {
-              const el = e.currentTarget as HTMLElement
-              el.style.transform = 'translateY(-2px)'
-              el.style.boxShadow = '0 8px 36px rgba(0,210,255,0.5)'
-            }}
-            onMouseLeave={(e) => {
-              const el = e.currentTarget as HTMLElement
-              el.style.transform = 'translateY(0)'
-              el.style.boxShadow = '0 0 24px rgba(0,210,255,0.35)'
-            }}
-          >
-            Book a Technician
-            <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </span>
+          Book a Technician
+          <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
         </Link>
       </div>
 

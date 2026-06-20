@@ -65,25 +65,7 @@ export default function BridgeCtas({ primaryCtaText, whatsappCtaText, whatsappNu
         <Link
           href="/book"
           id="home-primary-cta"
-          style={{
-            display: 'inline-block',
-            padding: '1rem 2.5rem',
-            background: '#00D2FF',
-            color: 'var(--bg-color)',
-            textDecoration: 'none',
-            fontWeight: 700,
-            fontFamily: 'var(--font-syne)',
-            fontSize: '1rem',
-            letterSpacing: '0.05em',
-            borderRadius: '99px',
-            transition: 'box-shadow 0.2s ease, transform 0.2s ease',
-          }}
-          onMouseEnter={e => {
-            e.currentTarget.style.boxShadow = '0 0 25px rgba(0, 210, 255, 0.5)'
-          }}
-          onMouseLeave={e => {
-            e.currentTarget.style.boxShadow = 'none'
-          }}
+          className="glass-glow-btn"
         >
           {primaryCtaText}
         </Link>

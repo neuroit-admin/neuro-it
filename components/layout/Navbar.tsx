@@ -530,29 +530,7 @@ export default function Navbar() {
           <Link
             href="/book"
             id="nav-book-btn"
-            style={{
-              padding: '0.6rem 1.5rem',
-              background: '#00D2FF',
-              color: 'var(--bg-color)',
-              textDecoration: 'none',
-              fontSize: '0.9rem',
-              fontWeight: 700,
-              fontFamily: 'var(--font-syne)',
-              letterSpacing: '0.05em',
-              borderRadius: '99px',
-              boxShadow: '0 0 12px rgba(0, 210, 255, 0.25)',
-              transition: 'all 0.2s ease',
-            }}
-            onMouseEnter={e => {
-              const el = e.target as HTMLAnchorElement
-              el.style.background = '#0099BB'
-              el.style.boxShadow = '0 0 20px rgba(0, 210, 255, 0.45)'
-            }}
-            onMouseLeave={e => {
-              const el = e.target as HTMLAnchorElement
-              el.style.background = '#00D2FF'
-              el.style.boxShadow = '0 0 12px rgba(0, 210, 255, 0.25)'
-            }}
+            className="glass-glow-btn"
           >
             Get Help Now
           </Link>
@@ -820,27 +798,8 @@ export default function Navbar() {
                   <Link
                     href="/book"
                     onClick={() => setIsMenuOpen(false)}
-                    style={{
-                      display: 'block',
-                      padding: '0.95rem',
-                      background: 'var(--accent)',
-                      color: 'var(--bg-color)',
-                      textDecoration: 'none',
-                      textAlign: 'center',
-                      fontWeight: 700,
-                      fontFamily: 'var(--font-syne)',
-                      borderRadius: '99px',
-                      boxShadow: '0 0 16px rgba(0, 210, 255, 0.25)',
-                      transition: 'all 0.2s',
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.boxShadow = '0 0 24px rgba(0, 210, 255, 0.45)'
-                      e.currentTarget.style.transform = 'translateY(-1px)'
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.boxShadow = '0 0 16px rgba(0, 210, 255, 0.25)'
-                      e.currentTarget.style.transform = 'translateY(0)'
-                    }}
+                    className="glass-glow-btn"
+                    style={{ display: 'block' }}
                   >
                     Get Help Now
                   </Link>

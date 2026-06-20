@@ -309,17 +309,9 @@ export default function Footer() {
               </p>
               <Link
                 href="/book"
+                className="glass-glow-btn"
                 style={{
-                  display: 'inline-block',
                   marginTop: '0.85rem',
-                  padding: '0.75rem 1.5rem',
-                  background: '#00D2FF',
-                  color: 'var(--bg-color)',
-                  textDecoration: 'none',
-                  fontSize: '0.85rem',
-                  fontWeight: 700,
-                  fontFamily: 'var(--font-syne)',
-                  borderRadius: '2px',
                 }}
               >
                 Get Help Now
