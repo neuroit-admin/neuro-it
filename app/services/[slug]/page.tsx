@@ -5,6 +5,7 @@ import Footer from '@/components/layout/Footer'
 import StickyBottomBar from '@/components/layout/StickyBottomBar'
 import { prisma } from '@/lib/prisma'
 import CategoryDetailClient from './CategoryDetailClient'
+import staticCategories from '@/lib/staticServices.json'
 
 const CATEGORY_META: Record<string, { title: string; description: string }> = {
   'laptop-services': {
@@ -80,6 +81,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 async function getCategoryData(slug: string) {
+  let serialized: any[] = []
   try {
     const categories = await prisma.serviceCategory.findMany({
       where: { isActive: true },
@@ -92,7 +94,7 @@ async function getCategoryData(slug: string) {
       },
     })
 
-    const serialized = categories.map(cat => ({
+    serialized = categories.map(cat => ({
       id: cat.id,
       name: cat.name,
       slug: cat.slug,
@@ -111,15 +113,19 @@ async function getCategoryData(slug: string) {
         isActive: s.isActive,
       })),
     }))
-
-    const currentCategory = serialized.find(cat => cat.slug === slug)
-    const otherCategories = serialized.filter(cat => cat.slug !== slug)
-
-    return { currentCategory, otherCategories }
   } catch (error) {
-    console.error('Failed to fetch category data:', error)
-    return { currentCategory: null, otherCategories: [] }
+    console.error('Failed to fetch category data from db:', error)
   }
+
+  // Fallback to static categories if database is empty or unseeded
+  if (!serialized || serialized.length === 0) {
+    serialized = staticCategories
+  }
+
+  const currentCategory = serialized.find(cat => cat.slug === slug)
+  const otherCategories = serialized.filter(cat => cat.slug !== slug)
+
+  return { currentCategory, otherCategories }
 }
 
 export default async function CategoryDetailPage({ params }: PageProps) {
