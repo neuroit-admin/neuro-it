@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState, useEffect, useRef } from 'react'
-import { Mail, MessageCircle, ChevronDown } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 import { useSession, signOut } from 'next-auth/react'
 import { motion, AnimatePresence } from 'framer-motion'
 import ThemeToggle from '@/components/theme/ThemeToggle'
@@ -524,55 +524,6 @@ export default function Navbar() {
             </button>
           )}
 
-          {/* Glassmorphic Contacts Capsule */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              background: 'var(--surface-secondary)',
-              backdropFilter: 'blur(8px)',
-              border: '1px solid var(--border)',
-              borderRadius: '99px',
-              padding: '0.35rem 0.75rem',
-            }}
-          >
-            <Link
-              href="/contact"
-              style={{
-                color: 'var(--text-primary)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '28px',
-                height: '28px',
-                borderRadius: '50%',
-                background: 'rgba(0, 210, 255, 0.1)',
-              }}
-              aria-label="Send Email"
-            >
-              <Mail size={14} style={{ color: '#00D2FF' }} />
-            </Link>
-            <div style={{ width: '1px', height: '14px', background: 'var(--border)' }} />
-            <a
-              href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '447700000000'}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: '#22C55E',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '28px',
-                height: '28px',
-                borderRadius: '50%',
-                background: 'rgba(34, 197, 94, 0.1)',
-              }}
-              aria-label="Chat WhatsApp"
-            >
-              <MessageCircle size={14} style={{ color: '#22C55E' }} />
-            </a>
-          </div>
 
           <ThemeToggle />
 
@@ -605,57 +556,6 @@ export default function Navbar() {
           >
             Get Help Now
           </Link>
-        </div>
-
-        {/* Mobile quick contacts (UX/CRO improvement) */}
-        <div
-          style={{
-            alignItems: 'center',
-            gap: '0.5rem',
-            background: 'var(--surface-secondary)',
-            backdropFilter: 'blur(8px)',
-            border: '1px solid var(--border)',
-            borderRadius: '99px',
-            padding: '0.35rem 0.75rem',
-            marginRight: '0.5rem',
-          }}
-          className="flex md:hidden"
-        >
-          <Link
-            href="/contact"
-            style={{
-              color: 'var(--text-primary)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '28px',
-              height: '28px',
-              borderRadius: '50%',
-              background: 'rgba(0, 210, 255, 0.1)',
-            }}
-            aria-label="Send Email"
-          >
-            <Mail size={14} style={{ color: '#00D2FF' }} />
-          </Link>
-          <div style={{ width: '1px', height: '14px', background: 'var(--border)' }} />
-          <a
-            href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '447700000000'}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              color: '#22C55E',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: '28px',
-              height: '28px',
-              borderRadius: '50%',
-              background: 'rgba(34, 197, 94, 0.1)',
-            }}
-            aria-label="Chat WhatsApp"
-          >
-            <MessageCircle size={14} style={{ color: '#22C55E' }} />
-          </a>
         </div>
 
         {/* Mobile menu button */}

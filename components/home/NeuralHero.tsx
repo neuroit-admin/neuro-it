@@ -3,20 +3,20 @@
 import { useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
 
-// ── تنظیمات شبکه ─────────────────────────────────────────────────────────────
-const NODE_COUNT   = 94   // تعداد نقاط — ۳۰٪ افزایش یافته
-const CONNECT_DIST = 140  // حداکثر فاصله برای رسم خط اتصال (px)
-const MOUSE_PULL   = 100  // شعاع جاذبه موس (px)
-const MOUSE_FORCE  = 0.016 // قدرت جاذبه (عدد کوچک = ملایمتر)
-const FRICTION     = 0.984 // اصطکاک حرکت (نزدیکتر به ۱ = کُندتر)
-const BASE_SPEED   = 0.28  // سرعت پایه حرکت نقاط
+// ── Network Settings ─────────────────────────────────────────────────────────────
+const NODE_COUNT   = 94   // Number of points - increased by 30%
+const CONNECT_DIST = 140  // Max distance for drawing connection lines (px)
+const MOUSE_PULL   = 100  // Mouse gravity radius (px)
+const MOUSE_FORCE  = 0.016 // Gravity power (smaller number = gentler)
+const FRICTION     = 0.984 // Movement friction (closer to 1 = slower)
+const BASE_SPEED   = 0.28  // Base movement speed of nodes
 
 interface Node {
   x: number; y: number
   vx: number; vy: number
-  r: number             // شعاع نقطه مرکزی
-  pulse: number         // فاز پالس نور
-  pulseSpeed: number    // سرعت پالس
+  r: number             // Central point radius
+  pulse: number         // Light pulse phase
+  pulseSpeed: number    // Pulse speed
 }
 
 // ── Static Fallback ───────────────────────────────────────────────────────────
@@ -64,7 +64,7 @@ export default function NeuralHero() {
   const rafRef    = useRef<number>(0)
   const glowRef   = useRef<HTMLDivElement>(null)
 
-  // ── تولید نقاط ──────────────────────────────────────────────────────────────
+  // ── Node Generation ──────────────────────────────────────────────────────────────
   const initNodes = useCallback((W: number, H: number) => {
     nodesRef.current = Array.from({ length: NODE_COUNT }, () => ({
       x: Math.random() * W,
@@ -77,7 +77,7 @@ export default function NeuralHero() {
     }))
   }, [])
 
-  // ── حلقه رسم ────────────────────────────────────────────────────────────────
+  // ── Draw Loop ────────────────────────────────────────────────────────────────
   const draw = useCallback(() => {
     const canvas = canvasRef.current
     if (!canvas) return
@@ -94,7 +94,7 @@ export default function NeuralHero() {
     for (let i = 0; i < nodes.length; i++) {
       const n = nodes[i]
 
-      // جاذبه موس
+      // Mouse gravity
       const dx = mx - n.x
       const dy = my - n.y
       const d  = Math.sqrt(dx * dx + dy * dy)
@@ -104,19 +104,19 @@ export default function NeuralHero() {
         n.vy += (dy / d) * f
       }
 
-      // اصطکاک و حرکت
+      // Friction and movement
       n.vx *= FRICTION
       n.vy *= FRICTION
       n.x  += n.vx
       n.y  += n.vy
 
-      // برخورد با مرز
+      // Boundary collision
       if (n.x < 0)  { n.x = 0;  n.vx *= -1 }
       if (n.x > W)  { n.x = W;  n.vx *= -1 }
       if (n.y < 0)  { n.y = 0;  n.vy *= -1 }
       if (n.y > H)  { n.y = H;  n.vy *= -1 }
 
-      // رسم خطوط اتصال
+      // Drawing connection lines
       for (let j = i + 1; j < nodes.length; j++) {
         const m  = nodes[j]
         const ex = m.x - n.x
@@ -124,7 +124,7 @@ export default function NeuralHero() {
         const ed = Math.sqrt(ex * ex + ey * ey)
         if (ed < CONNECT_DIST) {
           const baseAlpha = (1 - ed / CONNECT_DIST) * 0.35
-          // خطوطی که نزدیک موس هستند روشنتر میشوند
+          // Lines near the mouse glow brighter
           const midX = (n.x + m.x) / 2
           const midY = (n.y + m.y) / 2
           const md   = Math.sqrt((mx - midX) ** 2 + (my - midY) ** 2)
@@ -140,13 +140,13 @@ export default function NeuralHero() {
         }
       }
 
-      // رسم نقطه با گلو
+      // Drawing node with glow
       n.pulse += n.pulseSpeed
       const pAlpha   = 0.5 + Math.sin(n.pulse) * 0.32
       const nearMouse = d < 130 ? (1 - d / 130) * 0.55 : 0
       const finalA   = Math.min(pAlpha + nearMouse, 1)
 
-      // هاله نور پیرامون نقطه
+      // Glow aura around the node
       const grd = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 4)
       grd.addColorStop(0, `rgba(0,210,255,${finalA * 0.7})`)
       grd.addColorStop(1, 'rgba(0,210,255,0)')
@@ -155,7 +155,7 @@ export default function NeuralHero() {
       ctx.fillStyle = grd
       ctx.fill()
 
-      // نقطه مرکزی (روشنتر)
+      // Central node point (brighter)
       ctx.beginPath()
       ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2)
       ctx.fillStyle = `rgba(190,245,255,${finalA})`
@@ -165,9 +165,9 @@ export default function NeuralHero() {
     rafRef.current = requestAnimationFrame(draw)
   }, [])
 
-  // ── راهاندازی ───────────────────────────────────────────────────────────────
+  // ── Initialisation ───────────────────────────────────────────────────────────────
   useEffect(() => {
-    // بررسی prefers-reduced-motion
+    // Checking prefers-reduced-motion
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
     const wrap   = wrapRef.current
@@ -192,7 +192,7 @@ export default function NeuralHero() {
     }
   }, [draw, initNodes])
 
-  // ── رویدادهای موس ───────────────────────────────────────────────────────────
+  // ── Mouse Events ───────────────────────────────────────────────────────────
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     const rect = wrapRef.current?.getBoundingClientRect()
     if (!rect) return
@@ -206,7 +206,7 @@ export default function NeuralHero() {
   }, [])
 
   const handleMouseLeave = useCallback(() => {
-    // برگشت آرام به مرکز
+    // Smooth return to center
     const canvas = canvasRef.current
     if (canvas) mouseRef.current = { x: canvas.width / 2, y: canvas.height / 2 }
     if (glowRef.current) {
@@ -219,7 +219,7 @@ export default function NeuralHero() {
     if (glowRef.current) glowRef.current.style.opacity = '1'
   }, [])
 
-  // ── TouchMove برای موبایل ───────────────────────────────────────────────────
+  // ── TouchMove for Mobile ───────────────────────────────────────────────────
   const handleTouchMove = useCallback((e: React.TouchEvent<HTMLDivElement>) => {
     const rect = wrapRef.current?.getBoundingClientRect()
     if (!rect) return
@@ -249,14 +249,14 @@ export default function NeuralHero() {
       }}
       aria-label="Neuro IT — London's Premier Home IT Support"
     >
-      {/* ── Canvas شبکه عصبی ── */}
+      {/* ── Neural Network Canvas ── */}
       <canvas
         ref={canvasRef}
         aria-hidden="true"
         style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', display: 'block' }}
       />
 
-      {/* ── گلوی موس ── */}
+      {/* ── Mouse Glow ── */}
       <div
         ref={glowRef}
         aria-hidden="true"
@@ -273,7 +273,7 @@ export default function NeuralHero() {
         }}
       />
 
-      {/* ── محتوای اصلی ── */}
+      {/* ── Main Content ── */}
       <div
         style={{
           position: 'absolute',
@@ -374,7 +374,7 @@ export default function NeuralHero() {
           ))}
         </div>
 
-        {/* CTA Button — pointer-events: all برای کلیکپذیری */}
+        {/* CTA Button — pointer-events: all for clickability */}
         <Link
           href="/book"
           style={{ pointerEvents: 'all' }}
@@ -415,7 +415,7 @@ export default function NeuralHero() {
         </Link>
       </div>
 
-      {/* ── آمار پایین صفحه ── */}
+      {/* ── Bottom Page Stats ── */}
       <div
         style={{
           position: 'absolute',
@@ -447,7 +447,7 @@ export default function NeuralHero() {
         ))}
       </div>
 
-      {/* ── خط گرادیان پایین برای transition به سکشن بعدی ── */}
+      {/* ── Bottom gradient line for transition to next section ── */}
       <div
         aria-hidden="true"
         style={{
