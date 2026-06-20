@@ -501,49 +501,53 @@ export default function ServiceSelector({ bookingData, updateData, onNext, onBac
           Choose how you would like us to receive your device for repair:
         </p>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem' }}>
+        <div className="grid grid-cols-3 gap-2 md:gap-4">
           {/* Card 1: Home Visit */}
           <button
             type="button"
             onClick={() => setServiceType('HOME_VISIT')}
-            className="p-4 md:p-6"
+            className="p-3 md:p-6"
             style={{
               background: serviceType === 'HOME_VISIT' ? 'rgba(0, 210, 255, 0.08)' : 'var(--surface)',
               border: `1px solid ${serviceType === 'HOME_VISIT' ? '#00D2FF' : 'var(--border)'}`,
               borderRadius: '8px',
               cursor: 'pointer',
-              textAlign: 'left',
+              textAlign: 'center',
               transition: 'all 0.25s ease',
               display: 'flex',
               flexDirection: 'column',
-              gap: '0.75rem',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.5rem',
               position: 'relative',
               boxShadow: serviceType === 'HOME_VISIT' ? '0 0 15px rgba(0, 210, 255, 0.15)' : 'none',
             }}
           >
-            <div style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '50%',
-              background: serviceType === 'HOME_VISIT' ? 'rgba(0, 210, 255, 0.15)' : 'rgba(255,255,255,0.03)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: serviceType === 'HOME_VISIT' ? '#00D2FF' : '#888888',
-              transition: 'all 0.2s',
-            }}>
-              <MapPin size={20} />
+            <div
+              className="w-8 h-8 md:w-10 md:h-10"
+              style={{
+                borderRadius: '50%',
+                background: serviceType === 'HOME_VISIT' ? 'rgba(0, 210, 255, 0.15)' : 'rgba(255,255,255,0.03)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: serviceType === 'HOME_VISIT' ? '#00D2FF' : '#888888',
+                transition: 'all 0.2s',
+              }}
+            >
+              <MapPin size={18} />
             </div>
             <div>
-              <h3 className="font-syne" style={{ color: 'var(--text-primary)', fontSize: '0.95rem', fontWeight: 700, marginBottom: '0.25rem' }}>
-                Home Visit (On-Site)
+              <h3 className="font-syne text-center" style={{ color: 'var(--text-primary)', fontSize: '0.8rem', fontWeight: 700 }}>
+                <span className="md:hidden">Home</span>
+                <span className="hidden md:inline">Home Visit (On-Site)</span>
               </h3>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.75rem', lineHeight: 1.4 }}>
+              <p className="hidden md:block" style={{ color: 'var(--text-muted)', fontSize: '0.75rem', lineHeight: 1.4, marginTop: '0.25rem', textAlign: 'left' }}>
                 Vetted technician visits your home or office. Flat £15.00 deposit/travel fee applies.
               </p>
             </div>
             {serviceType === 'HOME_VISIT' && (
-              <CheckCircle2 size={16} style={{ position: 'absolute', top: '1rem', right: '1rem', color: '#00D2FF' }} />
+              <CheckCircle2 size={14} className="absolute top-2 right-2 md:top-4 md:right-4 text-[#00D2FF]" />
             )}
           </button>
 
@@ -551,44 +555,48 @@ export default function ServiceSelector({ bookingData, updateData, onNext, onBac
           <button
             type="button"
             onClick={() => setServiceType('MAIL_IN')}
-            className="p-4 md:p-6"
+            className="p-3 md:p-6"
             style={{
               background: serviceType === 'MAIL_IN' ? 'rgba(0, 210, 255, 0.08)' : 'var(--surface)',
               border: `1px solid ${serviceType === 'MAIL_IN' ? '#00D2FF' : 'var(--border)'}`,
               borderRadius: '8px',
               cursor: 'pointer',
-              textAlign: 'left',
+              textAlign: 'center',
               transition: 'all 0.25s ease',
               display: 'flex',
               flexDirection: 'column',
-              gap: '0.75rem',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.5rem',
               position: 'relative',
               boxShadow: serviceType === 'MAIL_IN' ? '0 0 15px rgba(0, 210, 255, 0.15)' : 'none',
             }}
           >
-            <div style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '50%',
-              background: serviceType === 'MAIL_IN' ? 'rgba(0, 210, 255, 0.15)' : 'rgba(255,255,255,0.03)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: serviceType === 'MAIL_IN' ? '#00D2FF' : '#888888',
-              transition: 'all 0.2s',
-            }}>
-              <Mail size={20} />
+            <div
+              className="w-8 h-8 md:w-10 md:h-10"
+              style={{
+                borderRadius: '50%',
+                background: serviceType === 'MAIL_IN' ? 'rgba(0, 210, 255, 0.15)' : 'rgba(255,255,255,0.03)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: serviceType === 'MAIL_IN' ? '#00D2FF' : '#888888',
+                transition: 'all 0.2s',
+              }}
+            >
+              <Mail size={18} />
             </div>
             <div>
-              <h3 className="font-syne" style={{ color: 'var(--text-primary)', fontSize: '0.95rem', fontWeight: 700, marginBottom: '0.25rem' }}>
-                Mail-in (Post)
+              <h3 className="font-syne text-center" style={{ color: 'var(--text-primary)', fontSize: '0.8rem', fontWeight: 700 }}>
+                <span className="md:hidden">Mail-in</span>
+                <span className="hidden md:inline">Mail-in (Post)</span>
               </h3>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.75rem', lineHeight: 1.4 }}>
+              <p className="hidden md:block" style={{ color: 'var(--text-muted)', fontSize: '0.75rem', lineHeight: 1.4, marginTop: '0.25rem', textAlign: 'left' }}>
                 UK-wide service. Free prepaid Royal Mail Special Delivery shipping label. Pay after repair is completed.
               </p>
             </div>
             {serviceType === 'MAIL_IN' && (
-              <CheckCircle2 size={16} style={{ position: 'absolute', top: '1rem', right: '1rem', color: '#00D2FF' }} />
+              <CheckCircle2 size={14} className="absolute top-2 right-2 md:top-4 md:right-4 text-[#00D2FF]" />
             )}
           </button>
 
@@ -596,46 +604,69 @@ export default function ServiceSelector({ bookingData, updateData, onNext, onBac
           <button
             type="button"
             onClick={() => setServiceType('DROP_OFF')}
-            className="p-4 md:p-6"
+            className="p-3 md:p-6"
             style={{
               background: serviceType === 'DROP_OFF' ? 'rgba(0, 210, 255, 0.08)' : 'var(--surface)',
               border: `1px solid ${serviceType === 'DROP_OFF' ? '#00D2FF' : 'var(--border)'}`,
               borderRadius: '8px',
               cursor: 'pointer',
-              textAlign: 'left',
+              textAlign: 'center',
               transition: 'all 0.25s ease',
               display: 'flex',
               flexDirection: 'column',
-              gap: '0.75rem',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '0.5rem',
               position: 'relative',
               boxShadow: serviceType === 'DROP_OFF' ? '0 0 15px rgba(0, 210, 255, 0.15)' : 'none',
             }}
           >
-            <div style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '50%',
-              background: serviceType === 'DROP_OFF' ? 'rgba(0, 210, 255, 0.15)' : 'rgba(255,255,255,0.03)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: serviceType === 'DROP_OFF' ? '#00D2FF' : '#888888',
-              transition: 'all 0.2s',
-            }}>
-              <Building size={20} />
+            <div
+              className="w-8 h-8 md:w-10 md:h-10"
+              style={{
+                borderRadius: '50%',
+                background: serviceType === 'DROP_OFF' ? 'rgba(0, 210, 255, 0.15)' : 'rgba(255,255,255,0.03)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: serviceType === 'DROP_OFF' ? '#00D2FF' : '#888888',
+                transition: 'all 0.2s',
+              }}
+            >
+              <Building size={18} />
             </div>
             <div>
-              <h3 className="font-syne" style={{ color: 'var(--text-primary)', fontSize: '0.95rem', fontWeight: 700, marginBottom: '0.25rem' }}>
-                Drop-off (In-Person)
+              <h3 className="font-syne text-center" style={{ color: 'var(--text-primary)', fontSize: '0.8rem', fontWeight: 700 }}>
+                <span className="md:hidden">Drop-off</span>
+                <span className="hidden md:inline">Drop-off (In-Person)</span>
               </h3>
-              <p style={{ color: 'var(--text-muted)', fontSize: '0.75rem', lineHeight: 1.4 }}>
+              <p className="hidden md:block" style={{ color: 'var(--text-muted)', fontSize: '0.75rem', lineHeight: 1.4, marginTop: '0.25rem', textAlign: 'left' }}>
                 Bring your device to our Barnet workshop directly. Choose a convenient date & time slot. Pay after fix.
               </p>
             </div>
             {serviceType === 'DROP_OFF' && (
-              <CheckCircle2 size={16} style={{ position: 'absolute', top: '1rem', right: '1rem', color: '#00D2FF' }} />
+              <CheckCircle2 size={14} className="absolute top-2 right-2 md:top-4 md:right-4 text-[#00D2FF]" />
             )}
           </button>
+        </div>
+
+        {/* Dynamic Service Description Box (Mobile Only) */}
+        <div className="block md:hidden mt-3 p-3 bg-surface border border-border rounded-lg" style={{ background: 'rgba(255, 255, 255, 0.01)' }}>
+          {serviceType === 'HOME_VISIT' && (
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.78rem', lineHeight: 1.45, margin: 0 }}>
+              📍 <strong>Home Visit:</strong> Vetted technician visits your home or office. Flat £15.00 deposit/travel fee applies.
+            </p>
+          )}
+          {serviceType === 'MAIL_IN' && (
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.78rem', lineHeight: 1.45, margin: 0 }}>
+              📦 <strong>Mail-in Post:</strong> UK-wide service. Free prepaid Royal Mail Special Delivery shipping label. Pay after repair is completed.
+            </p>
+          )}
+          {serviceType === 'DROP_OFF' && (
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.78rem', lineHeight: 1.45, margin: 0 }}>
+              🏢 <strong>Drop-off Workshop:</strong> Bring your device to our Barnet workshop directly. Choose a convenient date & time slot. Pay after fix.
+            </p>
+          )}
         </div>
       </div>
 
