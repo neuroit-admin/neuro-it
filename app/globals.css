@@ -310,8 +310,8 @@ canvas {
   -webkit-backdrop-filter: blur(20px) !important;
 }
 
-/* ── Glassmorphism + Neon Glow Button (Option A) ── */
-.glass-glow-btn {
+/* ── Glassmorphism + Neon Glow Button (Option A with Border Beam) ── */
+.glass-glow-btn, .glass-glow-btn-whatsapp {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -322,27 +322,117 @@ canvas {
   font-family: var(--font-syne);
   letter-spacing: 0.04em;
   color: #FFFFFF !important;
-  background: rgba(0, 210, 255, 0.05) !important;
-  border: 1.5px solid #00D2FF !important;
+  border: 1.5px solid transparent !important;
   border-radius: 99px !important;
   text-decoration: none;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 0 12px rgba(0, 210, 255, 0.15);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
 }
 
+.glass-glow-btn {
+  box-shadow: 0 0 12px rgba(0, 210, 255, 0.15);
+}
+
+.glass-glow-btn-whatsapp {
+  box-shadow: 0 0 12px rgba(34, 197, 94, 0.15);
+}
+
+/* Conic gradient rotating border light */
+.glass-glow-btn::before, .glass-glow-btn-whatsapp::before {
+  content: '';
+  position: absolute;
+  top: -150%;
+  left: -150%;
+  width: 400%;
+  height: 400%;
+  animation: border-beam-spin 6s linear infinite;
+  z-index: -2;
+  pointer-events: none;
+}
+
+.glass-glow-btn::before {
+  background: conic-gradient(
+    from 0deg,
+    transparent,
+    #00D2FF 10%,
+    transparent 25%,
+    transparent 50%,
+    #00D2FF 60%,
+    transparent 75%,
+    transparent
+  );
+}
+
+.glass-glow-btn-whatsapp::before {
+  background: conic-gradient(
+    from 0deg,
+    transparent,
+    #22C55E 10%,
+    transparent 25%,
+    transparent 50%,
+    #22C55E 60%,
+    transparent 75%,
+    transparent
+  );
+}
+
+/* Inner card covering the center, forming a glass inner body */
+.glass-glow-btn::after, .glass-glow-btn-whatsapp::after {
+  content: '';
+  position: absolute;
+  inset: 1.5px;
+  border-radius: 99px;
+  z-index: -1;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  pointer-events: none;
+}
+
+.glass-glow-btn::after {
+  background: rgba(5, 10, 15, 0.90) !important;
+}
+
+.glass-glow-btn-whatsapp::after {
+  background: rgba(5, 10, 15, 0.90) !important;
+}
+
+/* Hover States */
 .glass-glow-btn:hover {
-  background: #00D2FF !important;
   color: #050a0f !important;
   box-shadow: 0 0 25px rgba(0, 210, 255, 0.5) !important;
   transform: translateY(-2px);
 }
 
+.glass-glow-btn-whatsapp:hover {
+  color: #FFFFFF !important;
+  box-shadow: 0 0 25px rgba(34, 197, 94, 0.5) !important;
+  transform: translateY(-2px);
+}
+
+.glass-glow-btn:hover::after {
+  background: #00D2FF !important;
+}
+
+.glass-glow-btn-whatsapp:hover::after {
+  background: #22C55E !important;
+}
+
+@keyframes border-beam-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /* Desktop override */
 @media (min-width: 768px) {
-  .glass-glow-btn {
+  .glass-glow-btn, .glass-glow-btn-whatsapp {
     padding: 0.85rem 2rem;
     font-size: 0.95rem;
   }

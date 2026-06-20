@@ -49,6 +49,7 @@ function Magnetic({ children }: { children: React.ReactElement }) {
       animate={{ x: position.x, y: position.y }}
       transition={{ type: 'spring', stiffness: 150, damping: 15, mass: 0.1 }}
       onMouseLeave={handleMouseLeave}
+      className="w-full sm:w-auto text-center"
       style={{ display: 'inline-block' }}
     >
       {children}
@@ -60,12 +61,12 @@ export default function BridgeCtas({ primaryCtaText, whatsappCtaText, whatsappNu
   const [isWaHovered, setIsWaHovered] = useState(false)
 
   return (
-    <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', alignItems: 'center' }}>
+    <div className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full max-w-md mx-auto sm:max-w-none">
       <Magnetic>
         <Link
           href="/book"
           id="home-primary-cta"
-          className="glass-glow-btn"
+          className="glass-glow-btn w-full sm:w-auto"
         >
           {primaryCtaText}
         </Link>
@@ -77,31 +78,9 @@ export default function BridgeCtas({ primaryCtaText, whatsappCtaText, whatsappNu
           id="home-whatsapp-cta"
           target="_blank"
           rel="noopener noreferrer"
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            padding: '1rem 2.5rem',
-            background: 'transparent',
-            color: '#22C55E',
-            textDecoration: 'none',
-            fontWeight: 700,
-            fontFamily: 'var(--font-syne)',
-            fontSize: '1rem',
-            letterSpacing: '0.05em',
-            borderRadius: '99px',
-            border: '1px solid #22C55E',
-            transition: 'box-shadow 0.2s ease, background 0.2s ease',
-          }}
-          onMouseEnter={e => {
-            setIsWaHovered(true)
-            e.currentTarget.style.boxShadow = '0 0 25px rgba(34, 197, 94, 0.3)'
-            e.currentTarget.style.background = 'rgba(34, 197, 94, 0.05)'
-          }}
-          onMouseLeave={e => {
-            setIsWaHovered(false)
-            e.currentTarget.style.boxShadow = 'none'
-            e.currentTarget.style.background = 'transparent'
-          }}
+          className="glass-glow-btn-whatsapp w-full sm:w-auto"
+          onMouseEnter={() => setIsWaHovered(true)}
+          onMouseLeave={() => setIsWaHovered(false)}
         >
           <motion.span
             animate={isWaHovered ? { rotate: [0, -15, 15, -15, 15, 0] } : { rotate: 0 }}
