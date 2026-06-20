@@ -13,6 +13,7 @@ import { Outfit, DM_Sans, JetBrains_Mono } from 'next/font/google'
 import Providers         from '@/components/providers/SessionProvider'
 import WhatsAppWidget    from '@/components/layout/WhatsAppWidget'
 import ErrorBoundary     from '@/components/providers/ErrorBoundary'
+import Script from 'next/script'
 import { LocalBusinessSchema, FAQSchema } from '@/components/seo/JsonLd'
 import { ThemeProvider } from '@/components/theme/ThemeProvider'
 import './globals.css'
@@ -107,6 +108,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <FAQSchema />
       </head>
       <body className={`${outfit.variable} ${dmSans.variable} ${jetbrains.variable} font-sans antialiased`}>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-EJ66EEVKXR"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-EJ66EEVKXR');
+          `}
+        </Script>
         <ErrorBoundary>
           <ThemeProvider>
             <div className="fluid-bg-container" aria-hidden="true">
