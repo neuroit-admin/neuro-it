@@ -735,7 +735,7 @@ When it comes to ad-hoc or "break-fix" IT services, there are two primary pricin
 
 ### Hourly Rates vs. Flat Fees
 - **Hourly Rates:** Typically range from **£40 to £120 per hour** depending on the technician's expertise and location. While good for quick diagnostics, hourly billing carries the risk of runaway costs if a problem proves complex.
-- **Flat-fee Services:** Many premium repair providers (like Neuro IT) charge a flat fee or deposit for specific services (e.g., £10.00 booking deposit, screen replacement starting from £79). This provides financial predictability.
+- **Flat-fee Services:** Many premium repair providers (like Neuro IT) charge a flat fee or deposit for specific services (e.g., £15.00 booking deposit, screen replacement starting from £79). This provides financial predictability.
 
 | Service Category | Typical Price Range (London Avg) | Neuro IT Starting Price |
 | :--- | :--- | :--- |

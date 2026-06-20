@@ -447,7 +447,7 @@ export default function AreasClient() {
                 <span style={{ fontSize: '1.1rem', color: '#00D2FF' }}>✓</span>
                 <div>
                   <p style={{ color: '#00D2FF', fontWeight: 700, fontSize: '0.8rem', margin: 0 }}>Zone 4: Free Call-out Hub</p>
-                  <p style={{ color: 'var(--text-muted)', fontSize: '0.72rem', margin: 0 }}>You qualify for absolute Free Call-out. Vetted engineers are dispatched to your door with a £10.00 booking deposit (fully deducted from your invoice).</p>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.72rem', margin: 0 }}>You qualify for absolute Free Call-out. Vetted engineers are dispatched to your door with a £15.00 booking deposit (fully deducted from your invoice).</p>
                 </div>
               </div>
             )}
@@ -456,7 +456,7 @@ export default function AreasClient() {
                 <span style={{ fontSize: '1.1rem', color: '#A855F7' }}>✓</span>
                 <div>
                   <p style={{ color: '#A855F7', fontWeight: 700, fontSize: '0.8rem', margin: 0 }}>Zone 3: Standard Call-out Zone</p>
-                  <p style={{ color: 'var(--text-muted)', fontSize: '0.72rem', margin: 0 }}>Same-day home visit with a flat £15.00 booking deposit. Rest of the repair details remain no fix no fee.</p>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.72rem', margin: 0 }}>Same-day home visit with a flat £15.00 travel fee. Rest of the repair details remain no fix no fee.</p>
                 </div>
               </div>
             )}
@@ -465,7 +465,7 @@ export default function AreasClient() {
                 <span style={{ fontSize: '1.1rem', color: '#F59E0B' }}>⚠️</span>
                 <div>
                   <p style={{ color: '#F59E0B', fontWeight: 700, fontSize: '0.8rem', margin: 0 }}>Zone 2: Greater London Flexible</p>
-                  <p style={{ color: 'var(--text-muted)', fontSize: '0.72rem', margin: 0 }}>Travel fee is negotiated. Checkout with £0 deposit; dispatchers will call/WhatsApp you to align on travel costs.</p>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.72rem', margin: 0 }}>Same-day home visit with a flat £15.00 base travel deposit. Any additional travel fee based on distance will be calculated and added to your invoice.</p>
                 </div>
               </div>
             )}
@@ -497,7 +497,7 @@ export default function AreasClient() {
                 Zone 4: Free Call-out Hub
               </h4>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', lineHeight: 1.5, margin: 0 }}>
-                Our core operations hub. Zero call-out fee. Vetted engineers dispatched to your door. Book with a flat £10.00 booking deposit (deducted from final repair bill).
+                Our core operations hub. Zero call-out fee. Vetted engineers dispatched to your door. Book with a flat £15.00 booking deposit (deducted from final repair bill).
               </p>
             </div>
 
@@ -507,7 +507,7 @@ export default function AreasClient() {
                 Zone 3: Standard Call-out
               </h4>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', lineHeight: 1.5, margin: 0 }}>
-                Home visits with a flat £15.00 booking deposit. Vetted same-day support is active. Covers Watford, Enfield, Harrow, Wembley, Camden, and Islington.
+                Home visits with a flat £15.00 travel fee. Vetted same-day support is active. Covers Watford, Enfield, Harrow, Wembley, Camden, and Islington.
               </p>
             </div>
 
@@ -517,7 +517,7 @@ export default function AreasClient() {
                 Zone 2: Greater London (Flexible Call-out)
               </h4>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', lineHeight: 1.5, margin: 0 }}>
-                Covers remaining Greater London regions. Choose mail-in, drop-off, or home visit with negotiated travel fees. Book with £0 deposit and support will coordinate costs.
+                Covers remaining Greater London regions. Choose mail-in, drop-off, or home visit with a flat £15.00 base travel deposit (additional travel fee based on distance will be calculated and added to final invoice).
               </p>
             </div>
 
@@ -926,17 +926,17 @@ export default function AreasClient() {
                   <div style={{ fontSize: '0.78rem', lineHeight: 1.45, color: 'var(--text-secondary)' }}>
                     {selectedBorough.zone === 'FREE_CALL_OUT' && (
                       <p style={{ margin: 0 }}>
-                        This area is part of our central operations hub. You qualify for <strong style={{ color: '#00D2FF' }}>Free Call-out</strong>. Vetted engineers are dispatched to your door with a £10.00 booking fee, fully deducted from your final repair invoice.
+                        This area is part of our central operations hub. You qualify for <strong style={{ color: '#00D2FF' }}>Free Call-out</strong>. Vetted engineers are dispatched to your door with a £15.00 booking deposit, fully deducted from your final repair invoice.
                       </p>
                     )}
                     {selectedBorough.zone === 'STANDARD_999' && (
                       <p style={{ margin: 0 }}>
-                        This area falls in our <strong style={{ color: '#A855F7' }}>Standard Call-out Zone</strong>. Same-day engineering visits are supported with a flat £15.00 call-out fee. All repairs remain "no fix, no fee".
+                        This area falls in our <strong style={{ color: '#A855F7' }}>Standard Call-out Zone</strong>. Same-day engineering visits are supported with a flat £15.00 travel fee. All repairs remain "no fix, no fee".
                       </p>
                     )}
                     {selectedBorough.zone === 'LONDON_FLEX' && (
                       <p style={{ margin: 0 }}>
-                        This area belongs to the <strong style={{ color: '#F59E0B' }}>Greater London Flexible Zone</strong>. We support home visits with customized travel fees. Alternatively, you can drop off your laptop or use our insured mail-in service.
+                        This area belongs to the <strong style={{ color: '#F59E0B' }}>Greater London Flexible Zone</strong>. We support home visits with a flat £15.00 base travel deposit (additional travel fee based on distance will be calculated and added to final invoice).
                       </p>
                     )}
                   </div>

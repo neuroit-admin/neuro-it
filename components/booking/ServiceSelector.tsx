@@ -967,7 +967,7 @@ export default function ServiceSelector({ bookingData, updateData, onNext, onBac
             </div>
             
             <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: 1.6 }}>
-              Our on-site engineering team currently operates booking deposits (£10.00 for Zone 4, £15.00 for Zone 3) only within North London and Hertfordshire (postcodes starting with N, NW, HA, EN, or WD).
+              Our on-site engineering team operates booking deposits/travel fees (£15.00 flat) for all home visit requests across all coverage areas.
               <br /><br />
               Would you like to register your interest? Leave your email and phone number, and our team will get in touch if we can make an exception, or notify you when we expand our boundaries.
             </p>

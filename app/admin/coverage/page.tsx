@@ -324,7 +324,7 @@ export default function AdminCoveragePage() {
                               color: borough.zone === 'FREE_CALL_OUT' ? '#00D2FF' : borough.zone === 'STANDARD_999' ? '#A855F7' : '#F59E0B',
                               border: `1px solid ${borough.zone === 'FREE_CALL_OUT' ? 'rgba(0, 210, 255, 0.2)' : borough.zone === 'STANDARD_999' ? 'rgba(168, 85, 247, 0.2)' : 'rgba(245, 158, 11, 0.2)'}`
                             }}>
-                              {borough.zone === 'FREE_CALL_OUT' ? '£10.00 Free Hub' : borough.zone === 'STANDARD_999' ? '£15.00 Standard' : 'Flexible Zone'}
+                              {borough.zone === 'FREE_CALL_OUT' ? '£15.00 Deposit' : borough.zone === 'STANDARD_999' ? '£15.00 Travel Fee' : '£15.00 Base + Custom'}
                             </span>
                           </td>
                           <td style={{ padding: '1.25rem 1.5rem', color: '#AAA', fontFamily: 'var(--font-jetbrains)', fontSize: '0.75rem' }}>
