@@ -137,7 +137,7 @@ export default function AdminSettingsPage() {
                       min="0"
                       value={settings.flat_deposit_fee}
                       onChange={e => handleChange('flat_deposit_fee', e.target.value)}
-                      placeholder="10.00"
+                      placeholder="15.00"
                       required
                       style={{
                         width: '100%', padding: '0.75rem 0.75rem 0.75rem 2rem',
@@ -147,7 +147,7 @@ export default function AdminSettingsPage() {
                     />
                   </div>
                   <p style={{ color: 'var(--text-muted)', fontSize: '0.75rem', margin: '0.25rem 0 0' }}>
-                    {descriptions.flat_deposit_fee || 'Flat deposit fee charged during the booking checkout flow for addresses inside coverage area.'}
+                    {descriptions.flat_deposit_fee || 'Flat deposit fee charged during the booking checkout flow for all zones.'}
                   </p>
                 </div>
               </div>

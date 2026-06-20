@@ -29,7 +29,7 @@ export default function HowItWorksPage() {
       title: 'Online Booking',
       icon: Calendar,
       emoji: '🗓️',
-      desc: 'Submit your issue and address. Book with a booking deposit (£10.00 for Zone 4 - deducted from final invoice, or £15.00 for Zone 3) to secure your slot. Outside these zones? Submit with £0 deposit and negotiate travel fees first.',
+      desc: 'Submit your issue and address. Book with a flat £15.00 deposit/travel fee (fully deducted from final invoice for Zone 4, flat travel fee for Zone 3, or base travel deposit for custom zones) to secure your slot.',
       color: '#00D2FF',
       shadow: 'rgba(0, 210, 255, 0.4)',
     },
@@ -254,7 +254,7 @@ export default function HowItWorksPage() {
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 700, fontSize: '0.85rem' }}>
           <span style={{ color: 'var(--text-primary)' }}>Flat Booking Deposit</span>
-          <span style={{ color: '#00D2FF' }}>£10.00</span>
+          <span style={{ color: '#00D2FF' }}>£15.00</span>
         </div>
         <p style={{ fontSize: '0.6rem', color: '#555', marginTop: '0.25rem', lineHeight: 1.3 }}>* Deducted from final invoice. Secured under UK GDPR protocol.</p>
       </div>
@@ -272,7 +272,7 @@ export default function HowItWorksPage() {
         justifyContent: 'center',
         gap: '0.5rem',
       }}>
-        <CreditCard size={14} /> Pay £10.00 Deposit Securely
+        <CreditCard size={14} /> Pay £15.00 Deposit Securely
       </div>
     </div>
   )

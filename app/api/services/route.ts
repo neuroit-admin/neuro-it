@@ -50,7 +50,7 @@ export async function GET() {
     }
 
     // Fetch flat deposit fee
-    let flatDepositFee = 10.00
+    let flatDepositFee = 15.00
     try {
       const setting = await prisma.systemSetting.findUnique({
         where: { key: 'flat_deposit_fee' },
@@ -67,7 +67,7 @@ export async function GET() {
     console.error('Public services API error, using static fallback:', error)
     try {
       const staticCategories = require('@/lib/staticServices.json')
-      return NextResponse.json({ categories: staticCategories, flatDepositFee: 10.00 })
+      return NextResponse.json({ categories: staticCategories, flatDepositFee: 15.00 })
     } catch (fallbackError) {
       return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
     }

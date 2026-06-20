@@ -464,9 +464,9 @@ export default function AdminCoveragePage() {
                         onChange={e => setZone(e.target.value as any)}
                         style={{ width: '100%', background: 'var(--bg-color)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '6px', padding: '0.65rem 0.85rem', color: 'var(--text-primary)', fontSize: '0.85rem', outline: 'none' }}
                       >
-                        <option value="FREE_CALL_OUT">£10.00 Free Hub (Zone 4)</option>
-                        <option value="STANDARD_999">£15.00 Standard (Zone 3)</option>
-                        <option value="LONDON_FLEX">Flexible (Zone 2)</option>
+                        <option value="FREE_CALL_OUT">£15.00 Deposit Deducted (Zone 4)</option>
+                        <option value="STANDARD_999">£15.00 Travel Fee (Zone 3)</option>
+                        <option value="LONDON_FLEX">£15.00 Base Deposit + Custom (Zone 2)</option>
                       </select>
                     </div>
                     <div>

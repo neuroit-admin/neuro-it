@@ -32,7 +32,7 @@ const faqs = [
   },
   {
     q: 'Do you require a booking deposit?',
-    a: 'To secure your booking slot and protect against no-shows, standard bookings in our coverage areas require a booking deposit (£10.00 for Zone 4 - which is fully deducted from your final repair invoice, or £15.00 for Zone 3). Out-of-zone bookings require £0 deposit and call-out travel fees are negotiated.',
+    a: 'To secure your booking slot and protect against no-shows, standard bookings require a flat £15.00 deposit/travel fee. For Zone 4, this £15.00 deposit is fully deducted from your final repair invoice. For Zone 3, this is a flat travel and dispatch fee. For other zones (Zone 2 and outside London), the £15.00 acts as a base travel deposit, and any additional travel fee based on distance will be calculated and added to your final invoice.',
   },
   {
     q: 'Do you have a "No Fix, No Fee" guarantee?',

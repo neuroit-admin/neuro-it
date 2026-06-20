@@ -775,7 +775,7 @@ export default function ServicesClient({ initialCategories }: ServicesClientProp
                   <div>
                     <h4 className="font-syne" style={{ color: 'var(--text-primary)', fontWeight: 600, fontSize: '1.05rem', marginBottom: '0.25rem' }}>Flat Booking Deposit</h4>
                     <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: 1.5 }}>
-                      Standard bookings in our coverage areas require a booking deposit (£10.00 for Zone 4 - fully credited towards final bill, or £15.00 for Zone 3) to secure your slot.
+                      Standard bookings require a flat £15.00 deposit/travel fee (fully credited towards final bill for Zone 4, flat travel fee for Zone 3, or base travel deposit for custom zones) to secure your slot.
                     </p>
                   </div>
                 </div>
