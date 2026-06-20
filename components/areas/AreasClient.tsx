@@ -447,7 +447,7 @@ export default function AreasClient() {
                 <span style={{ fontSize: '1.1rem', color: '#00D2FF' }}>✓</span>
                 <div>
                   <p style={{ color: '#00D2FF', fontWeight: 700, fontSize: '0.8rem', margin: 0 }}>Zone 4: Free Call-out Hub</p>
-                  <p style={{ color: 'var(--text-muted)', fontSize: '0.72rem', margin: 0 }}>You qualify for absolute Free Call-out. Vetted engineers are dispatched to your door with a £15.00 booking deposit (fully deducted from your invoice).</p>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.72rem', margin: 0 }}>مرکز اصلی عملیات ما با اعزام مهندسان مجرب به درب منزل شما بدون هزینه اعزام. رزرو نوبت حضوری با پرداخت بیعانه‌ای انجام می‌شود که به طور کامل از صورت‌حساب کسر می‌گردد به مبلغ ۱۵.۰۰ پوند. (گزینه ارسال پستی رایگان و تحویل حضوری نیز در دسترس است با هزینه ۰.۰۰ پوند).</p>
                 </div>
               </div>
             )}
@@ -456,7 +456,7 @@ export default function AreasClient() {
                 <span style={{ fontSize: '1.1rem', color: '#A855F7' }}>✓</span>
                 <div>
                   <p style={{ color: '#A855F7', fontWeight: 700, fontSize: '0.8rem', margin: 0 }}>Zone 3: Standard Call-out Zone</p>
-                  <p style={{ color: 'var(--text-muted)', fontSize: '0.72rem', margin: 0 }}>Same-day home visit with a flat £15.00 travel fee. Rest of the repair details remain no fix no fee.</p>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.72rem', margin: 0 }}>بازدید و اعزام کارشناس به محل شما در همان روز. کلیه مراحل تعمیر بر اساس قانون بدون تعمیر، بدون هزینه انجام می‌شود و هزینه رفت‌وآمد ثابت است به مبلغ ۱۵.۰۰ پوند. (گزینه ارسال پستی رایگان و تحویل حضوری نیز در دسترس است با هزینه ۰.۰۰ پوند).</p>
                 </div>
               </div>
             )}
@@ -465,7 +465,7 @@ export default function AreasClient() {
                 <span style={{ fontSize: '1.1rem', color: '#F59E0B' }}>⚠️</span>
                 <div>
                   <p style={{ color: '#F59E0B', fontWeight: 700, fontSize: '0.8rem', margin: 0 }}>Zone 2: Greater London Flexible</p>
-                  <p style={{ color: 'var(--text-muted)', fontSize: '0.72rem', margin: 0 }}>Same-day home visit with a flat £15.00 base travel deposit. Any additional travel fee based on distance will be calculated and added to your invoice.</p>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.72rem', margin: 0 }}>پوشش سراسری سایر مناطق لندن بزرگ. اعزام کارشناس جهت عیب‌یابی در محل با پرداخت بیعانه پایه انجام می‌شود و مابقی هزینه رفت‌وآمد بر اساس مسافت دقیق محاسبه و اضافه خواهد شد به مبلغ ۱۵.۰۰ پوند. (گزینه ارسال پستی رایگان و تحویل حضوری نیز در دسترس است با هزینه ۰.۰۰ پوند).</p>
                 </div>
               </div>
             )}
@@ -474,7 +474,7 @@ export default function AreasClient() {
                 <span style={{ fontSize: '1.1rem', color: '#00D2FF' }}>✉️</span>
                 <div>
                   <p style={{ color: '#00D2FF', fontWeight: 700, fontSize: '0.8rem', margin: 0 }}>Zone 1: Nationwide Mail-in Only</p>
-                  <p style={{ color: 'var(--text-muted)', fontSize: '0.72rem', margin: 0 }}>We support this UK address via fully-insured Mail-in. Print our prepaid Royal Mail label and send it over.</p>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.72rem', margin: 0 }}>ارسال پستی سراسری برای تمام نقاط بریتانیا خارج از لندن بزرگ. لپ‌تاپ خود را مستقیماً به هاب مرکزی ما بفرستید. این سرویس شامل برچسب پستی پیش‌پرداخت رایگان و بیمه رویال میل تا سقف ۷۵۰.۰۰ پوند است با هزینه ۰.۰۰ پوند.</p>
                 </div>
               </div>
             )}
@@ -497,7 +497,7 @@ export default function AreasClient() {
                 Zone 4: Free Call-out Hub
               </h4>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', lineHeight: 1.5, margin: 0 }}>
-                Our core operations hub. Zero call-out fee. Vetted engineers dispatched to your door. Book with a flat £15.00 booking deposit (deducted from final repair bill).
+                مرکز اصلی عملیات ما با اعزام مهندسان مجرب به درب منزل شما بدون هزینه اعزام. رزرو نوبت حضوری با پرداخت بیعانه‌ای انجام می‌شود که به طور کامل از صورت‌حساب کسر می‌گردد به مبلغ ۱۵.۰۰ پوند. (گزینه ارسال پستی رایگان و تحویل حضوری نیز در دسترس است با هزینه ۰.۰۰ پوند).
               </p>
             </div>
 
@@ -507,7 +507,7 @@ export default function AreasClient() {
                 Zone 3: Standard Call-out
               </h4>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', lineHeight: 1.5, margin: 0 }}>
-                Home visits with a flat £15.00 travel fee. Vetted same-day support is active. Covers Watford, Enfield, Harrow, Wembley, Camden, and Islington.
+                بازدید و اعزام کارشناس به محل شما در همان روز. کلیه مراحل تعمیر بر اساس قانون بدون تعمیر، بدون هزینه انجام می‌شود و هزینه رفت‌وآمد ثابت است به مبلغ ۱۵.۰۰ پوند. (گزینه ارسال پستی رایگان و تحویل حضوری نیز در دسترس است با هزینه ۰.۰۰ پوند).
               </p>
             </div>
 
@@ -517,7 +517,7 @@ export default function AreasClient() {
                 Zone 2: Greater London (Flexible Call-out)
               </h4>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', lineHeight: 1.5, margin: 0 }}>
-                Covers remaining Greater London regions. Choose mail-in, drop-off, or home visit with a flat £15.00 base travel deposit (additional travel fee based on distance will be calculated and added to final invoice).
+                پوشش سراسری سایر مناطق لندن بزرگ. اعزام کارشناس جهت عیب‌یابی در محل با پرداخت بیعانه پایه انجام می‌شود و مابقی هزینه رفت‌وآمد بر اساس مسافت دقیق محاسبه و اضافه خواهد شد به مبلغ ۱۵.۰۰ پوند. (گزینه ارسال پستی رایگان و تحویل حضوری نیز در دسترس است با هزینه ۰.۰۰ پوند).
               </p>
             </div>
 
@@ -527,7 +527,7 @@ export default function AreasClient() {
                 Zone 1: Nationwide Mail-in Only
               </h4>
               <p style={{ color: 'var(--text-secondary)', fontSize: '0.8rem', lineHeight: 1.5, margin: 0 }}>
-                All UK postcodes outside Greater London. Ship your laptop directly to our hub. Includes free prepaid postage and up to £750 Royal Mail insurance.
+                ارسال پستی سراسری برای تمام نقاط بریتانیا خارج از لندن بزرگ. لپ‌تاپ خود را مستقیماً به هاب مرکزی ما بفرستید. این سرویس شامل برچسب پستی پیش‌پرداخت رایگان و بیمه رویال میل تا سقف ۷۵۰.۰۰ پوند است با هزینه ۰.۰۰ پوند.
               </p>
             </div>
           </div>
@@ -926,17 +926,17 @@ export default function AreasClient() {
                   <div style={{ fontSize: '0.78rem', lineHeight: 1.45, color: 'var(--text-secondary)' }}>
                     {selectedBorough.zone === 'FREE_CALL_OUT' && (
                       <p style={{ margin: 0 }}>
-                        This area is part of our central operations hub. You qualify for <strong style={{ color: '#00D2FF' }}>Free Call-out</strong>. Vetted engineers are dispatched to your door with a £15.00 booking deposit, fully deducted from your final repair invoice.
+                        مرکز اصلی عملیات ما با اعزام مهندسان مجرب به درب منزل شما بدون هزینه اعزام. رزرو نوبت حضوری با پرداخت بیعانه‌ای انجام می‌شود که به طور کامل از صورت‌حساب کسر می‌گردد به مبلغ <strong style={{ color: '#00D2FF' }}>۱۵.۰۰ پوند</strong>. (ارسال پستی رایگان و تحویل حضوری نیز در دسترس است با هزینه ۰.۰۰ پوند).
                       </p>
                     )}
                     {selectedBorough.zone === 'STANDARD_999' && (
                       <p style={{ margin: 0 }}>
-                        This area falls in our <strong style={{ color: '#A855F7' }}>Standard Call-out Zone</strong>. Same-day engineering visits are supported with a flat £15.00 travel fee. All repairs remain "no fix, no fee".
+                        بازدید و اعزام کارشناس به محل شما در همان روز. کلیه مراحل تعمیر بر اساس قانون بدون تعمیر، بدون هزینه انجام می‌شود و هزینه رفت‌وآمد ثابت است به مبلغ <strong style={{ color: '#A855F7' }}>۱۵.۰۰ پوند</strong>. (ارسال پستی رایگان و تحویل حضوری نیز در دسترس است با هزینه ۰.۰۰ پوند).
                       </p>
                     )}
                     {selectedBorough.zone === 'LONDON_FLEX' && (
                       <p style={{ margin: 0 }}>
-                        This area belongs to the <strong style={{ color: '#F59E0B' }}>Greater London Flexible Zone</strong>. We support home visits with a flat £15.00 base travel deposit (additional travel fee based on distance will be calculated and added to final invoice).
+                        پوشش سراسری سایر مناطق لندن بزرگ. اعزام کارشناس جهت عیب‌یابی در محل با پرداخت بیعانه پایه انجام می‌شود و مابقی هزینه رفت‌وآمد بر اساس مسافت دقیق محاسبه و اضافه خواهد شد به مبلغ <strong style={{ color: '#F59E0B' }}>۱۵.۰۰ پوند</strong>. (ارسال پستی رایگان و تحویل حضوری نیز در دسترس است با هزینه ۰.۰۰ پوند).
                       </p>
                     )}
                   </div>
