@@ -620,7 +620,7 @@ export default function ServiceSelector({ bookingData, updateData, onNext, onBac
         </div>
 
         {/* Dynamic Service Description Box (Desktop and Mobile) */}
-        <div className="block mt-3">
+        <div className="block mt-6 md:mt-8">
           {serviceType === 'HOME_VISIT' && (
             <p className="text-[0.78rem] md:text-[0.85rem]" style={{ color: 'var(--text-muted)', lineHeight: 1.45, margin: 0 }}>
               📍 <strong>Home Visit:</strong> Vetted technician visits your home or office. Flat £15.00 deposit/travel fee applies.
