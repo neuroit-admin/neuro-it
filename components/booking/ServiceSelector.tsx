@@ -98,7 +98,7 @@ export default function ServiceSelector({
   nextDispatchTime = '12:15 PM',
   mailInPromo = '',
   workshopStatusMessage = '',
-  whatsappNumber = '447700000000'
+  whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '447519460614'
 }: Props) {
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     const card = e.currentTarget

@@ -5,8 +5,8 @@ import { Mail, Phone, MessageSquare, Clock, MapPin, CheckCircle2 } from 'lucide-
 import Link from 'next/link'
 
 export default function ContactClient() {
-  const [whatsappNumber, setWhatsappNumber] = useState('447700000000')
-  const [contactPhone, setContactPhone] = useState('02000000000')
+  const [whatsappNumber, setWhatsappNumber] = useState(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '447519460614')
+  const [contactPhone, setContactPhone] = useState(process.env.NEXT_PUBLIC_PHONE_NUMBER || '+447519460614')
 
   useEffect(() => {
     fetch('/api/settings')

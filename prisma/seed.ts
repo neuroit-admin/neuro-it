@@ -697,7 +697,7 @@ async function main() {
     update: {},
     create: {
       key: 'whatsapp_number',
-      value: '447700000000',
+      value: '447519460614',
       description: 'Business WhatsApp phone number for out-of-zone customer negotiations and floating chat widget',
     },
   })
@@ -706,7 +706,7 @@ async function main() {
     update: {},
     create: {
       key: 'contact_phone',
-      value: '02000000000',
+      value: '+447519460614',
       description: 'Business office landline phone number',
     },
   })

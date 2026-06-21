@@ -65,7 +65,7 @@ function BookingFlow() {
   const [nextDispatchTime, setNextDispatchTime] = useState('12:15 PM')
   const [mailInPromo, setMailInPromo] = useState('')
   const [workshopStatusMessage, setWorkshopStatusMessage] = useState('')
-  const [whatsappNumber, setWhatsappNumber] = useState('447700000000')
+  const [whatsappNumber, setWhatsappNumber] = useState(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '447519460614')
 
   useEffect(() => {
     fetch('/api/settings', { cache: 'no-store' })
@@ -78,7 +78,7 @@ function BookingFlow() {
           setNextDispatchTime(data.settings.next_dispatch_time || '12:15 PM')
           setMailInPromo(data.settings.mail_in_promo || '')
           setWorkshopStatusMessage(data.settings.workshop_status_message || '')
-          setWhatsappNumber(data.settings.whatsapp_number || '447700000000')
+          setWhatsappNumber(data.settings.whatsapp_number || process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '447519460614')
         }
       })
       .catch(err => console.error('Failed to load settings:', err))
