@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic'
 
 export async function GET() {
   try {
-    const categories = await prisma.serviceCategory.findMany({
+    let categories = await prisma.serviceCategory.findMany({
       where: {
         isActive: true,
       },
@@ -23,6 +23,79 @@ export async function GET() {
         },
       },
     })
+
+    if (!categories || categories.length === 0) {
+      const staticCategories = require('@/lib/staticServices.json')
+      for (const cat of staticCategories) {
+        await prisma.serviceCategory.upsert({
+          where: { id: cat.id },
+          update: {
+            name: cat.name,
+            slug: cat.slug,
+            icon: cat.icon,
+            isActive: cat.isActive,
+            displayOrder: cat.displayOrder,
+          },
+          create: {
+            id: cat.id,
+            name: cat.name,
+            slug: cat.slug,
+            icon: cat.icon,
+            isActive: cat.isActive,
+            displayOrder: cat.displayOrder,
+          }
+        })
+
+        for (const s of cat.services) {
+          await prisma.service.upsert({
+            where: { id: s.id },
+            update: {
+              categoryId: cat.id,
+              name: s.name,
+              slug: s.slug,
+              description: s.description,
+              basePriceMin: s.basePriceMin,
+              basePriceMax: s.basePriceMax,
+              callOutFee: s.callOutFee,
+              isEmergencyReady: s.isEmergencyReady,
+              isActive: s.isActive,
+            },
+            create: {
+              id: s.id,
+              categoryId: cat.id,
+              name: s.name,
+              slug: s.slug,
+              description: s.description,
+              basePriceMin: s.basePriceMin,
+              basePriceMax: s.basePriceMax,
+              callOutFee: s.callOutFee,
+              isEmergencyReady: s.isEmergencyReady,
+              isActive: s.isActive,
+            }
+          })
+        }
+      }
+
+      // Re-fetch after seeding
+      categories = await prisma.serviceCategory.findMany({
+        where: {
+          isActive: true,
+        },
+        orderBy: {
+          displayOrder: 'asc',
+        },
+        include: {
+          services: {
+            where: {
+              isActive: true,
+            },
+            orderBy: {
+              displayOrder: 'asc',
+            },
+          },
+        },
+      })
+    }
 
     let formatted = categories.map(cat => ({
       id: cat.id,
@@ -43,11 +116,6 @@ export async function GET() {
         isActive: s.isActive,
       })),
     }))
-
-    if (!formatted || formatted.length === 0) {
-      const staticCategories = require('@/lib/staticServices.json')
-      formatted = staticCategories
-    }
 
     // Fetch flat deposit fee
     let flatDepositFee = 15.00
