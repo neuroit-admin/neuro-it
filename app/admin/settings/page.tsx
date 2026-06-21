@@ -13,6 +13,9 @@ export default function AdminSettingsPage() {
     dispatch_status: 'HIGH_DEMAND',
     technicians_remaining: '3',
     target_region: 'London',
+    next_dispatch_time: '12:15 PM',
+    mail_in_promo: '',
+    workshop_status_message: '',
   })
   const [descriptions, setDescriptions] = useState<Record<string, string>>({})
   const [loading, setLoading] = useState(true)
@@ -255,7 +258,7 @@ export default function AdminSettingsPage() {
                 </div>
 
                 {/* Target Region */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.5rem' }}>
                   <label style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>Target Region Name</label>
                   <input
                     type="text"
@@ -270,6 +273,63 @@ export default function AdminSettingsPage() {
                   />
                   <p style={{ color: 'var(--text-muted)', fontSize: '0.75rem', margin: '0.25rem 0 0' }}>
                     Name of the target city or region coverage focus shown in the header alert.
+                  </p>
+                </div>
+
+                {/* Next Dispatch Time */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.5rem' }}>
+                  <label style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>Next Dispatch Time (Home Visit)</label>
+                  <input
+                    type="text"
+                    value={settings.next_dispatch_time || ''}
+                    onChange={e => handleChange('next_dispatch_time', e.target.value)}
+                    placeholder="12:15 PM"
+                    style={{
+                      width: '100%', padding: '0.75rem',
+                      background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '4px',
+                      color: 'var(--text-primary)', fontSize: '0.9rem', outline: 'none'
+                    }}
+                  />
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.75rem', margin: '0.25rem 0 0' }}>
+                    Next available dispatch time shown in the Home Visit description box (e.g. "12:15 PM").
+                  </p>
+                </div>
+
+                {/* Mail-in Promo */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.5rem' }}>
+                  <label style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>Mail-in Promo Incentive</label>
+                  <input
+                    type="text"
+                    value={settings.mail_in_promo || ''}
+                    onChange={e => handleChange('mail_in_promo', e.target.value)}
+                    placeholder="Get a free screen protector with all postage repairs this week!"
+                    style={{
+                      width: '100%', padding: '0.75rem',
+                      background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '4px',
+                      color: 'var(--text-primary)', fontSize: '0.9rem', outline: 'none'
+                    }}
+                  />
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.75rem', margin: '0.25rem 0 0' }}>
+                    Promo text displayed under the Mail-in description box. Leave empty to hide.
+                  </p>
+                </div>
+
+                {/* Workshop Status Message */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <label style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>Workshop Drop-off Turnaround Status</label>
+                  <input
+                    type="text"
+                    value={settings.workshop_status_message || ''}
+                    onChange={e => handleChange('workshop_status_message', e.target.value)}
+                    placeholder="Average turnaround: 45 minutes for screens & batteries today!"
+                    style={{
+                      width: '100%', padding: '0.75rem',
+                      background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '4px',
+                      color: 'var(--text-primary)', fontSize: '0.9rem', outline: 'none'
+                    }}
+                  />
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.75rem', margin: '0.25rem 0 0' }}>
+                    Live turnaround message displayed under the Drop-off description box. Leave empty to hide.
                   </p>
                 </div>
               </div>

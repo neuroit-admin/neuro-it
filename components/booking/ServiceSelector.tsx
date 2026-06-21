@@ -79,8 +79,27 @@ interface Props {
   updateData: (d: Partial<BookingData>) => void
   onNext: () => void
   onBack: () => void
+  dispatchStatus?: string
+  techsRemaining?: string
+  targetRegion?: string
+  nextDispatchTime?: string
+  mailInPromo?: string
+  workshopStatusMessage?: string
+  whatsappNumber?: string
 }
-export default function ServiceSelector({ bookingData, updateData, onNext, onBack }: Props) {
+export default function ServiceSelector({
+  bookingData,
+  updateData,
+  onNext,
+  onBack,
+  dispatchStatus = 'HIGH_DEMAND',
+  techsRemaining = '3',
+  targetRegion = 'London',
+  nextDispatchTime = '12:15 PM',
+  mailInPromo = '',
+  workshopStatusMessage = '',
+  whatsappNumber = '447700000000'
+}: Props) {
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     const card = e.currentTarget
     const rect = card.getBoundingClientRect()
@@ -622,19 +641,40 @@ export default function ServiceSelector({ bookingData, updateData, onNext, onBac
         {/* Dynamic Service Description Box (Desktop and Mobile) */}
         <div className="block mt-6 md:mt-8">
           {serviceType === 'HOME_VISIT' && (
-            <p className="text-[0.78rem] md:text-[0.85rem]" style={{ color: 'var(--text-muted)', lineHeight: 1.45, margin: 0 }}>
-              📍 <strong>Home Visit:</strong> Vetted technician visits your home or office. Flat £15.00 deposit/travel fee applies.
-            </p>
+            <div className="flex flex-col gap-1">
+              <p className="text-[0.78rem] md:text-[0.85rem]" style={{ color: 'var(--text-muted)', lineHeight: 1.45, margin: 0 }}>
+                📍 <strong>Home Visit:</strong> Vetted technician visits your home or office. Flat £15.00 deposit/travel fee applies.
+              </p>
+              {nextDispatchTime && (
+                <p className="text-[0.74rem] md:text-[0.8rem]" style={{ color: '#F59E0B', margin: 0, fontWeight: 500, textAlign: 'left' }}>
+                  ⚡ Next available dispatch window: <strong>{nextDispatchTime}</strong> today.
+                </p>
+              )}
+            </div>
           )}
           {serviceType === 'MAIL_IN' && (
-            <p className="text-[0.78rem] md:text-[0.85rem]" style={{ color: 'var(--text-muted)', lineHeight: 1.45, margin: 0 }}>
-              📦 <strong>Mail-in Post:</strong> UK-wide service. Free prepaid Royal Mail Special Delivery shipping label. Pay after repair is completed.
-            </p>
+            <div className="flex flex-col gap-1">
+              <p className="text-[0.78rem] md:text-[0.85rem]" style={{ color: 'var(--text-muted)', lineHeight: 1.45, margin: 0 }}>
+                📦 <strong>Mail-in Post:</strong> UK-wide service. Free prepaid Royal Mail Special Delivery shipping label. Pay after repair is completed.
+              </p>
+              {mailInPromo && (
+                <p className="text-[0.74rem] md:text-[0.8rem]" style={{ color: '#00D2FF', margin: 0, fontWeight: 500, textAlign: 'left' }}>
+                  🎁 <strong>Bonus:</strong> {mailInPromo}
+                </p>
+              )}
+            </div>
           )}
           {serviceType === 'DROP_OFF' && (
-            <p className="text-[0.78rem] md:text-[0.85rem]" style={{ color: 'var(--text-muted)', lineHeight: 1.45, margin: 0 }}>
-              🏢 <strong>Drop-off Workshop:</strong> Bring your device to our Barnet workshop directly. Choose a convenient date & time slot. Pay after fix.
-            </p>
+            <div className="flex flex-col gap-1">
+              <p className="text-[0.78rem] md:text-[0.85rem]" style={{ color: 'var(--text-muted)', lineHeight: 1.45, margin: 0 }}>
+                🏢 <strong>Drop-off Workshop:</strong> Bring your device to our Barnet workshop directly. Choose a convenient date & time slot. Pay after fix.
+              </p>
+              {workshopStatusMessage && (
+                <p className="text-[0.74rem] md:text-[0.8rem]" style={{ color: '#22C55E', margin: 0, fontWeight: 500, textAlign: 'left' }}>
+                  🕒 <strong>Live Speed:</strong> {workshopStatusMessage}
+                </p>
+              )}
+            </div>
           )}
         </div>
       </div>
@@ -655,7 +695,7 @@ export default function ServiceSelector({ bookingData, updateData, onNext, onBac
         }}
       >
         <a
-          href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '447700000000'}?text=${encodeURIComponent("Hi Neuro IT, I need assistance with an IT issue. My postcode is: [   ] and my device/fault is: [   ]")}`}
+          href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent("Hi Neuro IT, I need assistance with an IT issue. My postcode is: [   ] and my device/fault is: [   ]")}`}
           target="_blank"
           rel="noopener noreferrer"
           className="glass-glow-btn-whatsapp text-center"

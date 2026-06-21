@@ -2,13 +2,22 @@ import { NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 
 export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 export async function GET() {
   try {
     const settings = await prisma.systemSetting.findMany({
       where: {
         key: {
-          in: ['dispatch_status', 'technicians_remaining', 'target_region']
+          in: [
+            'dispatch_status',
+            'technicians_remaining',
+            'target_region',
+            'next_dispatch_time',
+            'mail_in_promo',
+            'workshop_status_message',
+            'whatsapp_number'
+          ]
         }
       }
     })
@@ -22,7 +31,11 @@ export async function GET() {
       settings: {
         dispatch_status: settingsMap.dispatch_status || 'HIGH_DEMAND',
         technicians_remaining: settingsMap.technicians_remaining || '3',
-        target_region: settingsMap.target_region || 'London'
+        target_region: settingsMap.target_region || 'London',
+        next_dispatch_time: settingsMap.next_dispatch_time || '12:15 PM',
+        mail_in_promo: settingsMap.mail_in_promo || '',
+        workshop_status_message: settingsMap.workshop_status_message || '',
+        whatsapp_number: settingsMap.whatsapp_number || '447700000000'
       }
     })
   } catch (error) {

@@ -62,15 +62,23 @@ function BookingFlow() {
   const [dispatchStatus, setDispatchStatus] = useState('HIGH_DEMAND')
   const [techsRemaining, setTechsRemaining] = useState('3')
   const [targetRegion, setTargetRegion] = useState('London')
+  const [nextDispatchTime, setNextDispatchTime] = useState('12:15 PM')
+  const [mailInPromo, setMailInPromo] = useState('')
+  const [workshopStatusMessage, setWorkshopStatusMessage] = useState('')
+  const [whatsappNumber, setWhatsappNumber] = useState('447700000000')
 
   useEffect(() => {
-    fetch('/api/settings')
+    fetch('/api/settings', { cache: 'no-store' })
       .then(res => res.json())
       .then(data => {
         if (data.settings) {
           setDispatchStatus(data.settings.dispatch_status || 'HIGH_DEMAND')
           setTechsRemaining(data.settings.technicians_remaining || '3')
           setTargetRegion(data.settings.target_region || 'London')
+          setNextDispatchTime(data.settings.next_dispatch_time || '12:15 PM')
+          setMailInPromo(data.settings.mail_in_promo || '')
+          setWorkshopStatusMessage(data.settings.workshop_status_message || '')
+          setWhatsappNumber(data.settings.whatsapp_number || '447700000000')
         }
       })
       .catch(err => console.error('Failed to load settings:', err))
@@ -115,6 +123,13 @@ function BookingFlow() {
             updateData={updateData}
             onNext={() => setStep(1)}
             onBack={() => window.history.back()}
+            dispatchStatus={dispatchStatus}
+            techsRemaining={techsRemaining}
+            targetRegion={targetRegion}
+            nextDispatchTime={nextDispatchTime}
+            mailInPromo={mailInPromo}
+            workshopStatusMessage={workshopStatusMessage}
+            whatsappNumber={whatsappNumber}
           />
         )}
         {step === 1 && (
