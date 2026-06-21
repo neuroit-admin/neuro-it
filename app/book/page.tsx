@@ -78,15 +78,65 @@ function BookingFlow() {
   return (
     <main style={{ minHeight: '100vh', background: 'var(--bg-color)', paddingTop: '72px', display: 'flex', flexDirection: 'column' }}>
 
+      {/* Flowing progress animation styling */}
+      <style dangerouslySetInnerHTML={{__html: `
+        @keyframes flowGlow {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+        .flowing-progress-bar {
+          background: linear-gradient(90deg, #00D2FF 0%, #00F5FF 25%, #FFFFFF 50%, #00F5FF 75%, #00D2FF 100%) !important;
+          background-size: 200% auto !important;
+          animation: flowGlow 3s linear infinite !important;
+        }
+        @keyframes circleGlow {
+          0%, 100% { box-shadow: 0 0 8px rgba(0, 210, 255, 0.3); }
+          50% { box-shadow: 0 0 16px rgba(0, 210, 255, 0.7); }
+        }
+        .active-glow-step {
+          animation: circleGlow 2s infinite ease-in-out !important;
+        }
+      `}} />
+
       {/* Step indicator */}
       {step < 3 && (
-        <div style={{ background: 'var(--surface)', borderBottom: '1px solid var(--border)', padding: '1.25rem 1.5rem' }}>
-          <div style={{ maxWidth: '700px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'relative' }}>
-            <div style={{ position: 'absolute', top: '50%', left: 0, right: 0, height: '1px', background: 'var(--border)', transform: 'translateY(-50%)', zIndex: 0 }} />
-            <div style={{ position: 'absolute', top: '50%', left: 0, height: '1px', background: '#00D2FF', transform: 'translateY(-50%)', width: `${(step / (STEPS.length - 1)) * 100}%`, transition: 'width 0.4s ease', zIndex: 0 }} />
+        <div style={{ background: 'transparent', padding: '1.5rem 1rem' }}>
+          <div className="max-w-[280px] md:max-w-[700px] w-full mx-auto relative flex items-center justify-between">
+            <div style={{ position: 'absolute', top: '50%', left: 0, right: 0, height: '2px', background: 'var(--border)', transform: 'translateY(-50%)', zIndex: 0 }} />
+            <div
+              className="flowing-progress-bar"
+              style={{
+                position: 'absolute',
+                top: '50%',
+                left: 0,
+                height: '2px',
+                transform: 'translateY(-50%)',
+                width: `${(step / (STEPS.length - 1)) * 100}%`,
+                transition: 'width 0.4s ease',
+                zIndex: 0
+              }}
+            />
             {STEPS.map((label, i) => (
               <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', zIndex: 1 }}>
-                <div style={{ width: '32px', height: '32px', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.8rem', fontWeight: 700, transition: 'all 0.3s ease', ...(i < step ? { background: '#00D2FF', color: 'var(--bg-color)' } : i === step ? { background: '#00D2FF', color: 'var(--bg-color)', boxShadow: '0 0 16px rgba(0,210,255,0.5)' } : { background: 'var(--surface-secondary)', color: 'var(--text-muted)', border: '1px solid var(--border)' }) }}>
+                <div
+                  className={i === step ? 'active-glow-step' : ''}
+                  style={{
+                    width: '32px',
+                    height: '32px',
+                    borderRadius: '50%',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '0.8rem',
+                    fontWeight: 700,
+                    transition: 'all 0.3s ease',
+                    ...(i < step
+                      ? { background: '#00D2FF', color: 'var(--bg-color)' }
+                      : i === step
+                      ? { background: '#00D2FF', color: 'var(--bg-color)' }
+                      : { background: 'var(--surface-secondary)', color: 'var(--text-muted)', border: '1px solid var(--border)' })
+                  }}
+                >
                   {i < step ? <CheckCircle size={16} /> : i + 1}
                 </div>
                 <span style={{ fontSize: '0.7rem', fontFamily: 'var(--font-syne)', color: i <= step ? '#E0E0E0' : '#888888', display: 'none' }} className="md:block">{label}</span>
