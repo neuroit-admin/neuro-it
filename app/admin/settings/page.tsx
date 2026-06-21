@@ -10,6 +10,9 @@ export default function AdminSettingsPage() {
     flat_deposit_fee: '',
     whatsapp_number: '',
     contact_phone: '',
+    dispatch_status: 'HIGH_DEMAND',
+    technicians_remaining: '3',
+    target_region: 'London',
   })
   const [descriptions, setDescriptions] = useState<Record<string, string>>({})
   const [loading, setLoading] = useState(true)
@@ -201,6 +204,72 @@ export default function AdminSettingsPage() {
                   </div>
                   <p style={{ color: 'var(--text-muted)', fontSize: '0.75rem', margin: '0.25rem 0 0' }}>
                     {descriptions.contact_phone || 'Primary office landline phone number displayed across the website header and footer.'}
+                  </p>
+                </div>
+              </div>
+
+              {/* Urgency & Capacity Settings */}
+              <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '4px', padding: '1.5rem' }}>
+                <h2 className="font-syne" style={{ color: 'var(--text-primary)', fontWeight: 700, fontSize: '1.1rem', marginBottom: '1.25rem', borderBottom: '1px solid var(--border)', paddingBottom: '0.75rem' }}>
+                  Urgency & Capacity Messages
+                </h2>
+
+                {/* Dispatch Status Dropdown */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.5rem' }}>
+                  <label style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>Dispatch Status Alert Mode</label>
+                  <select
+                    value={settings.dispatch_status || 'HIGH_DEMAND'}
+                    onChange={e => handleChange('dispatch_status', e.target.value)}
+                    style={{
+                      width: '100%', padding: '0.75rem',
+                      background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '4px',
+                      color: 'var(--text-primary)', fontSize: '0.9rem', outline: 'none'
+                    }}
+                  >
+                    <option value="HIGH_DEMAND">High Demand Mode (Only X slots left today)</option>
+                    <option value="FULLY_BOOKED">Fully Booked Mode (Suggest booking for tomorrow)</option>
+                  </select>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.75rem', margin: '0.25rem 0 0' }}>
+                    Control the urgency mode displayed in the top header alert bar across the booking flow.
+                  </p>
+                </div>
+
+                {/* Technicians Slots Remaining */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.5rem' }}>
+                  <label style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>Technician Slots Remaining</label>
+                  <input
+                    type="number"
+                    min="0"
+                    value={settings.technicians_remaining || '3'}
+                    onChange={e => handleChange('technicians_remaining', e.target.value)}
+                    placeholder="3"
+                    style={{
+                      width: '100%', padding: '0.75rem',
+                      background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '4px',
+                      color: 'var(--text-primary)', fontSize: '0.9rem', outline: 'none', fontFamily: 'monospace'
+                    }}
+                  />
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.75rem', margin: '0.25rem 0 0' }}>
+                    Number of active technicians/slots left to show when High Demand mode is active.
+                  </p>
+                </div>
+
+                {/* Target Region */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <label style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>Target Region Name</label>
+                  <input
+                    type="text"
+                    value={settings.target_region || 'London'}
+                    onChange={e => handleChange('target_region', e.target.value)}
+                    placeholder="London"
+                    style={{
+                      width: '100%', padding: '0.75rem',
+                      background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '4px',
+                      color: 'var(--text-primary)', fontSize: '0.9rem', outline: 'none'
+                    }}
+                  />
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.75rem', margin: '0.25rem 0 0' }}>
+                    Name of the target city or region coverage focus shown in the header alert.
                   </p>
                 </div>
               </div>

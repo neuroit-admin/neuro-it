@@ -471,26 +471,7 @@ export default function ServiceSelector({ bookingData, updateData, onNext, onBac
         <ArrowLeft size={16} /> Back
       </button>
 
-      {/* Urgency / Demand Indicator */}
-      <div 
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.75rem',
-          background: 'linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(245, 158, 11, 0.02) 100%)',
-          border: '1px solid rgba(245, 158, 11, 0.2)',
-          borderRadius: '8px',
-          padding: '0.85rem 1.25rem',
-          marginBottom: '2rem',
-        }}
-      >
-        <span style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '22px', height: '22px', borderRadius: '50%', background: 'rgba(245, 158, 11, 0.15)', color: '#F59E0B', flexShrink: 0, fontSize: '0.9rem' }}>
-          ⚡
-        </span>
-        <div style={{ flex: 1, fontSize: '0.85rem', color: 'var(--text-secondary)', lineHeight: '1.4' }}>
-          <strong style={{ color: '#F59E0B' }}>High demand today:</strong> Only <strong>{urgencyData.slots}</strong> technician slots remaining for same-day dispatch in London. Last booking was completed <strong>{urgencyData.minsAgo} minutes ago</strong>.
-        </div>
-      </div>
+
 
       {/* Service Type Selector Cards */}
       <div style={{ marginBottom: '2.5rem' }}>
@@ -506,7 +487,7 @@ export default function ServiceSelector({ bookingData, updateData, onNext, onBac
           <button
             type="button"
             onClick={() => setServiceType('HOME_VISIT')}
-            className="p-3 md:p-6"
+            className="p-3 md:p-4"
             style={{
               background: serviceType === 'HOME_VISIT' ? 'rgba(0, 210, 255, 0.08)' : 'var(--surface)',
               border: `1px solid ${serviceType === 'HOME_VISIT' ? '#00D2FF' : 'var(--border)'}`,
@@ -539,12 +520,8 @@ export default function ServiceSelector({ bookingData, updateData, onNext, onBac
             </div>
             <div>
               <h3 className="font-syne text-center" style={{ color: 'var(--text-primary)', fontSize: '0.8rem', fontWeight: 700 }}>
-                <span className="md:hidden">Home</span>
-                <span className="hidden md:inline">Home Visit (On-Site)</span>
+                Home
               </h3>
-              <p className="hidden md:block" style={{ color: 'var(--text-muted)', fontSize: '0.75rem', lineHeight: 1.4, marginTop: '0.25rem', textAlign: 'left' }}>
-                Vetted technician visits your home or office. Flat £15.00 deposit/travel fee applies.
-              </p>
             </div>
             {serviceType === 'HOME_VISIT' && (
               <CheckCircle2 size={14} className="absolute top-2 right-2 md:top-4 md:right-4 text-[#00D2FF]" />
@@ -555,7 +532,7 @@ export default function ServiceSelector({ bookingData, updateData, onNext, onBac
           <button
             type="button"
             onClick={() => setServiceType('MAIL_IN')}
-            className="p-3 md:p-6"
+            className="p-3 md:p-4"
             style={{
               background: serviceType === 'MAIL_IN' ? 'rgba(0, 210, 255, 0.08)' : 'var(--surface)',
               border: `1px solid ${serviceType === 'MAIL_IN' ? '#00D2FF' : 'var(--border)'}`,
@@ -588,12 +565,8 @@ export default function ServiceSelector({ bookingData, updateData, onNext, onBac
             </div>
             <div>
               <h3 className="font-syne text-center" style={{ color: 'var(--text-primary)', fontSize: '0.8rem', fontWeight: 700 }}>
-                <span className="md:hidden">Mail-in</span>
-                <span className="hidden md:inline">Mail-in (Post)</span>
+                Mail-in
               </h3>
-              <p className="hidden md:block" style={{ color: 'var(--text-muted)', fontSize: '0.75rem', lineHeight: 1.4, marginTop: '0.25rem', textAlign: 'left' }}>
-                UK-wide service. Free prepaid Royal Mail Special Delivery shipping label. Pay after repair is completed.
-              </p>
             </div>
             {serviceType === 'MAIL_IN' && (
               <CheckCircle2 size={14} className="absolute top-2 right-2 md:top-4 md:right-4 text-[#00D2FF]" />
@@ -604,7 +577,7 @@ export default function ServiceSelector({ bookingData, updateData, onNext, onBac
           <button
             type="button"
             onClick={() => setServiceType('DROP_OFF')}
-            className="p-3 md:p-6"
+            className="p-3 md:p-4"
             style={{
               background: serviceType === 'DROP_OFF' ? 'rgba(0, 210, 255, 0.08)' : 'var(--surface)',
               border: `1px solid ${serviceType === 'DROP_OFF' ? '#00D2FF' : 'var(--border)'}`,
@@ -637,12 +610,8 @@ export default function ServiceSelector({ bookingData, updateData, onNext, onBac
             </div>
             <div>
               <h3 className="font-syne text-center" style={{ color: 'var(--text-primary)', fontSize: '0.8rem', fontWeight: 700 }}>
-                <span className="md:hidden">Drop-off</span>
-                <span className="hidden md:inline">Drop-off (In-Person)</span>
+                Drop-off
               </h3>
-              <p className="hidden md:block" style={{ color: 'var(--text-muted)', fontSize: '0.75rem', lineHeight: 1.4, marginTop: '0.25rem', textAlign: 'left' }}>
-                Bring your device to our Barnet workshop directly. Choose a convenient date & time slot. Pay after fix.
-              </p>
             </div>
             {serviceType === 'DROP_OFF' && (
               <CheckCircle2 size={14} className="absolute top-2 right-2 md:top-4 md:right-4 text-[#00D2FF]" />
@@ -650,20 +619,20 @@ export default function ServiceSelector({ bookingData, updateData, onNext, onBac
           </button>
         </div>
 
-        {/* Dynamic Service Description Box (Mobile Only) */}
-        <div className="block md:hidden mt-3">
+        {/* Dynamic Service Description Box (Desktop and Mobile) */}
+        <div className="block mt-3">
           {serviceType === 'HOME_VISIT' && (
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.78rem', lineHeight: 1.45, margin: 0 }}>
+            <p className="text-[0.78rem] md:text-[0.85rem]" style={{ color: 'var(--text-muted)', lineHeight: 1.45, margin: 0 }}>
               📍 <strong>Home Visit:</strong> Vetted technician visits your home or office. Flat £15.00 deposit/travel fee applies.
             </p>
           )}
           {serviceType === 'MAIL_IN' && (
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.78rem', lineHeight: 1.45, margin: 0 }}>
+            <p className="text-[0.78rem] md:text-[0.85rem]" style={{ color: 'var(--text-muted)', lineHeight: 1.45, margin: 0 }}>
               📦 <strong>Mail-in Post:</strong> UK-wide service. Free prepaid Royal Mail Special Delivery shipping label. Pay after repair is completed.
             </p>
           )}
           {serviceType === 'DROP_OFF' && (
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.78rem', lineHeight: 1.45, margin: 0 }}>
+            <p className="text-[0.78rem] md:text-[0.85rem]" style={{ color: 'var(--text-muted)', lineHeight: 1.45, margin: 0 }}>
               🏢 <strong>Drop-off Workshop:</strong> Bring your device to our Barnet workshop directly. Choose a convenient date & time slot. Pay after fix.
             </p>
           )}
