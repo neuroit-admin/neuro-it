@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
-import { ChevronRight, Save, MessageSquare, Phone, AlertCircle, CheckCircle, ArrowLeft } from 'lucide-react'
+import { ChevronRight, Save, MessageSquare, Phone, AlertCircle, CheckCircle, ArrowLeft, Mail } from 'lucide-react'
 import Navbar from '@/components/layout/Navbar'
 
 export default function AdminSettingsPage() {
@@ -16,6 +16,7 @@ export default function AdminSettingsPage() {
     next_dispatch_time: '12:15 PM',
     mail_in_promo: '',
     workshop_status_message: '',
+    admin_notification_email: 'neuroit.london@gmail.com',
   })
   const [descriptions, setDescriptions] = useState<Record<string, string>>({})
   const [loading, setLoading] = useState(true)
@@ -188,7 +189,7 @@ export default function AdminSettingsPage() {
                 </div>
 
                 {/* Contact Phone */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginBottom: '1.5rem' }}>
                   <label style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>Office Contact Phone</label>
                   <div style={{ position: 'relative' }}>
                     <Phone size={16} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
@@ -207,6 +208,29 @@ export default function AdminSettingsPage() {
                   </div>
                   <p style={{ color: 'var(--text-muted)', fontSize: '0.75rem', margin: '0.25rem 0 0' }}>
                     {descriptions.contact_phone || 'Primary office landline phone number displayed across the website header and footer.'}
+                  </p>
+                </div>
+
+                {/* Admin Email */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <label style={{ color: 'var(--text-secondary)', fontSize: '0.85rem', fontWeight: 600 }}>Admin Notification Email</label>
+                  <div style={{ position: 'relative' }}>
+                    <Mail size={16} style={{ position: 'absolute', left: '12px', top: '50%', transform: 'translateY(-50%)', color: 'var(--text-muted)' }} />
+                    <input
+                      type="email"
+                      value={settings.admin_notification_email}
+                      onChange={e => handleChange('admin_notification_email', e.target.value)}
+                      placeholder="e.g. neuroit.london@gmail.com"
+                      required
+                      style={{
+                        width: '100%', padding: '0.75rem 0.75rem 0.75rem 2.5rem',
+                        background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '4px',
+                        color: 'var(--text-primary)', fontSize: '0.9rem', outline: 'none'
+                      }}
+                    />
+                  </div>
+                  <p style={{ color: 'var(--text-muted)', fontSize: '0.75rem', margin: '0.25rem 0 0' }}>
+                    {descriptions.admin_notification_email || 'Email address where new ticket/repair notifications are sent.'}
                   </p>
                 </div>
               </div>

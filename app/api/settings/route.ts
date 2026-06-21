@@ -16,7 +16,8 @@ export async function GET() {
             'next_dispatch_time',
             'mail_in_promo',
             'workshop_status_message',
-            'whatsapp_number'
+            'whatsapp_number',
+            'admin_notification_email'
           ]
         }
       }
@@ -35,7 +36,8 @@ export async function GET() {
         next_dispatch_time: settingsMap.next_dispatch_time || '12:15 PM',
         mail_in_promo: settingsMap.mail_in_promo || '',
         workshop_status_message: settingsMap.workshop_status_message || '',
-        whatsapp_number: settingsMap.whatsapp_number || '447700000000'
+        whatsapp_number: settingsMap.whatsapp_number || '447700000000',
+        admin_notification_email: settingsMap.admin_notification_email || 'neuroit.london@gmail.com'
       }
     })
   } catch (error) {

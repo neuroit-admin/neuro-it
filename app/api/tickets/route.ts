@@ -270,13 +270,18 @@ export async function POST(req: Request) {
     // Trigger Admin Notifications (Email, Telegram, Discord Webhooks)
     try {
       // 1. Email notification to Admin
+      const adminEmailSetting = await prisma.systemSetting.findUnique({
+        where: { key: 'admin_notification_email' }
+      })
+      const adminNotificationEmail = adminEmailSetting?.value || 'neuroit.london@gmail.com'
+
       sendAdminNewTicketNotification({
         referenceCode,
         serviceName: service.name,
         customerEmail: userEmail,
         serviceType,
         estimatedPrice: `£${totalMin.toFixed(0)}–£${totalMax.toFixed(0)}`,
-      }).catch(err => console.error('Failed to send admin new ticket email:', err))
+      }, adminNotificationEmail).catch(err => console.error('Failed to send admin new ticket email:', err))
 
       // 2. Telegram Alert
       const alertMsg = `<b>[NEW TICKET]</b>\n` +

@@ -63,15 +63,18 @@ export async function sendTechAssignedNotification(email: string, referenceCode:
   })
 }
 
-export async function sendAdminNewTicketNotification(ticketDetails: {
-  referenceCode: string
-  serviceName: string
-  customerEmail: string
-  serviceType: string
-  estimatedPrice: string
-}) {
+export async function sendAdminNewTicketNotification(
+  ticketDetails: {
+    referenceCode: string
+    serviceName: string
+    customerEmail: string
+    serviceType: string
+    estimatedPrice: string
+  },
+  adminEmail?: string
+) {
   return sendEmail({
-    to: process.env.ADMIN_EMAIL || 'admin@neuroit.co.uk',
+    to: adminEmail || process.env.ADMIN_EMAIL || 'neuroit.london@gmail.com',
     subject: `[NEW TICKET] Repair Request Received — ${ticketDetails.referenceCode}`,
     html: `
       <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 2rem; background: #0A0A0A; color: #FFFFFF; border: 1px solid #2A2A2A; border-radius: 8px;">
