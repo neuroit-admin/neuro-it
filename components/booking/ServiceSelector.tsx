@@ -518,7 +518,7 @@ export default function ServiceSelector({ bookingData, updateData, onNext, onBac
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '0.5rem',
+              gap: '0.85rem',
               position: 'relative',
               boxShadow: serviceType === 'HOME_VISIT' ? '0 0 15px rgba(0, 210, 255, 0.15)' : 'none',
             }}
@@ -567,7 +567,7 @@ export default function ServiceSelector({ bookingData, updateData, onNext, onBac
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '0.5rem',
+              gap: '0.85rem',
               position: 'relative',
               boxShadow: serviceType === 'MAIL_IN' ? '0 0 15px rgba(0, 210, 255, 0.15)' : 'none',
             }}
@@ -616,7 +616,7 @@ export default function ServiceSelector({ bookingData, updateData, onNext, onBac
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: '0.5rem',
+              gap: '0.85rem',
               position: 'relative',
               boxShadow: serviceType === 'DROP_OFF' ? '0 0 15px rgba(0, 210, 255, 0.15)' : 'none',
             }}
@@ -681,24 +681,24 @@ export default function ServiceSelector({ bookingData, updateData, onNext, onBac
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
-          justifyContent: 'space-between',
+          justifyContent: 'flex-start',
           gap: '1rem',
-          flexWrap: 'wrap'
         }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flex: 1, minWidth: '260px' }}>
-          <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: 1.4, margin: 0 }}>
-            ⚡ <strong>In a hurry?</strong> Skip the form and book instantly on WhatsApp.
-          </p>
-        </div>
         <a
           href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '447700000000'}?text=${encodeURIComponent("Hi Neuro IT, I need assistance with an IT issue. My postcode is: [   ] and my device/fault is: [   ]")}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="glass-glow-btn-whatsapp w-full md:w-auto text-center"
+          className="glass-glow-btn-whatsapp text-center"
+          style={{ flexShrink: 0, padding: '0.5rem 1.25rem', fontSize: '0.78rem' }}
         >
-          Book via WhatsApp →
+          WhatsApp
         </a>
+        <div style={{ flex: 1 }}>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem', lineHeight: 1.4, margin: 0 }}>
+            ⚡ <strong>In a hurry?</strong> Skip the form and book instantly on WhatsApp 👈
+          </p>
+        </div>
       </div>
 
       {/* Service Selection */}
