@@ -250,7 +250,7 @@ export default function AboutPage() {
                 <strong>Emergency dispatch:</strong> 24/7 hours available
               </p>
               <p style={{ color: '#00D2FF', fontSize: '0.9rem', fontWeight: 600, marginTop: '1rem', margin: 0 }}>
-                📞 Telephone: {process.env.NEXT_PUBLIC_PHONE_NUMBER || '0200 000 0000'}
+                📞 Telephone: <a href={`tel:${process.env.NEXT_PUBLIC_PHONE_NUMBER || '+447519460614'}`} style={{ color: 'inherit', textDecoration: 'none' }}>{process.env.NEXT_PUBLIC_PHONE_NUMBER || '+447519460614'}</a>
               </p>
             </div>
           </div>
