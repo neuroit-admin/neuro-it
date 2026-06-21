@@ -1,10 +1,22 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { MessageCircle, Mail, Calendar } from 'lucide-react'
 import Link from 'next/link'
 
 export default function StickyBottomBar() {
-  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '447700000000'
+  const [whatsappNumber, setWhatsappNumber] = useState('447700000000')
+
+  useEffect(() => {
+    fetch('/api/settings')
+      .then(res => res.json())
+      .then(data => {
+        if (data.settings?.whatsapp_number) {
+          setWhatsappNumber(data.settings.whatsapp_number)
+        }
+      })
+      .catch(err => console.error(err))
+  }, [])
 
   return (
     <div

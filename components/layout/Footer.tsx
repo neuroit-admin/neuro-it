@@ -2,11 +2,23 @@
 
 import Link from 'next/link'
 import { MessageCircle, Mail, ChevronDown } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import TrackForm from './TrackForm'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
+  const [whatsappNumber, setWhatsappNumber] = useState('447700000000')
+
+  useEffect(() => {
+    fetch('/api/settings')
+      .then(res => res.json())
+      .then(data => {
+        if (data.settings?.whatsapp_number) {
+          setWhatsappNumber(data.settings.whatsapp_number)
+        }
+      })
+      .catch(err => console.error(err))
+  }, [])
 
   const [openSections, setOpenSections] = useState<{ [key: string]: boolean }>({
     services: false,
@@ -125,7 +137,7 @@ export default function Footer() {
 
             <div style={{ display: 'flex', gap: '1rem' }}>
               <a
-                href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER}`}
+                href={`https://wa.me/${whatsappNumber}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{

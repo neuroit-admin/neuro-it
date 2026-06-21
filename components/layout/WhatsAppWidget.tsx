@@ -1,9 +1,22 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { MessageCircle } from 'lucide-react'
 
 export default function WhatsAppWidget() {
-  const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '447700000000'
+  const [whatsappNumber, setWhatsappNumber] = useState('447700000000')
+
+  useEffect(() => {
+    fetch('/api/settings')
+      .then(res => res.json())
+      .then(data => {
+        if (data.settings?.whatsapp_number) {
+          setWhatsappNumber(data.settings.whatsapp_number)
+        }
+      })
+      .catch(err => console.error(err))
+  }, [])
+
   const messageTemplate = "Hi Neuro IT, I need assistance with an IT issue. My postcode is: [   ] and my device/fault is: [   ]"
   const encodedText = encodeURIComponent(messageTemplate)
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedText}`

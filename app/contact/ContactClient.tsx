@@ -1,10 +1,27 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Mail, Phone, MessageSquare, Clock, MapPin, CheckCircle2 } from 'lucide-react'
 import Link from 'next/link'
 
 export default function ContactClient() {
+  const [whatsappNumber, setWhatsappNumber] = useState('447700000000')
+  const [contactPhone, setContactPhone] = useState('02000000000')
+
+  useEffect(() => {
+    fetch('/api/settings')
+      .then(res => res.json())
+      .then(data => {
+        if (data.settings?.whatsapp_number) {
+          setWhatsappNumber(data.settings.whatsapp_number)
+        }
+        if (data.settings?.contact_phone) {
+          setContactPhone(data.settings.contact_phone)
+        }
+      })
+      .catch(err => console.error(err))
+  }, [])
+
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' })
   const [status, setStatus] = useState<'IDLE' | 'LOADING' | 'SUCCESS' | 'ERROR'>('IDLE')
   const [errorMessage, setErrorMessage] = useState('')
@@ -56,7 +73,7 @@ export default function ContactClient() {
             </div>
             <div>
               <h3 className="font-syne" style={{ color: 'var(--text-primary)', fontWeight: 600, fontSize: '1.1rem', marginBottom: '0.25rem' }}>WhatsApp Chat</h3>
-              <a href={`https://wa.me/${process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '447700000000'}`} style={{ color: '#00D2FF', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 500 }}>Chat with Dispatch (+44 7700 000000)</a>
+              <a href={`https://wa.me/${whatsappNumber}`} style={{ color: '#00D2FF', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 500 }}>Chat with Dispatch (+{whatsappNumber})</a>
             </div>
           </div>
 
@@ -66,7 +83,7 @@ export default function ContactClient() {
             </div>
             <div>
               <h3 className="font-syne" style={{ color: 'var(--text-primary)', fontWeight: 600, fontSize: '1.1rem', marginBottom: '0.25rem' }}>Phone Support</h3>
-              <a href={`tel:${process.env.NEXT_PUBLIC_PHONE_NUMBER || '02000000000'}`} style={{ color: '#00D2FF', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 500 }}>Call 020 0000 0000</a>
+              <a href={`tel:${contactPhone}`} style={{ color: '#00D2FF', textDecoration: 'none', fontSize: '0.9rem', fontWeight: 500 }}>Call {contactPhone}</a>
             </div>
           </div>
 
