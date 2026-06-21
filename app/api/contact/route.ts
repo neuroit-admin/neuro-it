@@ -109,7 +109,7 @@ export async function POST(req: Request) {
           <span style="color: #555555; font-style: italic;">"${sanitizedMessage}"</span>
         </p>
         <p style="font-size: 0.95rem; line-height: 1.6; color: #333333;">
-          Need faster help? <a href="https://wa.me/447982380020" style="color: #00D2FF; font-weight: bold;">Chat with us on WhatsApp</a> or <a href="https://neuroit.co.uk/book" style="color: #00D2FF; font-weight: bold;">book a repair directly</a>.
+          Need faster help? <a href="https://wa.me/447519460614" style="color: #00D2FF; font-weight: bold;">Chat with us on WhatsApp</a> or <a href="https://neuroit.co.uk/book" style="color: #00D2FF; font-weight: bold;">book a repair directly</a>.
         </p>
         <hr style="border: none; border-top: 1px solid #EEEEEE; margin: 1.5rem 0;" />
         <p style="font-size: 0.8rem; color: #999999; text-align: center;">Neuro IT · London's Home IT Support</p>
