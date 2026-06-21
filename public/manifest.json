@@ -1,21 +1,26 @@
 {
+  "id": "/?pwa=true",
   "name": "Neuro IT",
   "short_name": "Neuro IT",
   "description": "Same-day home IT support. Vetted technicians, no fix no fee.",
-  "start_url": "/",
+  "start_url": "/?utm_source=pwa",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "background_color": "#050a0f",
   "theme_color": "#00D2FF",
+  "categories": ["business", "utilities"],
   "icons": [
     {
       "src": "/icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
