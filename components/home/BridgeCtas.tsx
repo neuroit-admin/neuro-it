@@ -59,6 +59,21 @@ function Magnetic({ children }: { children: React.ReactElement }) {
 
 export default function BridgeCtas({ primaryCtaText, whatsappCtaText, whatsappNumber }: BridgeCtasProps) {
   const [isWaHovered, setIsWaHovered] = useState(false)
+  const [activeNumber, setActiveNumber] = useState(whatsappNumber)
+
+  useEffect(() => {
+    // Dynamic fetch to avoid cached or stale build-time environment variables
+    fetch('/api/settings')
+      .then(res => res.json())
+      .then(data => {
+        if (data.settings?.whatsapp_number) {
+          // Normalize number (remove any leading '+')
+          const cleanNumber = data.settings.whatsapp_number.replace(/\+/g, '')
+          setActiveNumber(cleanNumber)
+        }
+      })
+      .catch(err => console.error('Failed to dynamically fetch whatsapp number for CTA:', err))
+  }, [whatsappNumber])
 
   return (
     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full max-w-md mx-auto sm:max-w-none">
@@ -74,7 +89,7 @@ export default function BridgeCtas({ primaryCtaText, whatsappCtaText, whatsappNu
 
       <Magnetic>
         <a
-          href={`https://wa.me/${whatsappNumber}?text=Hi, I need IT support`}
+          href={`https://wa.me/${activeNumber}?text=Hi, I need IT support`}
           id="home-whatsapp-cta"
           target="_blank"
           rel="noopener noreferrer"
